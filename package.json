@@ -6,7 +6,9 @@
 	"scripts": {
 		"start": "wp-scripts start --webpack-src-dir=resources --output-path=public",
 		"build": "wp-scripts build --webpack-src-dir=resources --output-path=public",
-		"build:css": "npx @tailwindcss/cli -i ./resources/css/tailwind.css -o ./public/css/tailwind.css --watch"
+		"start:css": "npx @tailwindcss/cli -i ./resources/css/tailwind.css -o ./public/css/tailwind.css --watch",
+		"build:css": "npx @tailwindcss/cli -i ./resources/css/tailwind.css -o ./public/css/tailwind.css"
+
 	},
 	"keywords": [],
 	"author": "",
