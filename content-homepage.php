@@ -90,7 +90,7 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 		<div class="self-stretch justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">Capuccino Cafe to artystyczna pracownia tortów weselnych, komunijnych i okolicznościowych. Dzięki wieloletniemu doświadczeniu, kunsztowi naszych cukierników i najwyższej jakości składnikom zdobyliśmy renomę i zaufanie Klientów. Tworzymy wyjątkowe torty według autorskich pomysłów oraz wizji zamawiających, a także zachwycające słodkie stoły.</div>
 		<div class="self-stretch justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">To także klimatyczne kawiarnie w nadmorskich kurortach, serwujące pyszne ciasta, desery i kawę z autorskiej mieszanki. W ofercie mamy bez, tarty, serniki, lody naturalne oraz propozycje niskokaloryczne.</div>
 	</div>
-	<div class="self-stretch h-44 flex flex-col justify-center items-center gap-2.5">
+	<div class="bg-[url('/app/themes/capuccinocafe_v2/resources/img/video_falback.jpg')] self-stretch h-44 flex flex-col justify-center items-center gap-2.5">
 		<div class="w-14 h-14 bg-stone-400 rounded-full">
 			<div class="w-12 h-12  relative top-[4px] left-[4px] rounded-[91px] outline outline-1 outline-offset-[-1px] outline-stone-700 inline-flex justify-center items-center gap-2.5">
 				<div class="w-4 h-5 relative left-[2px]"><svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -139,78 +139,71 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 			</div>
 		</div>
 	</div>
+
+	<!-- Nasze bestsellery -->
 	<div class="self-stretch px-5 py-14 flex flex-col justify-center items-center gap-7">
 		<div class="w-72 inline-flex justify-between items-center">
-			<div class="justify-start text-stone-700 text-2xl font-normal font-['Didot_LT_Pro']">Nasze bestsellery</div>
-			<div class="flex justify-start items-center gap-2.5">
-				<div data-property-1="default" class="w-7 h-7 p-2 origin-top-left -rotate-180 rounded outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex flex-col justify-start items-start gap-2.5 overflow-hidden">
-					<div class="w-3.5 h-3.5 bg-stone-400"></div>
-				</div>
-				<div data-property-1="default" class="w-7 h-7 p-2 rounded outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex flex-col justify-start items-start gap-2.5 overflow-hidden">
-					<div class="w-3.5 h-3.5 bg-stone-400"></div>
-				</div>
+			<div class="justify-start text-stone-700 text-2xl font-normal font-['Didot_LT_Pro']">
+				Nasze bestsellery
 			</div>
-		</div>
-		<div class="self-stretch pb-5 inline-flex justify-start items-center gap-5">
-			<div class="bg-white inline-flex flex-col justify-start items-start">
-				<img class="w-64 h-64 relative" src="https://placehold.co/251x260" />
-				<div class="self-stretch flex flex-col justify-start items-start">
-					<div class="self-stretch h-20 py-4 border-stone-400 flex flex-col justify-start items-center gap-2.5">
-						<div class="self-stretch justify-start text-zinc-800 text-base font-light font-['Mulish'] leading-snug">Tort bezowy z białą czekoladą i porzeczką</div>
-					</div>
-					<div class="self-stretch inline-flex justify-start items-start gap-3 flex-wrap content-start">
-						<div class="flex-1 h-12 inline-flex flex-col justify-center items-start">
-							<div class="self-stretch min-w-32 justify-start text-stone-700 text-3xl font-normal font-['Didot_LT_Pro']">260,00 zł</div>
-						</div>
-						<div class="h-12 min-w-12 p-4 bg-stone-400 rounded outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex flex-col justify-center items-center gap-2.5">
-							<div class="w-6 h-6 bg-zinc-300"></div>
-							<div class="w-3.5 h-5 bg-white"></div>
-						</div>
+			<div class="flex gap-2.5">
+				<div id="scrollLeft" class="w-7 h-7 p-2 origin-top-left rounded outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex flex-col justify-start items-start gap-2.5 overflow-hidden">
+					<div class="w-3.5 h-3.5"><svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M2.873 7.05175L14.25 7.05175C14.4628 7.05175 14.641 7.12358 14.7845 7.26725C14.9282 7.41075 15 7.58892 15 7.80175C15 8.01458 14.9282 8.19275 14.7845 8.33625C14.641 8.47992 14.4628 8.55175 14.25 8.55175L2.873 8.55175L8.04225 13.721C8.19092 13.8697 8.26433 14.0437 8.2625 14.243C8.2605 14.4423 8.182 14.6196 8.027 14.7747C7.87183 14.9196 7.69617 14.9946 7.5 14.9997C7.30383 15.0049 7.12817 14.9299 6.973 14.7747L0.632751 8.4345C0.539085 8.34083 0.473085 8.24208 0.434752 8.13825C0.396252 8.03442 0.377002 7.92225 0.377002 7.80175C0.377002 7.68125 0.396252 7.56908 0.434752 7.46525C0.473085 7.36142 0.539085 7.26267 0.632751 7.169L6.973 0.82875C7.1115 0.69025 7.283 0.619417 7.4875 0.616249C7.692 0.613083 7.87183 0.683916 8.027 0.82875C8.182 0.983917 8.2595 1.16208 8.2595 1.36325C8.2595 1.56458 8.182 1.74283 8.027 1.898L2.873 7.05175Z" fill="#A9957B" />
+						</svg>
+
 					</div>
 				</div>
-			</div>
-			<div class="bg-white inline-flex flex-col justify-start items-start">
-				<img class="w-64 h-64 relative" src="https://placehold.co/251x260" />
-				<div class="self-stretch flex flex-col justify-start items-start">
-					<div class="self-stretch h-20 py-4 border-stone-400 flex flex-col justify-start items-center gap-2.5">
-						<div class="self-stretch justify-start text-zinc-800 text-base font-light font-['Mulish'] leading-snug">Praliny czekoladowe 6 szt.</div>
-					</div>
-					<div class="self-stretch inline-flex justify-start items-start gap-3 flex-wrap content-start">
-						<div class="flex-1 h-12 inline-flex flex-col justify-center items-start">
-							<div class="self-stretch min-w-32 justify-start text-stone-700 text-3xl font-normal font-['Didot_LT_Pro']">260,00 zł</div>
-						</div>
-						<div class="h-12 min-w-12 p-4 bg-stone-400 rounded outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex flex-col justify-center items-center gap-2.5">
-							<div class="w-6 h-6 bg-zinc-300"></div>
-							<div class="w-3.5 h-5 bg-white"></div>
-						</div>
+				<div id="scrollRight" class="w-7 h-7 p-2 rounded outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex flex-col justify-start items-start gap-2.5 overflow-hidden">
+					<div class="w-3.5 h-3.5"><svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M12.127 7.94825H0.75C0.537167 7.94825 0.359 7.87642 0.2155 7.73275C0.0718332 7.58925 0 7.41108 0 7.19825C0 6.98542 0.0718332 6.80725 0.2155 6.66375C0.359 6.52008 0.537167 6.44825 0.75 6.44825H12.127L6.95775 1.279C6.80908 1.13033 6.73567 0.956332 6.7375 0.756999C6.7395 0.557665 6.818 0.380416 6.973 0.22525C7.12817 0.0804164 7.30383 0.00541641 7.5 0.00024974C7.69617 -0.00491693 7.87183 0.0700831 8.027 0.22525L14.3672 6.5655C14.4609 6.65917 14.5269 6.75792 14.5652 6.86175C14.6037 6.96558 14.623 7.07775 14.623 7.19825C14.623 7.31875 14.6037 7.43092 14.5652 7.53475C14.5269 7.63858 14.4609 7.73733 14.3672 7.831L8.027 14.1712C7.8885 14.3097 7.717 14.3806 7.5125 14.3837C7.308 14.3869 7.12817 14.3161 6.973 14.1712C6.818 14.0161 6.7405 13.8379 6.7405 13.6367C6.7405 13.4354 6.818 13.2572 6.973 13.102L12.127 7.94825Z" fill="#A9957B" />
+						</svg>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div data-property-1="Default" class="h-12 px-7 rounded outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2.5">
-			<div class="justify-center text-zinc-800 text-sm font-bold font-['Mulish'] uppercase leading-tight">Przejdź do sklepu</div>
+
+		<div id="productScrollWrapper" class="flex flex-nowrap overflow-x-auto scroll-smooth w-full">
+			<div id="productScroll" class="flex flex-nowrap snap-x snap-mandatory gap-5 pb-5">
+				<?php echo do_shortcode('[best_selling_products limit="6"]'); ?>
+			</div>
+		</div>
+
+		<div class="h-12 px-7 rounded outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2.5 mt-8">
+			<div class="justify-center text-zinc-800 text-sm font-bold font-['Mulish'] uppercase leading-tight">
+				Przejdź do sklepu
+			</div>
 			<div class="w-6 h-6 relative overflow-hidden">
-				<div class="w-3.5 h-3.5 left-[4.50px] top-[4.80px] absolute bg-stone-400"></div>
+				<div class="w-3.5 h-3.5"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M16.627 12.75H5.25C5.03717 12.75 4.859 12.6782 4.7155 12.5345C4.57183 12.391 4.5 12.2128 4.5 12C4.5 11.7872 4.57183 11.609 4.7155 11.4655C4.859 11.3218 5.03717 11.25 5.25 11.25H16.627L11.4577 6.08076C11.3091 5.93209 11.2357 5.75809 11.2375 5.55876C11.2395 5.35942 11.318 5.18217 11.473 5.02701C11.6282 4.88217 11.8038 4.80717 12 4.80201C12.1962 4.79684 12.3718 4.87184 12.527 5.02701L18.8672 11.3673C18.9609 11.4609 19.0269 11.5597 19.0652 11.6635C19.1037 11.7673 19.123 11.8795 19.123 12C19.123 12.1205 19.1037 12.2327 19.0652 12.3365C19.0269 12.4403 18.9609 12.5391 18.8672 12.6328L12.527 18.973C12.3885 19.1115 12.217 19.1823 12.0125 19.1855C11.808 19.1887 11.6282 19.1178 11.473 18.973C11.318 18.8178 11.2405 18.6397 11.2405 18.4385C11.2405 18.2372 11.318 18.0589 11.473 17.9038L16.627 12.75Z" fill="#A9957B" />
+					</svg>
+				</div>
 			</div>
 		</div>
 	</div>
+
+	<!-- END Nasze bestsellery -->
+
 	<div class="self-stretch flex flex-col justify-start items-center">
-		<img class="self-stretch h-60 relative" src="https://placehold.co/320x240" />
+		<img class="self-stretch h-60 relative" src="/app/themes/capuccinocafe_v2/resources/img/jakosc_skladnokow.jpg" />
 		<div class="self-stretch px-10 pt-10 pb-14 bg-white inline-flex justify-start items-start gap-24 flex-wrap content-start overflow-hidden">
 			<div class="flex-1 max-w-96 min-w-72 justify-start text-stone-700 text-4xl font-normal font-['Didot_LT_Pro']">Jakość składników</div>
 			<div class="flex-1 justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">W Capuccino Cafe doskonale wiemy, że nic nie zastąpi naturalnych i oryginalnych produktów. Korzystamy z wysokiej jakości składników, które kupujemy od lokalnych producentów z naszego regionu. Dzięki temu zapewniamy świeżość i najlepszą jakość wypieków, równocześnie kultywując pomorską tradycję kulinarną. W 2018 r. otrzymaliśmy Certyfikat Dziedzictwa Kulinarnego przyznawany przez Europejską Sieć Regionalnego Dziedzictwa Kulinarnego.</div>
 		</div>
 	</div>
-	<div class="self-stretch pb-14 bg-stone-700 inline-flex justify-start items-start gap-80 flex-wrap content-start overflow-hidden">
-		<img class="flex-1 h-72" src="https://placehold.co/320x290" />
-		<img class="w-44 h-11" src="https://placehold.co/177x44" />
+	<div class="self-stretch pb-14 bg-[#42352F] inline-flex justify-start items-start gap-8 flex-wrap content-start overflow-hidden">
+		<img class="flex-1 h-72" src="/app/themes/capuccinocafe_v2/resources/img/sopotski_mlyn.jpg" />
+		<img class="px-9 w-44 h-11" src="/app/themes/capuccinocafe_v2/resources/img/sopotski_mlyn_logo.png" />
 		<div class="flex-1 min-w-80 px-10 inline-flex flex-col justify-start items-start gap-7">
 			<div class="self-stretch justify-start text-white text-4xl font-normal font-['Didot_LT_Pro']">Restauracja Sopocki Młyn </div>
 			<div class="self-stretch justify-center text-stone-400 text-base font-light font-['Mulish'] leading-snug">Smak tradycji w sercu Sopotu!</div>
 			<div data-property-1="Default" class="h-12 px-7 rounded outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2.5">
 				<div class="justify-center text-white text-sm font-bold font-['Mulish'] uppercase leading-tight">Poznaj menu</div>
 				<div class="w-6 h-6 relative overflow-hidden">
-					<div class="w-3.5 h-4 left-[1.56px] top-[10.94px] absolute origin-top-left -rotate-45 bg-stone-400"></div>
+					<div class="w-3.5 h-4 top-[2px] relative origin-top-left"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M15.7514 9.1233L7.70662 17.1681C7.55613 17.3186 7.37935 17.3937 7.17629 17.3936C6.97323 17.3937 6.79646 17.3186 6.64596 17.1681C6.49547 17.0176 6.42028 16.8408 6.42039 16.6377C6.42028 16.4347 6.49547 16.2579 6.64596 16.1074L14.6907 8.06264H7.38029C7.17004 8.06264 6.99509 7.99152 6.85544 7.84927C6.7159 7.70691 6.64608 7.52607 6.64596 7.30675C6.65327 7.09461 6.72445 6.91737 6.85951 6.775C6.99456 6.63264 7.17181 6.56146 7.39125 6.56145L16.3577 6.56145C16.4902 6.56145 16.6067 6.58461 16.7072 6.63093C16.8079 6.67713 16.9008 6.74283 16.986 6.82803C17.0712 6.91324 17.1369 7.00617 17.1831 7.10681C17.2294 7.20734 17.2526 7.32383 17.2526 7.4563L17.2526 16.4228C17.2526 16.6186 17.1814 16.79 17.039 16.9368C16.8967 17.0837 16.7194 17.1607 16.5073 17.1681C16.288 17.1679 16.1072 17.0968 15.9649 16.9545C15.8226 16.8121 15.7513 16.6313 15.7512 16.412L15.7514 9.1233Z" fill="#A9957B" />
+						</svg>
+					</div>
 				</div>
 			</div>
 		</div>

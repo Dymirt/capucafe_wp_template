@@ -70,3 +70,13 @@ function capucafe_enqueue_editor_script() {
     );
 }
 add_action('enqueue_block_editor_assets', 'capucafe_enqueue_editor_script');
+
+
+function enqueue_custom_fonts() {
+    wp_enqueue_style(
+        'custom-google-fonts',
+        'https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;600;700&display=swap',
+        false
+    );
+}
+add_action('wp_enqueue_scripts', 'enqueue_custom_fonts');
