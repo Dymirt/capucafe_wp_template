@@ -11,7 +11,7 @@
 		</div>
 		<div class="self-stretch inline-flex justify-start items-start gap-3 flex-wrap content-start">
 			<div class="flex-1 h-12 inline-flex flex-col justify-center items-start">
-				<div class="self-stretch min-w-32 justify-start text-stone-700 text-3xl font-normal font-['Didot_LT_Pro']">
+				<div class="self-stretch min-w-32 justify-start text-stone-700 text-3xl font-normal font-['Didot_LT_Pro'] ">
 					<?php woocommerce_template_loop_price(); ?>
 				</div>
 			</div>

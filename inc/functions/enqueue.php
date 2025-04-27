@@ -80,3 +80,12 @@ function enqueue_custom_fonts() {
     );
 }
 add_action('wp_enqueue_scripts', 'enqueue_custom_fonts');
+
+function my_custom_fonts() {
+    // Adobe Typekit (Didot LT Pro)
+    wp_enqueue_style( 'adobe-fonts', 'https://use.typekit.net/amh2lsq.css', array(), null );
+
+    // (Optional) Google Fonts Mulish
+    wp_enqueue_style( 'google-fonts', 'https://fonts.googleapis.com/css2?family=Mulish:wght@400;700&display=swap', array(), null );
+}
+add_action( 'wp_enqueue_scripts', 'my_custom_fonts' );

@@ -212,45 +212,14 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 		<div class="self-stretch inline-flex justify-start items-center gap-11">
 			<div class="flex-1 justify-start text-stone-700 text-3xl font-normal font-['Didot_LT_Pro']">Najnowsze aktualności</div>
 		</div>
-		<div class="self-stretch flex flex-col justify-start items-center gap-10">
-			<div class="self-stretch flex flex-col justify-start items-start">
-				<img class="self-stretch h-56 py-4" src="https://placehold.co/280x220" />
-				<div class="self-stretch flex flex-col justify-start items-start">
-					<div class="self-stretch pt-4 pb-2 inline-flex justify-start items-start gap-3">
-						<div class="justify-start text-zinc-500 text-xs font-normal font-['Mulish']">25 stycznia 2025</div>
-					</div>
-					<div class="self-stretch border-stone-400 flex flex-col justify-start items-center gap-2.5">
-						<div class="self-stretch justify-start text-zinc-800 text-base font-bold font-['Mulish'] leading-snug">WOŚP – aukcje Capuccino Cafe</div>
-					</div>
-				</div>
-			</div>
-			<div class="self-stretch flex flex-col justify-start items-start">
-				<img class="self-stretch h-56 py-4" src="https://placehold.co/280x220" />
-				<div class="self-stretch flex flex-col justify-start items-start">
-					<div class="self-stretch pt-4 pb-2 inline-flex justify-start items-start gap-3">
-						<div class="justify-start text-zinc-500 text-xs font-normal font-['Mulish']">15 stycznia 2025</div>
-					</div>
-					<div class="self-stretch border-stone-400 flex flex-col justify-start items-center gap-2.5">
-						<div class="self-stretch justify-start text-zinc-800 text-base font-bold font-['Mulish'] leading-snug">Słodkie prezenty na Dzień Babci i Dziadka od Capuccino Cafe</div>
-					</div>
-				</div>
-			</div>
-			<div class="self-stretch flex flex-col justify-start items-start">
-				<img class="self-stretch h-56 py-4" src="https://placehold.co/280x220" />
-				<div class="self-stretch flex flex-col justify-start items-start">
-					<div class="self-stretch pt-4 pb-2 inline-flex justify-start items-start gap-3">
-						<div class="justify-start text-zinc-500 text-xs font-normal font-['Mulish']">9 stycznia 2025</div>
-					</div>
-					<div class="self-stretch border-stone-400 flex flex-col justify-start items-center gap-2.5">
-						<div class="self-stretch justify-start text-zinc-800 text-base font-bold font-['Mulish'] leading-snug">Degustacja tortów weselnych w Sopocie</div>
-					</div>
-				</div>
-			</div>
-		</div>
+		<?php echo do_shortcode('[recent_posts]'); ?>
 		<div data-property-1="Default" class="h-12 px-7 rounded outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2.5">
 			<div class="justify-center text-zinc-800 text-sm font-bold font-['Mulish'] uppercase leading-tight">zobacz wszystkie</div>
 			<div class="w-6 h-6 relative overflow-hidden">
-				<div class="w-3.5 h-3.5 left-[4.50px] top-[4.80px] absolute bg-stone-400"></div>
+				<div class="w-3.5 h-3.5  top-[1px] relative "><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M16.627 12.75H5.25C5.03717 12.75 4.859 12.6782 4.7155 12.5345C4.57183 12.391 4.5 12.2128 4.5 12C4.5 11.7872 4.57183 11.609 4.7155 11.4655C4.859 11.3218 5.03717 11.25 5.25 11.25H16.627L11.4577 6.08076C11.3091 5.93209 11.2357 5.75809 11.2375 5.55876C11.2395 5.35942 11.318 5.18217 11.473 5.02701C11.6282 4.88217 11.8038 4.80717 12 4.80201C12.1962 4.79684 12.3718 4.87184 12.527 5.02701L18.8672 11.3673C18.9609 11.4609 19.0269 11.5597 19.0652 11.6635C19.1037 11.7673 19.123 11.8795 19.123 12C19.123 12.1205 19.1037 12.2327 19.0652 12.3365C19.0269 12.4403 18.9609 12.5391 18.8672 12.6328L12.527 18.973C12.3885 19.1115 12.217 19.1823 12.0125 19.1855C11.808 19.1887 11.6282 19.1178 11.473 18.973C11.318 18.8178 11.2405 18.6397 11.2405 18.4385C11.2405 18.2372 11.318 18.0589 11.473 17.9038L16.627 12.75Z" fill="#A9957B" />
+					</svg>
+				</div>
 			</div>
 		</div>
 	</div>

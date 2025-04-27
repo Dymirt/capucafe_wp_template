@@ -94,3 +94,49 @@ function my_custom_best_selling_products_shortcode( $atts ) {
 
     return ob_get_clean();
 }
+
+
+function custom_recent_posts_shortcode() {
+    ob_start();
+    $recent_posts = new WP_Query(array(
+        'post_type'      => 'post',
+        'posts_per_page' => 3,
+    ));
+
+    if ( $recent_posts->have_posts() ) :
+        echo '<div class="self-stretch flex flex-col justify-start items-center gap-10">';
+        while ( $recent_posts->have_posts() ) : $recent_posts->the_post();
+            ?>
+            <article class="self-stretch flex flex-col justify-start items-start">
+                <a href="<?php the_permalink(); ?>">
+                    <?php if ( has_post_thumbnail() ) : ?>
+                        <img class="w-full aspect-square self-stretch py-4 object-cover" src="<?php the_post_thumbnail_url('medium'); ?>" alt="<?php the_title_attribute(); ?>">
+                    <?php else : ?>
+                        <img class="w-full aspect-square self-stretch py-4 object-cover" src="https://placehold.co/280x220" alt="Placeholder">
+                    <?php endif; ?>
+                </a>
+                <div class="self-stretch flex flex-col justify-start items-start">
+                    <div class="self-stretch pt-4 pb-2 inline-flex justify-start items-start gap-3">
+                        <div class="justify-start text-zinc-500 text-xs font-normal font-['Mulish']">
+                            <?php echo get_the_date('d F Y'); // example: 25 stycznia 2025 ?>
+                        </div>
+                    </div>
+                    <div class="self-stretch border-stone-400 flex flex-col justify-start items-center gap-2.5">
+                        <a href="<?php the_permalink(); ?>" class="self-stretch justify-start text-zinc-800 text-base font-bold font-['Mulish'] leading-snug">
+                            <?php the_title(); ?>
+                        </a>
+                    </div>
+                </div>
+            </article>
+            <?php
+        endwhile;
+        echo '</div>';
+        wp_reset_postdata();
+    else :
+        echo '<p>No recent posts found.</p>';
+    endif;
+
+    return ob_get_clean();
+}
+add_shortcode('recent_posts', 'custom_recent_posts_shortcode');
+?>

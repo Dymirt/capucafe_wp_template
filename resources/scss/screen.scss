@@ -7,6 +7,16 @@
 	scrollbar-width: none; // Firefox
 
 	&::-webkit-scrollbar {
-	  display: none; // Chrome/Safari/Opera
+		display: none; // Chrome/Safari/Opera
 	}
-  }
+}
+
+h3,
+h4 {
+	font-family: "Didot LT Pro";
+	font-size: 38px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+	letter-spacing: -0.76px;
+}
