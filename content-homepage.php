@@ -100,32 +100,38 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 			</div>
 		</div>
 	</div>
-	<div class="self-stretch px-5 py-14 bg-stone-200 flex flex-col justify-start items-center gap-7">
-		<div class="text-center justify-start text-stone-700 text-3xl font-normal font-['Didot_LT_Pro']">Capuccino Cafe to... </div>
-		<div class="self-stretch flex flex-col justify-start items-start gap-5">
+	<div class="relative md:grid md:grid-flow-col self-stretch px-5 py-14 bg-stone-200 flex flex-col justify-start items-center gap-7">
+		<div class="md:top-4 md:row-span-3 md:h-full text-center justify-start text-stone-700 text-3xl font-normal font-['Didot_LT_Pro']">
+			<div class="sticky top-4 flex flex-col relative">
+				<div class="text-center text-stone-700 text-3xl font-normal font-['Didot_LT_Pro']">
+					Capuccino Cafe to...
+				</div>
+			</div>
+		</div>
+		<div class="md:col-span-2 self-stretch flex flex-col justify-start items-start gap-5">
 			<div class="self-stretch bg-white rounded inline-flex justify-start items-end flex-wrap content-end overflow-hidden">
-				<img class="flex-1 h-64 min-w-80 py-4" src="https://placehold.co/320x270" />
+				<img class="md:order-2 flex-1 h-full md:min-w-40 md:w-2/3 md:object-none" src="/app/themes/capuccinocafe_v2/resources/img/pracownia_tortow.png" />
 				<div class="flex-1 min-w-72 p-5 inline-flex flex-col justify-start items-start gap-3">
 					<div class="self-stretch justify-start text-stone-700 text-xl font-bold font-['Mulish']">Pracownia tortów</div>
 					<div class="self-stretch justify-start text-zinc-500 text-sm font-normal font-['Mulish'] leading-tight">Wykonujemy torty na zamówienie, według projektu i wizji Młodej Pary. Służymy również fachowym doradztwem.</div>
 				</div>
 			</div>
-			<div class="self-stretch bg-white rounded inline-flex justify-start items-end flex-wrap content-end overflow-hidden">
-				<img class="flex-1 h-64 min-w-80 py-4" src="https://placehold.co/320x256" />
+			<div class="self-stretch bg-white rounded inline-flex justify-start items-end flex-wrap content-end overflow-hidden md:h-80">
+				<img class="md:order-2 flex-1 h-full md:min-w-40 md:w-2/3 md:object-none" src="/app/themes/capuccinocafe_v2/resources/img/slodkie_stoly.jpg" />
 				<div class="flex-1 min-w-72 p-6 inline-flex flex-col justify-start items-start gap-4">
 					<div class="self-stretch justify-start text-stone-700 text-xl font-bold font-['Mulish']">Słodkie Stoły</div>
 					<div class="self-stretch justify-start text-zinc-500 text-sm font-normal font-['Mulish'] leading-tight">Słodkie stoły zachwycają bogactwem smaków i przepiękną aranżacją. </div>
 				</div>
 			</div>
 			<div class="self-stretch bg-white rounded inline-flex justify-start items-end flex-wrap content-end overflow-hidden">
-				<img class="flex-1 h-64 min-w-80 py-4" src="https://placehold.co/320x256" />
+				<img class="md:order-2 flex-1 h-full md:min-w-40 md:w-2/3 md:object-none" src="/app/themes/capuccinocafe_v2/resources/img/kawiarnie.png" />
 				<div class="flex-1 min-w-72 p-6 inline-flex flex-col justify-start items-start gap-4">
 					<div class="self-stretch justify-start text-stone-700 text-xl font-bold font-['Mulish']">Kawiarnie</div>
 					<div class="self-stretch justify-start text-zinc-500 text-sm font-normal font-['Mulish'] leading-tight">Klimatyczne kawiarnie w nadmorskich kurortach. Najwyższej jakości ciasta i desery własnej produkcji oraz aromatyczna kawa.</div>
 				</div>
 			</div>
 			<div class="self-stretch bg-white rounded inline-flex justify-start items-end flex-wrap content-end overflow-hidden">
-				<img class="flex-1 h-64 min-w-80 py-4" src="https://placehold.co/320x256" />
+				<img class="md:order-2 flex-1 h-full md:min-w-40 md:w-2/3 md:object-none" src="/app/themes/capuccinocafe_v2/resources/img/sklep_online.png" />
 				<div class="flex-1 min-w-72 p-6 inline-flex flex-col justify-start items-start gap-4">
 					<div class="self-stretch justify-start text-stone-700 text-xl font-bold font-['Mulish']">Sklep online</div>
 					<div class="self-stretch justify-start text-zinc-500 text-sm font-normal font-['Mulish'] leading-tight">Zapewniamy kompleksową organizację imprez okolicznościowych.</div>
@@ -135,10 +141,15 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 		<div data-property-1="Default" class="h-12 px-7 rounded outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2.5">
 			<div class="justify-center text-zinc-800 text-sm font-bold font-['Mulish'] uppercase leading-tight">Więcej o nas</div>
 			<div class="w-6 h-6 relative overflow-hidden">
-				<div class="w-3.5 h-3.5 left-[4.50px] top-[4.80px] absolute bg-stone-400"></div>
+				<div class="w-3.5 h-3.5 top-[2px] relative"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M16.627 12.75H5.25C5.03717 12.75 4.859 12.6782 4.7155 12.5345C4.57183 12.391 4.5 12.2128 4.5 12C4.5 11.7872 4.57183 11.609 4.7155 11.4655C4.859 11.3218 5.03717 11.25 5.25 11.25H16.627L11.4577 6.08076C11.3091 5.93209 11.2357 5.75809 11.2375 5.55876C11.2395 5.35942 11.318 5.18217 11.473 5.02701C11.6282 4.88217 11.8038 4.80717 12 4.80201C12.1962 4.79684 12.3718 4.87184 12.527 5.02701L18.8672 11.3673C18.9609 11.4609 19.0269 11.5597 19.0652 11.6635C19.1037 11.7673 19.123 11.8795 19.123 12C19.123 12.1205 19.1037 12.2327 19.0652 12.3365C19.0269 12.4403 18.9609 12.5391 18.8672 12.6328L12.527 18.973C12.3885 19.1115 12.217 19.1823 12.0125 19.1855C11.808 19.1887 11.6282 19.1178 11.473 18.973C11.318 18.8178 11.2405 18.6397 11.2405 18.4385C11.2405 18.2372 11.318 18.0589 11.473 17.9038L16.627 12.75Z" fill="#A9957B" />
+					</svg>
+
+				</div>
 			</div>
 		</div>
 	</div>
+
 
 	<!-- Nasze bestsellery -->
 	<div class="self-stretch px-5 py-14 flex flex-col justify-center items-center gap-7">
@@ -184,15 +195,15 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 
 	<!-- END Nasze bestsellery -->
 
-	<div class="self-stretch flex flex-col justify-start items-center">
-		<img class="self-stretch h-60 relative" src="/app/themes/capuccinocafe_v2/resources/img/jakosc_skladnokow.jpg" />
+	<div class="self-stretch flex flex-col justify-start items-center md:p-10">
+		<img class="md:order-2 self-stretch h-60 relative" src="/app/themes/capuccinocafe_v2/resources/img/jakosc_skladnokow.jpg" />
 		<div class="self-stretch px-10 pt-10 pb-14 bg-white inline-flex justify-start items-start gap-24 flex-wrap content-start overflow-hidden">
-			<div class="flex-1 max-w-96 min-w-72 justify-start text-stone-700 text-4xl font-normal font-['Didot_LT_Pro']">Jakość składników</div>
+			<div class=" flex-1 max-w-96 min-w-72 justify-start text-stone-700 text-4xl font-normal font-['Didot_LT_Pro']">Jakość składników</div>
 			<div class="flex-1 justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">W Capuccino Cafe doskonale wiemy, że nic nie zastąpi naturalnych i oryginalnych produktów. Korzystamy z wysokiej jakości składników, które kupujemy od lokalnych producentów z naszego regionu. Dzięki temu zapewniamy świeżość i najlepszą jakość wypieków, równocześnie kultywując pomorską tradycję kulinarną. W 2018 r. otrzymaliśmy Certyfikat Dziedzictwa Kulinarnego przyznawany przez Europejską Sieć Regionalnego Dziedzictwa Kulinarnego.</div>
 		</div>
 	</div>
 	<div class="self-stretch pb-14 bg-[#42352F] inline-flex justify-start items-start gap-8 flex-wrap content-start overflow-hidden">
-		<img class="flex-1 h-72" src="/app/themes/capuccinocafe_v2/resources/img/sopotski_mlyn.jpg" />
+		<img class="flex-1 h-72 md:h-35" src="/app/themes/capuccinocafe_v2/resources/img/sopotski_mlyn.jpg" />
 		<img class="px-9 w-44 h-11" src="/app/themes/capuccinocafe_v2/resources/img/sopotski_mlyn_logo.png" />
 		<div class="flex-1 min-w-80 px-10 inline-flex flex-col justify-start items-start gap-7">
 			<div class="self-stretch justify-start text-white text-4xl font-normal font-['Didot_LT_Pro']">Restauracja Sopocki Młyn </div>

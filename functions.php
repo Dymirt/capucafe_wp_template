@@ -100,14 +100,14 @@ function custom_recent_posts_shortcode() {
     ob_start();
     $recent_posts = new WP_Query(array(
         'post_type'      => 'post',
-        'posts_per_page' => 3,
+        'posts_per_page' => 5,
     ));
 
     if ( $recent_posts->have_posts() ) :
-        echo '<div class="self-stretch flex flex-col justify-start items-center gap-10">';
+        echo '<div class="self-stretch flex flex-col md:flex-row justify-start items-center gap-10">';
         while ( $recent_posts->have_posts() ) : $recent_posts->the_post();
             ?>
-            <article class="self-stretch flex flex-col justify-start items-start">
+            <article class="self-stretch flex flex-col justify-start items-start md:basis-64">
                 <a href="<?php the_permalink(); ?>">
                     <?php if ( has_post_thumbnail() ) : ?>
                         <img class="w-full aspect-square self-stretch py-4 object-cover" src="<?php the_post_thumbnail_url('medium'); ?>" alt="<?php the_title_attribute(); ?>">
@@ -139,4 +139,6 @@ function custom_recent_posts_shortcode() {
     return ob_get_clean();
 }
 add_shortcode('recent_posts', 'custom_recent_posts_shortcode');
-?>
+
+
+

@@ -31,3 +31,10 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 	});
 });
+
+window.toggleSubmenu = function(id) {
+    const submenu = document.getElementById(id);
+    if (submenu) {
+        submenu.classList.toggle('hidden');
+    }
+};
