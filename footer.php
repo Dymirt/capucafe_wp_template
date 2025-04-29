@@ -28,7 +28,7 @@
 		// do_action( 'storefront_footer' );
 		?>
 
-		<div data-property-1="mobile v2" class="w-full self-stretch px-5 pt-36 relative bg-stone-700 inline-flex flex-col justify-start items-start gap-14">
+		<div data-property-1="mobile v2" class="w-full self-stretch px-5 pt-36 relative bg-stone-700 inline-flex flex-col justify-start items-start gap-7">
 			<?php
 			wp_nav_menu([
 				'theme_location' => 'footer-menu-location',
@@ -39,40 +39,6 @@
 			]);
 			?>
 			<div class="self-stretch flex flex-col justify-start items-center gap-6">
-				<div class="self-stretch inline-flex justify-between items-center">
-					<div class="flex-1 h-3.5 justify-start text-stone-400 text-sm font-bold font-['Mulish'] uppercase leading-tight">Sklep</div>
-					<div class="w-6 h-6 bg-zinc-300"></div>
-					<div class="w-1.5 h-3 origin-top-left rotate-180 bg-stone-400"></div>
-				</div>
-				<div class="self-stretch inline-flex justify-between items-center">
-					<div class="flex-1 h-3.5 justify-start text-stone-400 text-sm font-bold font-['Mulish'] uppercase leading-tight">Pracownia tortów</div>
-					<div class="w-6 h-6 bg-zinc-300"></div>
-					<div class="w-1.5 h-3 origin-top-left rotate-180 bg-stone-400"></div>
-				</div>
-				<div class="self-stretch inline-flex justify-between items-center">
-					<div class="flex-1 h-3.5 justify-start text-stone-400 text-sm font-bold font-['Mulish'] uppercase leading-tight">Kawiarnie</div>
-					<div class="w-6 h-6 bg-zinc-300"></div>
-					<div class="w-1.5 h-3 origin-top-left rotate-180 bg-stone-400"></div>
-				</div>
-				<div class="self-stretch inline-flex justify-between items-center">
-					<div class="flex-1 h-3.5 justify-start text-stone-400 text-sm font-bold font-['Mulish'] uppercase leading-tight">Słodkie stoły</div>
-					<div class="w-6 h-6 bg-zinc-300"></div>
-					<div class="w-1.5 h-3 origin-top-left rotate-180 bg-stone-400"></div>
-				</div>
-				<div class="self-stretch inline-flex justify-between items-center">
-					<div class="flex-1 h-3.5 justify-start text-stone-400 text-sm font-bold font-['Mulish'] uppercase leading-tight">Kontakt</div>
-					<div class="w-6 h-6 bg-zinc-300"></div>
-					<div class="w-1.5 h-3 origin-top-left rotate-180 bg-stone-400"></div>
-				</div>
-				<div class="self-stretch h-6 inline-flex justify-between items-center">
-					<div class="flex-1 h-3.5 justify-start text-stone-400 text-sm font-bold font-['Mulish'] uppercase leading-tight">O nas</div>
-				</div>
-				<div class="self-stretch h-6 inline-flex justify-between items-center">
-					<div class="flex-1 h-3.5 justify-start text-stone-400 text-sm font-bold font-['Mulish'] uppercase leading-tight">Aktualności</div>
-				</div>
-				<div class="self-stretch h-6 inline-flex justify-between items-center">
-					<div class="flex-1 h-3.5 justify-start text-stone-400 text-sm font-bold font-['Mulish'] uppercase leading-tight">Regulamin</div>
-				</div>
 
 				<!-- Socials -->
 				<div class="self-stretch py-1 flex flex-col justify-center items-start gap-4">

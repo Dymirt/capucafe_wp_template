@@ -33,8 +33,13 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 window.toggleSubmenu = function(id) {
-    const submenu = document.getElementById(id);
-    if (submenu) {
-        submenu.classList.toggle('hidden');
-    }
+    const allSubmenus = document.querySelectorAll('.submenu');
+    allSubmenus.forEach((submenu) => {
+        if (submenu.id === id) {
+            submenu.classList.toggle('hidden');
+        } else {
+            submenu.classList.add('hidden');
+        }
+    });
 };
+
