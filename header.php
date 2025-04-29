@@ -153,7 +153,13 @@ $count = WC()->cart->get_cart_contents_count();
 		?>
 
 		<div id="content" class="site-content" tabindex="-1">
-			<div class="w-full">
+			<?php if (is_front_page()) : ?>
+				<!-- Homepage -->
+				<div class="w-full ">
+				<?php else : ?>
+					<!-- Not homepage -->
+					<div class="col-full">
+					<?php endif; ?>
 
-				<?php
-				do_action('storefront_content_top');
+					<?php
+					do_action('storefront_content_top');

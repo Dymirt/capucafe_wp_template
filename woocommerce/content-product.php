@@ -1,4 +1,4 @@
-<div class="w-64 inline-flex flex-col justify-start items-start snap-start width: 100%; color: #333333; font-size: 16px; font-family: Mulish; font-weight: 300; line-height: 22.40px; word-wrap: break-word">
+<div class="p-2 w-64 inline-flex flex-col justify-start items-start snap-start width: 100%; color: #333333; font-size: 16px; font-family: Mulish; font-weight: 300; line-height: 22.40px; word-wrap: break-word">
 	<a href="<?php the_permalink(); ?>">
 		<?php woocommerce_show_product_sale_flash(); ?>
 		<?php the_post_thumbnail('woocommerce_thumbnail', ['class' => 'w-64 h-64 object-cover']); ?>
