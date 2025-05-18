@@ -5,7 +5,7 @@ function tailwind_enqueue_scripts() {
         'tailwind',
         get_stylesheet_directory_uri() . '/public/css/tailwind.css',
         array(), // No dependencies
-        filemtime(get_stylesheet_directory() . '/assets/css/tailwind.css')
+        filemtime(get_stylesheet_directory() . '/public/css/tailwind.css')
     );
 }
 add_action('wp_enqueue_scripts', 'tailwind_enqueue_scripts', 20);
@@ -45,7 +45,7 @@ add_action('after_setup_theme', 'capucafe_add_editor_styles');
 
 function capucafe_enqueue_frontend_scripts()
 {
-	$asset = include get_theme_file_path( 'public/css/frontend.asset.php' );
+	$asset = include get_theme_file_path( 'public/js/frontend.asset.php' );
 
 	wp_enqueue_script(
 		'capucafe-frontend-js',
