@@ -1,6 +1,6 @@
 module.exports = {
 	content: [
-	  './**/*.php',      // ADD THIS
+	  './*.php',      // ADD THIS
 	  './resources/**/*.php', // if your php templates are here
 	  './resources/**/*.js',
 	  './resources/**/*.css',

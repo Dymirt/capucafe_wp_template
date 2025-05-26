@@ -73,9 +73,9 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 <div >
 			<div class='flex h-[40vh] max-md:h-[60vh] items-center justify-center'>
 					<div class=' flex p-[5%] justify-end max-md:flex-col w-4/5 text-sm max-lg:justify-between max-md:w-9/10'>
-					<p class='w-1/3 max-md:w-full max-lg:w-1/2 max-md:mb-6  max-md:p-5'>Capuccino Cafe to artystyczna pracownia tortów weselnych, komunijnych i okolicznościowych. Dzięki wieloletniemu doświadczeniu, kunsztowi naszych cukierników i najwyższej jakości składnikom zdobyliśmy renomę i zaufanie Klientów. Tworzymy wyjątkowe torty według autorskich pomysłów oraz wizji zamawiających, a także zachwycające słodkie stoły.</p>
-					<p class='w-1/3 max-md:w-full max-lg:w-1/2  max-md:p-5'> To także klimatyczne kawiarnie w nadmorskich kurortach, serwujące pyszne ciasta, desery i kawę z autorskiej mieszanki. W ofercie mamy bez, tarty, serniki, lody naturalne oraz propozycje niskokaloryczne.</p>
-					</div>
+					<p class='w-1/3 max-md:w-full max-xl:w-1/2 max-md:mb-6  max-md:p-5'>Capuccino Cafe to artystyczna pracownia tortów weselnych, komunijnych i okolicznościowych. Dzięki wieloletniemu doświadczeniu, kunsztowi naszych cukierników i najwyższej jakości składnikom zdobyliśmy renomę i zaufanie Klientów. Tworzymy wyjątkowe torty według autorskich pomysłów oraz wizji zamawiających, a także zachwycające słodkie stoły.</p>
+					<p class='w-1/3 max-md:w-full max-xl:w-1/2  max-md:p-5'> To także klimatyczne kawiarnie w nadmorskich kurortach, serwujące pyszne ciasta, desery i kawę z autorskiej mieszanki. W ofercie mamy bez, tarty, serniki, lody naturalne oraz propozycje niskokaloryczne.</p>
+					</div> 
 			</div>
 </div>
 <!--- video section -->

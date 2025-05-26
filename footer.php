@@ -15,7 +15,7 @@
 
 <?php do_action('storefront_before_footer'); ?>
 
-<footer id="colophon" class="site-footer p-0" role="contentinfo" style="padding: 0;">
+<footer id="colophon" class="site-footer p-0 bg-red-400" role="contentinfo" style="padding: 0;">
 	<div class="w-full">
 
 		<?php
