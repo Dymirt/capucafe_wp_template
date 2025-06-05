@@ -4,6 +4,9 @@
 			<?php echo get_custom_logo(); ?>
 		</div>
 	</div>
+	<div>
+		
+	</div>
 	<div class="h-16 flex justify-center items-center gap-4">
 		<a href="http://cappucino.local/moje-konto/" data-property-1="Default" class="w-6 h-7 relative overflow-hidden">
 			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
