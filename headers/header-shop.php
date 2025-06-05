@@ -58,17 +58,6 @@ $count = WC()->cart->get_cart_contents_count();
 			//do_action('storefront_header');
 			?>
 
-			<?php
-			if ( is_front_page() ) {
-				get_template_part( 'headers/header', 'home' );
-			} elseif ( is_shop() ) {
-				get_template_part( 'headers/header', 'shop' );
-			} else {
-				// fallback to default
-				get_template_part( 'headers/header', 'home' );
-			}
-			?>
-
 
 		<div data-property-1="mobile 2" class="header z-50 fixed h-[15vh] flex items-center w-screen px-[5%] justify-between">
 			<div class="max-w-40 inline-flex flex-col justify-start items-start overflow-hidden">
