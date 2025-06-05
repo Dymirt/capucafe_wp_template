@@ -57,10 +57,7 @@ $count = WC()->cart->get_cart_contents_count();
 			//do_action('storefront_header');
 			?>
 		</header><!-- #masthead -->
-
-		<div data-property-1="mobile 2" class="h-[12vh] z-50 absolute w-full min-w-80 px-[7%] left-0 top-0  bg-gradient-to-l from-black/0 via-black/30 to-black/70 inline-flex justify-between items-center">
-
-			<?php
+					<?php
 			if ( is_front_page() ) {
 				get_template_part( 'headers/header', 'home' );
 			} elseif ( is_shop() ) {
@@ -71,9 +68,7 @@ $count = WC()->cart->get_cart_contents_count();
 			}
 			?>
 
-
-		<div data-property-1="mobile 2" class="header z-50 fixed h-[15vh] flex items-center w-screen px-[5%] justify-between">
-
+		<div data-property-1="mobile 2" class="h-[12vh] z-50 absolute w-full min-w-80 px-[7%] left-0 top-0  bg-gradient-to-l from-black/0 via-black/30 to-black/70 inline-flex justify-between items-center">
 			<div class="max-w-40 inline-flex flex-col justify-start items-start overflow-hidden">
 				<div class="w-28 h-8 relative overflow-hidden">
 					<?php echo get_custom_logo(); ?>
