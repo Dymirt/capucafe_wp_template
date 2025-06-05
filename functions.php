@@ -110,9 +110,9 @@ function custom_recent_posts_shortcode() {
             <article class="self-stretch flex flex-col justify-start items-start md:basis-64">
                 <a href="<?php the_permalink(); ?>">
                     <?php if ( has_post_thumbnail() ) : ?>
-                        <img class="w-full aspect-square self-stretch py-4 object-cover" src="<?php the_post_thumbnail_url('medium'); ?>" alt="<?php the_title_attribute(); ?>">
+                        <img  class="!h-[220px] !w-full object-cover" src="<?php the_post_thumbnail_url('medium'); ?>" alt="<?php the_title_attribute(); ?>">
                     <?php else : ?>
-                        <img class="w-full aspect-square self-stretch py-4 object-cover" src="https://placehold.co/280x220" alt="Placeholder">
+                        <img   src="https://placehold.co/280x220" alt="Placeholder">
                     <?php endif; ?>
                 </a>
                 <div class="self-stretch flex flex-col justify-start items-start">
@@ -121,8 +121,8 @@ function custom_recent_posts_shortcode() {
                             <?php echo get_the_date('d F Y'); // example: 25 stycznia 2025 ?>
                         </div>
                     </div>
-                    <div class="self-stretch border-stone-400 flex flex-col justify-start items-center gap-2.5">
-                        <a href="<?php the_permalink(); ?>" class="self-stretch justify-start text-zinc-800 text-base font-bold font-['Mulish'] leading-snug">
+                    <div class="self-stretch border-stone-400 flex flex-col justify-start gap-2.5">
+                        <a href="<?php the_permalink(); ?>" class="font-bold !text-black font-['Mulish'] leading-snug">
                             <?php the_title(); ?>
                         </a>
                     </div>
