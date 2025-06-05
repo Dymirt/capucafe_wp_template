@@ -11,7 +11,7 @@
 			'theme_location' => 'top-menu',
 			'walker'         => new Top_Walker_Nav_Menu(),
 			'container'      => false,
-			'items_wrap'     => '%3$s', // no ul
+			'items_wrap'     => '<div class="List size- px-2 inline-flex justify-start items-center gap-6">%3$s</div>', // no ul
 			'fallback_cb'    => '',     // IMPORTANT! <- Empty string, not false!
 		]);
 		?>
