@@ -60,7 +60,7 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 										<g mask="url(#mask0_2030_6377)">
 											<path d="M6.65042 21.5C6.14661 21.5 5.72018 21.325 5.37112 20.975C5.02206 20.625 4.84753 20.1974 4.84753 19.6923V8.30775C4.84753 7.80258 5.02206 7.375 5.37112 7.025C5.72018 6.675 6.14661 6.5 6.65042 6.5H8.58744V6.25C8.58744 5.21417 8.95246 4.33017 9.68249 3.598C10.4127 2.866 11.2943 2.5 12.3274 2.5C13.3604 2.5 14.242 2.866 14.9722 3.598C15.7023 4.33017 16.0673 5.21417 16.0673 6.25V6.5H18.0043C18.5081 6.5 18.9345 6.675 19.2836 7.025C19.6326 7.375 19.8072 7.80258 19.8072 8.30775V19.6923C19.8072 20.1974 19.6326 20.625 19.2836 20.975C18.9345 21.325 18.5081 21.5 18.0043 21.5H6.65042ZM6.65042 20H18.0043C18.0811 20 18.1514 19.9679 18.2152 19.9038C18.2792 19.8398 18.3112 19.7693 18.3112 19.6923V8.30775C18.3112 8.23075 18.2792 8.16025 18.2152 8.09625C18.1514 8.03208 18.0811 8 18.0043 8H16.0673V10.25C16.0673 10.4628 15.9956 10.641 15.8523 10.7845C15.7092 10.9282 15.5315 11 15.3193 11C15.107 11 14.9293 10.9282 14.7862 10.7845C14.6429 10.641 14.5713 10.4628 14.5713 10.25V8H10.0834V10.25C10.0834 10.4628 10.0118 10.641 9.86849 10.7845C9.72538 10.9282 9.54769 11 9.33543 11C9.12317 11 8.94548 10.9282 8.80236 10.7845C8.65908 10.641 8.58744 10.4628 8.58744 10.25V8H6.65042C6.57363 8 6.50332 8.03208 6.43949 8.09625C6.3755 8.16025 6.3435 8.23075 6.3435 8.30775V19.6923C6.3435 19.7693 6.3755 19.8398 6.43949 19.9038C6.50332 19.9679 6.57363 20 6.65042 20ZM10.0834 6.5H14.5713V6.25C14.5713 5.62317 14.3536 5.09142 13.9183 4.65475C13.483 4.21825 12.9527 4 12.3274 4C11.702 4 11.1717 4.21825 10.7364 4.65475C10.3011 5.09142 10.0834 5.62317 10.0834 6.25V6.5Z" fill="white" />
 										</g>
-									</svg></span>	
+									</svg></span>
 							<div>
 	</div>
 </div>
@@ -79,7 +79,7 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 
 <!--- video section -->
 <div class='flex items-center justify-center relative h-[40vh] max-md:mt-4 mt-[10vh]'>
-	<div class="relative max-2xl:w-[80%] max-lg:min-w-[90%]  max-2xl:min-w-[85%] max-w-[90vw]  max-sm:w-full max-md:min-w-[80%] max-h-[80vh] z-50 flex  justify-center items-center">
+	<div class="relative max-2xl:w-[80%] max-lg:min-w-[90%]  max-2xl:min-w-[85%] max-w-[90vw]  max-sm:w-full max-md:min-w-[80%] max-h-[80vh] flex  justify-center items-center">
 	<div class=" max-md:w-[80px] max-md:h-[80px] w-[100px] h-[100px] bg-[#A9957B] top-1/2 flex justify-center  items-center z-50 left-1/2 -translate-x-1/2 -translate-y-1/2 absolute rounded-full">
 				<div class="max-md:w-[70px] max-md:h-[70px] w-[90px] h-[90px] rounded-full  border-[#42352F] border flex items-center justify-center"><svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path id="sound_sampler" d="M0 18.9545V1.04581C0 0.630291 0.176594 0.325508 0.529786 0.13146C0.882977 -0.0625873 1.23949 -0.0418105 1.59933 0.193789L15.582 9.10668C15.9003 9.32816 16.0594 9.62588 16.0594 9.99985C16.0594 10.3738 15.9003 10.6717 15.582 10.8936L1.59933 19.8065C1.23949 20.0417 0.882977 20.0625 0.529786 19.8688C0.176594 19.6748 0 19.37 0 18.9545Z" fill="white" />
@@ -107,7 +107,7 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 								<path d="M12.127 7.94825H0.75C0.537167 7.94825 0.359 7.87642 0.2155 7.73275C0.0718332 7.58925 0 7.41108 0 7.19825C0 6.98542 0.0718332 6.80725 0.2155 6.66375C0.359 6.52008 0.537167 6.44825 0.75 6.44825H12.127L6.95775 1.279C6.80908 1.13033 6.73567 0.956332 6.7375 0.756999C6.7395 0.557665 6.818 0.380416 6.973 0.22525C7.12817 0.0804164 7.30383 0.00541641 7.5 0.00024974C7.69617 -0.00491693 7.87183 0.0700831 8.027 0.22525L14.3672 6.5655C14.4609 6.65917 14.5269 6.75792 14.5652 6.86175C14.6037 6.96558 14.623 7.07775 14.623 7.19825C14.623 7.31875 14.6037 7.43092 14.5652 7.53475C14.5269 7.63858 14.4609 7.73733 14.3672 7.831L8.027 14.1712C7.8885 14.3097 7.717 14.3806 7.5125 14.3837C7.308 14.3869 7.12817 14.3161 6.973 14.1712C6.818 14.0161 6.7405 13.8379 6.7405 13.6367C6.7405 13.4354 6.818 13.2572 6.973 13.102L12.127 7.94825Z" fill="#A9957B" />
 						</svg>
 					</div>
-					<div> 
+					<div>
 							<div class="self-stretch justify-start text-stone-700 text-xl font-bold mb-1">Pracownia tortów</div>
 							<div class="self-stretch justify-start text-zinc-500 text-sm font-normal font-['Mulish'] leading-tight">Wykonujemy torty na zamówienie, według projektu i wizji Młodej Pary. Służymy również fachowym doradztwem.</div>
 					</div>
@@ -124,13 +124,13 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 									<path d="M12.127 7.94825H0.75C0.537167 7.94825 0.359 7.87642 0.2155 7.73275C0.0718332 7.58925 0 7.41108 0 7.19825C0 6.98542 0.0718332 6.80725 0.2155 6.66375C0.359 6.52008 0.537167 6.44825 0.75 6.44825H12.127L6.95775 1.279C6.80908 1.13033 6.73567 0.956332 6.7375 0.756999C6.7395 0.557665 6.818 0.380416 6.973 0.22525C7.12817 0.0804164 7.30383 0.00541641 7.5 0.00024974C7.69617 -0.00491693 7.87183 0.0700831 8.027 0.22525L14.3672 6.5655C14.4609 6.65917 14.5269 6.75792 14.5652 6.86175C14.6037 6.96558 14.623 7.07775 14.623 7.19825C14.623 7.31875 14.6037 7.43092 14.5652 7.53475C14.5269 7.63858 14.4609 7.73733 14.3672 7.831L8.027 14.1712C7.8885 14.3097 7.717 14.3806 7.5125 14.3837C7.308 14.3869 7.12817 14.3161 6.973 14.1712C6.818 14.0161 6.7405 13.8379 6.7405 13.6367C6.7405 13.4354 6.818 13.2572 6.973 13.102L12.127 7.94825Z" fill="#A9957B" />
 							</svg>
 						</div>
-						<div> 
+						<div>
 								<div class="self-stretch justify-start text-stone-700 text-xl font-bold mb-1">Słodkie Stoły</div>
 								<div class="self-stretch justify-start text-zinc-500 text-sm font-normal font-['Mulish'] leading-tight">łodkie stoły zachwycają bogactwem smaków i przepiękną aranżacją.</div>
 						</div>
 			</div>
 	</div>
- 
+
 
 		<div class="bg-white rounded-sm overflow-hidden flex flex-row-reverse max-sm:flex-col w-full relative mb-6">
 				<div class='w-1/2 max-md:w-full'>
@@ -143,7 +143,7 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 									<path d="M12.127 7.94825H0.75C0.537167 7.94825 0.359 7.87642 0.2155 7.73275C0.0718332 7.58925 0 7.41108 0 7.19825C0 6.98542 0.0718332 6.80725 0.2155 6.66375C0.359 6.52008 0.537167 6.44825 0.75 6.44825H12.127L6.95775 1.279C6.80908 1.13033 6.73567 0.956332 6.7375 0.756999C6.7395 0.557665 6.818 0.380416 6.973 0.22525C7.12817 0.0804164 7.30383 0.00541641 7.5 0.00024974C7.69617 -0.00491693 7.87183 0.0700831 8.027 0.22525L14.3672 6.5655C14.4609 6.65917 14.5269 6.75792 14.5652 6.86175C14.6037 6.96558 14.623 7.07775 14.623 7.19825C14.623 7.31875 14.6037 7.43092 14.5652 7.53475C14.5269 7.63858 14.4609 7.73733 14.3672 7.831L8.027 14.1712C7.8885 14.3097 7.717 14.3806 7.5125 14.3837C7.308 14.3869 7.12817 14.3161 6.973 14.1712C6.818 14.0161 6.7405 13.8379 6.7405 13.6367C6.7405 13.4354 6.818 13.2572 6.973 13.102L12.127 7.94825Z" fill="#A9957B" />
 							</svg>
 						</div>
-						<div> 
+						<div>
 								<div class="self-stretch justify-start text-stone-700 text-xl font-bold mb-1">Pracownia tortów</div>
 								<div class="self-stretch justify-start text-zinc-500 text-sm font-normal font-['Mulish'] leading-tight">Wykonujemy torty na zamówienie, według projektu i wizji Młodej Pary. Służymy również fachowym doradztwem</div>
 						</div>
@@ -161,7 +161,7 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 									<path d="M12.127 7.94825H0.75C0.537167 7.94825 0.359 7.87642 0.2155 7.73275C0.0718332 7.58925 0 7.41108 0 7.19825C0 6.98542 0.0718332 6.80725 0.2155 6.66375C0.359 6.52008 0.537167 6.44825 0.75 6.44825H12.127L6.95775 1.279C6.80908 1.13033 6.73567 0.956332 6.7375 0.756999C6.7395 0.557665 6.818 0.380416 6.973 0.22525C7.12817 0.0804164 7.30383 0.00541641 7.5 0.00024974C7.69617 -0.00491693 7.87183 0.0700831 8.027 0.22525L14.3672 6.5655C14.4609 6.65917 14.5269 6.75792 14.5652 6.86175C14.6037 6.96558 14.623 7.07775 14.623 7.19825C14.623 7.31875 14.6037 7.43092 14.5652 7.53475C14.5269 7.63858 14.4609 7.73733 14.3672 7.831L8.027 14.1712C7.8885 14.3097 7.717 14.3806 7.5125 14.3837C7.308 14.3869 7.12817 14.3161 6.973 14.1712C6.818 14.0161 6.7405 13.8379 6.7405 13.6367C6.7405 13.4354 6.818 13.2572 6.973 13.102L12.127 7.94825Z" fill="#A9957B" />
 							</svg>
 						</div>
-						<div> 
+						<div>
 								<div class="self-stretch justify-start text-stone-700 text-xl font-bold mb-1">PSklep online</div>
 								<div class="self-stretch justify-start text-zinc-500 text-sm font-normal font-['Mulish'] leading-tight">Zapewniamy kompleksową organizację imprez okolicznościowych.</div>
 						</div>
@@ -181,9 +181,9 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 			</div>
 			</div>
 
-		 
+
 		<div class="min-h-[60vh] py-12">
-			
+
 			<div class=" pl-[5%] ">
 	  				<h1 class="title">Nasze bestsellery</h1>
 					<div id="productScrollWrapper" class="flex flex-nowrap overflow-x-auto scroll-smooth w-full ">
@@ -207,13 +207,13 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 			<div class=" max-md:w-full w-3/5">W Capuccino Cafe doskonale wiemy, że nic nie zastąpi naturalnych i oryginalnych produktów. Korzystamy z wysokiej jakości składników, które kupujemy od lokalnych producentów z naszego regionu. Dzięki temu zapewniamy świeżość i najlepszą jakość wypieków, równocześnie kultywując pomorską tradycję kulinarną. W 2018 r. otrzymaliśmy Certyfikat Dziedzictwa Kulinarnego przyznawany przez Europejską Sieć Regionalnego Dziedzictwa Kulinarnego.</div>
 		</div>
 	</div>
-		
+
 	<!-- Restauracja section -->
 
  	<div class=" bg-[#42352F] flex max-md:flex-col-reverse max-md:h-auto max-lg:min-h-[50vh]">
 				<div class="w-1/2 max-md:w-full px-[7%]  max-md:py-8  flex items-center">
 						<div>
-								
+
 							<img class="h-12  w-[35%] mb-5" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/sopotski_mlyn_logo.png" />
 										<h1 class="max-md:!text-6xl  max-lg:!text-3xl !text-6xl !text-white title">Restauracja <br>Sopocki Młyn </h1>
 													<p class="text-[#A9957B] font-['Mulish']">Smak tradycji w sercu Sopotu!</p>
@@ -232,20 +232,20 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 						<img class="max-md:!h-auto max-lg:!h-full object-cover" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/sopotski_mlyn.jpg" />
 				</div>
 		</div>
-		
-	
-	
-	<!-- Restauracja section 
+
+
+
+	<!-- Restauracja section
 	 	<div class=" bg-[#F2EDE7] flex items-center justify-end   max-md:h-auto max-lg:min-h-[50vh] py-[5vh] max-md:px-[7%]">
 		<div class="max-md:w-full  max-2xl:w-[92%]">
 			<h1 class="title">Najnowsze aktualności</h1>
 		<div class="mb-8">
 				<?php echo do_shortcode('[recent_posts]'); ?>
 			</div>
-	
+
 		<div class="flex items-center justify-center">
 
-	 
+
 			<a href="#" class="inline-flex h-[50px] px-[30px] py-0 justify-center items-center gap-[10px] shrink-0 rounded border border-[#A9957B]">
 				<span class="!text-black">zobacz wszystkie</span>
 				<span>
@@ -254,7 +254,7 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 					</svg>
 				</span>
 			</a>
-	
+
 		</div>
 
 	</div>
@@ -272,7 +272,7 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 		<div class="scroll-hidd flex scrollbar-hidden  w-full mx-auto overflow-x-auto scroll-smooth flex-nowrap snap-x snap-mandatory items-center my-5 justify-center   py-12">
 					<!--- first post  -->
 					<div class="max-md:w-auto max-xl:w-1/2 items-center justify-center flex md:mr-3">
-				
+
 						<div class="w-44 h-64  snap-start rounded outline-1 outline-offset-[-1px] outline-stone-200 inline-flex flex-col justify-start items-start overflow-hidden">
 										<div class="self-stretch px-4 py-2.5 inline-flex justify-start items-center gap-2.5">
 											<img class="w-6 h-7 rounded-[100px]" src="https://placehold.co/24x24" />
@@ -280,7 +280,7 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 										</div>
 										<img class="self-stretch flex-1" src="https://placehold.co/200x238" />
 						</div>
-						
+
 					</div>
 
 			<div class=" flex snap-start max-md:flex-row max-xl:flex-col max-md:w-auto max-xl:w-1/2">
@@ -291,7 +291,7 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 									<div class="justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">capuccinocafe_sopot</div>
 								</div>
 								<img class="self-stretch flex-1" src="https://placehold.co/200x238" />
-								
+
 					</div>
 
 					<!--- third post  -->
@@ -302,12 +302,12 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 									</div>
 									<img class="self-stretch flex-1" src="https://placehold.co/200x238" />
 						</div>
-			  
+
 				</div>
 
 		</div>
 <!---
-		
+
 		<div data-property-1="Default" class="h-12 px-7 rounded outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2.5">
 			<div class="justify-center text-zinc-800 text-sm font-bold font-['Mulish'] uppercase leading-tight">Dołącz do nas</div>
 			<div class="w-6 h-6 relative overflow-hidden">
@@ -320,6 +320,6 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 	</div>
 
 	<!--- -->
-	
+
 
 </div>
