@@ -34,6 +34,14 @@ Template:			storefront
   ascent-override: 90%;
 }
 
+a{
+	text-decoration: none;
+	color: white !important;
+}
+.storefront-breadcrumb{
+	margin-top: 100px !important;
+}
+
 .title{
     font-family: 'DidoDidot';
 }
@@ -42,8 +50,8 @@ article{
 }
 .header{
     background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 32.84%, rgba(0, 0, 0, 0.7) 109.47%);
-
 }
+
 .heroSection{
     background-image: url(./resources/img/bgHERO.jpg);
 

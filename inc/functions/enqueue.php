@@ -4,7 +4,7 @@ function tailwind_enqueue_scripts() {
     wp_enqueue_style(
         'tailwind',
         get_stylesheet_directory_uri() . '/public/css/tailwind.css',
-        array(), // No dependencies
+        array('capucafe-style'), // No dependencies
         filemtime(get_stylesheet_directory() . '/public/css/tailwind.css')
     );
 }

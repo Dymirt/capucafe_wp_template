@@ -141,4 +141,7 @@ function custom_recent_posts_shortcode() {
 add_shortcode('recent_posts', 'custom_recent_posts_shortcode');
 
 
-
+function page_url_by_slug($slug) {
+	$page = get_page_by_path($slug);
+	return $page ? get_permalink($page->ID) : '#';
+}
