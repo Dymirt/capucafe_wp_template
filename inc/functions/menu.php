@@ -83,10 +83,12 @@ class Header_Walker_Nav_Menu extends Walker_Nav_Menu
 	function start_el(&$output, $item, $depth = 0, $args = [], $id = 0)
 	{
 		if ($depth === 0) {
-			$output .= '<div class="self-stretch inline-flex justify-between items-center">';
-			$output .= '<div class="flex-1 h-3.5 justify-start text-stone-400 text-sm font-bold font-[\'Mulish\'] uppercase leading-tight">';
+
+			$output .= '<div class="self-stretch min-w-72 px-6 pt-8 pb-5 border-b border-neutral-100 inline-flex flex-col justify-start items-start gap-3 self-stretch inline-flex">';
+			$output .= '<a class="flex-1 h-3.5 justify-start text-stone-400 text-sm font-bold font-[\'Mulish\'] uppercase leading-tight" href="' . esc_url($item->url) . '">'; ;
 			$output .= esc_html($item->title);
-			$output .= '</div>';
+			$output .= '</a>';
+
 
 			// 🛠 Check if this item has children
 			//$has_children = !empty($args->has_children);
@@ -103,9 +105,9 @@ class Header_Walker_Nav_Menu extends Walker_Nav_Menu
 
 			$output .= '</div>';
 		} else {
-			$output .= '<div class="flex-1 h-3 justify-start text-stone-300 text-xs font-bold font-[\'Mulish\'] uppercase leading-tight pl-4">';
+			$output .= '<a class="flex-1 h-3 justify-start text-stone-300 text-xs font-bold font-[\'Mulish\'] uppercase leading-tight pl-4" href="' . esc_url($item->url) . '">';
 			$output .= esc_html($item->title);
-			$output .= '</div>';
+			$output .= '</a>';
 		}
 	}
 

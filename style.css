@@ -36,7 +36,7 @@ Template:			storefront
 
 a{
 	text-decoration: none;
-	color: white !important;
+	color: white;
 }
 .storefront-breadcrumb{
 	margin-top: 100px !important;
