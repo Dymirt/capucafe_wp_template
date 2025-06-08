@@ -165,7 +165,7 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 						</svg>
 					</div>
 					<div>
-						<div class="self-stretch justify-start text-stone-700 text-xl font-bold mb-1">PSklep online</div>
+						<div class="self-stretch justify-start text-stone-700 text-xl font-bold mb-1">Sklep online</div>
 						<div class="self-stretch justify-start text-zinc-500 text-sm font-normal font-['Mulish'] leading-tight">Zapewniamy kompleksową organizację imprez okolicznościowych.</div>
 					</div>
 				</div>
