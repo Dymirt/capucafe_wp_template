@@ -1,7 +1,7 @@
-<div class="p-2 w-64 inline-flex flex-col justify-start items-start snap-start width: 100%; color: #333333; font-size: 16px; font-family: Mulish; font-weight: 300; line-height: 22.40px; word-wrap: break-word">
-	<a href="<?php the_permalink(); ?>">
+<div class="p-2 w-64 md:w-96 inline-flex flex-col justify-start items-start snap-start">
+	<a href="<?php the_permalink(); ?>" style="display: block; width: 100%; height: 100%;">
 		<?php woocommerce_show_product_sale_flash(); ?>
-		<?php the_post_thumbnail('woocommerce_thumbnail', ['class' => 'w-64 h-64 object-cover']); ?>
+		<?php the_post_thumbnail('woocommerce_thumbnail', ['class' => 'w-64 h-64 object-cover w-full']); ?>
 	</a>
 	<div class="self-stretch flex flex-col justify-start items-start">
 		<div class="self-stretch h-20 py-4 border-t border-stone-400 flex flex-col justify-start items-center gap-2.5">
