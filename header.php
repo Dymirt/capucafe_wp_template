@@ -60,11 +60,8 @@ $count = WC()->cart->get_cart_contents_count();
 		<?php
 		if (is_front_page()) {
 			get_template_part('headers/header', 'homepage');
-		} elseif (is_shop()) {
+		} else{
 			get_template_part('headers/header', 'shop');
-		} else {
-			// fallback to default
-			get_template_part('headers/header', 'homepage');
 		}
 		?>
 		<!-- Overlay Background -->
@@ -123,9 +120,6 @@ $count = WC()->cart->get_cart_contents_count();
 			});
 		</script>
 
-
-
-
 		<?php
 		/**
 		 * Functions hooked in to storefront_before_content
@@ -137,7 +131,7 @@ $count = WC()->cart->get_cart_contents_count();
 		?>
 
 		<div id="content" class="site-content" tabindex="-1">
-			<?php if (is_front_page()) : ?>
+			<?php if (is_front_page() || is_page('o-nas')) : ?>
 				<!-- Homepage -->
 				<div class="w-full ">
 				<?php else : ?>

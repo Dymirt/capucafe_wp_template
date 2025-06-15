@@ -1,16 +1,20 @@
 module.exports = {
 	content: [
-	  './**/*.php',      // ADD THIS
-	  './resources/**/*.php', // if your php templates are here
-	  './resources/**/*.js',
-	  './resources/**/*.css',
+		'./**/*.php',
+		'./resources/**/*.php',
+		'./resources/**/*.js',
+		'./resources/**/*.css',
+		'./woocommerce/**/*.php',
+		'./woocommerce/single-product/**/*.php',
+		'./woocommerce/single-product/*.php',
+		'./woocommerce/single-product/praliny.php'
 	],
-	 theme: {
-    	extend: {
+	theme: {
+		extend: {
 			fontFamily: {
 				didot: ['DidoDidot', 'serif'],
 			},
-    },
-  },
+		},
+	},
 	plugins: [],
-  }
+}

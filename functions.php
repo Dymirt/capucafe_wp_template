@@ -5,6 +5,7 @@ require_once get_stylesheet_directory() . '/inc/functions/enqueue.php';
 
 // Register custom post types
 require_once get_stylesheet_directory() . '/inc/custom-post-types/slodki-stol.php';
+require_once get_stylesheet_directory() . '/inc/custom-post-types/praliny_candy.php';
 require_once get_stylesheet_directory() . '/inc/functions/menu.php';
 
 
@@ -145,3 +146,25 @@ function page_url_by_slug($slug) {
 	$page = get_page_by_path($slug);
 	return $page ? get_permalink($page->ID) : '#';
 }
+
+
+add_filter('template_include', function ($template) {
+    if (is_singular('product')) {
+        global $post;
+        if ($post && $post->post_name === 'praliny') {
+            $custom_template = get_stylesheet_directory() . '/woocommerce/single-product/praliny.php';
+            if (file_exists($custom_template)) {
+                return $custom_template;
+            }
+        }
+    }
+    return $template;
+});
+
+
+
+add_action('template_redirect', function () {
+    if (is_singular('product') && get_post_field('post_name', get_post()) === 'praliny') {
+        remove_action('storefront_sidebar', 'storefront_get_sidebar', 10);
+    }
+});
