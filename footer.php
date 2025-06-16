@@ -31,7 +31,7 @@
 		<div data-property-1="mobile v2" class="w-full self-stretch px-5 pt-36 relative bg-stone-700 inline-flex flex-col justify-start items-start gap-7">
 			<?php
 			wp_nav_menu([
-				'theme_location' => 'footer-mobile-menu-location',
+				'theme_location' => 'footer-menu-location',
 				'walker'         => new Footer_Walker_Nav_Menu(),
 				'container'      => false,
 				'items_wrap'     => '%3$s', // no ul
