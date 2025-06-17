@@ -169,12 +169,3 @@ register_nav_menus(
 		'footer-desktop-menu-location' => 'Footer desktop menu location'
 	)
 );
-
-?>
-<!--
-<div class="self-stretch inline-flex justify-between items-center">
-<div class="flex-1 h-3.5 justify-start text-stone-400 text-sm font-bold font-['Mulish'] uppercase leading-tight">Sklep</div>
-<div class="w-6 h-6 bg-zinc-300"></div>
-<div class="w-1.5 h-3 origin-top-left rotate-180 bg-stone-400"></div>
-</div>
--->
