@@ -13,7 +13,7 @@
 			'theme_location' => 'top-menu',
 			'walker'         => new Top_Walker_Nav_Menu(),
 			'container'      => false,
-			'items_wrap'     => '<div class="List size- px-2 inline-flex justify-start items-center gap-6 white">%3$s</div>', // no ul
+			'items_wrap'     => '<div class="List  px-2 inline-flex justify-start items-center gap-6 white">%3$s</div>', // no ul
 			'fallback_cb'    => '',     // IMPORTANT! <- Empty string, not false!
 		]);
 		?>
@@ -52,7 +52,4 @@
 </div>
 
 
-
-<!-- Overlay Background -->
-<div id="menu-overlay" class="fixed inset-0 bg-black/50 z-40 hidden"></div>
 </div>
