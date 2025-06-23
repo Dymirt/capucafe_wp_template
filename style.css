@@ -33,59 +33,65 @@ Template:			storefront
 	font-style: normal;
 	ascent-override: 90%;
 }
-
-a {
-	text-decoration: none;
-	color: white;
+.header  a{
+  color: white!important;
 }
-
-.storefront-breadcrumb {
-	margin-top: 100px !important;
+.title{
+    font-family: 'DidoDidot';
 }
-
-.title {
-	font-family: 'DidoDidot';
+.List a{
+  font-size :13px;
 }
-
-article {
-	width: 500px;
-}
-
-.header {
-	background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 32.84%, rgba(0, 0, 0, 0.7) 109.47%);
-}
-
-.heroSection {
-	background-image: url(./resources/img/bgHERO.jpg);
+.List a:hover{
+  color: #A9957B!important;
 
 }
+.menu-anim{
+  height: 10vh;
+  background: white!important;
+  box-shadow: 0 0 28px #0000003d;
+}
+.menu-anim a , .menu-anim div a svg path , .menu-anim path{
+fill :black!important;
+color: black!important;
+}
+#side-menu a , footer a {
+color: #A9957B!important;
+}
+article{
+  width : 500px;
+}
+.header{
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 32.84%, rgba(0, 0, 0, 0.7) 109.47%);
+
+}
+.heroSection{
+    background-image: url(./resources/img/bgHERO.jpg);
+    
+
 
 .services {
 	background-image: url(./resources/img/secondBg.jpg);
 }
-
-.shadow {
-	background:
-		linear-gradient(176.8deg, rgba(0, 0, 0, 0) 65.14%, #000000 120.14%),
-		linear-gradient(243.75deg, rgba(0, 0, 0, 0) 39.83%, rgba(0, 0, 0, 0.5) 80.95%);
-
+.shadow{
+    background: 
+  linear-gradient(176.8deg, rgba(0, 0, 0, 0) 65.14%, #000000 120.14%),
+  linear-gradient(243.75deg, rgba(0, 0, 0, 0) 39.83%, rgba(0, 0, 0, 0.5) 80.95%);
 }
 
 @media (width < 768px) {
-	.shadow {
-		background: linear-gradient(176.8deg, rgba(0, 0, 0, 0) 36.14%, #000000 50.14%), linear-gradient(243.75deg, rgba(0, 0, 0, 0) 39.83%, rgba(0, 0, 0, 0.5) 80.95%);
-	}
-
-	.services {
-		background-image: none;
-		background-color: #F2EDE7;
-	}
-
-	.heroSection {
-		background-size: 130%;
-		background-position-x: right;
-	}
+  article{
+    width: 100%;
+  }
+    .shadow{
+        background: linear-gradient(176.8deg, rgba(0, 0, 0, 0) 36.14%, #000000 50.14%), linear-gradient(243.75deg, rgba(0, 0, 0, 0) 39.83%, rgba(0, 0, 0, 0.5) 80.95%);}
+.services{
+      background-image: none;
+      background-color:  #F2EDE7;
 }
+    
+.heroSection{background-size: 130%;background-position-x: right;}
+
 
 .subsections .features-sec {
 	text-transform: uppercase;
@@ -99,6 +105,21 @@ article {
 	border-radius: 5px;
 
 }
+
+.subsections .features-sec:hover{
+  background: radial-gradient(558.53% 236.41% at 120.9% 37.16%, #A9957B 0%, rgba(177, 160, 142, 0.00) 100%), rgba(255, 255, 255, 0.10);
+}
+.scroll-hidd{
+  scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+@media (min-width: 767px) and (max-width: 865px) {
+  .List a{
+  font-size :11px;
+}
+}
+
 
 .scroll-hidd {
 	scrollbar-width: none;
@@ -129,3 +150,4 @@ article {
 	width: 1rem !important;
 	font-size: 0.75rem !important;
 }
+
