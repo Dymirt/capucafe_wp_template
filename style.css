@@ -27,11 +27,11 @@ Requires at least:  6.7
 Template:			storefront
 */
 @font-face {
-  font-family: 'DidoDidot';
-  src: url('./resources/fonts/Didot Medium.ttf');
-  font-weight: normal;
-  font-style: normal;
-  ascent-override: 90%;
+	font-family: 'DidoDidot';
+	src: url('./resources/fonts/Didot Medium.ttf');
+	font-weight: normal;
+	font-style: normal;
+	ascent-override: 90%;
 }
 .header  a{
   color: white!important;
@@ -68,16 +68,17 @@ article{
 .heroSection{
     background-image: url(./resources/img/bgHERO.jpg);
     
-}
-.services{
-      background-image: url(./resources/img/secondBg.jpg);
+
+
+.services {
+	background-image: url(./resources/img/secondBg.jpg);
 }
 .shadow{
     background: 
   linear-gradient(176.8deg, rgba(0, 0, 0, 0) 65.14%, #000000 120.14%),
   linear-gradient(243.75deg, rgba(0, 0, 0, 0) 39.83%, rgba(0, 0, 0, 0.5) 80.95%);
-
 }
+
 @media (width < 768px) {
   article{
     width: 100%;
@@ -90,17 +91,21 @@ article{
 }
     
 .heroSection{background-size: 130%;background-position-x: right;}
-}
-.subsections .features-sec{
-    text-transform: uppercase;
- background: linear-gradient(0deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)),
-radial-gradient(148.7% 556.42% at 120.9% 37.16%, #A9957B 0%, rgba(177, 160, 142, 0) 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
-border: 1px solid #A9957B;
-backdrop-filter: blur(15px);
-font-family:'Mulish';
-border-radius: 5px;
+
+
+.subsections .features-sec {
+	text-transform: uppercase;
+	background: linear-gradient(0deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)),
+		radial-gradient(148.7% 556.42% at 120.9% 37.16%, #A9957B 0%, rgba(177, 160, 142, 0) 100%)
+		/* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */
+	;
+	border: 1px solid #A9957B;
+	backdrop-filter: blur(15px);
+	font-family: 'Mulish';
+	border-radius: 5px;
 
 }
+
 .subsections .features-sec:hover{
   background: radial-gradient(558.53% 236.41% at 120.9% 37.16%, #A9957B 0%, rgba(177, 160, 142, 0.00) 100%), rgba(255, 255, 255, 0.10);
 }
@@ -114,3 +119,35 @@ border-radius: 5px;
   font-size :11px;
 }
 }
+
+
+.scroll-hidd {
+	scrollbar-width: none;
+}
+
+.wpcf7 input[type="text"],
+.wpcf7 input[type="email"],
+.wpcf7 input[type="tel"],
+.wpcf7 textarea,
+.wpcf7 select {
+	width: 100%;
+	max-width: 100%;
+	box-sizing: border-box;
+}
+
+.header-shop {
+	background-color: white
+}
+
+
+.Ilosc .increment,
+.Ilosc .decrement {
+	background-color: #e5e7eb !important;
+	color: #000 !important;
+	padding: 0 !important;
+	border: none !important;
+	border-radius: 0.25rem !important;
+	width: 1rem !important;
+	font-size: 0.75rem !important;
+}
+

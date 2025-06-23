@@ -1,6 +1,6 @@
 <div data-layer="769-1024 Stworz zestaw s3" class="1024StworzZestawS3 w-full bg-white inline-flex flex-col justify-start items-start overflow-hidden">
-	<div data-layer="Frame 110" class="Frame110 self-stretch inline-flex justify-start items-start gap-10">
-		<div data-layer="Frame 109" class="Frame109 flex-1 self-stretch min-w-96 inline-flex flex-col justify-start items-start">
+	<div data-layer="Frame 110" class="Frame110 self-stretch grid grid-cols-1 md:grid-cols-2 gap-10">
+		<div data-layer="Frame 109" class="Frame109 flex-1 self-stretch inline-flex flex-col justify-start items-start">
 			<div data-layer="ol mobile" data-property-1="Default" class="OlMobile size- p-3 inline-flex justify-start items-center">
 				<div data-layer="Bounding box" class="BoundingBox size-6 bg-zinc-300"></div>
 				<div data-layer="chevron_left" class="ChevronLeft w-1.5 h-3 bg-stone-400"></div>
@@ -9,7 +9,7 @@
 			<div data-layer="Foto" class="Foto self-stretch h-96 min-w-72 min-h-72 bg-neutral-200 inline-flex justify-start items-center gap-2.5 overflow-hidden">
 				<div data-layer="Opakowanie 16" class="Opakowanie16 flex-1 h-96 relative bg-neutral-200 flex justify-start items-center gap-2.5 overflow-hidden">
 					<img data-layer="image 1" class="Image1 flex-1 h-96" src="https://placehold.co/408x408" />
-					<div data-layer="czekoladki wypelnienie" class="CzekoladkiWypelnienie size-52 left-[53px] top-[140px] absolute flex justify-start items-start gap-2 flex-wrap content-start">
+					<div id="candy-image-summary" data-layer="czekoladki wypelnienie" class="CzekoladkiWypelnienie size-52 left-[53px] top-[140px] absolute flex justify-start items-start gap-2 flex-wrap content-start">
 						<img data-layer="DSC09203" class="Dsc09203 size-11 min-w-11 min-h-11" src="https://placehold.co/46x46" />
 						<img data-layer="DSC09204" class="Dsc09204 size-11 min-w-11 min-h-11" src="https://placehold.co/46x46" />
 						<img data-layer="DSC09204" class="Dsc09204 size-11 min-w-11 min-h-11" src="https://placehold.co/46x46" />
@@ -34,32 +34,115 @@
 				<div data-layer="Stwórz własny zestaw pralin" class="StwRzWAsnyZestawPralin self-stretch justify-start text-stone-700 text-2xl font-normal font-['Didot_LT_Pro']">Stwórz własny zestaw pralin</div>
 				<div data-layer="Ilosc" class="Ilosc self-stretch flex flex-col justify-start items-start gap-2">
 					<div data-layer="Wybierz ilość sztuk w opakowaniu:" class="WybierzIloSztukWOpakowaniu self-stretch justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">Wybierz ilość sztuk w opakowaniu:</div>
-					<div data-layer="wybierz" class="Wybierz self-stretch inline-flex justify-start items-start gap-0.5">
-						<div data-layer="Frame 35" class="Frame35 size- p-2 bg-white rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex flex-col justify-center items-center gap-2">
-							<div data-layer="Foto" class="Foto size-20 bg-neutral-200 inline-flex justify-start items-center gap-2.5 overflow-hidden">
-								<img data-layer="image" class="Image flex-1 self-stretch" src="https://placehold.co/76x76" />
+					<?php
+					global $product;
+					$product_id = $product->get_id();
+					$product = wc_get_product($product_id);
+					if (!$product || !$product->is_type('variable')) {
+						echo "Not a variable product";
+						return;
+					}
+					$product_variable = new WC_Product_Variable($product->get_id());
+					$attributes = $product_variable->get_variation_attributes();
+					$available_variations = $product_variable->get_available_variations();
+
+
+					$variation_map = [];
+					foreach ($available_variations as $variation) {
+						$variation_id = $variation['variation_id'];
+						foreach ($variation['attributes'] as $attr_name => $attr_value) {
+							// Remove 'attribute_' prefix for easier matching
+							$variation_map[$attr_value] = $variation_id;
+						}
+					}
+					// Example: mapping variation option slugs to image URLs and labels manually:
+					$image_map = [
+						'16_szt' => 'https://placehold.co/76x76',
+						'12_szt' => 'https://placehold.co/76x76',
+						'6_szt'  => 'https://placehold.co/76x76',
+					];
+
+					$label_map = [
+						'16_szt' => '16 szt.',
+						'12_szt' => '12 szt.',
+						'6_szt'  => '6 szt.',
+					];
+					?>
+
+					<form class="variations_form cart"
+						method="post"
+						enctype="multipart/form-data"
+						data-product_id="<?php echo esc_attr($product_id); ?>"
+						data-product_variations='<?php echo wp_json_encode($available_variations); ?>'>
+
+						<?php foreach ($attributes as $attribute_name => $options) :						?>
+							<div class="attribute-group" data-attribute="<?php echo esc_attr($attribute_name); ?>">
+								<label for="<?php echo esc_attr(sanitize_title($attribute_name)); ?>">
+									<?php echo wc_attribute_label($attribute_name); ?>
+								</label>
+
+								<div data-layer="wybierz" class="Wybierz self-stretch inline-flex justify-start items-start gap-0.5">
+									<?php foreach ($options as $option) :
+										$option_slug = $option;
+										$img_url = isset($image_map[$option_slug]) ? $image_map[$option_slug] : 'https://placehold.co/76x76';
+										$label = isset($label_map[$option_slug]) ? $label_map[$option_slug] : ucfirst($option);
+										$variation_id = isset($variation_map[$option_slug]) ? $variation_map[$option_slug] : 0;
+
+									?>
+										<div
+											data-layer="Frame"
+											class="Frame size- p-2 bg-white rounded-sm inline-flex flex-col justify-center items-center gap-2 option-card"
+											data-value="<?php echo esc_attr($option_slug); ?>"
+											tabindex="0"
+											data-variation-id="<?php echo esc_attr($variation_id); ?>">
+
+											<div data-layer="Foto" class="Foto size-20 bg-neutral-200 inline-flex justify-start items-center gap-2.5 overflow-hidden">
+												<img data-layer="image" class="Image flex-1 self-stretch" src="<?php echo esc_url($img_url); ?>" />
+											</div>
+											<div class="Szt justify-start text-stone-400 text-xs font-bold font-['Mulish']"><?php echo esc_html($label); ?></div>
+										</div>
+									<?php endforeach; ?>
+								</div>
+
+								<!-- Hidden input updated by JS when option-card is clicked -->
+
+								<?php
+								$sanitized_attr = sanitize_title($attribute_name);
+								?>
+								<input type="hidden"
+									id="<?php echo esc_attr($sanitized_attr); ?>"
+									name="attribute_<?php echo esc_attr($sanitized_attr); ?>"
+									required />
+
+								<input type="hidden" name="variation_id" class="variation_id" value="0" />
 							</div>
-							<div data-layer="16 szt." class="Szt justify-start text-stone-400 text-xs font-bold font-['Mulish']">16 szt.</div>
-						</div>
-						<div data-layer="Frame 36" class="Frame36 size- p-2 bg-white rounded-sm inline-flex flex-col justify-center items-center gap-2">
-							<div data-layer="Foto" class="Foto size-20 bg-neutral-200 inline-flex justify-start items-center gap-2.5 overflow-hidden">
-								<img data-layer="image" class="Image flex-1 self-stretch" src="https://placehold.co/76x76" />
-							</div>
-							<div data-layer="12 szt." class="Szt text-center justify-start text-zinc-800 text-xs font-normal font-['Mulish']">12 szt.</div>
-						</div>
-						<div data-layer="Frame 37" class="Frame37 size- p-2 bg-white rounded-sm inline-flex flex-col justify-center items-center gap-2">
-							<div data-layer="Foto" class="Foto size-20 bg-neutral-200 inline-flex justify-start items-center gap-2.5 overflow-hidden">
-								<img data-layer="image" class="Image w-20 self-stretch" src="https://placehold.co/76x76" />
-							</div>
-							<div data-layer="6 szt." class="Szt text-center justify-start text-zinc-800 text-xs font-normal font-['Mulish']">6 szt.</div>
-						</div>
-					</div>
+						<?php endforeach; ?>
+
+						<label for="quantity">Quantity</label>
+						<input
+							type="number"
+							id="quantity"
+							name="quantity"
+							value="1"
+							min="1"
+							class="input-text qty text"
+							required />
+
+						<input type="hidden" name="add-to-cart" value="<?php echo esc_attr($product_id); ?>" />
+						<input type="hidden" name="product_id" value="<?php echo esc_attr($product_id); ?>" />
+
+						<button type="submit" class="single_add_to_cart_button button alt">Add to cart</button>
+					</form>
 				</div>
 				<div data-layer="Ilosc" class="Ilosc self-stretch flex flex-col justify-start items-start gap-2">
 					<div data-layer="Frame 43" class="Frame43 self-stretch pr-2 inline-flex justify-between items-center">
 						<div data-layer="Wybierz praliny spośród 52 smaków:" class="WybierzPralinySpoRD52SmakW flex-1 justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">Wybierz praliny <br />spośród 52 smaków:</div>
 					</div>
-					<div data-layer="wybierz" class="Wybierz self-stretch inline-flex justify-start items-start gap-2 flex-wrap content-start">
+					<div class="text-lg font-bold mt-4">
+						Łącznie wybrane cukierki: <span class="global-counter">0</span>
+					</div>
+
+					<div data-layer="wybierz" class="Wybierz grid grid-cols-3 lg:grid-cols-5 gap-4 w-full">
 
 						<?php
 						$candies = get_posts([
@@ -74,613 +157,17 @@
 							$title = esc_html($candy->post_title);
 						?>
 							<div data-layer="karta" data-property-1="Default" class="Karta flex-1 min-w-20 pb-4 bg-white rounded-sm inline-flex flex-col justify-start items-center gap-2">
-								<div data-layer="photo" class="Photo self-stretch h-24 bg-stone-200 inline-flex justify-start items-center gap-2.5">
+								<div data-layer="photo" class="Photo self-stretch h-full bg-stone-200 inline-flex justify-start items-center gap-2.5">
 									<img class="1 flex-1 h-24" src="<?= esc_url($thumb); ?>" />
 								</div>
 								<div class="AgrestWCzekoladzie self-stretch h-7 text-center justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']"><?= $title; ?></div>
 								<div class="Ilosc h-7 p-2 bg-white rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2">
-									<div class="Add size-2 bg-stone-400"></div>
-									<div class="justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">0</div>
-									<div class="CheckIndeterminateSmall w-1.5 h-[1.20px] bg-stone-400"></div>
+									<button type="button" class="decrement text-xl font-bold px-1">-</button>
+									<div class="candy-count text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight" data-count>0</div>
+									<button type="button" class="increment text-xl font-bold px-">+</button>
 								</div>
 							</div>
 						<?php endforeach; ?>
-
-
-						<div data-layer="karta" data-property-1="Default" class="Karta flex-1 min-w-20 pb-4 bg-white rounded-sm inline-flex flex-col justify-start items-center gap-2">
-							<div data-layer="photo" class="Photo self-stretch h-24 bg-stone-200 inline-flex justify-start items-center gap-2.5">
-								<img data-layer="01 1" class="1 flex-1 h-24" src="https://placehold.co/88x88" />
-							</div>
-							<div data-layer="Agrest w czekoladzie" class="AgrestWCzekoladzie self-stretch h-7 text-center justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">Baileys</div>
-							<div data-layer="ilosc" class="Ilosc h-7 p-2 bg-white rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2">
-								<div data-layer="add" class="Add size-2 bg-stone-400"></div>
-								<div data-layer="1" class="justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">0</div>
-								<div data-layer="check_indeterminate_small" class="CheckIndeterminateSmall w-1.5 h-[1.20px] bg-stone-400"></div>
-							</div>
-						</div>
-						<div data-layer="karta" data-property-1="Default" class="Karta flex-1 min-w-20 pb-4 bg-white rounded-sm inline-flex flex-col justify-start items-center gap-2">
-							<div data-layer="photo" class="Photo self-stretch h-24 bg-stone-200 inline-flex justify-start items-center gap-2.5">
-								<img data-layer="01 1" class="1 flex-1 h-24" src="https://placehold.co/88x88" />
-							</div>
-							<div data-layer="Agrest w czekoladzie" class="AgrestWCzekoladzie self-stretch h-7 text-center justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">Rokitnik z gruszką</div>
-							<div data-layer="ilosc" class="Ilosc h-7 p-2 bg-white rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2">
-								<div data-layer="add" class="Add size-2 bg-stone-400"></div>
-								<div data-layer="1" class="justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">1</div>
-								<div data-layer="check_indeterminate_small" class="CheckIndeterminateSmall w-1.5 h-[1.20px] bg-stone-400"></div>
-							</div>
-						</div>
-						<div data-layer="karta" data-property-1="Default" class="Karta flex-1 min-w-20 pb-4 bg-white rounded-sm inline-flex flex-col justify-start items-center gap-2">
-							<div data-layer="photo" class="Photo self-stretch h-24 bg-stone-200 inline-flex justify-start items-center gap-2.5">
-								<img data-layer="01 1" class="1 flex-1 h-24" src="https://placehold.co/88x88" />
-							</div>
-							<div data-layer="Agrest w czekoladzie" class="AgrestWCzekoladzie self-stretch h-7 text-center justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">Delicja pomarańczowa</div>
-							<div data-layer="ilosc" class="Ilosc h-7 p-2 bg-white rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2">
-								<div data-layer="add" class="Add size-2 bg-stone-400"></div>
-								<div data-layer="1" class="justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">0</div>
-								<div data-layer="check_indeterminate_small" class="CheckIndeterminateSmall w-1.5 h-[1.20px] bg-stone-400"></div>
-							</div>
-						</div>
-						<div data-layer="karta" data-property-1="Default" class="Karta flex-1 min-w-20 pb-4 bg-white rounded-sm inline-flex flex-col justify-start items-center gap-2">
-							<div data-layer="photo" class="Photo self-stretch h-24 bg-stone-200 inline-flex justify-start items-center gap-2.5">
-								<img data-layer="01 1" class="1 flex-1 h-24" src="https://placehold.co/88x88" />
-							</div>
-							<div data-layer="Agrest w czekoladzie" class="AgrestWCzekoladzie self-stretch h-7 text-center justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">Brak podpisu</div>
-							<div data-layer="ilosc" class="Ilosc h-7 p-2 bg-white rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2">
-								<div data-layer="add" class="Add size-2 bg-stone-400"></div>
-								<div data-layer="1" class="justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">0</div>
-								<div data-layer="check_indeterminate_small" class="CheckIndeterminateSmall w-1.5 h-[1.20px] bg-stone-400"></div>
-							</div>
-						</div>
-						<div data-layer="karta" data-property-1="Default" class="Karta flex-1 min-w-20 pb-4 bg-white rounded-sm inline-flex flex-col justify-start items-center gap-2">
-							<div data-layer="photo" class="Photo self-stretch h-24 bg-stone-200 inline-flex justify-start items-center gap-2.5">
-								<img data-layer="01 1" class="1 flex-1 h-24" src="https://placehold.co/88x88" />
-							</div>
-							<div data-layer="Agrest w czekoladzie" class="AgrestWCzekoladzie self-stretch h-7 text-center justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">Czekolada z prażynką royal</div>
-							<div data-layer="ilosc" class="Ilosc h-7 p-2 bg-white rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2">
-								<div data-layer="add" class="Add size-2 bg-stone-400"></div>
-								<div data-layer="1" class="justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">0</div>
-								<div data-layer="check_indeterminate_small" class="CheckIndeterminateSmall w-1.5 h-[1.20px] bg-stone-400"></div>
-							</div>
-						</div>
-						<div data-layer="karta" data-property-1="Default" class="Karta flex-1 min-w-20 pb-4 bg-white rounded-sm inline-flex flex-col justify-start items-center gap-2">
-							<div data-layer="photo" class="Photo self-stretch h-24 bg-stone-200 inline-flex justify-start items-center gap-2.5">
-								<img data-layer="01 1" class="1 flex-1 h-24" src="https://placehold.co/88x88" />
-							</div>
-							<div data-layer="Agrest w czekoladzie" class="AgrestWCzekoladzie self-stretch h-7 text-center justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">Rum z pomarańczą</div>
-							<div data-layer="ilosc" class="Ilosc h-7 p-2 bg-white rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2">
-								<div data-layer="add" class="Add size-2 bg-stone-400"></div>
-								<div data-layer="1" class="justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">0</div>
-								<div data-layer="check_indeterminate_small" class="CheckIndeterminateSmall w-1.5 h-[1.20px] bg-stone-400"></div>
-							</div>
-						</div>
-						<div data-layer="karta" data-property-1="Default" class="Karta flex-1 min-w-20 pb-4 bg-white rounded-sm inline-flex flex-col justify-start items-center gap-2">
-							<div data-layer="photo" class="Photo self-stretch h-24 bg-stone-200 inline-flex justify-start items-center gap-2.5">
-								<img data-layer="01 1" class="1 flex-1 h-24" src="https://placehold.co/88x88" />
-							</div>
-							<div data-layer="Agrest w czekoladzie" class="AgrestWCzekoladzie self-stretch h-7 text-center justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">Rocher</div>
-							<div data-layer="ilosc" class="Ilosc h-7 p-2 bg-white rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2">
-								<div data-layer="add" class="Add size-2 bg-stone-400"></div>
-								<div data-layer="1" class="justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">0</div>
-								<div data-layer="check_indeterminate_small" class="CheckIndeterminateSmall w-1.5 h-[1.20px] bg-stone-400"></div>
-							</div>
-						</div>
-						<div data-layer="karta" data-property-1="Default" class="Karta flex-1 min-w-20 pb-4 bg-white rounded-sm inline-flex flex-col justify-start items-center gap-2">
-							<div data-layer="photo" class="Photo self-stretch h-24 relative bg-stone-200 inline-flex justify-start items-center gap-2.5">
-								<img data-layer="01 1" class="1 flex-1 h-24" src="https://placehold.co/88x88" />
-								<div data-layer="info_i" class="InfoI size-5 left-[62px] top-[6px] absolute bg-stone-400 rounded-[30px] overflow-hidden">
-									<div data-layer="Bounding box" class="BoundingBox size-5 left-0 top-0 absolute bg-zinc-300"></div>
-									<div data-layer="1" class="w-4 left-[2px] top-[3px] absolute text-center justify-start text-white text-[10px] font-bold font-['Mulish']">1</div>
-								</div>
-							</div>
-							<div data-layer="Agrest w czekoladzie" class="AgrestWCzekoladzie self-stretch h-7 text-center justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">Wanilia z prażynką</div>
-							<div data-layer="ilosc" class="Ilosc h-7 p-2 bg-white rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2">
-								<div data-layer="add" class="Add size-2 bg-stone-400"></div>
-								<div data-layer="1" class="justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">1</div>
-								<div data-layer="check_indeterminate_small" class="CheckIndeterminateSmall w-1.5 h-[1.20px] bg-stone-400"></div>
-							</div>
-						</div>
-						<div data-layer="karta" data-property-1="Default" class="Karta flex-1 min-w-20 pb-4 bg-white rounded-sm inline-flex flex-col justify-start items-center gap-2">
-							<div data-layer="photo" class="Photo self-stretch h-24 bg-stone-200 inline-flex justify-start items-center gap-2.5">
-								<img data-layer="01 1" class="1 flex-1 h-24" src="https://placehold.co/88x88" />
-							</div>
-							<div data-layer="Agrest w czekoladzie" class="AgrestWCzekoladzie self-stretch h-7 text-center justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">Cynamon z czarną porzeczką</div>
-							<div data-layer="ilosc" class="Ilosc h-7 p-2 bg-white rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2">
-								<div data-layer="add" class="Add size-2 bg-stone-400"></div>
-								<div data-layer="1" class="justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">0</div>
-								<div data-layer="check_indeterminate_small" class="CheckIndeterminateSmall w-1.5 h-[1.20px] bg-stone-400"></div>
-							</div>
-						</div>
-						<div data-layer="karta" data-property-1="Default" class="Karta flex-1 min-w-20 pb-4 bg-white rounded-sm inline-flex flex-col justify-start items-center gap-2">
-							<div data-layer="photo" class="Photo self-stretch h-24 relative bg-stone-200 inline-flex justify-start items-center gap-2.5">
-								<img data-layer="01 1" class="1 flex-1 h-24" src="https://placehold.co/88x88" />
-								<div data-layer="info_i" class="InfoI size-5 left-[62px] top-[6px] absolute bg-stone-400 rounded-[30px] overflow-hidden">
-									<div data-layer="Bounding box" class="BoundingBox size-5 left-0 top-0 absolute bg-zinc-300"></div>
-									<div data-layer="1" class="w-4 left-[2px] top-[3px] absolute text-center justify-start text-white text-[10px] font-bold font-['Mulish']">1</div>
-								</div>
-							</div>
-							<div data-layer="Agrest w czekoladzie" class="AgrestWCzekoladzie self-stretch h-7 text-center justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">Mango marakuja</div>
-							<div data-layer="ilosc" class="Ilosc h-7 p-2 bg-white rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2">
-								<div data-layer="add" class="Add size-2 bg-stone-400"></div>
-								<div data-layer="1" class="justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">1</div>
-								<div data-layer="check_indeterminate_small" class="CheckIndeterminateSmall w-1.5 h-[1.20px] bg-stone-400"></div>
-							</div>
-						</div>
-						<div data-layer="karta" data-property-1="Default" class="Karta flex-1 min-w-20 pb-4 bg-white rounded-sm inline-flex flex-col justify-start items-center gap-2">
-							<div data-layer="photo" class="Photo self-stretch h-24 relative bg-stone-200 inline-flex justify-start items-center gap-2.5">
-								<img data-layer="01 1" class="1 flex-1 h-24" src="https://placehold.co/88x88" />
-								<div data-layer="info_i" class="InfoI size-5 left-[62px] top-[6px] absolute bg-stone-400 rounded-[30px] overflow-hidden">
-									<div data-layer="Bounding box" class="BoundingBox size-5 left-0 top-0 absolute bg-zinc-300"></div>
-									<div data-layer="1" class="w-4 left-[2px] top-[3px] absolute text-center justify-start text-white text-[10px] font-bold font-['Mulish']">1</div>
-								</div>
-							</div>
-							<div data-layer="Agrest w czekoladzie" class="AgrestWCzekoladzie self-stretch h-7 text-center justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">Palona biała czekolada z czerwoną porzeczką</div>
-							<div data-layer="ilosc" class="Ilosc h-7 p-2 bg-white rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2">
-								<div data-layer="add" class="Add size-2 bg-stone-400"></div>
-								<div data-layer="1" class="justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">1</div>
-								<div data-layer="check_indeterminate_small" class="CheckIndeterminateSmall w-1.5 h-[1.20px] bg-stone-400"></div>
-							</div>
-						</div>
-						<div data-layer="karta" data-property-1="Default" class="Karta flex-1 min-w-20 pb-4 bg-white rounded-sm inline-flex flex-col justify-start items-center gap-2">
-							<div data-layer="photo" class="Photo self-stretch h-24 bg-stone-200 inline-flex justify-start items-center gap-2.5">
-								<img data-layer="01 1" class="1 flex-1 h-24" src="https://placehold.co/88x88" />
-							</div>
-							<div data-layer="Agrest w czekoladzie" class="AgrestWCzekoladzie self-stretch h-7 text-center justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">Wiśnia</div>
-							<div data-layer="ilosc" class="Ilosc h-7 p-2 bg-white rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2">
-								<div data-layer="add" class="Add size-2 bg-stone-400"></div>
-								<div data-layer="1" class="justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">0</div>
-								<div data-layer="check_indeterminate_small" class="CheckIndeterminateSmall w-1.5 h-[1.20px] bg-stone-400"></div>
-							</div>
-						</div>
-						<div data-layer="karta" data-property-1="Default" class="Karta flex-1 min-w-20 pb-4 bg-white rounded-sm inline-flex flex-col justify-start items-center gap-2">
-							<div data-layer="photo" class="Photo self-stretch h-24 bg-stone-200 inline-flex justify-start items-center gap-2.5">
-								<img data-layer="01 1" class="1 flex-1 h-24" src="https://placehold.co/88x88" />
-							</div>
-							<div data-layer="Agrest w czekoladzie" class="AgrestWCzekoladzie self-stretch h-7 text-center justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">Oreo</div>
-							<div data-layer="ilosc" class="Ilosc h-7 p-2 bg-white rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2">
-								<div data-layer="add" class="Add size-2 bg-stone-400"></div>
-								<div data-layer="1" class="justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">0</div>
-								<div data-layer="check_indeterminate_small" class="CheckIndeterminateSmall w-1.5 h-[1.20px] bg-stone-400"></div>
-							</div>
-						</div>
-						<div data-layer="karta" data-property-1="Default" class="Karta flex-1 min-w-20 pb-4 bg-white rounded-sm inline-flex flex-col justify-start items-center gap-2">
-							<div data-layer="photo" class="Photo self-stretch h-24 bg-stone-200 inline-flex justify-start items-center gap-2.5">
-								<img data-layer="01 1" class="1 flex-1 h-24" src="https://placehold.co/88x88" />
-							</div>
-							<div data-layer="Agrest w czekoladzie" class="AgrestWCzekoladzie self-stretch h-7 text-center justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">Makowe</div>
-							<div data-layer="ilosc" class="Ilosc h-7 p-2 bg-white rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2">
-								<div data-layer="add" class="Add size-2 bg-stone-400"></div>
-								<div data-layer="1" class="justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">0</div>
-								<div data-layer="check_indeterminate_small" class="CheckIndeterminateSmall w-1.5 h-[1.20px] bg-stone-400"></div>
-							</div>
-						</div>
-						<div data-layer="karta" data-property-1="Default" class="Karta flex-1 min-w-20 pb-4 bg-white rounded-sm inline-flex flex-col justify-start items-center gap-2">
-							<div data-layer="photo" class="Photo self-stretch h-24 relative bg-stone-200 inline-flex justify-start items-center gap-2.5">
-								<img data-layer="01 1" class="1 flex-1 h-24" src="https://placehold.co/88x88" />
-								<div data-layer="info_i" class="InfoI size-5 left-[62px] top-[6px] absolute bg-stone-400 rounded-[30px] overflow-hidden">
-									<div data-layer="Bounding box" class="BoundingBox size-5 left-0 top-0 absolute bg-zinc-300"></div>
-									<div data-layer="1" class="w-4 left-[2px] top-[3px] absolute text-center justify-start text-white text-[10px] font-bold font-['Mulish']">1</div>
-								</div>
-							</div>
-							<div data-layer="Agrest w czekoladzie" class="AgrestWCzekoladzie self-stretch h-7 text-center justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">Chałwa z maliną</div>
-							<div data-layer="ilosc" class="Ilosc h-7 p-2 bg-white rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2">
-								<div data-layer="add" class="Add size-2 bg-stone-400"></div>
-								<div data-layer="1" class="justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">1</div>
-								<div data-layer="check_indeterminate_small" class="CheckIndeterminateSmall w-1.5 h-[1.20px] bg-stone-400"></div>
-							</div>
-						</div>
-						<div data-layer="karta" data-property-1="Default" class="Karta flex-1 min-w-20 pb-4 bg-white rounded-sm inline-flex flex-col justify-start items-center gap-2">
-							<div data-layer="photo" class="Photo self-stretch h-24 bg-stone-200 inline-flex justify-start items-center gap-2.5">
-								<img data-layer="01 1" class="1 flex-1 h-24" src="https://placehold.co/88x88" />
-							</div>
-							<div data-layer="Agrest w czekoladzie" class="AgrestWCzekoladzie self-stretch h-7 text-center justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">Rabarbar z truskawką</div>
-							<div data-layer="ilosc" class="Ilosc h-7 p-2 bg-white rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2">
-								<div data-layer="add" class="Add size-2 bg-stone-400"></div>
-								<div data-layer="1" class="justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">0</div>
-								<div data-layer="check_indeterminate_small" class="CheckIndeterminateSmall w-1.5 h-[1.20px] bg-stone-400"></div>
-							</div>
-						</div>
-						<div data-layer="karta" data-property-1="Default" class="Karta flex-1 min-w-20 pb-4 bg-white rounded-sm inline-flex flex-col justify-start items-center gap-2">
-							<div data-layer="photo" class="Photo self-stretch h-24 bg-stone-200 inline-flex justify-start items-center gap-2.5">
-								<img data-layer="01 1" class="1 flex-1 h-24" src="https://placehold.co/88x88" />
-							</div>
-							<div data-layer="Agrest w czekoladzie" class="AgrestWCzekoladzie self-stretch h-7 text-center justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">Piernik z powidłami śliwkowymi</div>
-							<div data-layer="ilosc" class="Ilosc h-7 p-2 bg-white rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2">
-								<div data-layer="add" class="Add size-2 bg-stone-400"></div>
-								<div data-layer="1" class="justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">0</div>
-								<div data-layer="check_indeterminate_small" class="CheckIndeterminateSmall w-1.5 h-[1.20px] bg-stone-400"></div>
-							</div>
-						</div>
-						<div data-layer="karta" data-property-1="Default" class="Karta flex-1 min-w-20 pb-4 bg-white rounded-sm inline-flex flex-col justify-start items-center gap-2">
-							<div data-layer="photo" class="Photo self-stretch h-24 bg-stone-200 inline-flex justify-start items-center gap-2.5">
-								<img data-layer="01 1" class="1 flex-1 h-24" src="https://placehold.co/88x88" />
-							</div>
-							<div data-layer="Agrest w czekoladzie" class="AgrestWCzekoladzie self-stretch h-7 text-center justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">Snickers</div>
-							<div data-layer="ilosc" class="Ilosc h-7 p-2 bg-white rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2">
-								<div data-layer="add" class="Add size-2 bg-stone-400"></div>
-								<div data-layer="1" class="justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">0</div>
-								<div data-layer="check_indeterminate_small" class="CheckIndeterminateSmall w-1.5 h-[1.20px] bg-stone-400"></div>
-							</div>
-						</div>
-						<div data-layer="karta" data-property-1="Default" class="Karta flex-1 min-w-20 pb-4 bg-white rounded-sm inline-flex flex-col justify-start items-center gap-2">
-							<div data-layer="photo" class="Photo self-stretch h-24 bg-stone-200 inline-flex justify-start items-center gap-2.5">
-								<img data-layer="01 1" class="1 flex-1 h-24" src="https://placehold.co/88x88" />
-							</div>
-							<div data-layer="Agrest w czekoladzie" class="AgrestWCzekoladzie self-stretch h-7 text-center justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">Pieprz z maliną</div>
-							<div data-layer="ilosc" class="Ilosc h-7 p-2 bg-white rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2">
-								<div data-layer="add" class="Add size-2 bg-stone-400"></div>
-								<div data-layer="1" class="justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">0</div>
-								<div data-layer="check_indeterminate_small" class="CheckIndeterminateSmall w-1.5 h-[1.20px] bg-stone-400"></div>
-							</div>
-						</div>
-						<div data-layer="karta" data-property-1="Default" class="Karta flex-1 min-w-20 pb-4 bg-white rounded-sm inline-flex flex-col justify-start items-center gap-2">
-							<div data-layer="photo" class="Photo self-stretch h-24 bg-stone-200 inline-flex justify-start items-center gap-2.5">
-								<img data-layer="01 1" class="1 flex-1 h-24" src="https://placehold.co/88x88" />
-							</div>
-							<div data-layer="Agrest w czekoladzie" class="AgrestWCzekoladzie self-stretch h-7 text-center justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">Marcepan z wiśnią</div>
-							<div data-layer="ilosc" class="Ilosc h-7 p-2 bg-white rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2">
-								<div data-layer="add" class="Add size-2 bg-stone-400"></div>
-								<div data-layer="1" class="justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">0</div>
-								<div data-layer="check_indeterminate_small" class="CheckIndeterminateSmall w-1.5 h-[1.20px] bg-stone-400"></div>
-							</div>
-						</div>
-						<div data-layer="karta" data-property-1="Default" class="Karta flex-1 min-w-20 pb-4 bg-white rounded-sm inline-flex flex-col justify-start items-center gap-2">
-							<div data-layer="photo" class="Photo self-stretch h-24 bg-stone-200 inline-flex justify-start items-center gap-2.5">
-								<img data-layer="01 1" class="1 flex-1 h-24" src="https://placehold.co/88x88" />
-							</div>
-							<div data-layer="Agrest w czekoladzie" class="AgrestWCzekoladzie self-stretch h-7 text-center justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">Orzech laskowy</div>
-							<div data-layer="ilosc" class="Ilosc h-7 p-2 bg-white rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2">
-								<div data-layer="add" class="Add size-2 bg-stone-400"></div>
-								<div data-layer="1" class="justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">0</div>
-								<div data-layer="check_indeterminate_small" class="CheckIndeterminateSmall w-1.5 h-[1.20px] bg-stone-400"></div>
-							</div>
-						</div>
-						<div data-layer="karta" data-property-1="Default" class="Karta flex-1 min-w-20 pb-4 bg-white rounded-sm inline-flex flex-col justify-start items-center gap-2">
-							<div data-layer="photo" class="Photo self-stretch h-24 relative bg-stone-200 inline-flex justify-start items-center gap-2.5">
-								<img data-layer="01 1" class="1 flex-1 h-24" src="https://placehold.co/88x88" />
-								<div data-layer="info_i" class="InfoI size-5 left-[62px] top-[6px] absolute bg-stone-400 rounded-[30px] overflow-hidden">
-									<div data-layer="Bounding box" class="BoundingBox size-5 left-0 top-0 absolute bg-zinc-300"></div>
-									<div data-layer="1" class="w-4 left-[2px] top-[3px] absolute text-center justify-start text-white text-[10px] font-bold font-['Mulish']">1</div>
-								</div>
-							</div>
-							<div data-layer="Agrest w czekoladzie" class="AgrestWCzekoladzie self-stretch h-7 text-center justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">Marchewka z orzechami</div>
-							<div data-layer="ilosc" class="Ilosc h-7 p-2 bg-white rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2">
-								<div data-layer="add" class="Add size-2 bg-stone-400"></div>
-								<div data-layer="1" class="justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">1</div>
-								<div data-layer="check_indeterminate_small" class="CheckIndeterminateSmall w-1.5 h-[1.20px] bg-stone-400"></div>
-							</div>
-						</div>
-						<div data-layer="karta" data-property-1="Default" class="Karta flex-1 min-w-20 pb-4 bg-white rounded-sm inline-flex flex-col justify-start items-center gap-2">
-							<div data-layer="photo" class="Photo self-stretch h-24 bg-stone-200 inline-flex justify-start items-center gap-2.5">
-								<img data-layer="01 1" class="1 flex-1 h-24" src="https://placehold.co/88x88" />
-							</div>
-							<div data-layer="Agrest w czekoladzie" class="AgrestWCzekoladzie self-stretch h-7 text-center justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">Śliwka w czekoladzie</div>
-							<div data-layer="ilosc" class="Ilosc h-7 p-2 bg-white rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2">
-								<div data-layer="add" class="Add size-2 bg-stone-400"></div>
-								<div data-layer="1" class="justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">0</div>
-								<div data-layer="check_indeterminate_small" class="CheckIndeterminateSmall w-1.5 h-[1.20px] bg-stone-400"></div>
-							</div>
-						</div>
-						<div data-layer="karta" data-property-1="Default" class="Karta flex-1 min-w-20 pb-4 bg-white rounded-sm inline-flex flex-col justify-start items-center gap-2">
-							<div data-layer="photo" class="Photo self-stretch h-24 bg-stone-200 inline-flex justify-start items-center gap-2.5">
-								<img data-layer="01 1" class="1 flex-1 h-24" src="https://placehold.co/88x88" />
-							</div>
-							<div data-layer="Agrest w czekoladzie" class="AgrestWCzekoladzie self-stretch h-7 text-center justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">Cytryna</div>
-							<div data-layer="ilosc" class="Ilosc h-7 p-2 bg-white rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2">
-								<div data-layer="add" class="Add size-2 bg-stone-400"></div>
-								<div data-layer="1" class="justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">0</div>
-								<div data-layer="check_indeterminate_small" class="CheckIndeterminateSmall w-1.5 h-[1.20px] bg-stone-400"></div>
-							</div>
-						</div>
-						<div data-layer="karta" data-property-1="Default" class="Karta flex-1 min-w-20 pb-4 bg-white rounded-sm inline-flex flex-col justify-start items-center gap-2">
-							<div data-layer="photo" class="Photo self-stretch h-24 bg-stone-200 inline-flex justify-start items-center gap-2.5">
-								<img data-layer="01 1" class="1 flex-1 h-24" src="https://placehold.co/88x88" />
-							</div>
-							<div data-layer="Agrest w czekoladzie" class="AgrestWCzekoladzie self-stretch h-7 text-center justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">Słony karmel</div>
-							<div data-layer="ilosc" class="Ilosc h-7 p-2 bg-white rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2">
-								<div data-layer="add" class="Add size-2 bg-stone-400"></div>
-								<div data-layer="1" class="justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">0</div>
-								<div data-layer="check_indeterminate_small" class="CheckIndeterminateSmall w-1.5 h-[1.20px] bg-stone-400"></div>
-							</div>
-						</div>
-						<div data-layer="karta" data-property-1="Default" class="Karta flex-1 min-w-20 pb-4 bg-white rounded-sm inline-flex flex-col justify-start items-center gap-2">
-							<div data-layer="photo" class="Photo self-stretch h-24 bg-stone-200 inline-flex justify-start items-center gap-2.5">
-								<img data-layer="01 1" class="1 flex-1 h-24" src="https://placehold.co/88x88" />
-							</div>
-							<div data-layer="Agrest w czekoladzie" class="AgrestWCzekoladzie self-stretch h-7 text-center justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">Sernik pomarańczowy</div>
-							<div data-layer="ilosc" class="Ilosc h-7 p-2 bg-white rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2">
-								<div data-layer="add" class="Add size-2 bg-stone-400"></div>
-								<div data-layer="1" class="justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">0</div>
-								<div data-layer="check_indeterminate_small" class="CheckIndeterminateSmall w-1.5 h-[1.20px] bg-stone-400"></div>
-							</div>
-						</div>
-						<div data-layer="karta" data-property-1="Default" class="Karta flex-1 min-w-20 pb-4 bg-white rounded-sm inline-flex flex-col justify-start items-center gap-2">
-							<div data-layer="photo" class="Photo self-stretch h-24 bg-stone-200 inline-flex justify-start items-center gap-2.5">
-								<img data-layer="01 1" class="1 flex-1 h-24" src="https://placehold.co/88x88" />
-							</div>
-							<div data-layer="Agrest w czekoladzie" class="AgrestWCzekoladzie self-stretch h-7 text-center justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">Mojito</div>
-							<div data-layer="ilosc" class="Ilosc h-7 p-2 bg-white rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2">
-								<div data-layer="add" class="Add size-2 bg-stone-400"></div>
-								<div data-layer="1" class="justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">0</div>
-								<div data-layer="check_indeterminate_small" class="CheckIndeterminateSmall w-1.5 h-[1.20px] bg-stone-400"></div>
-							</div>
-						</div>
-						<div data-layer="karta" data-property-1="Default" class="Karta flex-1 min-w-20 pb-4 bg-white rounded-sm inline-flex flex-col justify-start items-center gap-2">
-							<div data-layer="photo" class="Photo self-stretch h-24 bg-stone-200 inline-flex justify-start items-center gap-2.5">
-								<img data-layer="01 1" class="1 flex-1 h-24" src="https://placehold.co/88x88" />
-							</div>
-							<div data-layer="Agrest w czekoladzie" class="AgrestWCzekoladzie self-stretch h-7 text-center justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">Szarlotka</div>
-							<div data-layer="ilosc" class="Ilosc h-7 p-2 bg-white rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2">
-								<div data-layer="add" class="Add size-2 bg-stone-400"></div>
-								<div data-layer="1" class="justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">0</div>
-								<div data-layer="check_indeterminate_small" class="CheckIndeterminateSmall w-1.5 h-[1.20px] bg-stone-400"></div>
-							</div>
-						</div>
-						<div data-layer="karta" data-property-1="Default" class="Karta flex-1 min-w-20 pb-4 bg-white rounded-sm inline-flex flex-col justify-start items-center gap-2">
-							<div data-layer="photo" class="Photo self-stretch h-24 relative bg-stone-200 inline-flex justify-start items-center gap-2.5">
-								<img data-layer="01 1" class="1 flex-1 h-24" src="https://placehold.co/88x88" />
-								<div data-layer="info_i" class="InfoI size-5 left-[62px] top-[6px] absolute bg-stone-400 rounded-[30px] overflow-hidden">
-									<div data-layer="Bounding box" class="BoundingBox size-5 left-0 top-0 absolute bg-zinc-300"></div>
-									<div data-layer="1" class="w-4 left-[2px] top-[3px] absolute text-center justify-start text-white text-[10px] font-bold font-['Mulish']">1</div>
-								</div>
-							</div>
-							<div data-layer="Agrest w czekoladzie" class="AgrestWCzekoladzie self-stretch h-7 text-center justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">Delicja wiśniowa</div>
-							<div data-layer="ilosc" class="Ilosc h-7 p-2 bg-white rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2">
-								<div data-layer="add" class="Add size-2 bg-stone-400"></div>
-								<div data-layer="1" class="justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">1</div>
-								<div data-layer="check_indeterminate_small" class="CheckIndeterminateSmall w-1.5 h-[1.20px] bg-stone-400"></div>
-							</div>
-						</div>
-						<div data-layer="karta" data-property-1="Default" class="Karta flex-1 min-w-20 pb-4 bg-white rounded-sm inline-flex flex-col justify-start items-center gap-2">
-							<div data-layer="photo" class="Photo self-stretch h-24 bg-stone-200 inline-flex justify-start items-center gap-2.5">
-								<img data-layer="01 1" class="1 flex-1 h-24" src="https://placehold.co/88x88" />
-							</div>
-							<div data-layer="Agrest w czekoladzie" class="AgrestWCzekoladzie self-stretch h-7 text-center justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">Miód z pomarańczą</div>
-							<div data-layer="ilosc" class="Ilosc h-7 p-2 bg-white rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2">
-								<div data-layer="add" class="Add size-2 bg-stone-400"></div>
-								<div data-layer="1" class="justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">1</div>
-								<div data-layer="check_indeterminate_small" class="CheckIndeterminateSmall w-1.5 h-[1.20px] bg-stone-400"></div>
-							</div>
-						</div>
-						<div data-layer="karta" data-property-1="Default" class="Karta flex-1 min-w-20 pb-4 bg-white rounded-sm inline-flex flex-col justify-start items-center gap-2">
-							<div data-layer="photo" class="Photo self-stretch h-24 relative bg-stone-200 inline-flex justify-start items-center gap-2.5">
-								<img data-layer="01 1" class="1 flex-1 h-24" src="https://placehold.co/88x88" />
-								<div data-layer="info_i" class="InfoI size-5 left-[62px] top-[6px] absolute bg-stone-400 rounded-[30px] overflow-hidden">
-									<div data-layer="Bounding box" class="BoundingBox size-5 left-0 top-0 absolute bg-zinc-300"></div>
-									<div data-layer="1" class="w-4 left-[2px] top-[3px] absolute text-center justify-start text-white text-[10px] font-bold font-['Mulish']">1</div>
-								</div>
-							</div>
-							<div data-layer="Agrest w czekoladzie" class="AgrestWCzekoladzie self-stretch h-7 text-center justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">Mięta</div>
-							<div data-layer="ilosc" class="Ilosc h-7 p-2 bg-white rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2">
-								<div data-layer="add" class="Add size-2 bg-stone-400"></div>
-								<div data-layer="1" class="justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">1</div>
-								<div data-layer="check_indeterminate_small" class="CheckIndeterminateSmall w-1.5 h-[1.20px] bg-stone-400"></div>
-							</div>
-						</div>
-						<div data-layer="karta" data-property-1="Default" class="Karta flex-1 min-w-20 pb-4 bg-white rounded-sm inline-flex flex-col justify-start items-center gap-2">
-							<div data-layer="photo" class="Photo self-stretch h-24 relative bg-stone-200 inline-flex justify-start items-center gap-2.5">
-								<img data-layer="01 1" class="1 flex-1 h-24" src="https://placehold.co/88x88" />
-								<div data-layer="info_i" class="InfoI size-5 left-[62px] top-[6px] absolute bg-stone-400 rounded-[30px] overflow-hidden">
-									<div data-layer="Bounding box" class="BoundingBox size-5 left-0 top-0 absolute bg-zinc-300"></div>
-									<div data-layer="1" class="w-4 left-[2px] top-[3px] absolute text-center justify-start text-white text-[10px] font-bold font-['Mulish']">1</div>
-								</div>
-							</div>
-							<div data-layer="Agrest w czekoladzie" class="AgrestWCzekoladzie self-stretch h-7 text-center justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">Earl gray</div>
-							<div data-layer="ilosc" class="Ilosc h-7 p-2 bg-white rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2">
-								<div data-layer="add" class="Add size-2 bg-stone-400"></div>
-								<div data-layer="1" class="justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">1</div>
-								<div data-layer="check_indeterminate_small" class="CheckIndeterminateSmall w-1.5 h-[1.20px] bg-stone-400"></div>
-							</div>
-						</div>
-						<div data-layer="karta" data-property-1="Default" class="Karta flex-1 min-w-20 pb-4 bg-white rounded-sm inline-flex flex-col justify-start items-center gap-2">
-							<div data-layer="photo" class="Photo self-stretch h-24 bg-stone-200 inline-flex justify-start items-center gap-2.5">
-								<img data-layer="01 1" class="1 flex-1 h-24" src="https://placehold.co/88x88" />
-							</div>
-							<div data-layer="Agrest w czekoladzie" class="AgrestWCzekoladzie w-24 h-7 text-center justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">Malaga</div>
-							<div data-layer="ilosc" class="Ilosc h-7 p-2 bg-white rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2">
-								<div data-layer="add" class="Add size-2 bg-stone-400"></div>
-								<div data-layer="1" class="justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">0</div>
-								<div data-layer="check_indeterminate_small" class="CheckIndeterminateSmall w-1.5 h-[1.20px] bg-stone-400"></div>
-							</div>
-						</div>
-						<div data-layer="karta" data-property-1="Default" class="Karta flex-1 min-w-20 pb-4 bg-white rounded-sm inline-flex flex-col justify-start items-center gap-2">
-							<div data-layer="photo" class="Photo self-stretch h-24 relative bg-stone-200 inline-flex justify-start items-center gap-2.5">
-								<img data-layer="01 1" class="1 flex-1 h-24" src="https://placehold.co/88x88" />
-								<div data-layer="info_i" class="InfoI size-5 left-[62px] top-[6px] absolute bg-stone-400 rounded-[30px] overflow-hidden">
-									<div data-layer="Bounding box" class="BoundingBox size-5 left-0 top-0 absolute bg-zinc-300"></div>
-									<div data-layer="1" class="w-4 left-[2px] top-[3px] absolute text-center justify-start text-white text-[10px] font-bold font-['Mulish']">1</div>
-								</div>
-							</div>
-							<div data-layer="Agrest w czekoladzie" class="AgrestWCzekoladzie self-stretch h-7 text-center justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">Pistacja</div>
-							<div data-layer="ilosc" class="Ilosc h-7 p-2 bg-white rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2">
-								<div data-layer="add" class="Add size-2 bg-stone-400"></div>
-								<div data-layer="1" class="justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">1</div>
-								<div data-layer="check_indeterminate_small" class="CheckIndeterminateSmall w-1.5 h-[1.20px] bg-stone-400"></div>
-							</div>
-						</div>
-						<div data-layer="karta" data-property-1="Default" class="Karta flex-1 min-w-20 pb-4 bg-white rounded-sm inline-flex flex-col justify-start items-center gap-2">
-							<div data-layer="photo" class="Photo self-stretch h-24 bg-stone-200 inline-flex justify-start items-center gap-2.5">
-								<img data-layer="01 1" class="1 flex-1 h-24" src="https://placehold.co/88x88" />
-							</div>
-							<div data-layer="Agrest w czekoladzie" class="AgrestWCzekoladzie self-stretch h-7 text-center justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">Kangus</div>
-							<div data-layer="ilosc" class="Ilosc h-7 p-2 bg-white rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2">
-								<div data-layer="add" class="Add size-2 bg-stone-400"></div>
-								<div data-layer="1" class="justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">0</div>
-								<div data-layer="check_indeterminate_small" class="CheckIndeterminateSmall w-1.5 h-[1.20px] bg-stone-400"></div>
-							</div>
-						</div>
-						<div data-layer="karta" data-property-1="Default" class="Karta flex-1 min-w-20 pb-4 bg-white rounded-sm inline-flex flex-col justify-start items-center gap-2">
-							<div data-layer="photo" class="Photo self-stretch h-24 bg-stone-200 inline-flex justify-start items-center gap-2.5">
-								<img data-layer="01 1" class="1 flex-1 h-24" src="https://placehold.co/88x88" />
-							</div>
-							<div data-layer="Agrest w czekoladzie" class="AgrestWCzekoladzie self-stretch h-7 text-center justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">Capuccino</div>
-							<div data-layer="ilosc" class="Ilosc h-7 p-2 bg-white rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2">
-								<div data-layer="add" class="Add size-2 bg-stone-400"></div>
-								<div data-layer="1" class="justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">0</div>
-								<div data-layer="check_indeterminate_small" class="CheckIndeterminateSmall w-1.5 h-[1.20px] bg-stone-400"></div>
-							</div>
-						</div>
-						<div data-layer="karta" data-property-1="Default" class="Karta flex-1 min-w-20 pb-4 bg-white rounded-sm inline-flex flex-col justify-start items-center gap-2">
-							<div data-layer="photo" class="Photo self-stretch h-24 bg-stone-200 inline-flex justify-start items-center gap-2.5">
-								<img data-layer="01 1" class="1 flex-1 h-24" src="https://placehold.co/88x88" />
-							</div>
-							<div data-layer="Agrest w czekoladzie" class="AgrestWCzekoladzie self-stretch h-7 text-center justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">Mocha z ziarnem kakaowca</div>
-							<div data-layer="ilosc" class="Ilosc h-7 p-2 bg-white rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2">
-								<div data-layer="add" class="Add size-2 bg-stone-400"></div>
-								<div data-layer="1" class="justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">0</div>
-								<div data-layer="check_indeterminate_small" class="CheckIndeterminateSmall w-1.5 h-[1.20px] bg-stone-400"></div>
-							</div>
-						</div>
-						<div data-layer="karta" data-property-1="Default" class="Karta flex-1 min-w-20 pb-4 bg-white rounded-sm inline-flex flex-col justify-start items-center gap-2">
-							<div data-layer="photo" class="Photo self-stretch h-24 bg-stone-200 inline-flex justify-start items-center gap-2.5">
-								<img data-layer="01 1" class="1 flex-1 h-24" src="https://placehold.co/88x88" />
-							</div>
-							<div data-layer="Agrest w czekoladzie" class="AgrestWCzekoladzie self-stretch h-7 text-center justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">Whisky</div>
-							<div data-layer="ilosc" class="Ilosc h-7 p-2 bg-white rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2">
-								<div data-layer="add" class="Add size-2 bg-stone-400"></div>
-								<div data-layer="1" class="justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">0</div>
-								<div data-layer="check_indeterminate_small" class="CheckIndeterminateSmall w-1.5 h-[1.20px] bg-stone-400"></div>
-							</div>
-						</div>
-						<div data-layer="karta" data-property-1="Default" class="Karta flex-1 min-w-20 pb-4 bg-white rounded-sm inline-flex flex-col justify-start items-center gap-2">
-							<div data-layer="photo" class="Photo self-stretch h-24 bg-stone-200 inline-flex justify-start items-center gap-2.5">
-								<img data-layer="01 1" class="1 flex-1 h-24" src="https://placehold.co/88x88" />
-							</div>
-							<div data-layer="Agrest w czekoladzie" class="AgrestWCzekoladzie self-stretch h-7 text-center justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">Advocat z truflą</div>
-							<div data-layer="ilosc" class="Ilosc h-7 p-2 bg-white rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2">
-								<div data-layer="add" class="Add size-2 bg-stone-400"></div>
-								<div data-layer="1" class="justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">0</div>
-								<div data-layer="check_indeterminate_small" class="CheckIndeterminateSmall w-1.5 h-[1.20px] bg-stone-400"></div>
-							</div>
-						</div>
-						<div data-layer="karta" data-property-1="Default" class="Karta flex-1 min-w-20 pb-4 bg-white rounded-sm inline-flex flex-col justify-start items-center gap-2">
-							<div data-layer="photo" class="Photo self-stretch h-24 relative bg-stone-200 inline-flex justify-start items-center gap-2.5">
-								<img data-layer="01 1" class="1 flex-1 h-24" src="https://placehold.co/88x88" />
-								<div data-layer="info_i" class="InfoI size-5 left-[62px] top-[6px] absolute bg-stone-400 rounded-[30px] overflow-hidden">
-									<div data-layer="Bounding box" class="BoundingBox size-5 left-0 top-0 absolute bg-zinc-300"></div>
-									<div data-layer="1" class="w-4 left-[2px] top-[3px] absolute text-center justify-start text-white text-[10px] font-bold font-['Mulish']">1</div>
-								</div>
-							</div>
-							<div data-layer="Agrest w czekoladzie" class="AgrestWCzekoladzie self-stretch h-7 text-center justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">Lemoniada</div>
-							<div data-layer="ilosc" class="Ilosc h-7 p-2 bg-white rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2">
-								<div data-layer="add" class="Add size-2 bg-stone-400"></div>
-								<div data-layer="1" class="justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">1</div>
-								<div data-layer="check_indeterminate_small" class="CheckIndeterminateSmall w-1.5 h-[1.20px] bg-stone-400"></div>
-							</div>
-						</div>
-						<div data-layer="karta" data-property-1="Default" class="Karta flex-1 min-w-20 pb-4 bg-white rounded-sm inline-flex flex-col justify-start items-center gap-2">
-							<div data-layer="photo" class="Photo self-stretch h-24 bg-stone-200 inline-flex justify-start items-center gap-2.5">
-								<img data-layer="01 1" class="1 flex-1 h-24" src="https://placehold.co/88x88" />
-							</div>
-							<div data-layer="Agrest w czekoladzie" class="AgrestWCzekoladzie self-stretch h-7 text-center justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">Malina</div>
-							<div data-layer="ilosc" class="Ilosc h-7 p-2 bg-white rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2">
-								<div data-layer="add" class="Add size-2 bg-stone-400"></div>
-								<div data-layer="1" class="justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">0</div>
-								<div data-layer="check_indeterminate_small" class="CheckIndeterminateSmall w-1.5 h-[1.20px] bg-stone-400"></div>
-							</div>
-						</div>
-						<div data-layer="karta" data-property-1="Default" class="Karta flex-1 min-w-20 pb-4 bg-white rounded-sm inline-flex flex-col justify-start items-center gap-2">
-							<div data-layer="photo" class="Photo self-stretch h-24 relative bg-stone-200 inline-flex justify-start items-center gap-2.5">
-								<img data-layer="01 1" class="1 flex-1 h-24" src="https://placehold.co/88x88" />
-								<div data-layer="info_i" class="InfoI size-5 left-[62px] top-[6px] absolute bg-stone-400 rounded-[30px] overflow-hidden">
-									<div data-layer="Bounding box" class="BoundingBox size-5 left-0 top-0 absolute bg-zinc-300"></div>
-									<div data-layer="1" class="w-4 left-[2px] top-[3px] absolute text-center justify-start text-white text-[10px] font-bold font-['Mulish']">1</div>
-								</div>
-							</div>
-							<div data-layer="Agrest w czekoladzie" class="AgrestWCzekoladzie self-stretch h-7 text-center justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">Rafaello</div>
-							<div data-layer="ilosc" class="Ilosc h-7 p-2 bg-white rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2">
-								<div data-layer="add" class="Add size-2 bg-stone-400"></div>
-								<div data-layer="1" class="justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">1</div>
-								<div data-layer="check_indeterminate_small" class="CheckIndeterminateSmall w-1.5 h-[1.20px] bg-stone-400"></div>
-							</div>
-						</div>
-						<div data-layer="karta" data-property-1="Default" class="Karta flex-1 min-w-20 pb-4 bg-white rounded-sm inline-flex flex-col justify-start items-center gap-2">
-							<div data-layer="photo" class="Photo self-stretch h-24 bg-stone-200 inline-flex justify-start items-center gap-2.5">
-								<img data-layer="01 1" class="1 flex-1 h-24" src="https://placehold.co/88x88" />
-							</div>
-							<div data-layer="Agrest w czekoladzie" class="AgrestWCzekoladzie self-stretch h-7 text-center justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">Agrest w czekoladzie</div>
-							<div data-layer="ilosc" class="Ilosc h-7 p-2 bg-white rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2">
-								<div data-layer="add" class="Add size-2 bg-stone-400"></div>
-								<div data-layer="1" class="justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">0</div>
-								<div data-layer="check_indeterminate_small" class="CheckIndeterminateSmall w-1.5 h-[1.20px] bg-stone-400"></div>
-							</div>
-						</div>
-						<div data-layer="karta" data-property-1="Default" class="Karta flex-1 min-w-20 pb-4 bg-white rounded-sm inline-flex flex-col justify-start items-center gap-2">
-							<div data-layer="photo" class="Photo self-stretch h-24 bg-stone-200 inline-flex justify-start items-center gap-2.5">
-								<img data-layer="01 1" class="1 flex-1 h-24" src="https://placehold.co/88x88" />
-							</div>
-							<div data-layer="Agrest w czekoladzie" class="AgrestWCzekoladzie self-stretch h-7 text-center justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">Ptasie mleczko</div>
-							<div data-layer="ilosc" class="Ilosc h-7 p-2 bg-white rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2">
-								<div data-layer="add" class="Add size-2 bg-stone-400"></div>
-								<div data-layer="1" class="justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">0</div>
-								<div data-layer="check_indeterminate_small" class="CheckIndeterminateSmall w-1.5 h-[1.20px] bg-stone-400"></div>
-							</div>
-						</div>
-						<div data-layer="karta" data-property-1="Default" class="Karta flex-1 min-w-20 pb-4 bg-white rounded-sm inline-flex flex-col justify-start items-center gap-2">
-							<div data-layer="photo" class="Photo self-stretch h-24 bg-stone-200 inline-flex justify-start items-center gap-2.5">
-								<img data-layer="01 1" class="1 flex-1 h-24" src="https://placehold.co/88x88" />
-							</div>
-							<div data-layer="Agrest w czekoladzie" class="AgrestWCzekoladzie self-stretch h-7 text-center justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">Proseco z truskawką</div>
-							<div data-layer="ilosc" class="Ilosc h-7 p-2 bg-white rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2">
-								<div data-layer="add" class="Add size-2 bg-stone-400"></div>
-								<div data-layer="1" class="justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">0</div>
-								<div data-layer="check_indeterminate_small" class="CheckIndeterminateSmall w-1.5 h-[1.20px] bg-stone-400"></div>
-							</div>
-						</div>
-						<div data-layer="karta" data-property-1="Default" class="Karta flex-1 min-w-20 pb-4 bg-white rounded-sm inline-flex flex-col justify-start items-center gap-2">
-							<div data-layer="photo" class="Photo self-stretch h-24 bg-stone-200 inline-flex justify-start items-center gap-2.5">
-								<img data-layer="01 1" class="1 flex-1 h-24" src="https://placehold.co/88x88" />
-							</div>
-							<div data-layer="Agrest w czekoladzie" class="AgrestWCzekoladzie self-stretch h-7 text-center justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">Trufla z wiśnią</div>
-							<div data-layer="ilosc" class="Ilosc h-7 p-2 bg-white rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2">
-								<div data-layer="add" class="Add size-2 bg-stone-400"></div>
-								<div data-layer="1" class="justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">0</div>
-								<div data-layer="check_indeterminate_small" class="CheckIndeterminateSmall w-1.5 h-[1.20px] bg-stone-400"></div>
-							</div>
-						</div>
-						<div data-layer="karta" data-property-1="Default" class="Karta flex-1 min-w-20 pb-4 bg-white rounded-sm inline-flex flex-col justify-start items-center gap-2">
-							<div data-layer="photo" class="Photo self-stretch h-24 bg-stone-200 inline-flex justify-start items-center gap-2.5">
-								<img data-layer="01 1" class="1 flex-1 h-24" src="https://placehold.co/88x88" />
-							</div>
-							<div data-layer="Agrest w czekoladzie" class="AgrestWCzekoladzie self-stretch h-7 text-center justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">Goldwasser</div>
-							<div data-layer="ilosc" class="Ilosc h-7 p-2 bg-white rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2">
-								<div data-layer="add" class="Add size-2 bg-stone-400"></div>
-								<div data-layer="1" class="justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">0</div>
-								<div data-layer="check_indeterminate_small" class="CheckIndeterminateSmall w-1.5 h-[1.20px] bg-stone-400"></div>
-							</div>
-						</div>
-						<div data-layer="karta" data-property-1="Default" class="Karta flex-1 min-w-20 pb-4 bg-white rounded-sm inline-flex flex-col justify-start items-center gap-2">
-							<div data-layer="photo" class="Photo self-stretch h-24 bg-stone-200 inline-flex justify-start items-center gap-2.5">
-								<img data-layer="01 1" class="1 flex-1 h-24" src="https://placehold.co/88x88" />
-							</div>
-							<div data-layer="Agrest w czekoladzie" class="AgrestWCzekoladzie self-stretch h-7 text-center justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">Tuskawka</div>
-							<div data-layer="ilosc" class="Ilosc h-7 p-2 bg-white rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2">
-								<div data-layer="add" class="Add size-2 bg-stone-400"></div>
-								<div data-layer="1" class="justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">0</div>
-								<div data-layer="check_indeterminate_small" class="CheckIndeterminateSmall w-1.5 h-[1.20px] bg-stone-400"></div>
-							</div>
-						</div>
-						<div data-layer="karta" data-property-1="Default" class="Karta flex-1 min-w-20 pb-4 bg-white rounded-sm inline-flex flex-col justify-start items-center gap-2">
-							<div data-layer="photo" class="Photo self-stretch h-24 bg-stone-200 inline-flex justify-start items-center gap-2.5">
-								<img data-layer="01 1" class="1 flex-1 h-24" src="https://placehold.co/88x88" />
-							</div>
-							<div data-layer="Agrest w czekoladzie" class="AgrestWCzekoladzie self-stretch h-7 text-center justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">Gruszka</div>
-							<div data-layer="ilosc" class="Ilosc h-7 p-2 bg-white rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2">
-								<div data-layer="add" class="Add size-2 bg-stone-400"></div>
-								<div data-layer="1" class="justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">0</div>
-								<div data-layer="check_indeterminate_small" class="CheckIndeterminateSmall w-1.5 h-[1.20px] bg-stone-400"></div>
-							</div>
-						</div>
-						<div data-layer="karta" data-property-1="Default" class="Karta flex-1 max-w-20 min-w-20 pb-4 bg-white rounded-sm inline-flex flex-col justify-start items-center gap-2">
-							<div data-layer="photo" class="Photo self-stretch h-20 bg-stone-200 inline-flex justify-start items-center gap-2.5">
-								<img data-layer="01 1" class="1 flex-1 h-20" src="https://placehold.co/88x88" />
-							</div>
-							<div data-layer="Agrest w czekoladzie" class="AgrestWCzekoladzie self-stretch h-7 text-center justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">Jagoda</div>
-							<div data-layer="ilosc" class="Ilosc h-7 p-2 bg-white rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2">
-								<div data-layer="add" class="Add size-2 bg-stone-400"></div>
-								<div data-layer="1" class="justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">0</div>
-								<div data-layer="check_indeterminate_small" class="CheckIndeterminateSmall w-1.5 h-[1.20px] bg-stone-400"></div>
-							</div>
-						</div>
 					</div>
 					<div data-layer="Rozwijany opis" class="RozwijanyOpis self-stretch inline-flex justify-center items-center gap-4">
 						<div data-layer="Line 2" class="Line2 flex-1 h-0 min-w-20 origin-top-left rotate-180 outline outline-1 outline-offset-[-0.50px] outline-neutral-200"></div>
@@ -694,144 +181,11 @@
 				</div>
 				<div data-layer="Wybrane filtry" class="WybraneFiltry self-stretch flex flex-col justify-start items-center gap-2">
 					<div data-layer="title" class="Title self-stretch py-2.5 inline-flex justify-start items-end gap-2">
-						<div data-layer="Wybrane praliny (15 z 16)" class="WybranePraliny15Z16 justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">Wybrane praliny (15 z 16)</div>
+						<div data-layer="Wybrane praliny (15 z 16)" class="WybranePraliny15Z16 justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">Wybrane praliny (<span class="global-counter">0</span> z 16)</div>
 					</div>
-					<div data-layer="aktywne filtry" class="AktywneFiltry self-stretch inline-flex justify-start items-start gap-2 flex-wrap content-start overflow-hidden">
-						<div data-layer="span" class="Span size- px-1.5 py-[5px] bg-stone-200 rounded-sm flex justify-center items-center gap-0.5">
-							<div data-layer="Frame 46" class="Frame46 size-6 p-1 bg-stone-200 flex justify-start items-center gap-2.5 flex-wrap content-center">
-								<img data-layer="DSC09203" class="Dsc09203 w-4 self-stretch" src="https://placehold.co/18x18" />
-							</div>
-							<div data-layer="Tuskawka" class="Tuskawka justify-center text-zinc-800 text-xs font-normal font-['Mulish']">Tuskawka</div>
-							<div data-layer="small" class="Small size-4 relative overflow-hidden">
-								<div data-layer="Vector" class="Vector size-2.5 left-[4.50px] top-[4.50px] absolute bg-stone-700"></div>
-							</div>
-						</div>
-						<div data-layer="span" class="Span size- px-1.5 py-[5px] bg-stone-200 rounded-sm flex justify-center items-center gap-0.5">
-							<div data-layer="Frame 46" class="Frame46 size-6 p-1 bg-stone-200 flex justify-start items-center gap-2.5 flex-wrap content-center">
-								<img data-layer="DSC09203" class="Dsc09203 w-4 self-stretch" src="https://placehold.co/18x18" />
-							</div>
-							<div data-layer="Earl gray" class="EarlGray justify-center text-zinc-800 text-xs font-normal font-['Mulish']">Earl gray</div>
-							<div data-layer="small" class="Small size-4 relative overflow-hidden">
-								<div data-layer="Vector" class="Vector size-2.5 left-[4.50px] top-[4.50px] absolute bg-stone-700"></div>
-							</div>
-						</div>
-						<div data-layer="span" class="Span size- px-1.5 py-[5px] bg-stone-200 rounded-sm flex justify-center items-center gap-0.5">
-							<div data-layer="Frame 46" class="Frame46 size-6 p-1 bg-stone-200 flex justify-start items-center gap-2.5 flex-wrap content-center">
-								<img data-layer="DSC09203" class="Dsc09203 w-4 self-stretch" src="https://placehold.co/18x18" />
-							</div>
-							<div data-layer="Earl gray" class="EarlGray justify-center text-zinc-800 text-xs font-normal font-['Mulish']">Earl gray</div>
-							<div data-layer="small" class="Small size-4 relative overflow-hidden">
-								<div data-layer="Vector" class="Vector size-2.5 left-[4.50px] top-[4.50px] absolute bg-stone-700"></div>
-							</div>
-						</div>
-						<div data-layer="span" class="Span size- px-1.5 py-[5px] bg-stone-200 rounded-sm flex justify-center items-center gap-0.5">
-							<div data-layer="Frame 46" class="Frame46 size-6 p-1 bg-stone-200 flex justify-start items-center gap-2.5 flex-wrap content-center">
-								<img data-layer="DSC09203" class="Dsc09203 w-4 self-stretch" src="https://placehold.co/18x18" />
-							</div>
-							<div data-layer="Delicja wiśniowa" class="DelicjaWiNiowa justify-center text-zinc-800 text-xs font-normal font-['Mulish']">Delicja wiśniowa</div>
-							<div data-layer="small" class="Small size-4 relative overflow-hidden">
-								<div data-layer="Vector" class="Vector size-2.5 left-[4.50px] top-[4.50px] absolute bg-stone-700"></div>
-							</div>
-						</div>
-						<div data-layer="span" class="Span size- px-1.5 py-[5px] bg-stone-200 rounded-sm flex justify-center items-center gap-0.5">
-							<div data-layer="Frame 46" class="Frame46 size-6 p-1 bg-stone-200 flex justify-start items-center gap-2.5 flex-wrap content-center">
-								<img data-layer="DSC09203" class="Dsc09203 w-4 self-stretch" src="https://placehold.co/18x18" />
-							</div>
-							<div data-layer="Słony karmel" class="SOnyKarmel justify-center text-zinc-800 text-xs font-normal font-['Mulish']">Słony karmel</div>
-							<div data-layer="small" class="Small size-4 relative overflow-hidden">
-								<div data-layer="Vector" class="Vector size-2.5 left-[4.50px] top-[4.50px] absolute bg-stone-700"></div>
-							</div>
-						</div>
-						<div data-layer="span" class="Span size- px-1.5 py-[5px] bg-stone-200 rounded-sm flex justify-center items-center gap-0.5">
-							<div data-layer="Frame 46" class="Frame46 size-6 p-1 bg-stone-200 flex justify-start items-center gap-2.5 flex-wrap content-center">
-								<img data-layer="DSC09203" class="Dsc09203 w-4 self-stretch" src="https://placehold.co/18x18" />
-							</div>
-							<div data-layer="Palona biała czekolada z porzeczką" class="PalonaBiaACzekoladaZPorzeczk justify-center text-zinc-800 text-xs font-normal font-['Mulish']">Palona biała czekolada z porzeczką</div>
-							<div data-layer="small" class="Small size-4 relative overflow-hidden">
-								<div data-layer="Vector" class="Vector size-2.5 left-[4.50px] top-[4.50px] absolute bg-stone-700"></div>
-							</div>
-						</div>
-						<div data-layer="span" class="Span size- px-1.5 py-[5px] bg-stone-200 rounded-sm flex justify-center items-center gap-0.5">
-							<div data-layer="Frame 46" class="Frame46 size-6 p-1 bg-stone-200 flex justify-start items-center gap-2.5 flex-wrap content-center">
-								<img data-layer="DSC09203" class="Dsc09203 w-4 self-stretch" src="https://placehold.co/18x18" />
-							</div>
-							<div data-layer="Nazwa (smak)" class="NazwaSmak justify-center text-zinc-800 text-xs font-normal font-['Mulish']">Nazwa (smak)</div>
-							<div data-layer="small" class="Small size-4 relative overflow-hidden">
-								<div data-layer="Vector" class="Vector size-2.5 left-[4.50px] top-[4.50px] absolute bg-stone-700"></div>
-							</div>
-						</div>
-						<div data-layer="span" class="Span size- px-1.5 py-[5px] bg-stone-200 rounded-sm flex justify-center items-center gap-0.5">
-							<div data-layer="Frame 46" class="Frame46 size-6 p-1 bg-stone-200 flex justify-start items-center gap-2.5 flex-wrap content-center">
-								<img data-layer="DSC09203" class="Dsc09203 w-4 self-stretch" src="https://placehold.co/18x18" />
-							</div>
-							<div data-layer="Wanilia z prażynką" class="WaniliaZPraYnk justify-center text-zinc-800 text-xs font-normal font-['Mulish']">Wanilia z prażynką</div>
-							<div data-layer="small" class="Small size-4 relative overflow-hidden">
-								<div data-layer="Vector" class="Vector size-2.5 left-[4.50px] top-[4.50px] absolute bg-stone-700"></div>
-							</div>
-						</div>
-						<div data-layer="span" class="Span size- px-1.5 py-[5px] bg-stone-200 rounded-sm flex justify-center items-center gap-0.5">
-							<div data-layer="Frame 46" class="Frame46 size-6 p-1 bg-stone-200 flex justify-start items-center gap-2.5 flex-wrap content-center">
-								<img data-layer="DSC09203" class="Dsc09203 w-4 self-stretch" src="https://placehold.co/18x18" />
-							</div>
-							<div data-layer="Dynia z powidłami śliwkowymi" class="DyniaZPowidAmiLiwkowymi justify-center text-zinc-800 text-xs font-normal font-['Mulish']">Dynia z powidłami śliwkowymi</div>
-							<div data-layer="small" class="Small size-4 relative overflow-hidden">
-								<div data-layer="Vector" class="Vector size-2.5 left-[4.50px] top-[4.50px] absolute bg-stone-700"></div>
-							</div>
-						</div>
-						<div data-layer="span" class="Span size- px-1.5 py-[5px] bg-stone-200 rounded-sm flex justify-center items-center gap-0.5">
-							<div data-layer="Frame 46" class="Frame46 size-6 p-1 bg-stone-200 flex justify-start items-center gap-2.5 flex-wrap content-center">
-								<img data-layer="DSC09203" class="Dsc09203 w-4 self-stretch" src="https://placehold.co/18x18" />
-							</div>
-							<div data-layer="Rokitnik z gruszką" class="RokitnikZGruszk justify-center text-zinc-800 text-xs font-normal font-['Mulish']">Rokitnik z gruszką</div>
-							<div data-layer="small" class="Small size-4 relative overflow-hidden">
-								<div data-layer="Vector" class="Vector size-2.5 left-[4.50px] top-[4.50px] absolute bg-stone-700"></div>
-							</div>
-						</div>
-						<div data-layer="span" class="Span size- px-1.5 py-[5px] bg-stone-200 rounded-sm flex justify-center items-center gap-0.5">
-							<div data-layer="Frame 46" class="Frame46 size-6 p-1 bg-stone-200 flex justify-start items-center gap-2.5 flex-wrap content-center">
-								<img data-layer="DSC09203" class="Dsc09203 w-4 self-stretch" src="https://placehold.co/18x18" />
-							</div>
-							<div data-layer="Rabarbar z truskawką" class="RabarbarZTruskawk justify-center text-zinc-800 text-xs font-normal font-['Mulish']">Rabarbar z truskawką</div>
-							<div data-layer="small" class="Small size-4 relative overflow-hidden">
-								<div data-layer="Vector" class="Vector size-2.5 left-[4.50px] top-[4.50px] absolute bg-stone-700"></div>
-							</div>
-						</div>
-						<div data-layer="span" class="Span size- px-1.5 py-[5px] bg-stone-200 rounded-sm flex justify-center items-center gap-0.5">
-							<div data-layer="Frame 46" class="Frame46 size-6 p-1 bg-stone-200 flex justify-start items-center gap-2.5 flex-wrap content-center">
-								<img data-layer="DSC09203" class="Dsc09203 w-4 self-stretch" src="https://placehold.co/18x18" />
-							</div>
-							<div data-layer="Mango marakuja" class="MangoMarakuja justify-center text-zinc-800 text-xs font-normal font-['Mulish']">Mango marakuja</div>
-							<div data-layer="small" class="Small size-4 relative overflow-hidden">
-								<div data-layer="Vector" class="Vector size-2.5 left-[4.50px] top-[4.50px] absolute bg-stone-700"></div>
-							</div>
-						</div>
-						<div data-layer="span" class="Span size- px-1.5 py-[5px] bg-stone-200 rounded-sm flex justify-center items-center gap-0.5">
-							<div data-layer="Frame 46" class="Frame46 size-6 p-1 bg-stone-200 flex justify-start items-center gap-2.5 flex-wrap content-center">
-								<img data-layer="DSC09203" class="Dsc09203 w-4 self-stretch" src="https://placehold.co/18x18" />
-							</div>
-							<div data-layer="Mięta" class="MiTa justify-center text-zinc-800 text-xs font-normal font-['Mulish']">Mięta</div>
-							<div data-layer="small" class="Small size-4 relative overflow-hidden">
-								<div data-layer="Vector" class="Vector size-2.5 left-[4.50px] top-[4.50px] absolute bg-stone-700"></div>
-							</div>
-						</div>
-						<div data-layer="span" class="Span size- px-1.5 py-[5px] bg-stone-200 rounded-sm flex justify-center items-center gap-0.5">
-							<div data-layer="Frame 46" class="Frame46 size-6 p-1 bg-stone-200 flex justify-start items-center gap-2.5 flex-wrap content-center">
-								<img data-layer="DSC09203" class="Dsc09203 w-4 self-stretch" src="https://placehold.co/18x18" />
-							</div>
-							<div data-layer="Rafaello" class="Rafaello justify-center text-zinc-800 text-xs font-normal font-['Mulish']">Rafaello</div>
-							<div data-layer="small" class="Small size-4 relative overflow-hidden">
-								<div data-layer="Vector" class="Vector size-2.5 left-[4.50px] top-[4.50px] absolute bg-stone-700"></div>
-							</div>
-						</div>
-						<div data-layer="span" class="Span size- px-1.5 py-[5px] bg-stone-200 rounded-sm flex justify-center items-center gap-0.5">
-							<div data-layer="Frame 46" class="Frame46 size-6 p-1 bg-stone-200 flex justify-start items-center gap-2.5 flex-wrap content-center">
-								<img data-layer="DSC09203" class="Dsc09203 w-4 self-stretch" src="https://placehold.co/18x18" />
-							</div>
-							<div data-layer="Lemoniada" class="Lemoniada justify-center text-zinc-800 text-xs font-normal font-['Mulish']">Lemoniada</div>
-							<div data-layer="small" class="Small size-4 relative overflow-hidden">
-								<div data-layer="Vector" class="Vector size-2.5 left-[4.50px] top-[4.50px] absolute bg-stone-700"></div>
-							</div>
-						</div>
+					<div id="candy-summary-list" data-layer="aktywne filtry" class="AktywneFiltry self-stretch inline-flex justify-start items-start gap-2 flex-wrap content-start overflow-hidden">
+						<div></div>
+
 						<div data-layer="btn" class="Btn h-9 px-2 flex justify-center items-center">
 							<div data-layer="BTN XS" data-property-1="Default" class="BtnXs size- border-b border-zinc-800 flex justify-center items-center gap-2.5">
 								<div data-layer="Poznaj nas" class="PoznajNas justify-center text-zinc-800 text-xs font-normal font-['Mulish']">Wyczyść wszystkie</div>
@@ -856,3 +210,172 @@
 		</div>
 	</div>
 </div>
+
+<script>
+	document.addEventListener('DOMContentLoaded', () => {
+		let globalCount = 0;
+		const globalCounterEl = document.getElementById('global-counter');
+		const summaryList = document.getElementById("candy-summary-list");
+
+		function updateAll() {
+			updateGlobalCounterDisplay();
+			updateSummary(); // Text version
+			updateImageSummary(); // Image box version
+		}
+
+		function updateGlobalCounterDisplay() {
+			document.querySelectorAll('.global-counter').forEach(el => {
+				el.textContent = globalCount;
+			});
+		}
+
+		function updateSummary() {
+			const summaryList = document.getElementById("candy-summary-list");
+			summaryList.innerHTML = ""; // Clear previous
+
+			document.querySelectorAll(".Karta").forEach(card => {
+				const count = parseInt(card.querySelector("[data-count]").textContent, 10);
+				if (count > 0) {
+					const name = card.querySelector(".AgrestWCzekoladzie").textContent.trim();
+					const imgSrc = card.querySelector("img").getAttribute("src");
+
+					for (let i = 0; i < count; i++) {
+						const item = document.createElement("div");
+						item.className = "Span size- px-1.5 py-[5px] bg-stone-200 rounded-sm flex justify-center items-center gap-0.5";
+
+						item.innerHTML = `
+					<div class="Frame46 size-6 p-1 bg-stone-200 flex justify-start items-center gap-2.5 flex-wrap content-center">
+						<img class="Dsc09203 w-4 self-stretch" src="${imgSrc}" />
+					</div>
+					<div class="Lemoniada justify-center text-zinc-800 text-xs font-normal font-['Mulish']">${name}</div>
+					<div class="Small size-4 relative overflow-hidden">
+						<div class="Vector size-2.5 left-[4.50px] top-[4.50px] absolute bg-stone-700"></div>
+					</div>
+				`;
+						summaryList.appendChild(item);
+					}
+				}
+			});
+		}
+
+		function updateImageSummary() {
+			const imageSummaryEl = document.getElementById("candy-image-summary");
+			imageSummaryEl.innerHTML = ""; // Clear previous
+
+			document.querySelectorAll(".Karta").forEach(card => {
+				const count = parseInt(card.querySelector("[data-count]").textContent, 10);
+				const image = card.querySelector("img").getAttribute("src");
+
+				for (let i = 0; i < count; i++) {
+					const img = document.createElement("img");
+					img.src = image;
+					img.className = "size-11 min-w-11 min-h-11"; // Apply same classes
+					imageSummaryEl.appendChild(img);
+				}
+			});
+		}
+
+		document.querySelector('.BtnMidleDark').addEventListener('click', () => {
+			const candies = [];
+
+			document.querySelectorAll(".Karta").forEach(card => {
+				const count = parseInt(card.querySelector("[data-count]").textContent, 10);
+				if (count > 0) {
+					const candyName = card.querySelector(".AgrestWCzekoladzie").textContent.trim();
+					candies.push({
+						name: candyName,
+						quantity: count
+					});
+				}
+			});
+
+			const boxSize = document.querySelector(".selected").dataset.value; // e.g. "16 szt."
+
+			const data = {
+				action: 'add_custom_candy_box_to_cart',
+				candies,
+				box_size: boxSize,
+				price: 80.00
+			};
+
+			console.log('Sending data to server:', data);
+
+			fetch(wc_add_to_cart_params.ajax_url, {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/x-www-form-urlencoded'
+					},
+					body: new URLSearchParams({
+						action: 'add_custom_candy_box_to_cart',
+						box_size: data.box_size,
+						price: data.price,
+						candies: JSON.stringify(data.candies) // <-- serialize manually
+					})
+				})
+				.then(response => response.json())
+				.then(result => {
+					if (result.success) {
+						window.location.href = '/koszyk';
+					}
+				});
+		});
+
+
+		document.querySelectorAll('.Karta').forEach(card => {
+			const countEl = card.querySelector('[data-count]');
+			const incrementBtn = card.querySelector('.increment');
+			const decrementBtn = card.querySelector('.decrement');
+
+			if (!countEl || !incrementBtn || !decrementBtn) return;
+
+			let count = 0;
+
+			incrementBtn.addEventListener('click', () => {
+				count++;
+				countEl.textContent = count;
+				globalCount++;
+				updateAll();
+			});
+
+			decrementBtn.addEventListener('click', () => {
+				if (count > 0) {
+					count--;
+					countEl.textContent = count;
+					globalCount--;
+					updateAll();
+				}
+			});
+		});
+		document.querySelectorAll('.attribute-group').forEach(group => {
+			const cards = group.querySelectorAll('.option-card');
+			cards.forEach(card => {
+				card.addEventListener('click', () => {
+					// Remove outline classes from siblings
+					cards.forEach(c => {
+						c.classList.remove('outline', 'outline-1', 'outline-offset-[-1px]', 'outline-stone-400', 'selected');
+					});
+
+					// Add outline classes on clicked card
+					card.classList.add('outline', 'outline-1', 'outline-offset-[-1px]', 'outline-stone-400', 'selected');
+
+					// Save selected value on the attribute group div dataset or a hidden input
+					group.dataset.selectedValue = card.dataset.value;
+
+
+					let huddenVariationInput = group.querySelector('input[name="variation_id"]');
+					if (!huddenVariationInput) {
+						huddenVariationInput = document.createElement('input');
+						huddenVariationInput.type = 'hidden';
+						huddenVariationInput.name = 'variation_id';
+						group.appendChild(huddenVariationInput);
+					}
+					huddenVariationInput.value = card.dataset.variationId || 0;
+
+					console.log(`Selected attribute: ${hiddenInput.name} = ${hiddenInput.value}`);
+
+				});
+			});
+		});
+
+	});
+</script>

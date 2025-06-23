@@ -57,114 +57,183 @@ function storefront_site_branding()
 	<div class="max-w-40 inline-flex flex-col justify-start items-start overflow-hidden">
 		<?php storefront_site_title_or_logo(); ?>
 	</div>
-<?php
+	<?php
 }
 
-add_action('init', function() {
-    remove_action( 'woocommerce_product_loop_start', 'woocommerce_product_loop_start', 10 );
-    remove_action( 'woocommerce_product_loop_end', 'woocommerce_product_loop_end', 10 );
+add_action('init', function () {
+	remove_action('woocommerce_product_loop_start', 'woocommerce_product_loop_start', 10);
+	remove_action('woocommerce_product_loop_end', 'woocommerce_product_loop_end', 10);
 });
 
-add_action('init', function() {
-    remove_shortcode('best_selling_products');
-    add_shortcode('best_selling_products', 'my_custom_best_selling_products_shortcode');
+add_action('init', function () {
+	remove_shortcode('best_selling_products');
+	add_shortcode('best_selling_products', 'my_custom_best_selling_products_shortcode');
 }, 100);
 
-function my_custom_best_selling_products_shortcode( $atts ) {
-    ob_start();
+function my_custom_best_selling_products_shortcode($atts)
+{
+	ob_start();
 
-    $atts = shortcode_atts( array(
-        'limit' => 6,
-    ), $atts, 'best_selling_products' );
+	$atts = shortcode_atts(array(
+		'limit' => 6,
+	), $atts, 'best_selling_products');
 
-    $query = new WP_Query( array(
-        'post_type' => 'product',
-        'posts_per_page' => intval( $atts['limit'] ),
-        'meta_key' => 'total_sales',
-        'orderby' => 'meta_value_num',
-    ) );
+	$query = new WP_Query(array(
+		'post_type' => 'product',
+		'posts_per_page' => intval($atts['limit']),
+		'meta_key' => 'total_sales',
+		'orderby' => 'meta_value_num',
+	));
 
-    if ( $query->have_posts() ) {
-        while ( $query->have_posts() ) {
-            $query->the_post();
-            wc_get_template_part( 'content', 'product' );
-        }
-    }
+	if ($query->have_posts()) {
+		while ($query->have_posts()) {
+			$query->the_post();
+			wc_get_template_part('content', 'product');
+		}
+	}
 
-    wp_reset_postdata();
+	wp_reset_postdata();
 
-    return ob_get_clean();
+	return ob_get_clean();
 }
 
 
-function custom_recent_posts_shortcode() {
-    ob_start();
-    $recent_posts = new WP_Query(array(
-        'post_type'      => 'post',
-        'posts_per_page' => 5,
-    ));
+function custom_recent_posts_shortcode()
+{
+	ob_start();
+	$recent_posts = new WP_Query(array(
+		'post_type'      => 'post',
+		'posts_per_page' => 5,
+	));
 
-    if ( $recent_posts->have_posts() ) :
-        echo '<div class="self-stretch flex flex-col md:flex-row justify-start items-center gap-10">';
-        while ( $recent_posts->have_posts() ) : $recent_posts->the_post();
-            ?>
-            <article class="self-stretch flex flex-col justify-start items-start md:basis-64">
-                <a href="<?php the_permalink(); ?>">
-                    <?php if ( has_post_thumbnail() ) : ?>
-                        <img  class="!h-[220px] !w-full object-cover" src="<?php the_post_thumbnail_url('medium'); ?>" alt="<?php the_title_attribute(); ?>">
-                    <?php else : ?>
-                        <img   src="https://placehold.co/280x220" alt="Placeholder">
-                    <?php endif; ?>
-                </a>
-                <div class="self-stretch flex flex-col justify-start items-start">
-                    <div class="self-stretch pt-4 pb-2 inline-flex justify-start items-start gap-3">
-                        <div class="justify-start text-zinc-500 text-xs font-normal font-['Mulish']">
-                            <?php echo get_the_date('d F Y'); // example: 25 stycznia 2025 ?>
-                        </div>
-                    </div>
-                    <div class="self-stretch border-stone-400 flex flex-col justify-start gap-2.5">
-                        <a href="<?php the_permalink(); ?>" class="font-bold !text-black font-['Mulish'] leading-snug">
-                            <?php the_title(); ?>
-                        </a>
-                    </div>
-                </div>
-            </article>
-            <?php
-        endwhile;
-        echo '</div>';
-        wp_reset_postdata();
-    else :
-        echo '<p>No recent posts found.</p>';
-    endif;
+	if ($recent_posts->have_posts()) :
+		echo '<div class="self-stretch flex flex-col md:flex-row justify-start items-center gap-10">';
+		while ($recent_posts->have_posts()) : $recent_posts->the_post();
+	?>
+			<article class="self-stretch flex flex-col justify-start items-start md:basis-64">
+				<a href="<?php the_permalink(); ?>">
+					<?php if (has_post_thumbnail()) : ?>
+						<img class="!h-[220px] !w-full object-cover" src="<?php the_post_thumbnail_url('medium'); ?>" alt="<?php the_title_attribute(); ?>">
+					<?php else : ?>
+						<img src="https://placehold.co/280x220" alt="Placeholder">
+					<?php endif; ?>
+				</a>
+				<div class="self-stretch flex flex-col justify-start items-start">
+					<div class="self-stretch pt-4 pb-2 inline-flex justify-start items-start gap-3">
+						<div class="justify-start text-zinc-500 text-xs font-normal font-['Mulish']">
+							<?php echo get_the_date('d F Y'); // example: 25 stycznia 2025
+							?>
+						</div>
+					</div>
+					<div class="self-stretch border-stone-400 flex flex-col justify-start gap-2.5">
+						<a href="<?php the_permalink(); ?>" class="font-bold !text-black font-['Mulish'] leading-snug">
+							<?php the_title(); ?>
+						</a>
+					</div>
+				</div>
+			</article>
+<?php
+		endwhile;
+		echo '</div>';
+		wp_reset_postdata();
+	else :
+		echo '<p>No recent posts found.</p>';
+	endif;
 
-    return ob_get_clean();
+	return ob_get_clean();
 }
 add_shortcode('recent_posts', 'custom_recent_posts_shortcode');
 
 
-function page_url_by_slug($slug) {
+function page_url_by_slug($slug)
+{
 	$page = get_page_by_path($slug);
 	return $page ? get_permalink($page->ID) : '#';
 }
 
 
 add_filter('template_include', function ($template) {
-    if (is_singular('product')) {
-        global $post;
-        if ($post && $post->post_name === 'praliny') {
-            $custom_template = get_stylesheet_directory() . '/woocommerce/single-product/praliny.php';
-            if (file_exists($custom_template)) {
-                return $custom_template;
-            }
-        }
-    }
-    return $template;
+	if (is_singular('product')) {
+		global $post;
+		if ($post && $post->post_name === 'praliny') {
+			$custom_template = get_stylesheet_directory() . '/woocommerce/single-product/praliny.php';
+			if (file_exists($custom_template)) {
+				return $custom_template;
+			}
+		}
+	}
+	return $template;
 });
 
 
 
 add_action('template_redirect', function () {
-    if (is_singular('product') && get_post_field('post_name', get_post()) === 'praliny') {
-        remove_action('storefront_sidebar', 'storefront_get_sidebar', 10);
-    }
+	if (is_singular('product') && get_post_field('post_name', get_post()) === 'praliny') {
+		remove_action('storefront_sidebar', 'storefront_get_sidebar', 10);
+	}
 });
+
+
+add_filter('woocommerce_get_item_data', function ($item_data, $cart_item) {
+	if (!empty($cart_item['custom_box_note'])) {
+		$item_data[] = [
+			'key'   => 'Praliny',
+			'value' => $cart_item['custom_box_note'],
+		];
+	}
+	if (!empty($cart_item['custom_box_size'])) {
+		$item_data[] = [
+			'key'   => 'Rozmiar opakowania',
+			'value' => $cart_item['custom_box_size'],
+		];
+	}
+	return $item_data;
+}, 10, 2);
+
+
+add_action('woocommerce_add_order_item_meta', function ($item_id, $values, $cart_item_key) {
+	if (!empty($values['custom_box_note'])) {
+		wc_add_order_item_meta($item_id, 'Praliny', $values['custom_box_note']);
+	}
+	if (!empty($values['custom_box_size'])) {
+		wc_add_order_item_meta($item_id, 'Rozmiar opakowania', $values['custom_box_size']);
+	}
+}, 10, 3);
+
+
+add_action('wp_ajax_add_custom_candy_box_to_cart', 'handle_add_custom_candy_box');
+add_action('wp_ajax_nopriv_add_custom_candy_box_to_cart', 'handle_add_custom_candy_box');
+
+function handle_add_custom_candy_box()
+{
+	$product_id = 1234; // Your parent product (e.g. "Custom Candy Box") — set dynamically if needed
+	$variation_id = null; // or set based on selected variation
+
+	$candies = isset($_POST['candies']) ? json_decode(stripslashes($_POST['candies']), true) : [];
+	$box_size = sanitize_text_field($_POST['box_size'] ?? '');
+	$price = floatval($_POST['price'] ?? 0);
+
+	if (!$product_id || empty($candies)) {
+		wp_send_json_error(['message' => 'Missing data']);
+	}
+
+	// Build candy description
+	$candy_description = array_map(function ($candy) {
+		return $candy['quantity'] . ' x ' . sanitize_text_field($candy['name']);
+	}, $candies);
+
+	// Add to cart with custom data
+	$cart_item_data = [
+		'custom_box_candies' => $candies,
+		'custom_box_size' => $box_size,
+		'custom_box_note' => implode(', ', $candy_description),
+	];
+
+	$added = WC()->cart->add_to_cart($product_id, 1, $variation_id, [], $cart_item_data);
+
+	if ($added) {
+		wp_send_json_success(['message' => 'Added to cart']);
+	} else {
+		wp_send_json_error(['message' => 'Could not add to cart']);
+	}
+}
