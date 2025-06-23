@@ -33,7 +33,7 @@ Template:			storefront
 	font-style: normal;
 	ascent-override: 90%;
 }
-.header  a{
+.header  a , a.features-sec{
   color: white!important;
 }
 .title{
@@ -67,14 +67,15 @@ article{
 }
 .heroSection{
     background-image: url(./resources/img/bgHERO.jpg);
-    
 
+}
 
 .services {
 	background-image: url(./resources/img/secondBg.jpg);
 }
+
 .shadow{
-    background: 
+    background:
   linear-gradient(176.8deg, rgba(0, 0, 0, 0) 65.14%, #000000 120.14%),
   linear-gradient(243.75deg, rgba(0, 0, 0, 0) 39.83%, rgba(0, 0, 0, 0.5) 80.95%);
 }
@@ -85,11 +86,13 @@ article{
   }
     .shadow{
         background: linear-gradient(176.8deg, rgba(0, 0, 0, 0) 36.14%, #000000 50.14%), linear-gradient(243.75deg, rgba(0, 0, 0, 0) 39.83%, rgba(0, 0, 0, 0.5) 80.95%);}
+
 .services{
       background-image: none;
       background-color:  #F2EDE7;
 }
-    
+}
+
 .heroSection{background-size: 130%;background-position-x: right;}
 
 
