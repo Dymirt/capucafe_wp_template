@@ -60,11 +60,11 @@ $count = WC()->cart->get_cart_contents_count();
 		<?php
 		if (is_front_page()) {
 			get_template_part('headers/header', 'homepage');
-		} else{
+		} else {
 			get_template_part('headers/header', 'shop');
 		}
 		?>
-	
+
 
 		<!-- Side Menu -->
 		<div id="side-menu" class="fixed top-0 right-0 w-80 h-full bg-white shadow-lg transform translate-x-full transition-transform duration-300 z-[99999]">

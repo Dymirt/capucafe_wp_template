@@ -36,6 +36,10 @@ Template:			storefront
 .header  a , a.features-sec{
   color: white!important;
 }
+
+.header-shop a{
+	color: black!important;
+}
 .title{
     font-family: 'DidoDidot';
 }
@@ -145,3 +149,7 @@ article{
 	font-size: 0.75rem !important;
 }
 
+.storefront-breadcrumb {
+	padding-top: 100px !important;
+	margin-bottom: 0 !important;
+}
