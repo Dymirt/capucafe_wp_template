@@ -103,7 +103,7 @@ function custom_recent_posts_shortcode()
 	ob_start();
 	$recent_posts = new WP_Query(array(
 		'post_type'      => 'post',
-		'posts_per_page' => 5,
+		'posts_per_page' => 10,
 	));
 
 	if ($recent_posts->have_posts()) :
@@ -236,4 +236,13 @@ function handle_add_custom_candy_box()
 	} else {
 		wp_send_json_error(['message' => 'Could not add to cart']);
 	}
+}
+
+
+add_action('wp_ajax_nopriv_load_shop_header', 'load_shop_header');
+add_action('wp_ajax_load_shop_header', 'load_shop_header');
+
+function load_shop_header() {
+    get_template_part('headers/header', 'shop'); // loads header-shop.php
+    wp_die(); // stops further processing
 }

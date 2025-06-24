@@ -46,15 +46,6 @@ Template:			storefront
   color: #A9957B!important;
 
 }
-.menu-anim{
-  height: 10vh;
-  background: white!important;
-  box-shadow: 0 0 28px #0000003d;
-}
-.menu-anim a , .menu-anim div a svg path , .menu-anim path{
-fill :black!important;
-color: black!important;
-}
 #side-menu a , footer a {
 color: #A9957B!important;
 }

@@ -1,4 +1,4 @@
-<div data-property-1="mobile 2" class="header-shop z-50 fixed h-[100px] flex items-center w-screen px-[5%] justify-between">
+<div data-property-1="mobile 2" class="header-shop z-50 fixed h-[100px] flex items-center w-screen px-[5%] justify-between z-[9999]">
 	<div class="max-w-40 inline-flex flex-col justify-start items-start overflow-hidden">
 		<div class="w-28 h-8 relative overflow-hidden">
 			<a href="<?php echo esc_url(home_url('/')); ?>">
@@ -17,9 +17,6 @@
 			'fallback_cb'    => '',     // IMPORTANT! <- Empty string, not false!
 		]);
 		?>
-	</div>
-	<div>
-
 	</div>
 	<div class="h-16 flex justify-center items-center gap-4">
 		<?php
