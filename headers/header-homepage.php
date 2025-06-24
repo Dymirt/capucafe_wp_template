@@ -1,4 +1,4 @@
-<div data-property-1="mobile 2" id="menuu" class="header z-[9999] max-md:absolute fixed h-[15vh] flex items-center w-screen px-[5%] justify-between">
+<div data-property-1="mobile 2" id="menuu" class="header z-[9999] fixed h-[15vh] flex items-center w-screen px-[5%] justify-between">
 	<div class="max-w-40 inline-flex flex-col justify-start items-start overflow-hidden">
 		<div class="w-28 h-8 relative overflow-hidden">
 			<?php echo get_custom_logo(); ?>
