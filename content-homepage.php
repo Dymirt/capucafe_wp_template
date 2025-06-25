@@ -196,7 +196,24 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 <div class="min-h-[60vh] py-12">
 
 	<div class=" pl-[5%] ">
-		<h1 class="title">Nasze bestsellery</h1>
+		<div data-layer="title" class="Title flex justify-between items-center w-full pr-[5%]">
+			<div data-layer="Nasze bestsellery" class="NaszeBestsellery text-stone-700 text-3xl font-normal font-['Didot_LT_Pro']">
+				Nasze bestsellery
+			</div>
+			<div data-layer="strzalki" class="Strzalki flex items-center gap-2.5">
+				<div id="scrollLeft" data-layer="Header" data-property-1="default" class="Header size-7 p-2 -rotate-180 rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 flex items-center justify-center">
+					<div data-layer="Vector" class="Vector size-3.5 rotate-180"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
+						<path d="M2.873 7.05175L14.25 7.05175C14.4628 7.05175 14.641 7.12358 14.7845 7.26725C14.9282 7.41075 15 7.58892 15 7.80175C15 8.01458 14.9282 8.19275 14.7845 8.33625C14.641 8.47992 14.4628 8.55175 14.25 8.55175L2.873 8.55175L8.04225 13.721C8.19092 13.8697 8.26433 14.0437 8.2625 14.243C8.2605 14.4423 8.182 14.6196 8.027 14.7747C7.87183 14.9196 7.69617 14.9946 7.5 14.9997C7.30383 15.0049 7.12817 14.9299 6.973 14.7747L0.632751 8.4345C0.539085 8.34083 0.473085 8.24208 0.434752 8.13825C0.396252 8.03442 0.377002 7.92225 0.377002 7.80175C0.377002 7.68125 0.396252 7.56908 0.434752 7.46525C0.473085 7.36142 0.539085 7.26267 0.632751 7.169L6.973 0.82875C7.1115 0.69025 7.283 0.619417 7.4875 0.616249C7.692 0.613083 7.87183 0.683916 8.027 0.82875C8.182 0.983917 8.2595 1.16208 8.2595 1.36325C8.2595 1.56458 8.182 1.74283 8.027 1.898L2.873 7.05175Z" fill="#A9957B" />
+						</svg>
+					</div>
+				</div>
+				<div id="scrollRight" data-layer="Header" data-property-1="default" class="Header size-7 p-2 rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 flex items-center justify-center">
+					<div data-layer="Vector" class="Vector size-3.5 "><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
+							<path d="M12.127 7.94825H0.75C0.537167 7.94825 0.359 7.87642 0.2155 7.73275C0.0718332 7.58925 0 7.41108 0 7.19825C0 6.98542 0.0718332 6.80725 0.2155 6.66375C0.359 6.52008 0.537167 6.44825 0.75 6.44825H12.127L6.95775 1.279C6.80908 1.13033 6.73567 0.956332 6.7375 0.756999C6.7395 0.557665 6.818 0.380416 6.973 0.22525C7.12817 0.0804164 7.30383 0.00541641 7.5 0.00024974C7.69617 -0.00491693 7.87183 0.0700831 8.027 0.22525L14.3672 6.5655C14.4609 6.65917 14.5269 6.75792 14.5652 6.86175C14.6037 6.96558 14.623 7.07775 14.623 7.19825C14.623 7.31875 14.6037 7.43092 14.5652 7.53475C14.5269 7.63858 14.4609 7.73733 14.3672 7.831L8.027 14.1712C7.8885 14.3097 7.717 14.3806 7.5125 14.3837C7.308 14.3869 7.12817 14.3161 6.973 14.1712C6.818 14.0161 6.7405 13.8379 6.7405 13.6367C6.7405 13.4354 6.818 13.2572 6.973 13.102L12.127 7.94825Z" fill="#A9957B" />
+						</svg></div>
+				</div>
+			</div>
+		</div>
 		<div id="productScrollWrapper" class="flex flex-nowrap overflow-x-auto scroll-smooth w-full ">
 			<div id="productScroll" class="flex flex-nowrap snap-x snap-mandatory gap-5 pb-5">
 				<?php echo do_shortcode('[best_selling_products limit="6"]'); ?>
