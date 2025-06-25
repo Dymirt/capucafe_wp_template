@@ -65,7 +65,7 @@ $count = WC()->cart->get_cart_contents_count();
 		}
 		?>
 
-
+		<div id="menu-overlay" class="hidden fixed inset-0 bg-black bg-opacity-50 z-[99998]"></div>
 		<!-- Side Menu -->
 		<div id="side-menu" class="fixed top-0 right-0 w-80 h-full bg-white shadow-lg transform translate-x-full transition-transform duration-300 z-[99999]">
 			<div class="p-4 border-b flex justify-between items-center">
@@ -93,10 +93,16 @@ $count = WC()->cart->get_cart_contents_count();
 
 		<script>
 			document.addEventListener('DOMContentLoaded', function() {
+				bindMenuEvents();
+			});
+
+			function bindMenuEvents() {
 				const menuToggle = document.getElementById('menu-toggle');
 				const menuClose = document.getElementById('menu-close');
 				const sideMenu = document.getElementById('side-menu');
 				const overlay = document.getElementById('menu-overlay');
+
+				if (!menuToggle || !menuClose || !sideMenu || !overlay) return;
 
 				function openMenu() {
 					sideMenu.classList.remove('translate-x-full');
@@ -112,11 +118,10 @@ $count = WC()->cart->get_cart_contents_count();
 				menuClose.addEventListener('click', closeMenu);
 				overlay.addEventListener('click', closeMenu);
 
-				// Optional: close with ESC key
 				document.addEventListener('keydown', function(e) {
 					if (e.key === 'Escape') closeMenu();
 				});
-			});
+			}
 		</script>
 
 		<?php

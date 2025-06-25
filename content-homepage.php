@@ -378,6 +378,7 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 							const newHeader = tempDiv.querySelector('.header-shop');
 							if (newHeader && oldHeader) {
 								oldHeader.replaceWith(newHeader);
+								bindMenuEvents();
 							}
 						})
 						.catch(error => {
@@ -398,6 +399,7 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 					if (originalHeader) {
 						shopHeader.replaceWith(originalHeader);
 						isShopHeader = false;
+						bindMenuEvents();
 					}
 				}
 			}, {
