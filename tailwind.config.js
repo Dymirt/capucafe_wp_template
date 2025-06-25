@@ -16,5 +16,10 @@ module.exports = {
 			},
 		},
 	},
+	safelist: [
+		'sm:top-[175px]',
+		'md:top-[236px]',
+		'top-[173px]', // if used via JS
+	],
 	plugins: [],
 }

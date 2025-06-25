@@ -6,25 +6,11 @@
 				<div data-layer="chevron_left" class="ChevronLeft w-1.5 h-3 bg-stone-400"></div>
 				<div data-layer="Praliny czekoladowe 12 szt" class="PralinyCzekoladowe12Szt justify-center text-zinc-800 text-[10px] font-normal font-['Mulish'] uppercase">Stwórz własny zestaw pralin</div>
 			</div>
-			<div data-layer="Foto" class="Foto self-stretch h-96 min-w-72 min-h-72 bg-neutral-200 inline-flex justify-start items-center gap-2.5 overflow-hidden">
-				<div data-layer="Opakowanie 16" class="Opakowanie16 flex-1 h-96 relative bg-neutral-200 flex justify-start items-center gap-2.5 overflow-hidden">
-					<img data-layer="image 1" class="Image1 flex-1 h-96" src="https://placehold.co/408x408" />
-					<div id="candy-image-summary" data-layer="czekoladki wypelnienie" class="CzekoladkiWypelnienie size-52 left-[53px] top-[140px] absolute flex justify-start items-start gap-2 flex-wrap content-start">
-						<img data-layer="DSC09203" class="Dsc09203 size-11 min-w-11 min-h-11" src="https://placehold.co/46x46" />
-						<img data-layer="DSC09204" class="Dsc09204 size-11 min-w-11 min-h-11" src="https://placehold.co/46x46" />
-						<img data-layer="DSC09204" class="Dsc09204 size-11 min-w-11 min-h-11" src="https://placehold.co/46x46" />
-						<img data-layer="DSC09208" class="Dsc09208 size-11 min-w-11 min-h-11" src="https://placehold.co/46x46" />
-						<img data-layer="DSC09240" class="Dsc09240 size-11 min-w-11 min-h-11" src="https://placehold.co/46x46" />
-						<img data-layer="DSC09210" class="Dsc09210 size-11 min-w-11 min-h-11" src="https://placehold.co/46x46" />
-						<img data-layer="DSC09213" class="Dsc09213 size-11 min-w-11 min-h-11" src="https://placehold.co/46x46" />
-						<img data-layer="DSC09215" class="Dsc09215 size-11 min-w-11 min-h-11" src="https://placehold.co/46x46" />
-						<img data-layer="DSC09216" class="Dsc09216 size-11 min-w-11 min-h-11" src="https://placehold.co/46x46" />
-						<img data-layer="DSC09217" class="Dsc09217 size-11 min-w-11 min-h-11" src="https://placehold.co/46x46" />
-						<img data-layer="DSC09212" class="Dsc09212 size-11 min-w-11 min-h-11" src="https://placehold.co/46x46" />
-						<img data-layer="DSC09263" class="Dsc09263 size-11 min-w-11 min-h-11" src="https://placehold.co/46x46" />
-						<img data-layer="DSC09261" class="Dsc09261 size-11 min-w-11 min-h-11" src="https://placehold.co/46x46" />
-						<img data-layer="DSC09262" class="Dsc09262 size-11 min-w-11 min-h-11" src="https://placehold.co/46x46" />
-						<img data-layer="DSC09264" class="Dsc09264 size-11 min-w-11 min-h-11" src="https://placehold.co/46x46" />
+			<div data-layer="Foto" class="Foto self-stretch min-w-72 min-h-72 bg-neutral-200 inline-flex justify-start items-start gap-2.5 overflow-hidden">
+				<div data-layer="Opakowanie 16" class="Opakowanie16 flex-1 h-full relative bg-neutral-200 flex justify-start items-start gap-2.5 overflow-hidden">
+					<img id="main-variation-image" data-layer="image 1" class="Image1 flex-1 h-96" src="https://placehold.co/408x408" />
+					<div id="candy-image-summary"
+						class="absolute top-[140px] left-[53px] grid grid-cols-3 gap-2 w-fit">
 					</div>
 				</div>
 			</div>
@@ -56,11 +42,14 @@
 						}
 					}
 					// Example: mapping variation option slugs to image URLs and labels manually:
-					$image_map = [
-						'16_szt' => 'https://placehold.co/76x76',
-						'12_szt' => 'https://placehold.co/76x76',
-						'6_szt'  => 'https://placehold.co/76x76',
-					];
+					$image_map = [];
+					foreach ($available_variations as $variation) {
+						foreach ($variation['attributes'] as $attr_value) {
+							if (!empty($attr_value) && !isset($image_map[$attr_value])) {
+								$image_map[$attr_value] = $variation['image']['full_src'] ?: 'https://placehold.co/76x76';
+							}
+						}
+					}
 
 					$label_map = [
 						'16_szt' => '16 szt.',
@@ -155,10 +144,16 @@
 						foreach ($candies as $candy) :
 							$thumb = get_the_post_thumbnail_url($candy->ID, 'thumbnail') ?: 'https://placehold.co/88x88';
 							$title = esc_html($candy->post_title);
+							$extra_image_id = get_post_meta($candy->ID, '_extra_image_id', true);
+							$extra_image_url = $extra_image_id ? wp_get_attachment_image_url($extra_image_id, 'thumbnail') : $thumb;
+
 						?>
 							<div data-layer="karta" data-property-1="Default" class="Karta flex-1 min-w-20 pb-4 bg-white rounded-sm inline-flex flex-col justify-start items-center gap-2">
 								<div data-layer="photo" class="Photo self-stretch h-full bg-stone-200 inline-flex justify-start items-center gap-2.5">
-									<img class="1 flex-1 h-24" src="<?= esc_url($thumb); ?>" />
+									<img
+										class="1 flex-1 h-24"
+										src="<?= esc_url($thumb); ?>"
+										data-extra-image="<?= esc_url($extra_image_url); ?>" />
 								</div>
 								<div class="AgrestWCzekoladzie self-stretch h-7 text-center justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']"><?= $title; ?></div>
 								<div class="Ilosc h-7 p-2 bg-white rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2">
@@ -214,6 +209,7 @@
 <script>
 	document.addEventListener('DOMContentLoaded', () => {
 		let globalCount = 0;
+		let maxCandies = 16;
 		const globalCounterEl = document.getElementById('global-counter');
 		const summaryList = document.getElementById("candy-summary-list");
 
@@ -262,14 +258,53 @@
 			const imageSummaryEl = document.getElementById("candy-image-summary");
 			imageSummaryEl.innerHTML = ""; // Clear previous
 
+			// Get selected box size
+			const selectedBoxCard = document.querySelector(".option-card.selected");
+			let boxSize = selectedBoxCard?.dataset.value || "16_szt";
+
+			console.log('Selected box size:', boxSize);
+
+			const layoutMap = {
+				"6 sztuk": {
+					cols: "grid-cols-3",
+					left: "left-[26%]",
+					top: "top-[46%]",
+					max: 6
+				},
+				"12 sztuk": {
+					cols: "grid-cols-4",
+					left: "left-[14%]",
+					top: "top-[40%]",
+
+					max: 12
+				},
+				"16 sztuk": {
+					cols: "grid-cols-4",
+					left: "left-[13%]",
+					top: "top-[34%]",
+					max: 16
+				},
+			};
+
+			const layout = layoutMap[boxSize] || layoutMap["16 sztuk"];
+
+			imageSummaryEl.className = `absolute grid gap-2 ${layout.cols} ${layout.left} ${layout.top}`;
+			maxCandies = layout.max;
+
+			// Tailwind class swap
+			imageSummaryEl.classList.remove("grid-cols-3", "grid-cols-4");
+			imageSummaryEl.classList.add(boxSize === "6 sztuk" ? "grid-cols-3" : "grid-cols-4");
+
+
 			document.querySelectorAll(".Karta").forEach(card => {
 				const count = parseInt(card.querySelector("[data-count]").textContent, 10);
-				const image = card.querySelector("img").getAttribute("src");
+				//const image = card.querySelector("img").getAttribute("src");
+				const image = card.querySelector("img").dataset.extraImage || card.querySelector("img").src;
 
 				for (let i = 0; i < count; i++) {
 					const img = document.createElement("img");
 					img.src = image;
-					img.className = "size-11 min-w-11 min-h-11"; // Apply same classes
+					img.className = "size-11 min-w-15 min-h-15"; // Apply same classes
 					imageSummaryEl.appendChild(img);
 				}
 			});
@@ -331,10 +366,14 @@
 			let count = 0;
 
 			incrementBtn.addEventListener('click', () => {
-				count++;
-				countEl.textContent = count;
-				globalCount++;
-				updateAll();
+				if (globalCount < maxCandies) {
+					count++;
+					countEl.textContent = count;
+					globalCount++;
+					updateAll();
+				} else {
+					alert(`Nie możesz wybrać więcej niż ${maxCandies} pralin.`);
+				}
 			});
 
 			decrementBtn.addEventListener('click', () => {
@@ -350,6 +389,12 @@
 			const cards = group.querySelectorAll('.option-card');
 			cards.forEach(card => {
 				card.addEventListener('click', () => {
+
+					const mainImage = document.getElementById('main-variation-image');
+					const variationImgEl = card.querySelector('img');
+					if (mainImage && variationImgEl) {
+						mainImage.src = variationImgEl.src;
+					}
 					// Remove outline classes from siblings
 					cards.forEach(c => {
 						c.classList.remove('outline', 'outline-1', 'outline-offset-[-1px]', 'outline-stone-400', 'selected');
@@ -361,6 +406,7 @@
 					// Save selected value on the attribute group div dataset or a hidden input
 					group.dataset.selectedValue = card.dataset.value;
 
+					updateImageSummary();
 
 					let huddenVariationInput = group.querySelector('input[name="variation_id"]');
 					if (!huddenVariationInput) {
@@ -371,7 +417,7 @@
 					}
 					huddenVariationInput.value = card.dataset.variationId || 0;
 
-					console.log(`Selected attribute: ${hiddenInput.name} = ${hiddenInput.value}`);
+					//console.log(`Selected attribute: ${hiddenInput.name} = ${hiddenInput.value}`);
 
 				});
 			});
@@ -379,3 +425,5 @@
 
 	});
 </script>
+
+<div class="top-[46%] left-[26%] left-[14%] left-[13%] top-[34%]"></div>
