@@ -1,4 +1,4 @@
- document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
 	const scrollContainer = document.getElementById('productScrollWrapper');
 	const scrollLeftBtn = document.getElementById('scrollLeft');
 	const scrollRightBtn = document.getElementById('scrollRight');
@@ -32,14 +32,16 @@
 	});
 });
 
-window.toggleSubmenu = function(id) {
-    const allSubmenus = document.querySelectorAll('.submenu');
-    allSubmenus.forEach((submenu) => {
-        if (submenu.id === id) {
-            submenu.classList.toggle('hidden');
-        } else {
-            submenu.classList.add('hidden');
-        }
-    });
+
+// Function to toggle footer submenus
+window.toggleSubmenu = function (id) {
+	const allSubmenus = document.querySelectorAll('.submenu');
+	allSubmenus.forEach((submenu) => {
+		if (submenu.id === id) {
+			submenu.classList.toggle('hidden');
+		} else {
+			submenu.classList.add('hidden');
+		}
+	});
 };
 

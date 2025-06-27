@@ -66,9 +66,7 @@
 
 						<?php foreach ($attributes as $attribute_name => $options) :						?>
 							<div class="attribute-group" data-attribute="<?php echo esc_attr($attribute_name); ?>">
-								<label for="<?php echo esc_attr(sanitize_title($attribute_name)); ?>">
-									<?php echo wc_attribute_label($attribute_name); ?>
-								</label>
+
 
 								<div data-layer="wybierz" class="Wybierz self-stretch inline-flex justify-start items-start gap-0.5">
 									<?php foreach ($options as $option) :
@@ -83,7 +81,8 @@
 											class="Frame size- p-2 bg-white rounded-sm inline-flex flex-col justify-center items-center gap-2 option-card"
 											data-value="<?php echo esc_attr($option_slug); ?>"
 											tabindex="0"
-											data-variation-id="<?php echo esc_attr($variation_id); ?>">
+											data-variation-id="<?php echo esc_attr($variation_id); ?>"
+											data-variation-price= "<?php echo esc_attr($variation_id ? wc_get_price_to_display(wc_get_product($variation_id)) : ''); ?>">
 
 											<div data-layer="Foto" class="Foto size-20 bg-neutral-200 inline-flex justify-start items-center gap-2.5 overflow-hidden">
 												<img data-layer="image" class="Image flex-1 self-stretch" src="<?php echo esc_url($img_url); ?>" />
@@ -106,8 +105,8 @@
 								<input type="hidden" name="variation_id" class="variation_id" value="0" />
 							</div>
 						<?php endforeach; ?>
-
-						<label for="quantity">Quantity</label>
+										<br />
+						<label for="quantity">Ilość zestawów</label>
 						<input
 							type="number"
 							id="quantity"
@@ -123,9 +122,9 @@
 						<input type="hidden" name="custom_candies" id="custom_candies_input" />
 						<input type="hidden" name="box_size" id="box_size_input" />
 
-						<div data-layer="cena i btn" class="CenaIBtn self-stretch flex flex-col justify-start items-start gap-8">
-							<div data-layer="cena" class="Cena self-stretch h-12 flex flex-col justify-center items-start">
-								<div data-layer="80,00 zł" class="00Z self-stretch justify-start text-stone-700 text-3xl font-normal font-['Didot_LT_Pro']">80,00 zł</div>
+						<div data-layer="cena i btn" class="CenaIBtn self-stretch flex flex-col justify-start items-start gap-8 pt-2">
+							<div data-layer="cena" class="Cena self-stretch h-12 flex flex-col justify-center items-start ">
+								<div id="variation-price" data-layer="80,00 zł" class="00Z self-stretch justify-start text-stone-700 text-3xl font-normal font-['Didot_LT_Pro']">30-80,00 zł</div>
 								<div data-layer="Cena brutto/1kg 00,00 zł" class="CenaBrutto1kg0000Z self-stretch justify-start text-zinc-500 text-xs font-normal font-['Mulish']">Cena brutto/1kg 00,00 zł</div>
 							</div>
 							<button type="submit" class="single_add_to_cart_button button alt">
@@ -265,7 +264,7 @@
 			});
 		}
 
-		
+
 
 		function updateImageSummary() {
 			const imageSummaryEl = document.getElementById("candy-image-summary");
@@ -407,7 +406,11 @@
 					}
 					huddenVariationInput.value = card.dataset.variationId || 0;
 
-					//console.log(`Selected attribute: ${hiddenInput.name} = ${hiddenInput.value}`);
+					// Update the variation price
+					const price = document.getElementById("variation-price");
+					if (price) {
+						price.textContent = card.dataset.variationPrice ? `${card.dataset.variationPrice} zł` : '80,00 zł';
+					}
 
 				});
 			});
