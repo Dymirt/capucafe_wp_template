@@ -267,28 +267,30 @@
 			const layoutMap = {
 				"6 sztuk": {
 					cols: "grid-cols-3",
-					left: "left-[26%]",
-					top: "top-[46%]",
+					left: "left-[27%]",
+					top: "top-[47%]",
+					width: "w-[38%]",
 					max: 6
 				},
 				"12 sztuk": {
 					cols: "grid-cols-4",
-					left: "left-[14%]",
-					top: "top-[40%]",
-
+					left: "left-[15%]",
+					top: "top-[41%]",
+					width: "w-[51%]",
 					max: 12
 				},
 				"16 sztuk": {
 					cols: "grid-cols-4",
-					left: "left-[13%]",
-					top: "top-[34%]",
+					left: "left-[14%]",
+					top: "top-[35%]",
+					width: "w-[50%]",
 					max: 16
 				},
 			};
 
 			const layout = layoutMap[boxSize] || layoutMap["16 sztuk"];
 
-			imageSummaryEl.className = `absolute grid gap-2 ${layout.cols} ${layout.left} ${layout.top}`;
+			imageSummaryEl.className = `absolute grid gap-2 gap-y-[11px] ${layout.cols} ${layout.left} ${layout.top} ${layout.width}`;
 			maxCandies = layout.max;
 
 			// Tailwind class swap
@@ -304,7 +306,7 @@
 				for (let i = 0; i < count; i++) {
 					const img = document.createElement("img");
 					img.src = image;
-					img.className = "size-11 min-w-15 min-h-15"; // Apply same classes
+					img.className = "w-[94%] h-auto"; // Apply same classes
 					imageSummaryEl.appendChild(img);
 				}
 			});
@@ -423,7 +425,83 @@
 			});
 		});
 
+		// Save selection to localStorage
+		function saveCandySelectionToStorage() {
+			const candies = [];
+			document.querySelectorAll(".Karta").forEach(card => {
+				const count = parseInt(card.querySelector("[data-count]").textContent, 10);
+				if (count > 0) {
+					const candyName = card.querySelector(".AgrestWCzekoladzie").textContent.trim();
+					candies.push({
+						name: candyName,
+						quantity: count
+					});
+				}
+			});
+			const boxSize = document.querySelector(".option-card.selected")?.dataset.value || "16_szt";
+			localStorage.setItem('candySelection', JSON.stringify({
+				boxSize,
+				candies
+			}));
+		}
+
+		// Load selection from localStorage
+		function loadCandySelectionFromStorage() {
+			const saved = localStorage.getItem('candySelection');
+			if (!saved) return;
+
+			try {
+				const {
+					boxSize,
+					candies
+				} = JSON.parse(saved);
+
+				// Restore box size
+				const boxCard = document.querySelector(`.option-card[data-value='${boxSize}']`);
+				if (boxCard) {
+					boxCard.click();
+				}
+
+				setTimeout(() => {
+					candies.forEach(({
+						name,
+						quantity
+					}) => {
+						document.querySelectorAll('.Karta').forEach(card => {
+							const title = card.querySelector(".AgrestWCzekoladzie").textContent.trim();
+							if (title === name) {
+								const countEl = card.querySelector('[data-count]');
+								const incrementBtn = card.querySelector('.increment');
+								let current = parseInt(countEl.textContent, 10);
+								while (current < quantity && globalCount < maxCandies) {
+									incrementBtn.click();
+									current++;
+								}
+							}
+						});
+					});
+				}, 100);
+
+			} catch (e) {
+				console.error("Failed to restore candy selection", e);
+			}
+		}
+
+		// Hook saving to changes
+		function bindStorageEvents() {
+			document.querySelectorAll('.increment, .decrement').forEach(btn => {
+				btn.addEventListener('click', () => setTimeout(saveCandySelectionToStorage, 100));
+			});
+			document.querySelectorAll('.option-card').forEach(card => {
+				card.addEventListener('click', () => setTimeout(saveCandySelectionToStorage, 100));
+			});
+		}
+
+		// Initialize restoration
+		loadCandySelectionFromStorage();
+		bindStorageEvents();
+
 	});
 </script>
 
-<div class="top-[46%] left-[26%] left-[14%] left-[13%] top-[34%]"></div>
+<div class="top-[46%] left-[26%] left-[14%] top-[34%] w-[20%] h-[20%] size-[10%] w-[10%] h-auto w-[60%] w-[20%] w-[38%] w-[94%] left-[27%] top-[47%] w-[51%] top-[41%] gap-y-[7.5%]"></div>
