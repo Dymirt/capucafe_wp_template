@@ -120,7 +120,25 @@
 						<input type="hidden" name="add-to-cart" value="<?php echo esc_attr($product_id); ?>" />
 						<input type="hidden" name="product_id" value="<?php echo esc_attr($product_id); ?>" />
 
-						<button type="submit" class="single_add_to_cart_button button alt">Add to cart</button>
+						<input type="hidden" name="custom_candies" id="custom_candies_input" />
+						<input type="hidden" name="box_size" id="box_size_input" />
+
+						<div data-layer="cena i btn" class="CenaIBtn self-stretch flex flex-col justify-start items-start gap-8">
+							<div data-layer="cena" class="Cena self-stretch h-12 flex flex-col justify-center items-start">
+								<div data-layer="80,00 zł" class="00Z self-stretch justify-start text-stone-700 text-3xl font-normal font-['Didot_LT_Pro']">80,00 zł</div>
+								<div data-layer="Cena brutto/1kg 00,00 zł" class="CenaBrutto1kg0000Z self-stretch justify-start text-zinc-500 text-xs font-normal font-['Mulish']">Cena brutto/1kg 00,00 zł</div>
+							</div>
+							<button type="submit" class="single_add_to_cart_button button alt">
+								<div data-layer="BTN" class="Btn w-full max-w-72 flex flex-col justify-start items-start gap-4">
+									<div data-layer="BTN midle dark" data-property-1="koszyk defoult" class="BtnMidleDark self-stretch h-12 px-7 bg-stone-400 rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-4">
+										<div data-layer="Poznaj nas" class="PoznajNas justify-center text-white text-sm font-bold font-['Mulish'] uppercase leading-tight">Dodaj do koszyka</div>
+										<div data-layer="Bounding box" class="BoundingBox size-6 bg-zinc-300"></div>
+										<div data-layer="shopping_bag" class="ShoppingBag w-3.5 h-5 bg-white"></div>
+									</div>
+								</div>
+							</button>
+						</div>
+
 					</form>
 				</div>
 				<div data-layer="Ilosc" class="Ilosc self-stretch flex flex-col justify-start items-start gap-2">
@@ -193,13 +211,6 @@
 						<div data-layer="80,00 zł" class="00Z self-stretch justify-start text-stone-700 text-3xl font-normal font-['Didot_LT_Pro']">80,00 zł</div>
 						<div data-layer="Cena brutto/1kg 00,00 zł" class="CenaBrutto1kg0000Z self-stretch justify-start text-zinc-500 text-xs font-normal font-['Mulish']">Cena brutto/1kg 00,00 zł</div>
 					</div>
-					<div data-layer="BTN" class="Btn w-full max-w-72 flex flex-col justify-start items-start gap-4">
-						<div data-layer="BTN midle dark" data-property-1="koszyk defoult" class="BtnMidleDark self-stretch h-12 px-7 bg-stone-400 rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-4">
-							<div data-layer="Poznaj nas" class="PoznajNas justify-center text-white text-sm font-bold font-['Mulish'] uppercase leading-tight">Dodaj do koszyka</div>
-							<div data-layer="Bounding box" class="BoundingBox size-6 bg-zinc-300"></div>
-							<div data-layer="shopping_bag" class="ShoppingBag w-3.5 h-5 bg-white"></div>
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>
@@ -253,6 +264,8 @@
 				}
 			});
 		}
+
+		
 
 		function updateImageSummary() {
 			const imageSummaryEl = document.getElementById("candy-image-summary");
@@ -312,7 +325,7 @@
 			});
 		}
 
-		document.querySelector('.BtnMidleDark').addEventListener('click', () => {
+		document.querySelector('.single_add_to_cart_button').addEventListener('click', () => {
 			const candies = [];
 
 			document.querySelectorAll(".Karta").forEach(card => {
@@ -326,35 +339,10 @@
 				}
 			});
 
-			const boxSize = document.querySelector(".selected").dataset.value; // e.g. "16 szt."
+			const boxSize = document.querySelector(".option-card.selected")?.dataset.value || "16_szt";
 
-			const data = {
-				action: 'add_custom_candy_box_to_cart',
-				candies,
-				box_size: boxSize,
-				price: 80.00
-			};
-
-			console.log('Sending data to server:', data);
-
-			fetch(wc_add_to_cart_params.ajax_url, {
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/x-www-form-urlencoded'
-					},
-					body: new URLSearchParams({
-						action: 'add_custom_candy_box_to_cart',
-						box_size: data.box_size,
-						price: data.price,
-						candies: JSON.stringify(data.candies) // <-- serialize manually
-					})
-				})
-				.then(response => response.json())
-				.then(result => {
-					if (result.success) {
-						window.location.href = '/koszyk';
-					}
-				});
+			document.getElementById("custom_candies_input").value = JSON.stringify(candies);
+			document.getElementById("box_size_input").value = boxSize;
 		});
 
 

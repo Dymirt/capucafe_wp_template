@@ -70,6 +70,13 @@ add_action('init', function () {
 	add_shortcode('best_selling_products', 'my_custom_best_selling_products_shortcode');
 }, 100);
 
+
+add_action('template_redirect', function () {
+	if (is_cart()) {
+		remove_action('storefront_sidebar', 'storefront_get_sidebar', 10);
+	}
+});
+
 function my_custom_best_selling_products_shortcode($atts)
 {
 	ob_start();
@@ -173,76 +180,96 @@ add_action('template_redirect', function () {
 	}
 });
 
-
+/*
 add_filter('woocommerce_get_item_data', function ($item_data, $cart_item) {
-	if (!empty($cart_item['custom_box_note'])) {
-		$item_data[] = [
-			'key'   => 'Praliny',
-			'value' => $cart_item['custom_box_note'],
-		];
+	if (!empty($cart_item['custom_candies'])) {
+		foreach ($cart_item['custom_candies'] as $candy) {
+			$item_data[] = [
+				'key'   => esc_html($candy['name']),
+				'value' => esc_html($candy['quantity']) . ' szt.'
+			];
+		}
 	}
-	if (!empty($cart_item['custom_box_size'])) {
+	if (!empty($cart_item['box_size'])) {
 		$item_data[] = [
-			'key'   => 'Rozmiar opakowania',
-			'value' => $cart_item['custom_box_size'],
+			'key'   => 'Rozmiar pudełka',
+			'value' => esc_html($cart_item['box_size'])
 		];
 	}
 	return $item_data;
 }, 10, 2);
+*/
+
+// Praliny debugging
+//add_action('woocommerce_before_cart', function () {
+//	foreach (WC()->cart->get_cart() as $cart_item) {
+//		echo '<pre>';
+//		print_r($cart_item);
+//		echo '</pre>';
+//	}
+//});
 
 
-add_action('woocommerce_add_order_item_meta', function ($item_id, $values, $cart_item_key) {
-	if (!empty($values['custom_box_note'])) {
-		wc_add_order_item_meta($item_id, 'Praliny', $values['custom_box_note']);
+add_action('woocommerce_add_order_item_meta', function ($item_id, $values) {
+	if (!empty($values['custom_candies'])) {
+		$summary = '';
+		foreach ($values['custom_candies'] as $candy) {
+			$summary .= $candy['name'] . ' x ' . $candy['quantity'] . ', ';
+		}
+		$summary = rtrim($summary, ', ');
+		wc_add_order_item_meta($item_id, 'Praliny', $summary);
 	}
-	if (!empty($values['custom_box_size'])) {
-		wc_add_order_item_meta($item_id, 'Rozmiar opakowania', $values['custom_box_size']);
+	if (!empty($values['box_size'])) {
+		wc_add_order_item_meta($item_id, 'Rozmiar pudełka', $values['box_size']);
 	}
-}, 10, 3);
+}, 10, 2);
 
-
-add_action('wp_ajax_add_custom_candy_box_to_cart', 'handle_add_custom_candy_box');
-add_action('wp_ajax_nopriv_add_custom_candy_box_to_cart', 'handle_add_custom_candy_box');
-
-function handle_add_custom_candy_box()
-{
-	$product_id = 1234; // Your parent product (e.g. "Custom Candy Box") — set dynamically if needed
-	$variation_id = null; // or set based on selected variation
-
-	$candies = isset($_POST['candies']) ? json_decode(stripslashes($_POST['candies']), true) : [];
-	$box_size = sanitize_text_field($_POST['box_size'] ?? '');
-	$price = floatval($_POST['price'] ?? 0);
-
-	if (!$product_id || empty($candies)) {
-		wp_send_json_error(['message' => 'Missing data']);
-	}
-
-	// Build candy description
-	$candy_description = array_map(function ($candy) {
-		return $candy['quantity'] . ' x ' . sanitize_text_field($candy['name']);
-	}, $candies);
-
-	// Add to cart with custom data
-	$cart_item_data = [
-		'custom_box_candies' => $candies,
-		'custom_box_size' => $box_size,
-		'custom_box_note' => implode(', ', $candy_description),
-	];
-
-	$added = WC()->cart->add_to_cart($product_id, 1, $variation_id, [], $cart_item_data);
-
-	if ($added) {
-		wp_send_json_success(['message' => 'Added to cart']);
-	} else {
-		wp_send_json_error(['message' => 'Could not add to cart']);
-	}
-}
 
 
 add_action('wp_ajax_nopriv_load_shop_header', 'load_shop_header');
 add_action('wp_ajax_load_shop_header', 'load_shop_header');
 
-function load_shop_header() {
-    get_template_part('headers/header', 'shop'); // loads header-shop.php
-    wp_die(); // stops further processing
+function load_shop_header()
+{
+	get_template_part('headers/header', 'shop'); // loads header-shop.php
+	wp_die(); // stops further processing
 }
+
+
+add_filter('woocommerce_order_item_display_meta_key', function ($display_key, $meta_key) {
+	if ($meta_key === 'Wybrane praliny') {
+		$display_key = __('Wybrane praliny', 'woocommerce');
+	}
+	return $display_key;
+}, 10, 2);
+
+
+add_filter('woocommerce_add_cart_item_data', function ($cart_item_data, $product_id, $variation_id) {
+	if (!empty($_POST['custom_candies'])) {
+		$cart_item_data['custom_candies'] = json_decode(stripslashes($_POST['custom_candies']), true);
+	}
+
+	if (!empty($_POST['box_size'])) {
+		$cart_item_data['box_size'] = sanitize_text_field($_POST['box_size']);
+	}
+
+	return $cart_item_data;
+}, 10, 3);
+
+
+add_filter('woocommerce_cart_item_name', function ($product_name, $cart_item, $cart_item_key) {
+	if (!empty($cart_item['custom_candies'])) {
+		$output = '<ul class="custom-candies-list" style="margin-top: 8px; font-size: 0.875rem;">';
+		foreach ($cart_item['custom_candies'] as $candy) {
+			$output .= '<li><strong>' . esc_html($candy['name']) . '</strong>: ' . esc_html($candy['quantity']) . ' szt.</li>';
+		}
+		$output .= '</ul>';
+		$product_name .= $output;
+	}
+
+	if (!empty($cart_item['box_size'])) {
+		$product_name .= '<div class="box-size-info" style="font-size: 0.875rem; color: #777;">Rozmiar pudełka: ' . esc_html($cart_item['box_size']) . '</div>';
+	}
+
+	return $product_name;
+}, 10, 3);
