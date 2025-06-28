@@ -172,4 +172,8 @@ get_header(); ?>
 	<img data-layer="capuccino-cafe-nasz-zespol-1130x746 1" class="CapuccinoCafeNaszZespol1130x7461 flex-1 h-96 max-w-[890.45px] min-w-[660px] max-h-[600px] min-h-96" src="https://placehold.co/660x445" />
 </div>
 
+<?php
+require_once get_stylesheet_directory() . '/inc/instagram.php';
+?>
+
 <?php get_footer(); ?>
