@@ -1,14 +1,14 @@
 <div data-layer="769-1024 Stworz zestaw s3" class="1024StworzZestawS3 w-full bg-white inline-flex flex-col justify-start items-start overflow-hidden">
 	<div data-layer="Frame 110" class="Frame110 self-stretch grid grid-cols-1 md:grid-cols-2 gap-10">
 		<div data-layer="Frame 109" class="Frame109 flex-1 self-stretch inline-flex flex-col justify-start items-start">
-			<div data-layer="ol mobile" data-property-1="Default" class="OlMobile size- p-3 inline-flex justify-start items-center">
-				<div data-layer="Bounding box" class="BoundingBox size-6 bg-zinc-300"></div>
-				<div data-layer="chevron_left" class="ChevronLeft w-1.5 h-3 bg-stone-400"></div>
-				<div data-layer="Praliny czekoladowe 12 szt" class="PralinyCzekoladowe12Szt justify-center text-zinc-800 text-[10px] font-normal font-['Mulish'] uppercase">Stwórz własny zestaw pralin</div>
-			</div>
 			<div data-layer="Foto" class="Foto self-stretch min-w-72 min-h-72 bg-neutral-200 inline-flex justify-start items-start gap-2.5 overflow-hidden">
 				<div data-layer="Opakowanie 16" class="Opakowanie16 flex-1 h-full relative bg-neutral-200 flex justify-start items-start gap-2.5 overflow-hidden">
-					<img id="main-variation-image" data-layer="image 1" class="Image1 flex-1 h-96" src="https://placehold.co/408x408" />
+					<img
+						id="main-variation-image"
+						data-layer="image 1"
+						class="Image1 flex-1 h-96 object-cover"
+						src="<?php echo get_the_post_thumbnail_url(get_the_ID(), 'woocommerce_single'); ?>"
+						alt="<?php the_title_attribute(); ?>" />
 					<div id="candy-image-summary"
 						class="absolute top-[140px] left-[53px] grid grid-cols-3 gap-2 w-fit">
 					</div>
@@ -82,7 +82,7 @@
 											data-value="<?php echo esc_attr($option_slug); ?>"
 											tabindex="0"
 											data-variation-id="<?php echo esc_attr($variation_id); ?>"
-											data-variation-price= "<?php echo esc_attr($variation_id ? wc_get_price_to_display(wc_get_product($variation_id)) : ''); ?>">
+											data-variation-price="<?php echo esc_attr($variation_id ? wc_get_price_to_display(wc_get_product($variation_id)) : ''); ?>">
 
 											<div data-layer="Foto" class="Foto size-20 bg-neutral-200 inline-flex justify-start items-center gap-2.5 overflow-hidden">
 												<img data-layer="image" class="Image flex-1 self-stretch" src="<?php echo esc_url($img_url); ?>" />
@@ -105,10 +105,9 @@
 								<input type="hidden" name="variation_id" class="variation_id" value="0" />
 							</div>
 						<?php endforeach; ?>
-										<br />
-						<label for="quantity">Ilość zestawów</label>
+						<br />
 						<input
-							type="number"
+							type="hidden"
 							id="quantity"
 							name="quantity"
 							value="1"
@@ -127,22 +126,36 @@
 								<div id="variation-price" data-layer="80,00 zł" class="00Z self-stretch justify-start text-stone-700 text-3xl font-normal font-['Didot_LT_Pro']">30-80,00 zł</div>
 								<div data-layer="Cena brutto/1kg 00,00 zł" class="CenaBrutto1kg0000Z self-stretch justify-start text-zinc-500 text-xs font-normal font-['Mulish']">Cena brutto/1kg 00,00 zł</div>
 							</div>
-							<button type="submit" class="single_add_to_cart_button button alt">
-								<div data-layer="BTN" class="Btn w-full max-w-72 flex flex-col justify-start items-start gap-4">
-									<div data-layer="BTN midle dark" data-property-1="koszyk defoult" class="BtnMidleDark self-stretch h-12 px-7 bg-stone-400 rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-4">
-										<div data-layer="Poznaj nas" class="PoznajNas justify-center text-white text-sm font-bold font-['Mulish'] uppercase leading-tight">Dodaj do koszyka</div>
-										<div data-layer="Bounding box" class="BoundingBox size-6 bg-zinc-300"></div>
-										<div data-layer="shopping_bag" class="ShoppingBag w-3.5 h-5 bg-white"></div>
-									</div>
+							<button type="submit" data-layer="BTN" class="single_add_to_cart_button Btn !p-0 w-full max-w-72 inline-flex flex-col justify-start items-start gap-4">
+								<div data-layer="BTN midle dark" data-property-1="koszyk defoult" class="BtnMidleDark w-full self-stretch h-12 px-7 bg-stone-400 rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-4">
+									<div data-layer="Poznaj nas" class="PoznajNas justify-center text-white text-sm font-bold font-['Mulish'] uppercase leading-tight">Dodaj do koszyka</div>
+									<div data-layer="shopping_bag" class="ShoppingBag"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+											<mask id="mask0_6021_17907" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+												<rect width="24" height="24" fill="#D9D9D9" />
+											</mask>
+											<g mask="url(#mask0_6021_17907)">
+												<path d="M6.30775 21.5C5.80258 21.5 5.375 21.325 5.025 20.975C4.675 20.625 4.5 20.1974 4.5 19.6923V8.30775C4.5 7.80258 4.675 7.375 5.025 7.025C5.375 6.675 5.80258 6.5 6.30775 6.5H8.25V6.25C8.25 5.21417 8.616 4.33017 9.348 3.598C10.0802 2.866 10.9642 2.5 12 2.5C13.0358 2.5 13.9198 2.866 14.652 3.598C15.384 4.33017 15.75 5.21417 15.75 6.25V6.5H17.6923C18.1974 6.5 18.625 6.675 18.975 7.025C19.325 7.375 19.5 7.80258 19.5 8.30775V19.6923C19.5 20.1974 19.325 20.625 18.975 20.975C18.625 21.325 18.1974 21.5 17.6923 21.5H6.30775ZM6.30775 20H17.6923C17.7692 20 17.8398 19.9679 17.9038 19.9038C17.9679 19.8398 18 19.7693 18 19.6923V8.30775C18 8.23075 17.9679 8.16025 17.9038 8.09625C17.8398 8.03208 17.7692 8 17.6923 8H15.75V10.25C15.75 10.4628 15.6782 10.641 15.5345 10.7845C15.391 10.9282 15.2128 11 15 11C14.7872 11 14.609 10.9282 14.4655 10.7845C14.3218 10.641 14.25 10.4628 14.25 10.25V8H9.75V10.25C9.75 10.4628 9.67817 10.641 9.5345 10.7845C9.391 10.9282 9.21283 11 9 11C8.78717 11 8.609 10.9282 8.4655 10.7845C8.32183 10.641 8.25 10.4628 8.25 10.25V8H6.30775C6.23075 8 6.16025 8.03208 6.09625 8.09625C6.03208 8.16025 6 8.23075 6 8.30775V19.6923C6 19.7693 6.03208 19.8398 6.09625 19.9038C6.16025 19.9679 6.23075 20 6.30775 20ZM9.75 6.5H14.25V6.25C14.25 5.62317 14.0317 5.09142 13.5953 4.65475C13.1588 4.21825 12.627 4 12 4C11.373 4 10.8413 4.21825 10.4048 4.65475C9.96825 5.09142 9.75 5.62317 9.75 6.25V6.5Z" fill="white" />
+											</g>
+										</svg></div>
 								</div>
 							</button>
 						</div>
 
 					</form>
 				</div>
+
+				<?php
+				// Get all candies (posts of type 'candy')
+				$candies = get_posts([
+					'post_type'      => 'praliny_candy',
+					'posts_per_page' => -1,
+					'orderby'        => 'title',
+					'order'          => 'ASC',
+				]);
+				?>
 				<div data-layer="Ilosc" class="Ilosc self-stretch flex flex-col justify-start items-start gap-2">
 					<div data-layer="Frame 43" class="Frame43 self-stretch pr-2 inline-flex justify-between items-center">
-						<div data-layer="Wybierz praliny spośród 52 smaków:" class="WybierzPralinySpoRD52SmakW flex-1 justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">Wybierz praliny <br />spośród 52 smaków:</div>
+						<div data-layer="Wybierz praliny spośród 52 smaków:" class="WybierzPralinySpoRD52SmakW flex-1 justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">Wybierz praliny spośród <?php echo count($candies); ?> smaków:</div>
 					</div>
 					<div class="text-lg font-bold mt-4">
 						Łącznie wybrane cukierki: <span class="global-counter">0</span>
@@ -151,12 +164,7 @@
 					<div data-layer="wybierz" class="Wybierz grid grid-cols-3 lg:grid-cols-5 gap-4 w-full">
 
 						<?php
-						$candies = get_posts([
-							'post_type'      => 'praliny_candy',
-							'posts_per_page' => -1,
-							'orderby'        => 'title',
-							'order'          => 'ASC',
-						]);
+
 
 						foreach ($candies as $candy) :
 							$thumb = get_the_post_thumbnail_url($candy->ID, 'thumbnail') ?: 'https://placehold.co/88x88';
@@ -181,15 +189,6 @@
 							</div>
 						<?php endforeach; ?>
 					</div>
-					<div data-layer="Rozwijany opis" class="RozwijanyOpis self-stretch inline-flex justify-center items-center gap-4">
-						<div data-layer="Line 2" class="Line2 flex-1 h-0 min-w-20 origin-top-left rotate-180 outline outline-1 outline-offset-[-0.50px] outline-neutral-200"></div>
-						<div data-layer="Frame 96" class="Frame96 size- flex justify-start items-center">
-							<div data-layer="zwiń" class="Zwi justify-start text-zinc-800 text-xs font-bold font-['Mulish'] uppercase leading-tight">zwiń</div>
-							<div data-layer="Bounding box" class="BoundingBox size-6 bg-zinc-300"></div>
-							<div data-layer="chevron_left" class="ChevronLeft w-1.5 h-3 origin-top-left rotate-180 bg-stone-400"></div>
-						</div>
-						<div data-layer="Line 1" class="Line1 flex-1 h-0 min-w-20 origin-top-left rotate-180 outline outline-1 outline-offset-[-0.50px] outline-neutral-200"></div>
-					</div>
 				</div>
 				<div data-layer="Wybrane filtry" class="WybraneFiltry self-stretch flex flex-col justify-start items-center gap-2">
 					<div data-layer="title" class="Title self-stretch py-2.5 inline-flex justify-start items-end gap-2">
@@ -203,12 +202,6 @@
 								<div data-layer="Poznaj nas" class="PoznajNas justify-center text-zinc-800 text-xs font-normal font-['Mulish']">Wyczyść wszystkie</div>
 							</div>
 						</div>
-					</div>
-				</div>
-				<div data-layer="cena i btn" class="CenaIBtn self-stretch flex flex-col justify-start items-start gap-8">
-					<div data-layer="cena" class="Cena self-stretch h-12 flex flex-col justify-center items-start">
-						<div data-layer="80,00 zł" class="00Z self-stretch justify-start text-stone-700 text-3xl font-normal font-['Didot_LT_Pro']">80,00 zł</div>
-						<div data-layer="Cena brutto/1kg 00,00 zł" class="CenaBrutto1kg0000Z self-stretch justify-start text-zinc-500 text-xs font-normal font-['Mulish']">Cena brutto/1kg 00,00 zł</div>
 					</div>
 				</div>
 			</div>
@@ -225,6 +218,7 @@
 
 		function updateAll() {
 			updateGlobalCounterDisplay();
+			saveCandySelectionToStorage();
 			updateSummary(); // Text version
 			updateImageSummary(); // Image box version
 		}
@@ -254,15 +248,37 @@
 						<img class="Dsc09203 w-4 self-stretch" src="${imgSrc}" />
 					</div>
 					<div class="Lemoniada justify-center text-zinc-800 text-xs font-normal font-['Mulish']">${name}</div>
-					<div class="Small size-4 relative overflow-hidden">
-						<div class="Vector size-2.5 left-[4.50px] top-[4.50px] absolute bg-stone-700"></div>
+					<div class="Small size-4 relative overflow-hidden remove-candy" data-candy-name="${name}">
+						<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+					<path d="M10.0575 8.9999L13.2825 5.7824C13.4237 5.64117 13.503 5.44962 13.503 5.2499C13.503 5.05017 13.4237 4.85862 13.2825 4.71739C13.1412 4.57617 12.9497 4.49683 12.75 4.49683C12.5502 4.49683 12.3587 4.57617 12.2175 4.71739L8.99995 7.9424L5.78245 4.71739C5.64123 4.57617 5.44968 4.49683 5.24995 4.49683C5.05023 4.49683 4.85868 4.57617 4.71745 4.71739C4.57623 4.85862 4.49689 5.05017 4.49689 5.2499C4.49689 5.44962 4.57623 5.64117 4.71745 5.7824L7.94245 8.9999L4.71745 12.2174C4.64716 12.2871 4.59136 12.3701 4.55329 12.4615C4.51521 12.5529 4.49561 12.6509 4.49561 12.7499C4.49561 12.8489 4.51521 12.9469 4.55329 13.0383C4.59136 13.1297 4.64716 13.2127 4.71745 13.2824C4.78718 13.3527 4.87013 13.4085 4.96152 13.4466C5.05292 13.4846 5.15095 13.5042 5.24995 13.5042C5.34896 13.5042 5.44699 13.4846 5.53839 13.4466C5.62978 13.4085 5.71273 13.3527 5.78245 13.2824L8.99995 10.0574L12.2175 13.2824C12.2872 13.3527 12.3701 13.4085 12.4615 13.4466C12.5529 13.4846 12.6509 13.5042 12.75 13.5042C12.849 13.5042 12.947 13.4846 13.0384 13.4466C13.1298 13.4085 13.2127 13.3527 13.2825 13.2824C13.3527 13.2127 13.4085 13.1297 13.4466 13.0383C13.4847 12.9469 13.5043 12.8489 13.5043 12.7499C13.5043 12.6509 13.4847 12.5529 13.4466 12.4615C13.4085 12.3701 13.3527 12.2871 13.2825 12.2174L10.0575 8.9999Z" fill="#42352F"/>
+					</svg>
 					</div>
 				`;
 						summaryList.appendChild(item);
 					}
 				}
 			});
-		}
+		};
+
+		document.getElementById("candy-summary-list").addEventListener("click", (e) => {
+			if (e.target.closest(".remove-candy")) {
+				const button = e.target.closest(".remove-candy");
+				const candyName = button.getAttribute("data-candy-name");
+
+				document.querySelectorAll(".Karta").forEach(card => {
+					const name = card.querySelector(".AgrestWCzekoladzie").textContent.trim();
+					if (name === candyName) {
+						const countEl = card.querySelector("[data-count]");
+						let count = parseInt(countEl.textContent, 10);
+						if (count > 0) {
+							count--;
+							countEl.textContent = count;
+							updateAll(); // re-render after change
+						}
+					}
+				});
+			}
+		});
 
 
 
@@ -319,10 +335,12 @@
 					const img = document.createElement("img");
 					img.src = image;
 					img.className = "w-[94%] h-auto"; // Apply same classes
+
 					imageSummaryEl.appendChild(img);
+
 				}
 			});
-		}
+		};
 
 		document.querySelector('.single_add_to_cart_button').addEventListener('click', () => {
 			const candies = [];
@@ -382,7 +400,8 @@
 					const mainImage = document.getElementById('main-variation-image');
 					const variationImgEl = card.querySelector('img');
 					if (mainImage && variationImgEl) {
-						mainImage.src = variationImgEl.src;
+						const newSrc = variationImgEl.getAttribute('src');
+						if (newSrc) mainImage.setAttribute('src', newSrc);
 					}
 					// Remove outline classes from siblings
 					cards.forEach(c => {
