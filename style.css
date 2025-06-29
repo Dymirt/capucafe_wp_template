@@ -74,12 +74,12 @@ article {
 	background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 32.84%, rgba(0, 0, 0, 0.7) 109.47%);
 
 }
-.hero-rozana
-{
+
+.hero-rozana{
 	background-image: url(./resources/img/rozana-Romantyka.png);
 }
 .heroSection {
-	background-image: url(./resources/img/rozana-Romantyka.png.jpg);
+	background-image: url(./resources/img/bgHERO.jpg);
 
 }
 
