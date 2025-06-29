@@ -30,7 +30,6 @@ get_header(); ?>
 		<div id="menu-container" class="w-full"></div>
 	</div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
 
 <script>
 	function loadMenu(location) {
@@ -57,10 +56,10 @@ get_header(); ?>
 						const text = firstChildDiv.textContent.trim(); // Get its text
 						console.log('Title:', text);
 
-						titleDiv.setAttribute('data-bs-toggle', 'collapse');
-						titleDiv.setAttribute('data-bs-target', `#${'collapse-' + index}`);
-						titleDiv.setAttribute('aria-expanded', 'true');
-						titleDiv.setAttribute('aria-controls', 'collapse-' + index);
+						//titleDiv.setAttribute('data-bs-toggle', 'collapse');
+						//titleDiv.setAttribute('data-bs-target', `#${'collapse-' + index}`);
+						//titleDiv.setAttribute('aria-expanded', 'true');
+						//titleDiv.setAttribute('aria-controls', 'collapse-' + index);
 
 						firstChildDiv.nextElementSibling.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
   <mask id="mask0_4012_25807" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
@@ -70,10 +69,10 @@ get_header(); ?>
     <path d="M12.0002 10.7999L8.10019 14.6999C7.91686 14.8833 7.68353 14.9749 7.40019 14.9749C7.11686 14.9749 6.88353 14.8833 6.7002 14.6999C6.51686 14.5166 6.42519 14.2833 6.42519 13.9999C6.42519 13.7166 6.51686 13.4833 6.7002 13.2999L11.3002 8.69993C11.4002 8.59993 11.5085 8.52909 11.6252 8.48743C11.7419 8.44576 11.8669 8.42493 12.0002 8.42493C12.1335 8.42493 12.2585 8.44576 12.3752 8.48743C12.4919 8.52909 12.6002 8.59993 12.7002 8.69993L17.3002 13.2999C17.4835 13.4833 17.5752 13.7166 17.5752 13.9999C17.5752 14.2833 17.4835 14.5166 17.3002 14.6999C17.1169 14.8833 16.8835 14.9749 16.6002 14.9749C16.3169 14.9749 16.0835 14.8833 15.9002 14.6999L12.0002 10.7999Z" fill="#A9957B"/>
   </g>
 </svg>`;
-							firstChildDiv.nextElementSibling.classList.remove('bg-stone-400'); // Show the arrow icon
+						firstChildDiv.nextElementSibling.classList.remove('bg-stone-400'); // Show the arrow icon
 
 
-// Add collapse class to the sibling div
+						// Add collapse class to the sibling div
 
 						const anchorId = 'title-anchor-' + index;
 						titleDiv.setAttribute('id', anchorId);
@@ -103,7 +102,7 @@ get_header(); ?>
 						const nextElement = titleDiv.nextElementSibling;
 						if (nextElement && nextElement.classList.contains('KartaProduktu')) {
 							nextElement.id = 'collapse-' + index; // Set ID for collapse
-							nextElement.classList.add('collapse'); // Add collapse class
+							//nextElement.classList.add('collapse'); // Add collapse class
 						}
 
 					}
