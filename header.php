@@ -19,8 +19,10 @@ $count = WC()->cart->get_cart_contents_count();
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
 
 	<?php wp_head(); ?>
+
 </head>
 
 <body <?php body_class(); ?>>
@@ -135,7 +137,7 @@ $count = WC()->cart->get_cart_contents_count();
 		?>
 
 		<div id="content" class="site-content" tabindex="-1">
-			<?php if (is_front_page() || is_page('o-nas')) : ?>
+			<?php if (is_front_page() || is_page('o-nas') || is_page('menu')): ?>
 				<!-- Homepage -->
 				<div class="w-full ">
 				<?php else : ?>
