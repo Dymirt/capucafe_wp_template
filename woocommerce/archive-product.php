@@ -53,7 +53,7 @@ do_action('woocommerce_before_main_content');
 </style>
 
 <div class="md:flex">
-	<div class="w-full md:w-72">
+	<div class="w-full md:w-72 mb-4">
 		<?php
 		$praliny_product = get_page_by_path('praliny', OBJECT, 'product');
 		if ($praliny_product) :
