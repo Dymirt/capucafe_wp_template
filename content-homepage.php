@@ -245,7 +245,7 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 			<img class="h-12  w-[35%] mb-5" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/sopotski_mlyn_logo.png" />
 			<h1 class="max-md:!text-6xl  max-lg:!text-3xl !text-6xl !text-white title">Restauracja <br>Sopocki Młyn </h1>
 			<p class="text-[#A9957B] font-['Mulish']">Smak tradycji w sercu Sopotu!</p>
-			<div data-property-1="Default" class="h-12 px-7 rounded  outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2.5 hover:bg-[#A9957B] group">
+			<div  class="h-12 px-7 rounded  outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2.5 hover:bg-[#A9957B] group">
 				<div class="justify-center text-white text-[11px] font-bold font-['Mulish'] uppercase leading-tight">Poznaj menu</div>
 				<div class="w-6 h-6 relative overflow-hidden">
 					<div class="w-3.5 h-4 top-[2px] relative origin-top-left"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
