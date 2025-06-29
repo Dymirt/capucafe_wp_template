@@ -11,6 +11,19 @@
 $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 ?>
 
+<style>
+	.product-semple {
+		width: 300px !important
+	}
+
+	.woocommerce-message {
+		position: fixed !important;
+		bottom: 10px !important;
+		z-index: 9999 !important;
+		right: 0;
+	}
+</style>
+
 <div class="heroSection w-screen h-[100vh]  flex items-center px-[5%]  xl:px-[6%] relative bg-cover bg-black bg-no-repeat max-xl:bg-center   max-lg:bg-top max-md:bg-contain">
 	<div class="shadow w-full h-full absolute z-1  left-0"></div>
 
