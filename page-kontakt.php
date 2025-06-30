@@ -84,43 +84,9 @@ get_header(); ?>
 
 	<!-- End of Contact Form Section -->
 
-	<div data-layer="ig" class="Ig self-stretch pt-14 pb-20 inline-flex flex-col justify-start items-center">
-		<div data-layer="title" class="Title self-stretch px-10 flex flex-col justify-center items-start gap-2.5">
-			<div data-layer="Po więcej zapraszamy     na nasz Instagram" class="PoWiCejZapraszamyNaNaszInstagram self-stretch justify-start text-stone-700 text-3xl font-normal font-['Didot_LT_Pro']">Po więcej zapraszamy na nasz Instagram</div>
-			<div data-layer="@capuccinocafe_sopot" class="CapuccinocafeSopot w-60 justify-start text-zinc-800 text-base font-light font-['Mulish'] leading-snug">@capuccinocafe_sopot</div>
-		</div>
-		<div data-layer="posty" class="Posty self-stretch py-10 inline-flex justify-center items-start gap-5">
-			<div data-layer="Frame 43" class="Frame43 w-44 h-64 rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-200 inline-flex flex-col justify-start items-start overflow-hidden">
-				<div data-layer="Frame 42" class="Frame42 self-stretch px-4 py-2.5 inline-flex justify-start items-center gap-2.5">
-					<img data-layer="image 6" class="Image6 size-6 rounded-[100px]" src="https://placehold.co/24x24" />
-					<div data-layer="capuccinocafe_sopot" class="CapuccinocafeSopot justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">capuccinocafe_sopot</div>
-				</div>
-				<img data-layer="image" class="Image w-48 h-60" src="https://placehold.co/189x237" />
-			</div>
-			<div data-layer="Frame 45" class="Frame45 w-44 h-64 rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-200 inline-flex flex-col justify-start items-start overflow-hidden">
-				<div data-layer="Frame 42" class="Frame42 self-stretch px-4 py-2.5 inline-flex justify-start items-center gap-2.5">
-					<img data-layer="image 6" class="Image6 size-6 rounded-[100px]" src="https://placehold.co/24x24" />
-					<div data-layer="capuccinocafe_sopot" class="CapuccinocafeSopot justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">capuccinocafe_sopot</div>
-				</div>
-				<img data-layer="image" class="Image self-stretch flex-1" src="https://placehold.co/180x216" />
-				<div data-layer="Bounding box" class="BoundingBox size-6 bg-zinc-300"></div>
-				<div data-layer="smart_display" class="SmartDisplay w-5 h-4 bg-white"></div>
-			</div>
-			<div data-layer="Frame 42" class="Frame42 w-44 h-64 rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-200 inline-flex flex-col justify-start items-start overflow-hidden">
-				<div data-layer="Frame 42" class="Frame42 self-stretch px-4 py-2.5 inline-flex justify-start items-center gap-2.5">
-					<img data-layer="image 6" class="Image6 size-6 rounded-[100px]" src="https://placehold.co/24x24" />
-					<div data-layer="capuccinocafe_sopot" class="CapuccinocafeSopot justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">capuccinocafe_sopot</div>
-				</div>
-				<img data-layer="image" class="Image self-stretch flex-1" src="https://placehold.co/180x216" />
-			</div>
-		</div>
-		<div data-layer="BTN midle black" data-property-1="Default" class="BtnMidleBlack h-12 px-7 rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2.5">
-			<div data-layer="Poznaj nas" class="PoznajNas justify-center text-zinc-800 text-sm font-bold font-['Mulish'] uppercase leading-tight">Dołącz do nas</div>
-			<div data-layer="Frame" class="Frame size-6 relative overflow-hidden">
-				<div data-layer="Vector" class="Vector w-3.5 h-4 left-[1.56px] top-[10.94px] absolute origin-top-left -rotate-45 bg-stone-400"></div>
-			</div>
-		</div>
-	</div>
+	<?php
+	require_once get_stylesheet_directory() . '/inc/instagram.php';
+	?>
 
 </main>
 

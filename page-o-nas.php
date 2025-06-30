@@ -348,9 +348,8 @@ get_header(); ?>
 </div>
 
 <!--- instagram section -->
-
-
-
-<!--- instagram section -->
+<?php
+require_once get_stylesheet_directory() . '/inc/instagram.php';
+?>
 </main>
 <?php get_footer(); ?>

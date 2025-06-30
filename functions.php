@@ -273,3 +273,22 @@ add_filter('woocommerce_cart_item_name', function ($product_name, $cart_item, $c
 
 	return $product_name;
 }, 10, 3);
+
+
+add_action('wp_ajax_load_menu', 'load_custom_menu');
+add_action('wp_ajax_nopriv_load_menu', 'load_custom_menu');
+
+function load_custom_menu() {
+    $location = $_GET['location'] ?? 'sopot';
+
+    if ($location === 'sopot') {
+        include get_stylesheet_directory() . '/inc/sopot-menu.php';
+    } elseif ($location === 'jastarnia') {
+        include get_stylesheet_directory() . '/inc/jastarnia-menu.php';
+    } else {
+        http_response_code(400);
+        echo 'Invalid menu';
+    }
+
+    wp_die(); // important
+}

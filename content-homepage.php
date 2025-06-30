@@ -11,6 +11,19 @@
 $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 ?>
 
+<style>
+	.product-semple {
+		width: 300px !important
+	}
+
+	.woocommerce-message {
+		position: fixed !important;
+		bottom: 10px !important;
+		z-index: 9999 !important;
+		right: 0;
+	}
+</style>
+
 <div class="heroSection w-screen h-[100vh]  flex items-center px-[5%]  xl:px-[6%] relative bg-cover bg-black bg-no-repeat max-xl:bg-center   max-lg:bg-top max-md:bg-contain">
 	<div class="shadow w-full h-full absolute z-1  left-0"></div>
 
@@ -203,7 +216,7 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 			<div data-layer="strzalki" class="Strzalki flex items-center gap-2.5">
 				<div id="scrollLeft" data-layer="Header" data-property-1="default" class="Header size-7 p-2 -rotate-180 rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 flex items-center justify-center">
 					<div data-layer="Vector" class="Vector size-3.5 rotate-180"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
-						<path d="M2.873 7.05175L14.25 7.05175C14.4628 7.05175 14.641 7.12358 14.7845 7.26725C14.9282 7.41075 15 7.58892 15 7.80175C15 8.01458 14.9282 8.19275 14.7845 8.33625C14.641 8.47992 14.4628 8.55175 14.25 8.55175L2.873 8.55175L8.04225 13.721C8.19092 13.8697 8.26433 14.0437 8.2625 14.243C8.2605 14.4423 8.182 14.6196 8.027 14.7747C7.87183 14.9196 7.69617 14.9946 7.5 14.9997C7.30383 15.0049 7.12817 14.9299 6.973 14.7747L0.632751 8.4345C0.539085 8.34083 0.473085 8.24208 0.434752 8.13825C0.396252 8.03442 0.377002 7.92225 0.377002 7.80175C0.377002 7.68125 0.396252 7.56908 0.434752 7.46525C0.473085 7.36142 0.539085 7.26267 0.632751 7.169L6.973 0.82875C7.1115 0.69025 7.283 0.619417 7.4875 0.616249C7.692 0.613083 7.87183 0.683916 8.027 0.82875C8.182 0.983917 8.2595 1.16208 8.2595 1.36325C8.2595 1.56458 8.182 1.74283 8.027 1.898L2.873 7.05175Z" fill="#A9957B" />
+							<path d="M2.873 7.05175L14.25 7.05175C14.4628 7.05175 14.641 7.12358 14.7845 7.26725C14.9282 7.41075 15 7.58892 15 7.80175C15 8.01458 14.9282 8.19275 14.7845 8.33625C14.641 8.47992 14.4628 8.55175 14.25 8.55175L2.873 8.55175L8.04225 13.721C8.19092 13.8697 8.26433 14.0437 8.2625 14.243C8.2605 14.4423 8.182 14.6196 8.027 14.7747C7.87183 14.9196 7.69617 14.9946 7.5 14.9997C7.30383 15.0049 7.12817 14.9299 6.973 14.7747L0.632751 8.4345C0.539085 8.34083 0.473085 8.24208 0.434752 8.13825C0.396252 8.03442 0.377002 7.92225 0.377002 7.80175C0.377002 7.68125 0.396252 7.56908 0.434752 7.46525C0.473085 7.36142 0.539085 7.26267 0.632751 7.169L6.973 0.82875C7.1115 0.69025 7.283 0.619417 7.4875 0.616249C7.692 0.613083 7.87183 0.683916 8.027 0.82875C8.182 0.983917 8.2595 1.16208 8.2595 1.36325C8.2595 1.56458 8.182 1.74283 8.027 1.898L2.873 7.05175Z" fill="#A9957B" />
 						</svg>
 					</div>
 				</div>
@@ -290,81 +303,9 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 
 
 <!--- instagram page contact -->
-<div class="self-stretch py-14 flex max-md:flex-col flex-row-reverse justify-start items-center   w-9/10 max-sm:w-full max-md:w-[80%] mx-auto max-lg:w-[91%]  max-xl:w-[85%] max-2xl:w-[85%]">
-
-	<div class="self-stretch px-10 flex flex-col justify-center items-start gap-2.5">
-		<div class="self-stretch justify-start text-stone-700 text-3xl font-normal font-['Didot_LT_Pro']">Po więcej zapraszamy na nasz Instagram</div>
-		<div class="w-60 justify-start text-zinc-800 text-base font-light font-['Mulish'] leading-snug">@capuccinocafe_sopot</div>
-		<!-- button -->
-		<div data-property-1="Default" class="max-md:hidden mt-6 h-12 px-7 rounded  outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2.5 hover:bg-[#A9957B] group">
-			<div class="justify-center group-hover:text-white text-black text-[11px] font-bold font-['Mulish'] uppercase leading-tight">Dołącz do nas</div>
-			<div class="w-6 h-6 relative overflow-hidden">
-				<div class="w-3.5 h-4 top-[2px] relative origin-top-left"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path class="group-hover:fill-white" d="M15.7514 9.1233L7.70662 17.1681C7.55613 17.3186 7.37935 17.3937 7.17629 17.3936C6.97323 17.3937 6.79646 17.3186 6.64596 17.1681C6.49547 17.0176 6.42028 16.8408 6.42039 16.6377C6.42028 16.4347 6.49547 16.2579 6.64596 16.1074L14.6907 8.06264H7.38029C7.17004 8.06264 6.99509 7.99152 6.85544 7.84927C6.7159 7.70691 6.64608 7.52607 6.64596 7.30675C6.65327 7.09461 6.72445 6.91737 6.85951 6.775C6.99456 6.63264 7.17181 6.56146 7.39125 6.56145L16.3577 6.56145C16.4902 6.56145 16.6067 6.58461 16.7072 6.63093C16.8079 6.67713 16.9008 6.74283 16.986 6.82803C17.0712 6.91324 17.1369 7.00617 17.1831 7.10681C17.2294 7.20734 17.2526 7.32383 17.2526 7.4563L17.2526 16.4228C17.2526 16.6186 17.1814 16.79 17.039 16.9368C16.8967 17.0837 16.7194 17.1607 16.5073 17.1681C16.288 17.1679 16.1072 17.0968 15.9649 16.9545C15.8226 16.8121 15.7513 16.6313 15.7512 16.412L15.7514 9.1233Z" fill="#A9957B" />
-					</svg>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
-	<div class="scroll-hidd flex scrollbar-hidden  w-full mx-auto overflow-x-auto scroll-smooth flex-nowrap snap-x snap-mandatory items-center my-5 justify-center   py-12">
-		<!--- first post  -->
-		<div class="max-md:w-auto max-xl:w-1/2 items-center justify-center flex md:mr-3">
-
-			<div class="w-44 h-64  snap-start rounded outline-1 outline-offset-[-1px] outline-stone-200 inline-flex flex-col justify-start items-start overflow-hidden">
-				<div class="self-stretch px-4 py-2.5 inline-flex justify-start items-center gap-2.5">
-					<img class="w-6 h-7 rounded-[100px]" src="https://placehold.co/24x24" />
-					<div class="justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">capuccinocafe_sopot</div>
-				</div>
-				<img class="self-stretch flex-1" src="https://placehold.co/200x238" />
-			</div>
-
-		</div>
-
-		<div class=" flex snap-start max-md:flex-row max-xl:flex-col max-md:w-auto max-xl:w-1/2">
-			<!--- second post  -->
-			<div class="w-44 h-64 max-md:mx-3 md:mb-5 lg:-mt-12 lg:mr-3 snap-start rounded outline-1 outline-offset-[-1px] outline-stone-200 inline-flex flex-col justify-start items-start overflow-hidden">
-				<div class="self-stretch px-4 py-2.5 inline-flex justify-start items-center gap-2.5">
-					<img class="w-6 h-7 rounded-[100px]" src="https://placehold.co/24x24" />
-					<div class="justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">capuccinocafe_sopot</div>
-				</div>
-				<img class="self-stretch flex-1" src="https://placehold.co/200x238" />
-
-			</div>
-
-			<!--- third post  -->
-			<div class="w-44 h-64  snap-start rounded outline-1 outline-offset-[-1px] outline-stone-200 inline-flex flex-col justify-start items-start overflow-hidden ">
-				<div class="self-stretch px-4 py-2.5 inline-flex justify-start items-center gap-2.5 ">
-					<img class="w-6 h-6 rounded-[100px]" src="https://placehold.co/24x24" />
-					<div class="justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">capuccinocafe_sopot</div>
-				</div>
-				<img class="self-stretch flex-1" src="https://placehold.co/200x238" />
-			</div>
-
-		</div>
-
-	</div>
-
-	<!-- button -->
-	<div data-property-1="Default" class="md:hidden h-12 px-7 rounded  outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2.5 hover:bg-[#A9957B] group">
-		<div class="justify-center group-hover:text-white text-black text-[11px] font-bold font-['Mulish'] uppercase leading-tight">Dołącz do nas</div>
-		<div class="w-6 h-6 relative overflow-hidden">
-			<div class="w-3.5 h-4 top-[2px] relative origin-top-left"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path class="group-hover:fill-white" d="M15.7514 9.1233L7.70662 17.1681C7.55613 17.3186 7.37935 17.3937 7.17629 17.3936C6.97323 17.3937 6.79646 17.3186 6.64596 17.1681C6.49547 17.0176 6.42028 16.8408 6.42039 16.6377C6.42028 16.4347 6.49547 16.2579 6.64596 16.1074L14.6907 8.06264H7.38029C7.17004 8.06264 6.99509 7.99152 6.85544 7.84927C6.7159 7.70691 6.64608 7.52607 6.64596 7.30675C6.65327 7.09461 6.72445 6.91737 6.85951 6.775C6.99456 6.63264 7.17181 6.56146 7.39125 6.56145L16.3577 6.56145C16.4902 6.56145 16.6067 6.58461 16.7072 6.63093C16.8079 6.67713 16.9008 6.74283 16.986 6.82803C17.0712 6.91324 17.1369 7.00617 17.1831 7.10681C17.2294 7.20734 17.2526 7.32383 17.2526 7.4563L17.2526 16.4228C17.2526 16.6186 17.1814 16.79 17.039 16.9368C16.8967 17.0837 16.7194 17.1607 16.5073 17.1681C16.288 17.1679 16.1072 17.0968 15.9649 16.9545C15.8226 16.8121 15.7513 16.6313 15.7512 16.412L15.7514 9.1233Z" fill="#A9957B" />
-				</svg>
-			</div>
-		</div>
-	</div>
-</div>
-</div>
-
-</div>
-
-<!--- -->
-
-
-</div>
+<?php
+require_once get_stylesheet_directory() . '/inc/instagram.php';
+?>
 
 <script>
 	document.addEventListener('DOMContentLoaded', function() {

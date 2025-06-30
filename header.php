@@ -19,8 +19,8 @@ $count = WC()->cart->get_cart_contents_count();
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
-
 	<?php wp_head(); ?>
+
 </head>
 
 <body <?php body_class(); ?>>
@@ -135,7 +135,7 @@ $count = WC()->cart->get_cart_contents_count();
 		?>
 
 		<div id="content" class="site-content" tabindex="-1">
-			<?php if (is_front_page() || is_page('o-nas')) : ?>
+			<?php if (is_front_page() || is_page('o-nas') || is_page('menu')): ?>
 				<!-- Homepage -->
 				<div class="w-full ">
 				<?php else : ?>
