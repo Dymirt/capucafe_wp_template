@@ -8,14 +8,13 @@
 		"build": "wp-scripts build --webpack-src-dir=resources --output-path=public",
 		"start:css": "npx @tailwindcss/cli -i ./resources/css/tailwind.css -o ./public/css/tailwind.css --watch",
 		"build:css": "npx @tailwindcss/cli -i ./resources/css/tailwind.css -o ./public/css/tailwind.css"
-
 	},
 	"keywords": [],
 	"author": "",
 	"license": "ISC",
 	"devDependencies": {
 		"@tailwindcss/postcss": "^4.1.4",
-		"@wordpress/scripts": "^30.15.0",
+		"@wordpress/scripts": "^30.19.0",
 		"autoprefixer": "^10.4.21",
 		"path": "^0.12.7",
 		"postcss": "^8.5.3",

@@ -33,7 +33,12 @@ Template:			storefront
 	font-style: normal;
 	ascent-override: 90%;
 }
-
+html{
+	 scroll-behavior: auto !important;
+}
+*{
+	box-sizing: border-box;
+}
 .header a,
 a.features-sec {
 	color: white !important;
@@ -69,6 +74,9 @@ article {
 
 }
 
+.hero-rozana{
+	background-image: url(./resources/img/rozana-Romantyka.png);
+}
 .heroSection {
 	background-image: url(./resources/img/bgHERO.jpg);
 
@@ -114,9 +122,7 @@ article {
 .subsections .features-sec {
 	text-transform: uppercase;
 	background: linear-gradient(0deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)),
-		radial-gradient(148.7% 556.42% at 120.9% 37.16%, #A9957B 0%, rgba(177, 160, 142, 0) 100%)
-		/* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */
-	;
+		radial-gradient(148.7% 556.42% at 120.9% 37.16%, #A9957B 0%, rgba(177, 160, 142, 0) 100%);
 	border: 1px solid #A9957B;
 	backdrop-filter: blur(15px);
 	font-family: 'Mulish';

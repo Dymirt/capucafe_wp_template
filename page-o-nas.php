@@ -2,65 +2,247 @@
 
 get_header(); ?>
 
-<div data-layer="Frame 125" class="Frame125 self-stretch px-32 pt-24 pb-28 bg-stone-50 inline-flex flex-col justify-start items-center gap-20 w-full">
-	<div data-layer="Jak to się zaczęło" class="JakToSiZaczO self-stretch text-center justify-start text-stone-700 text-6xl font-normal font-['Didot_LT_Pro']">Jak to się zaczęło</div>
-	<div data-layer="Frame 124" class="Frame124 w-full max-w-[1600px] inline-flex justify-start items-center gap-20 flex-wrap content-center">
-		<div data-layer="Frame 123" class="Frame123 flex-1 max-w-96 min-w-72 inline-flex flex-col justify-start items-start gap-5">
-			<div data-layer="2006" class="self-stretch justify-start text-stone-700 text-4xl font-normal font-['Didot_LT_Pro']">2006</div>
-			<div data-layer="Historia Capuccino Cafe sięga 2006 roku, kiedy w Jastarni powstała kawiarnia założona przez małżeństwo – Grażynę i Dominika Pawlak. Pyszna kawa oraz smakowite ciasta i koktajle szybko zdobyły popularność wśród mieszkańców i turystów. Sukces nadmorskiej kawiarni był dla nas motywacją do dalszego rozwoju umiejętności u wybitnych polskich cukierników, mistrzów Latte Art oraz najbardziej cenionych baristów w kraju." class="HistoriaCapuccinoCafeSiGa2006RokuKiedyWJastarniPowstaAKawiarniaZaOOnaPrzezMaEStwoGraYnIDominikaPawlakPysznaKawaOrazSmakowiteCiastaIKoktajleSzybkoZdobyYPopularnoWRDMieszkaCWITurystWSukcesNadmorskiejKawiarniByDlaNasMotywacjDoDalszegoRozwojuUmiejTnoCiUWybitnychPolskichCukiernikWMistrzWLatteArtOrazNajbardziejCenionychBaristWWKraju self-stretch justify-start text-zinc-800 text-lg font-light font-['Mulish'] leading-relaxed">Historia Capuccino Cafe sięga 2006 roku, kiedy w Jastarni powstała kawiarnia założona przez małżeństwo – Grażynę i Dominika Pawlak. Pyszna kawa oraz smakowite ciasta i koktajle szybko zdobyły popularność wśród mieszkańców i turystów. Sukces nadmorskiej kawiarni był dla nas motywacją do dalszego rozwoju umiejętności u wybitnych polskich cukierników, mistrzów Latte Art oraz najbardziej cenionych baristów w kraju.</div>
-		</div>
-		<div data-layer="Frame 122" class=" relative Frame122 flex-1 h-[519px] flex justify-center items-center flex-wrap content-center">
-			<img data-layer="capuccino-cafe-nasz-zespol-1130x746 1" class="CapuccinoCafeNaszZespol1130x7461 flex-1 h-full max-w-[1024px] min-w-72 object-cover max-h-[646px]" src="https://placehold.co/628x519" />
-			<div data-layer="txt" class="Txt lg:absolute lg:right-0 w-80  p-8 bg-white backdrop-blur-lg inline-flex flex-col justify-center items-start gap-4">
-				<div data-layer="Capuccino Cafe w Jastarni" class="CapuccinoCafeWJastarni w-full max-w-48 justify-start text-stone-400 text-2xl font-bold font-['Mulish']">Capuccino Cafe w Jastarni</div>
-				<div data-layer="Do Jastarni zapraszamy w sezonie letnim, gdzie zaaranżowaliśmy 60 wygodnych miejsc w urokliwych wnętrzach kawiarni oraz kolejne 80 w komfortowym, przestronnym ogródku." class="DoJastarniZapraszamyWSezonieLetnimGdzieZaaranOwaliMy60WygodnychMiejscWUrokliwychWnTrzachKawiarniOrazKolejne80WKomfortowymPrzestronnymOgrDku self-stretch justify-start"><span class="text-zinc-800 text-sm font-bold font-['Mulish'] leading-tight">Do Jastarni zapraszamy w sezonie letnim</span><span class="text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">, gdzie zaaranżowaliśmy 60 wygodnych miejsc w urokliwych wnętrzach kawiarni oraz kolejne 80 w komfortowym, przestronnym ogródku.</span></div>
-				<div data-layer="BTN midle dark" data-property-1="Default" class="BtnMidleDark h-12 px-7 rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2.5">
-					<div data-layer="Poznaj nas" class="PoznajNas justify-center text-zinc-800 text-sm font-bold font-['Mulish'] uppercase leading-tight">poznaj Menu</div>
-					<div data-layer="Frame" class="Frame size-6 relative overflow-hidden">
-						<div data-layer="Vector" class="Vector size-3.5 left-[4.50px] top-[4.80px] absolute bg-stone-400"></div>
+<main>
+	<!--  section -1- (2006) -->
+<div class="px-[8%]  mb-10">
+  <div class="text-stone-700 text-6xl max-md:text-4xl font-normal font-['Didot_LT_Pro'] my-16 text-center">
+    Jak to się zaczęło
+  </div>
+
+  <div class="w-full  max-xl:flex-col inline-flex justify-start items-center gap-20   ">
+    
+    <div class="xl:w-1/3">
+      <h5 class=" text-stone-700 text-4xl font-normal font-['Didot_LT_Pro'] max-lg:text-center">2006</h5>
+      <div class=" text-zinc-800 text-lg font-light font-['Mulish'] leading-relaxed">
+        Historia Capuccino Cafe sięga 2006 roku, kiedy w Jastarni powstała kawiarnia założona przez małżeństwo – Grażynę i Dominika Pawlak. Pyszna kawa oraz smakowite ciasta i koktajle szybko zdobyły popularność wśród mieszkańców i turystów. Sukces nadmorskiej kawiarni był dla nas motywacją do dalszego rozwoju umiejętności u wybitnych polskich cukierników, mistrzów Latte Art oraz najbardziej cenionych baristów w kraju.
+      </div>
+    </div>
+
+    <div class="relative flex-1 h-[519px] flex justify-center items-center max-md:flex-col content-center py-5">
+      <img
+        class="flex-1 h-full max-w-[1024px] min-w-72  w-full object-cover max-h-[546px]"
+        src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/capuccinoCafe2006.jpg"
+        alt="Capuccino Cafe"
+      />
+      
+      <div class="max-md:mt-8 lg:absolute lg:right-0 w-80 p-8 bg-white backdrop-blur-lg inline-flex flex-col justify-center items-start gap-4">
+        <div class="w-full max-w-48 text-stone-400 text-2xl font-bold font-['Mulish']">Capuccino Cafe w Jastarni</div>
+        <div class="text-zinc-800 text-sm font-['Mulish'] leading-tight">
+          <span class="font-bold">Do Jastarni zapraszamy w sezonie letnim</span>
+          <span class="font-normal">, gdzie zaaranżowaliśmy 60 wygodnych miejsc w urokliwych wnętrzach kawiarni oraz kolejne 80 w komfortowym, przestronnym ogródku.</span>
+        </div>
+
+ 	<div  class="h-12 px-7 rounded  outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2.5 hover:bg-[#A9957B] group">
+				<div class="justify-center text-[#A9957B] group-hover:text-white text-[11px] font-bold font-['Mulish'] uppercase leading-tight">Poznaj menu</div>
+				<div class="w-6 h-6 relative overflow-hidden">
+					<div class="w-3.5 h-4 top-[2px] relative origin-top-left"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path class="group-hover:fill-white" d="M15.7514 9.1233L7.70662 17.1681C7.55613 17.3186 7.37935 17.3937 7.17629 17.3936C6.97323 17.3937 6.79646 17.3186 6.64596 17.1681C6.49547 17.0176 6.42028 16.8408 6.42039 16.6377C6.42028 16.4347 6.49547 16.2579 6.64596 16.1074L14.6907 8.06264H7.38029C7.17004 8.06264 6.99509 7.99152 6.85544 7.84927C6.7159 7.70691 6.64608 7.52607 6.64596 7.30675C6.65327 7.09461 6.72445 6.91737 6.85951 6.775C6.99456 6.63264 7.17181 6.56146 7.39125 6.56145L16.3577 6.56145C16.4902 6.56145 16.6067 6.58461 16.7072 6.63093C16.8079 6.67713 16.9008 6.74283 16.986 6.82803C17.0712 6.91324 17.1369 7.00617 17.1831 7.10681C17.2294 7.20734 17.2526 7.32383 17.2526 7.4563L17.2526 16.4228C17.2526 16.6186 17.1814 16.79 17.039 16.9368C16.8967 17.0837 16.7194 17.1607 16.5073 17.1681C16.288 17.1679 16.1072 17.0968 15.9649 16.9545C15.8226 16.8121 15.7513 16.6313 15.7512 16.412L15.7514 9.1233Z" fill="#A9957B" />
+						</svg>
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
+      </div>
+    </div>
+
+  </div>
 </div>
 
-<div data-layer="Frame 126" class="Frame126 self-stretch max-h-96 bg-stone-50 inline-flex justify-start items-start gap-6">
-	<img data-layer="Jastarnia-831x375 1" class="Jastarnia831x3751 flex-1 h-72" src="https://placehold.co/464x300" />
-	<img data-layer="Jastarnia_3-831x375 1" class="Jastarnia3831x3751 flex-1 h-72" src="https://placehold.co/464x300" />
-	<img data-layer="Jastarnia_4-831x375 1" class="Jastarnia4831x3751 flex-1 h-72" src="https://placehold.co/464x300" />
+<!--  section -2-  -->
+<div  class="  flex max-md:flex-col my-22">
+	<img   class="  object-cover md:min-h-[300px] w-1/3 max-md:w-full max-md:mb-2" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/Cappuc1.jpg" />
+	<img   class="  md:min-h-[300px] object-cover w-1/3 max-md:w-full max-md:mb-2" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/Cappuc2.jpg" />
+	<img   class="  md:min-h-[300px] object-cover  w-1/3 max-md:w-full max-md:mb-2" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/Cappuc3.jpg" />
 </div>
 
-<div data-layer="Frame 127" class="Frame127 self-stretch px-32 py-28 bg-stone-50 inline-flex flex-col justify-start items-center gap-20">
-	<div data-layer="Frame 125" class="Frame125 w-full max-w-[1600px] inline-flex justify-start items-center gap-20 flex-wrap content-center">
-		<div data-layer="Frame 122" class="Frame122 flex-1 h-[519px] flex justify-start items-center flex-wrap content-center">
-			<div data-layer="txt" class="Txt flex-1 max-w-80 min-w-72 p-8 bg-white backdrop-blur-lg inline-flex flex-col justify-center items-start gap-4">
-				<div data-layer="Capuccino Cafe w Sopocie" class="CapuccinoCafeWSopocie w-full max-w-48 justify-start text-stone-400 text-2xl font-bold font-['Mulish']">Capuccino Cafe w Sopocie</div>
-				<div data-layer="Kawiarnia sopocka działa przez cały rok, oferując gościom 40 miejsc w budynku i aż 200 na świeżym powietrzu w pięknie zaaranżowanej, zielonej strefie relaksu z wygodnymi hamakami i leżakami." class="KawiarniaSopockaDziaAPrzezCaYRokOferujCGoCiom40MiejscWBudynkuIA200NaWieYmPowietrzuWPiKnieZaaranOwanejZielonejStrefieRelaksuZWygodnymiHamakamiILeAkami self-stretch justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">Kawiarnia sopocka działa przez cały rok, oferując gościom 40 miejsc w budynku i aż 200 na świeżym powietrzu w pięknie zaaranżowanej, zielonej strefie relaksu z wygodnymi hamakami i leżakami.</div>
-				<div data-layer="BTN midle dark" data-property-1="Default" class="BtnMidleDark h-12 px-7 rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2.5">
-					<div data-layer="Poznaj nas" class="PoznajNas justify-center text-zinc-800 text-sm font-bold font-['Mulish'] uppercase leading-tight">poznaj Menu</div>
-					<div data-layer="Frame" class="Frame size-6 relative overflow-hidden">
-						<div data-layer="Vector" class="Vector size-3.5 left-[4.50px] top-[4.80px] absolute bg-stone-400"></div>
+<!--  section -3- (2015) -->
+<div class="px-[8%]  mb-10">
+  <div class="w-full  max-xl:flex-col-reverse inline-flex justify-start items-center gap-20   ">
+    
+
+
+    <div class="relative flex-1 h-[519px] flex justify-center items-center max-md:flex-col content-center py-5">
+      <img
+        class="flex-1 h-full max-w-[1024px] min-w-72  w-full object-cover max-h-[546px]"
+       	src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/capuccinoCafe2015.jpg"
+        alt="Capuccino Cafe"
+      />
+      
+      <div class="max-md:mt-8 lg:absolute lg:left-0 w-80 p-8 bg-white backdrop-blur-lg inline-flex flex-col justify-center items-start gap-4">
+        <div class="w-full max-w-48 text-stone-400 text-2xl font-bold font-['Mulish']">Capuccino Cafe w Sopocie</div>
+		
+        <div class="text-zinc-800 text-sm font-['Mulish'] leading-tight">
+          <span class="font-bold">Do Jastarni zapraszamy w sezonie letnim</span>
+          <span class="font-normal">,Kawiarnia sopocka działa przez cały rok, oferując gościom 40 miejsc w budynku i aż 200 na świeżym powietrzu w pięknie zaaranżowanej, zielonej strefie relaksu z wygodnymi hamakami i leżakami</span>
+        </div>
+
+ 	<div  class="h-12 px-7 rounded  outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2.5 hover:bg-[#A9957B] group">
+				<div class="justify-center text-[#A9957B] group-hover:text-white text-[11px] font-bold font-['Mulish'] uppercase leading-tight">Poznaj menu</div>
+				<div class="w-6 h-6 relative overflow-hidden">
+					<div class="w-3.5 h-4 top-[2px] relative origin-top-left"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path class="group-hover:fill-white" d="M15.7514 9.1233L7.70662 17.1681C7.55613 17.3186 7.37935 17.3937 7.17629 17.3936C6.97323 17.3937 6.79646 17.3186 6.64596 17.1681C6.49547 17.0176 6.42028 16.8408 6.42039 16.6377C6.42028 16.4347 6.49547 16.2579 6.64596 16.1074L14.6907 8.06264H7.38029C7.17004 8.06264 6.99509 7.99152 6.85544 7.84927C6.7159 7.70691 6.64608 7.52607 6.64596 7.30675C6.65327 7.09461 6.72445 6.91737 6.85951 6.775C6.99456 6.63264 7.17181 6.56146 7.39125 6.56145L16.3577 6.56145C16.4902 6.56145 16.6067 6.58461 16.7072 6.63093C16.8079 6.67713 16.9008 6.74283 16.986 6.82803C17.0712 6.91324 17.1369 7.00617 17.1831 7.10681C17.2294 7.20734 17.2526 7.32383 17.2526 7.4563L17.2526 16.4228C17.2526 16.6186 17.1814 16.79 17.039 16.9368C16.8967 17.0837 16.7194 17.1607 16.5073 17.1681C16.288 17.1679 16.1072 17.0968 15.9649 16.9545C15.8226 16.8121 15.7513 16.6313 15.7512 16.412L15.7514 9.1233Z" fill="#A9957B" />
+						</svg>
 					</div>
 				</div>
 			</div>
-			<img data-layer="capuccino-cafe-nasz-zespol-1130x746 1" class="CapuccinoCafeNaszZespol1130x7461 flex-1 h-[519px] max-w-[1024px] min-w-72 max-h-[846.27px] min-h-56" src="https://placehold.co/628x519" />
-		</div>
-		<div data-layer="Frame 123" class="Frame123 flex-1 max-w-96 min-w-72 inline-flex flex-col justify-start items-start gap-5">
-			<div data-layer="2015" class="self-stretch justify-start text-stone-700 text-4xl font-normal font-['Didot_LT_Pro']">2015</div>
-			<div data-layer="Doświadczenie, profesjonalna wiedza, współpraca z najlepszymi w branży, a przede wszystkim ogrom pasji i serca zbudowały podwaliny pod kolejne, wyjątkowe przedsięwzięcie – w 2015 roku powstało Capuccino Cafe Sopot. W tym samym roku postanowiliśmy także otworzyć przy lokalu w Sopocie własną pracownię tortów." class="DoWiadczenieProfesjonalnaWiedzaWspPracaZNajlepszymiWBranYAPrzedeWszystkimOgromPasjiISercaZbudowaYPodwalinyPodKolejneWyjTkowePrzedsiWziCieW2015RokuPowstaOCapuccinoCafeSopotWTymSamymRokuPostanowiliMyTakEOtworzyPrzyLokaluWSopocieWAsnPracowniTortW self-stretch justify-start text-zinc-800 text-lg font-light font-['Mulish'] leading-relaxed">Doświadczenie, profesjonalna wiedza, współpraca z najlepszymi w branży, a przede wszystkim ogrom pasji i serca zbudowały podwaliny pod kolejne, wyjątkowe przedsięwzięcie – w 2015 roku powstało Capuccino Cafe Sopot. W tym samym roku postanowiliśmy także otworzyć przy lokalu w Sopocie własną pracownię tortów.</div>
-		</div>
-	</div>
+      </div>
+    </div>
+
+		    <div class="xl:w-1/3">
+      <h5 class=" text-stone-700 text-4xl font-normal font-['Didot_LT_Pro'] max-lg:text-center">2015</h5>
+      <div class=" text-zinc-800 text-lg font-light font-['Mulish'] leading-relaxed">
+		Doświadczenie, profesjonalna wiedza, współpraca z najlepszymi w branży, a przede wszystkim ogrom pasji i serca zbudowały podwaliny pod kolejne, wyjątkowe przedsięwzięcie – w 2015 roku powstało Capuccino Cafe Sopot. W tym samym roku postanowiliśmy także otworzyć przy lokalu w Sopocie własną pracownię tortów.
+      </div>
+    </div>
+
+  </div>
 </div>
 
-<div data-layer="Frame 128" class="Frame128 self-stretch px-32 py-24 inline-flex justify-center items-center gap-28">
-	<div data-layer="Frame 129" class="Frame129 flex-1 max-w-96 min-w-72 inline-flex flex-col justify-start items-start gap-8">
-		<div data-layer="Imprezy okolicznościowe" class="ImprezyOkolicznoCiowe self-stretch justify-start text-stone-700 text-4xl font-normal font-['Didot_LT_Pro']">Imprezy okolicznościowe</div>
-		<div data-layer="Organizujemy wyjątkowe przyjęcia na każdą okazję – urodziny, chrzciny, komunie czy spotkania firmowe. Nasza kameralna sala zachwyca niepowtarzalnym klimatem i stylowym wystrojem. Zapewniamy catering z naszej cukierni i restauracji Sopocki Młyn, profesjonalną, miłą obsługę oraz przytulna atmosferę." class="OrganizujemyWyjTkowePrzyjCiaNaKaDOkazjUrodzinyChrzcinyKomunieCzySpotkaniaFirmoweNaszaKameralnaSalaZachwycaNiepowtarzalnymKlimatemIStylowymWystrojemZapewniamyCateringZNaszejCukierniIRestauracjiSopockiMYnProfesjonalnMiObsUgOrazPrzytulnaAtmosfer self-stretch justify-start text-zinc-800 text-lg font-light font-['Mulish'] leading-relaxed">Organizujemy wyjątkowe przyjęcia na każdą okazję – urodziny, chrzciny, komunie czy spotkania firmowe. Nasza kameralna sala zachwyca niepowtarzalnym klimatem i stylowym wystrojem. Zapewniamy catering z naszej cukierni i restauracji Sopocki Młyn, profesjonalną, miłą obsługę oraz przytulna atmosferę.</div>
+<!--  section -4-  -->
+<div   class="relative flex max-md:flex-col-reverse  md:px-[8%] min-w-screen  my-36 max-md:my-20 ">
+	<div   class=" w-2/4 max-md:w-full max-md:mt-5 min-w-72 inline-flex flex-col max-md:px-[8%] 2xl:pr-[5%]  justify-center  items-start  p-4">
+		<h3  class="  self-stretch justify-start text-stone-700 xl:!text-6xl  !text-4xl font-normal font-['Didot_LT_Pro']">Imprezy okolicznościowe</h3>
+		<p  class="self-stretch justify-start text-zinc-800 text-lg font-light font-['Mulish'] leading-relaxed">Organizujemy wyjątkowe przyjęcia na każdą okazję – urodziny, chrzciny, komunie czy spotkania firmowe. Nasza kameralna sala zachwyca niepowtarzalnym klimatem i stylowym wystrojem. Zapewniamy catering z naszej cukierni i restauracji Sopocki Młyn, profesjonalną, miłą obsługę oraz przytulna atmosferę.</p>
 	</div>
-	<img data-layer="capuccino-cafe-nasz-zespol-1130x746 1" class="CapuccinoCafeNaszZespol1130x7461 flex-1 h-96 max-w-[890.45px] min-w-[660px] max-h-[600px] min-h-96" src="https://placehold.co/660x445" />
+	<img   class="flex-1 h-full max-w-[1024px] min-w-72 object-cover max-h-[646px] "  src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/Imprezy-okolicznościowe.jpg"/>
 </div>
 
+<!--  section -5- (slide)  -->
+<div class="relative md:h-screen max-md:px-[4%] max-md:min-h-screen max-md:py-[10vh] flex items-center justify-center bg-stone-200 px-[8%]  "> 
+<span class="w-[10%] h-full absolute z-10  bg-stone-200  flex  left-0 top-0 max-md:hidden"></span>
+<span class="w-[10%] h-full absolute z-10  bg-stone-200  flex right-0 top-0 max-md:hidden"></span>
+		<div>
+				<div class="max-md:flex  justify-center items-center max-md:min-h-[20vh]">
+					<h2 class="text-center md:!mb-10 max-md:!m-0 !font-['Didot LT Pro']  ">Co oferujemy w kawiarniach </h2>
+				<!--arrows icons -->
+					<div class="max-md:flex max-md:w-1/3 justify-end">
+							<div data-layer="Vector" class="z-20 size-12 max-md:size-8 max-md:mr-4 text-[#A9957B] absolute max-md:relative left-[3%] top-1/2 border-2 rounded-sm  flex items-center justify-center "><svg xmlns="http://www.w3.org/2000/svg" class="max-md:size-5" width="24" height="24" viewBox="0 0 15 15" fill="none">
+								<path d="M2.873 7.05175L14.25 7.05175C14.4628 7.05175 14.641 7.12358 14.7845 7.26725C14.9282 7.41075 15 7.58892 15 7.80175C15 8.01458 14.9282 8.19275 14.7845 8.33625C14.641 8.47992 14.4628 8.55175 14.25 8.55175L2.873 8.55175L8.04225 13.721C8.19092 13.8697 8.26433 14.0437 8.2625 14.243C8.2605 14.4423 8.182 14.6196 8.027 14.7747C7.87183 14.9196 7.69617 14.9946 7.5 14.9997C7.30383 15.0049 7.12817 14.9299 6.973 14.7747L0.632751 8.4345C0.539085 8.34083 0.473085 8.24208 0.434752 8.13825C0.396252 8.03442 0.377002 7.92225 0.377002 7.80175C0.377002 7.68125 0.396252 7.56908 0.434752 7.46525C0.473085 7.36142 0.539085 7.26267 0.632751 7.169L6.973 0.82875C7.1115 0.69025 7.283 0.619417 7.4875 0.616249C7.692 0.613083 7.87183 0.683916 8.027 0.82875C8.182 0.983917 8.2595 1.16208 8.2595 1.36325C8.2595 1.56458 8.182 1.74283 8.027 1.898L2.873 7.05175Z" fill="#A9957B" />
+								</svg>
+							</div>
+
+							<div data-layer="Vector" class="z-20 text-[#A9957B] size-12 max-md:size-8 rotate-180 absolute max-md:relative right-[3%] top-1/2 border-2 rounded-sm  flex items-center justify-center "><svg xmlns="http://www.w3.org/2000/svg" class="max-md:size-5"   width="24" height="24" viewBox="0 0 15 15" fill="none">
+								<path d="M2.873 7.05175L14.25 7.05175C14.4628 7.05175 14.641 7.12358 14.7845 7.26725C14.9282 7.41075 15 7.58892 15 7.80175C15 8.01458 14.9282 8.19275 14.7845 8.33625C14.641 8.47992 14.4628 8.55175 14.25 8.55175L2.873 8.55175L8.04225 13.721C8.19092 13.8697 8.26433 14.0437 8.2625 14.243C8.2605 14.4423 8.182 14.6196 8.027 14.7747C7.87183 14.9196 7.69617 14.9946 7.5 14.9997C7.30383 15.0049 7.12817 14.9299 6.973 14.7747L0.632751 8.4345C0.539085 8.34083 0.473085 8.24208 0.434752 8.13825C0.396252 8.03442 0.377002 7.92225 0.377002 7.80175C0.377002 7.68125 0.396252 7.56908 0.434752 7.46525C0.473085 7.36142 0.539085 7.26267 0.632751 7.169L6.973 0.82875C7.1115 0.69025 7.283 0.619417 7.4875 0.616249C7.692 0.613083 7.87183 0.683916 8.027 0.82875C8.182 0.983917 8.2595 1.16208 8.2595 1.36325C8.2595 1.56458 8.182 1.74283 8.027 1.898L2.873 7.05175Z" fill="#A9957B" />
+								</svg>
+							</div>
+					</div>
+				</div>
+					<!-- horizontal nav -->
+					<div class="flex flex-wrap justify-center items-center gap-4 mb-5 max-md:px-5">
+							<a href="#kawa" class="hover:!text-stone-400 text-xs  font-['Mulish'] uppercase !text-black">Kawa</a>
+							<a href="#torty" class="hover:!text-stone-400 text-xs  font-['Mulish'] uppercase !text-black">Torty weselne i okazyjne</a>
+							<a href="#lody" class="hover:!text-stone-400 text-xs  font-['Mulish'] uppercase !text-black">Lody</a>
+							<a href="#stoły" class="hover:!text-stone-400 text-xs  font-['Mulish'] uppercase !text-black">Słodkie stoły</a>
+							<a href="#monoporcje" class="hover:!text-stone-400 text-xs  font-['Mulish'] uppercase !text-black">Monoporcje</a>
+							<a href="#koktajle" class="hover:!text-stone-400 text-xs  font-['Mulish'] uppercase !text-black">Soki i koktajle</a>
+							<a href="#pieczywo" class="hover:!text-stone-400 text-xs  font-['Mulish'] uppercase !text-black">Pieczywo</a>
+					</div>
+
+					<!-- slider-->
+					<div class="flex flex-nowrap overflow-x-auto  scroll-hidd   w-screen relative">
+						
+
+						<div  class="scroll-hidd  flex flex-nowrap snap-x snap-mandatory gap-5 pb-5 max-md:mt-10">
+								<section id="kawa" class="relative !flex max-md:flex-col items-center min-w-[70vw] max-lg:min-w-[90vw] max-md:w-[70vw] mx-[1%]  ">
+										<div class="md:min-w-[360px] max-md:w-full"> 
+												<img   class="flex-1 h-auto md:max-w-[1024px] md:min-w-[500px] max-md:w-full object-cover max-h-[446px] "  src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/kawa.png"/>
+										</div>
+										<div class="   md:max-w-[450px] max-md:w-full w-full md:absolute -right-12 bg-white text-black p-8">
+												<h3 class="!text-[#A9957B]">Kawa z autorskiej mieszanki</h3>
+												<p class='px-2'> Aromatyczna kawa, stworzona z wyjątkowej mieszanki 100% Arabica. Ziarna sprowadzamy prosto z Peru, Etiopii i Gwatemali, a następnie palimy je lokalnie, dbając o najwyższą jakość. Oferujemy zarówno tradycyjne, jak i alternatywne metody parzenia, w tym chemex, drip, aeropress, cold brew i nitro coffee.</p>
+										</div>
+								</section>
+
+									<section id="torty" id="kawa" class="relative !flex max-md:flex-col items-center min-w-[70vw] max-lg:min-w-[90vw] max-md:w-[70vw] mx-[1%]  ">
+										<div class="md:min-w-[360px] max-md:w-full">   
+												<img   class="flex-1 h-auto md:max-w-[1024px] md:min-w-[500px] max-md:w-full object-cover max-h-[446px] "  src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/kawa.png"/>
+										</div>
+											<div class="   md:max-w-[450px] max-md:w-full w-full md:absolute -right-12 bg-white text-black p-8">
+												<h3 class="!text-[#A9957B]">Kawa z autorskiej mieszanki</h3>
+												<p> Aromatyczna kawa, stworzona z wyjątkowej mieszanki 100% Arabica. Ziarna sprowadzamy prosto z Peru, Etiopii i Gwatemali, a następnie palimy je lokalnie, dbając o najwyższą jakość. Oferujemy zarówno tradycyjne, jak i alternatywne metody parzenia, w tym chemex, drip, aeropress, cold brew i nitro coffee.</p>
+										</div>
+								</section>
+
+
+									<section id="lody" class="relative !flex max-md:flex-col items-center min-w-[70vw] max-lg:min-w-[90vw] max-md:w-[70vw] mx-[1%]  ">
+										<div class="md:min-w-[360px] max-md:w-full">   
+												<img   class="flex-1 h-auto md:max-w-[1024px] md:min-w-[500px] max-md:w-full object-cover max-h-[446px] "  src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/kawa.png"/>
+										</div>
+											<div class="   md:max-w-[450px] max-md:w-full w-full md:absolute -right-12 bg-white text-black p-8">
+												<h3 class="!text-[#A9957B]">Kawa z autorskiej mieszanki</h3>
+												<p> Aromatyczna kawa, stworzona z wyjątkowej mieszanki 100% Arabica. Ziarna sprowadzamy prosto z Peru, Etiopii i Gwatemali, a następnie palimy je lokalnie, dbając o najwyższą jakość. Oferujemy zarówno tradycyjne, jak i alternatywne metody parzenia, w tym chemex, drip, aeropress, cold brew i nitro coffee.</p>
+										</div>
+								</section>
+
+								<section id="stoły" class="relative !flex max-md:flex-col items-center min-w-[70vw] max-lg:min-w-[90vw] max-md:w-[70vw] mx-[1%]  ">
+										<div class="md:min-w-[360px] max-md:w-full">   
+												<img   class="flex-1 h-auto md:max-w-[1024px] md:min-w-[500px] max-md:w-full object-cover max-h-[446px] "  src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/kawa.png"/>
+										</div>
+											<div class="   md:max-w-[450px] max-md:w-full w-full md:absolute -right-12 bg-white text-black p-8">
+												<h3 class="!text-[#A9957B]">Kawa z autorskiej mieszanki</h3>
+												<p> Aromatyczna kawa, stworzona z wyjątkowej mieszanki 100% Arabica. Ziarna sprowadzamy prosto z Peru, Etiopii i Gwatemali, a następnie palimy je lokalnie, dbając o najwyższą jakość. Oferujemy zarówno tradycyjne, jak i alternatywne metody parzenia, w tym chemex, drip, aeropress, cold brew i nitro coffee.</p>
+										</div>
+								</section>
+
+								<section id="monoporcje" class="relative !flex max-md:flex-col items-center min-w-[70vw] max-lg:min-w-[90vw] max-md:w-[70vw] mx-[1%]  ">
+										<div class="md:min-w-[360px] max-md:w-full">   
+												<img   class="flex-1 h-auto md:max-w-[1024px] md:min-w-[500px] max-md:w-full object-cover max-h-[446px] "  src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/kawa.png"/>
+										</div>
+											<div class="   md:max-w-[450px] max-md:w-full w-full md:absolute -right-12 bg-white text-black p-8">
+												<h3 class="!text-[#A9957B]">Kawa z autorskiej mieszanki</h3>
+												<p> Aromatyczna kawa, stworzona z wyjątkowej mieszanki 100% Arabica. Ziarna sprowadzamy prosto z Peru, Etiopii i Gwatemali, a następnie palimy je lokalnie, dbając o najwyższą jakość. Oferujemy zarówno tradycyjne, jak i alternatywne metody parzenia, w tym chemex, drip, aeropress, cold brew i nitro coffee.</p>
+										</div>
+								</section>
+
+								<section id="koktajle" class="relative !flex max-md:flex-col items-center min-w-[70vw] max-lg:min-w-[90vw] max-md:w-[70vw] mx-[1%]  ">
+										<div cclass="md:min-w-[360px] max-md:w-full">  
+												<img   class="flex-1 h-auto md:max-w-[1024px] md:min-w-[500px] max-md:w-full object-cover max-h-[446px] "  src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/kawa.png"/>
+										</div>
+											<div class="   md:max-w-[450px] max-md:w-full w-full md:absolute -right-12 bg-white text-black p-8">
+												<h3 class="!text-[#A9957B]">Kawa z autorskiej mieszanki</h3>
+												<p> Aromatyczna kawa, stworzona z wyjątkowej mieszanki 100% Arabica. Ziarna sprowadzamy prosto z Peru, Etiopii i Gwatemali, a następnie palimy je lokalnie, dbając o najwyższą jakość. Oferujemy zarówno tradycyjne, jak i alternatywne metody parzenia, w tym chemex, drip, aeropress, cold brew i nitro coffee.</p>
+										</div>
+								</section>
+								<!-- fix this -->
+							<section id="pieczywo" class="relative !flex max-md:flex-col items-center min-w-[70vw] max-lg:min-w-[90vw] max-md:w-[70vw] mx-[1%]   ">
+										<div cclass="md:min-w-[360px] max-md:w-full !mr-[500px]">  
+												<img   class="flex-1 h-auto md:max-w-[1024px] md:min-w-[500px] max-md:w-full object-cover max-h-[446px] "  src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/kawa.png"/>
+										</div>
+											<div class="   md:max-w-[450px] max-md:w-full w-full md:absolute -right-12 bg-white text-black p-8 ">
+												<h3 class="!text-[#A9957B]">Kawa z autorskiej mieszanki</h3>
+												<p> Aromatyczna kawa, stworzona z wyjątkowej mieszanki 100% Arabica. Ziarna sprowadzamy prosto z Peru, Etiopii i Gwatemali, a następnie palimy je lokalnie, dbając o najwyższą jakość. Oferujemy zarówno tradycyjne, jak i alternatywne metody parzenia, w tym chemex, drip, aeropress, cold brew i nitro coffee.</p>
+										</div>
+								</section>
+							
+
+								
+								
+							
+					</div>
+					</div>
+
+				<!---
+						<div class="py-8 flex items-center justify-center w-full">
+							<div id="dot-indicators" class="flex space-x-1">
+									<span class="w-2 h-2 inline-flex rounded-full bg-black opacity-30 transition-colors" data-target="kawa"></span>
+									<span class="w-2 h-2 inline-flex rounded-full bg-black opacity-30 transition-colors" data-target="torty"></span>
+									<span class="w-2 h-2 inline-flex rounded-full bg-black opacity-30 transition-colors" data-target="lody"></span>
+									<span class="w-2 h-2 inline-flex rounded-full bg-black opacity-30 transition-colors" data-target="monoporcje"></span>
+									<span class="w-2 h-2 inline-flex rounded-full bg-black opacity-30 transition-colors" data-target="koktajle"></span>
+									<span class="w-2 h-2 inline-flex rounded-full bg-black opacity-30 transition-colors" data-target="pieczywo"></span>
+							</div>
+
+					</div>
+
+							-->
+		</div>
+
+
+</div>
+
+
+
+ <!--
+  
 <div data-layer="Frame 117" class="Frame117 self-stretch px-32 py-24 bg-stone-200 inline-flex flex-col justify-start items-center gap-12">
 	<div data-layer="Frame 64" class="Frame64 self-stretch inline-flex justify-center items-start gap-2.5 overflow-hidden">
 		<div data-layer="Frame 65" class="Frame65 flex-1 flex justify-center items-center gap-2.5">
@@ -152,28 +334,22 @@ get_header(); ?>
 			</div>
 		</div>
 	</div>
-	<div data-layer="Frame 120" class="Frame120 size- inline-flex justify-start items-center gap-2.5">
-		<div data-layer="Ellipse 1" class="Ellipse1 size-2 bg-stone-400 rounded-full"></div>
-		<div data-layer="Ellipse 2" class="Ellipse2 size-2 bg-stone-300 rounded-full"></div>
-		<div data-layer="Ellipse 3" class="Ellipse3 size-2 bg-stone-300 rounded-full"></div>
-		<div data-layer="Ellipse 4" class="Ellipse4 size-2 bg-stone-300 rounded-full"></div>
-		<div data-layer="Ellipse 5" class="Ellipse5 size-2 bg-stone-300 rounded-full"></div>
-		<div data-layer="Ellipse 6" class="Ellipse6 size-2 bg-stone-300 rounded-full"></div>
-		<div data-layer="Ellipse 7" class="Ellipse7 size-2 bg-stone-300 rounded-full"></div>
-		<div data-layer="Ellipse 8" class="Ellipse8 size-2 bg-stone-300 rounded-full"></div>
-	</div>
+ 
 </div>
 
-<div data-layer="Frame 130" class="Frame130 self-stretch px-32 py-24 inline-flex justify-center items-center gap-28">
-	<div data-layer="Frame 129" class="Frame129 flex-1 max-w-96 min-w-72 inline-flex flex-col justify-start items-start gap-8">
-		<div data-layer="Nasz Zespół" class="NaszZesp self-stretch justify-start text-stone-700 text-4xl font-normal font-['Didot_LT_Pro']">Nasz Zespół</div>
-		<div data-layer="Jesteśmy rodzinną firmą i grupą pasjonatów. Nasz zespół zasilają m.in. certyfikowani specjaliści cukiernictwa, wybitni bariści oraz artystka dekoracji tortów. Od lat nieustannie rozwijamy się, dążąc do perfekcji w tym, co robimy. Dużo satysfakcji dostarcza nam zarówno zaufanie naszych Klientów, jak i uznanie w branży. Słodkości Capuccino Cafe Sopot trafiają aż do 20 najlepszych kawiarni w Trójmieście" class="JesteMyRodzinnFirmIGrupPasjonatWNaszZespZasilajMInCertyfikowaniSpecjaliCiCukiernictwaWybitniBariCiOrazArtystkaDekoracjiTortWOdLatNieustannieRozwijamySiDCDoPerfekcjiWTymCoRobimyDuOSatysfakcjiDostarczaNamZarWnoZaufanieNaszychKlientWJakIUznanieWBranYSOdkoCiCapuccinoCafeSopotTrafiajADo20NajlepszychKawiarniWTrJmieCie self-stretch justify-start text-zinc-800 text-lg font-light font-['Mulish'] leading-relaxed">Jesteśmy rodzinną firmą i grupą pasjonatów. Nasz zespół zasilają m.in. certyfikowani specjaliści cukiernictwa, wybitni bariści oraz artystka dekoracji tortów. Od lat nieustannie rozwijamy się, dążąc do perfekcji w tym, co robimy. Dużo satysfakcji dostarcza nam zarówno zaufanie naszych Klientów, jak i uznanie w branży. Słodkości Capuccino Cafe Sopot trafiają aż do 20 najlepszych kawiarni w Trójmieście</div>
+-->
+ <!--  section -6-  -->
+<div   class="relative flex max-md:flex-col-reverse  md:px-[8%] w-full  my-36 max-md:my-20 ">
+	<div   class=" w-2/4 max-md:w-full max-md:mt-5 min-w-72 inline-flex flex-col max-md:px-[8%] 2xl:pr-[5%]  justify-center  items-start  p-4">
+		<h3  class="  self-stretch justify-start text-stone-700 text-4xl xl:!text-6xl  font-normal font-['Didot_LT_Pro']">Nasz Zespół</h3>
+		<p  class="self-stretch justify-start text-zinc-800 text-lg font-light font-['Mulish'] leading-relaxed">Jesteśmy rodzinną firmą i grupą pasjonatów. Nasz zespół zasilają m.in. certyfikowani specjaliści cukiernictwa, wybitni bariści oraz artystka dekoracji tortów. Od lat nieustannie rozwijamy się, dążąc do perfekcji w tym, co robimy. Dużo satysfakcji dostarcza nam zarówno zaufanie naszych Klientów, jak i uznanie w branży. Słodkości Capuccino Cafe Sopot trafiają aż do 20 najlepszych kawiarni w Trójmieście.</p>
 	</div>
-	<img data-layer="capuccino-cafe-nasz-zespol-1130x746 1" class="CapuccinoCafeNaszZespol1130x7461 flex-1 h-96 max-w-[890.45px] min-w-[660px] max-h-[600px] min-h-96" src="https://placehold.co/660x445" />
+	<img   class="flex-1 h-full max-w-[1024px] min-w-72 object-cover max-h-[646px] "  src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/capuccinoTeam.jpg"/>
 </div>
 
+<!--- instagram section -->
 <?php
 require_once get_stylesheet_directory() . '/inc/instagram.php';
 ?>
-
+</main>
 <?php get_footer(); ?>
