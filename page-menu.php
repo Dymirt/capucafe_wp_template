@@ -15,7 +15,7 @@ get_header(); ?>
 			</div>
 		</div>
 	</div>
-	<div data-layer="R" class="R w-full px-20 pt-14 pb-28 bg-stone-50 inline-flex flex-col justify-start items-center gap-8">
+	<div data-layer="R" class="R w-full md:px-20 pt-14 pb-28 bg-stone-50 inline-flex flex-col justify-start items-center gap-8">
 		<div data-layer="Title" class="Title self-stretch pb-4 flex flex-col justify-start items-center">
 			<div data-layer="Menu" class="Menu justify-start text-stone-700 text-6xl font-normal font-['Didot_LT_Pro']">Menu</div>
 			<div data-layer="Frame 125" class="Frame125 size- inline-flex justify-start items-center gap-10">
