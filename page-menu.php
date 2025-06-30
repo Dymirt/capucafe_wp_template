@@ -36,7 +36,9 @@ get_header(); ?>
 		const kategorieTarget = document.querySelector('.Kategorie'); // Get .Kategorie div
 		kategorieTarget.innerHTML = '';
 
-		fetch(`/wp-admin/admin-ajax.php?action=load_menu&location=${location}`)
+		const ajaxurl = "<?php echo admin_url('admin-ajax.php'); ?>";
+
+		fetch(`${ajaxurl}?action=load_menu&location=${location}`)
 			.then(response => {
 				if (!response.ok) throw new Error('Menu not found');
 				return response.text();

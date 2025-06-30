@@ -326,8 +326,8 @@ require_once get_stylesheet_directory() . '/inc/instagram.php';
 
 					originalHeaderHTML = oldHeader.outerHTML; // store original
 					isShopHeader = true;
-
-					fetch('/wp-admin/admin-ajax.php?action=load_shop_header')
+					const ajaxurl = "<?php echo admin_url('admin-ajax.php'); ?>";
+					fetch(`${ajaxurl}?action=load_shop_header`)
 						.then(response => response.text())
 						.then(html => {
 							const tempDiv = document.createElement('div');
