@@ -342,7 +342,7 @@
 			});
 		};
 
-		document.querySelector('.single_add_to_cart_button').addEventListener('click', () => {
+		document.querySelector('.single_add_to_cart_button').addEventListener('submit', () => {
 			const candies = [];
 
 			document.querySelectorAll(".Karta").forEach(card => {
