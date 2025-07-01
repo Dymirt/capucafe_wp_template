@@ -118,7 +118,7 @@
 						<input type="hidden" name="add-to-cart" value="<?php echo esc_attr($product_id); ?>" />
 						<input type="hidden" name="product_id" value="<?php echo esc_attr($product_id); ?>" />
 
-						<input type="hidden" name="custom_candies" id="custom_candies_input" />
+						<input type="hidden" name="custom_candies" id="custom_candies_input"  />
 						<input type="hidden" name="box_size" id="box_size_input" />
 
 						<div data-layer="cena i btn" class="CenaIBtn self-stretch flex flex-col justify-start items-start gap-8 pt-2">
@@ -259,7 +259,7 @@
 				}
 			});
 		};
-
+		
 		document.getElementById("candy-summary-list").addEventListener("click", (e) => {
 			if (e.target.closest(".remove-candy")) {
 				const button = e.target.closest(".remove-candy");
@@ -281,7 +281,7 @@
 		});
 
 
-
+		// add candies to main image summary
 		function updateImageSummary() {
 			const imageSummaryEl = document.getElementById("candy-image-summary");
 			imageSummaryEl.innerHTML = ""; // Clear previous
@@ -342,7 +342,8 @@
 			});
 		};
 
-		document.querySelector('.single_add_to_cart_button').addEventListener('click', () => {
+		// Add candies to the cart on form submit
+		document.querySelector('form.variations_form.cart').addEventListener('submit', () => {
 			const candies = [];
 
 			document.querySelectorAll(".Karta").forEach(card => {
@@ -362,7 +363,7 @@
 			document.getElementById("box_size_input").value = boxSize;
 		});
 
-
+		// Candies selection logic
 		document.querySelectorAll('.Karta').forEach(card => {
 			const countEl = card.querySelector('[data-count]');
 			const incrementBtn = card.querySelector('.increment');
@@ -392,6 +393,8 @@
 				}
 			});
 		});
+
+		// Variation selection logic
 		document.querySelectorAll('.attribute-group').forEach(group => {
 			const cards = group.querySelectorAll('.option-card');
 			cards.forEach(card => {
@@ -496,6 +499,24 @@
 				console.error("Failed to restore candy selection", e);
 			}
 		}
+		// Log form submission
+		/*
+		document.querySelector('form.variations_form.cart').addEventListener('submit', function(e) {
+			// Log the form element
+			console.log('Form element:', this);
+
+			// Optional: prevent actual submission for testing
+			// e.preventDefault();
+
+			// Use FormData to see all the form fields and values
+			const formData = new FormData(this);
+
+			console.log('Form data:');
+			for (const [key, value] of formData.entries()) {
+				console.log(`${key}: ${value}`);
+			}
+		});
+		*/
 
 		// Hook saving to changes
 		function bindStorageEvents() {

@@ -58,7 +58,7 @@ $count = WC()->cart->get_cart_contents_count();
 			?>
 		</header><!-- #masthead -->
 		<?php
-		if (is_front_page()) {
+		if (is_front_page() || is_page('torty-weselne') ) {
 			get_template_part('headers/header', 'homepage');
 		} else {
 			get_template_part('headers/header', 'shop');
@@ -135,7 +135,7 @@ $count = WC()->cart->get_cart_contents_count();
 		?>
 
 		<div id="content" class="site-content" tabindex="-1">
-			<?php if (is_front_page() || is_page('o-nas') || is_page('menu')): ?>
+			<?php if (is_front_page() || is_page('o-nas') || is_page('menu')|| is_page('torty-weselne')): ?>
 				<!-- Homepage -->
 				<div class="w-full ">
 				<?php else : ?>

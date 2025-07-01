@@ -6,6 +6,8 @@ require_once get_stylesheet_directory() . '/inc/functions/enqueue.php';
 // Register custom post types
 require_once get_stylesheet_directory() . '/inc/custom-post-types/slodki-stol.php';
 require_once get_stylesheet_directory() . '/inc/custom-post-types/praliny_candy.php';
+require_once get_stylesheet_directory() . '/inc/custom-post-types/smaki-tortow.php';
+
 require_once get_stylesheet_directory() . '/inc/functions/menu.php';
 
 
@@ -209,7 +211,7 @@ add_filter('woocommerce_get_item_data', function ($item_data, $cart_item) {
 //	}
 //});
 
-
+// Add custom candies and box size to order item meta
 add_action('woocommerce_add_order_item_meta', function ($item_id, $values) {
 	if (!empty($values['custom_candies'])) {
 		$summary = '';
@@ -225,7 +227,7 @@ add_action('woocommerce_add_order_item_meta', function ($item_id, $values) {
 }, 10, 2);
 
 
-
+// AJAX handler to load shop header
 add_action('wp_ajax_nopriv_load_shop_header', 'load_shop_header');
 add_action('wp_ajax_load_shop_header', 'load_shop_header');
 
@@ -235,7 +237,7 @@ function load_shop_header()
 	wp_die(); // stops further processing
 }
 
-
+// Add custom candies and box size to order item meta
 add_filter('woocommerce_order_item_display_meta_key', function ($display_key, $meta_key) {
 	if ($meta_key === 'Wybrane praliny') {
 		$display_key = __('Wybrane praliny', 'woocommerce');
@@ -243,7 +245,7 @@ add_filter('woocommerce_order_item_display_meta_key', function ($display_key, $m
 	return $display_key;
 }, 10, 2);
 
-
+// Add custom candies and box size to cart item data
 add_filter('woocommerce_add_cart_item_data', function ($cart_item_data, $product_id, $variation_id) {
 	if (!empty($_POST['custom_candies'])) {
 		$cart_item_data['custom_candies'] = json_decode(stripslashes($_POST['custom_candies']), true);
@@ -257,6 +259,8 @@ add_filter('woocommerce_add_cart_item_data', function ($cart_item_data, $product
 }, 10, 3);
 
 
+
+// Display custom candies and box size in cart item name
 add_filter('woocommerce_cart_item_name', function ($product_name, $cart_item, $cart_item_key) {
 	if (!empty($cart_item['custom_candies'])) {
 		$output = '<ul class="custom-candies-list" style="margin-top: 8px; font-size: 0.875rem;">';
@@ -275,6 +279,8 @@ add_filter('woocommerce_cart_item_name', function ($product_name, $cart_item, $c
 }, 10, 3);
 
 
+
+// AJAX handler to load custom menus based on location
 add_action('wp_ajax_load_menu', 'load_custom_menu');
 add_action('wp_ajax_nopriv_load_menu', 'load_custom_menu');
 

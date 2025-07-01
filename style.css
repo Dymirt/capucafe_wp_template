@@ -33,14 +33,15 @@ Template:			storefront
 	font-style: normal;
 	ascent-override: 90%;
 }
-html{
-	 scroll-behavior: auto !important;
+
+html {
+	scroll-behavior: auto !important;
 }
-*{
+
+* {
 	box-sizing: border-box;
 }
 
-/*    change this.  */
 .page-id-283 #content > .col-full{
 	padding: 0!important;
 	margin: 0!important;
@@ -53,7 +54,7 @@ html{
 .page-id-283 .woocommerce-breadcrumb{
 	display: none;
 }
-/*    change this.  */
+
 .header a,
 a.features-sec {
 	color: white !important;
@@ -76,7 +77,7 @@ a.features-sec {
 
 }
 
-#side-menu a{
+#side-menu a {
 	color: #A9957B !important;
 }
 
@@ -89,9 +90,10 @@ article {
 
 }
 
-.hero-rozana{
+.hero-rozana {
 	background-image: url(./resources/img/rozana-Romantyka.png);
 }
+
 .heroSection {
 	background-image: url(./resources/img/bgHERO.jpg);
 
@@ -199,4 +201,11 @@ article {
 #post-8,
 #post-9 {
 	width: 100%;
+}
+
+#torty_weselne_main_baner {
+	background-image: url(./resources/img/torty_weselne/baner.jpg);
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
 }

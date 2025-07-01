@@ -58,7 +58,7 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 							<path d="M19.2931 17.1808C19.7099 17.4013 20.0616 17.3503 20.348 17.028C20.6344 16.7055 20.674 16.3449 20.4669 15.9462L18.7907 12.8038L17.4366 16.2155L19.2931 17.1808ZM14.1532 16.25H15.791L18.2038 10.2615C18.3048 10.0063 18.3116 9.79767 18.224 9.6355C18.1364 9.47333 17.998 9.35125 17.8088 9.26925L15.8142 8.46925C15.5878 8.38075 15.3688 8.38142 15.1572 8.47125C14.9456 8.56092 14.8232 8.72558 14.79 8.96525L14.1532 16.25ZM6.86909 16.25H8.50692L7.87014 8.927C7.8369 8.70517 7.71772 8.55125 7.5126 8.46525C7.30732 8.37942 7.08509 8.38075 6.8459 8.46925L4.85128 9.26925C4.6352 9.35775 4.49973 9.49267 4.44488 9.674C4.38986 9.8555 4.40648 10.0642 4.49475 10.3L6.86909 16.25ZM3.36704 17.1808L5.22353 16.2155L3.88863 12.8038L2.1932 15.9845C1.9733 16.3897 2.01452 16.7423 2.31687 17.0423C2.61922 17.3423 2.96928 17.3884 3.36704 17.1808ZM10.0029 16.25H12.6572L13.4244 7.56925C13.4576 7.34225 13.4011 7.149 13.2546 6.9895C13.1083 6.82983 12.9156 6.75 12.6764 6.75H9.98369C9.7932 6.75 9.61518 6.825 9.44963 6.975C9.28391 7.125 9.2126 7.31025 9.23571 7.53075L10.0029 16.25ZM2.8427 18.7693C2.20442 18.7693 1.67261 18.5388 1.24726 18.0778C0.821738 17.6169 0.608978 17.0667 0.608978 16.427C0.608978 16.2335 0.634908 16.0441 0.686768 15.8588C0.738462 15.6734 0.805864 15.4923 0.888973 15.3155L3.14065 11C2.91426 10.3782 2.90495 9.76308 3.11272 9.15475C3.3205 8.54642 3.71468 8.12175 4.29528 7.88075L6.2899 7.08075C6.54821 6.97825 6.80967 6.91833 7.07429 6.901C7.33891 6.88367 7.58757 6.93208 7.82027 7.04625C7.96355 6.54358 8.23017 6.11858 8.62012 5.77125C9.01006 5.42375 9.46949 5.25 9.9984 5.25H12.6764C13.202 5.25 13.6614 5.41892 14.0545 5.75675C14.4476 6.09458 14.7222 6.51158 14.8782 7.00775C15.0917 6.89742 15.3308 6.858 15.5955 6.8895C15.8602 6.92083 16.1184 6.98458 16.3702 7.08075L18.3648 7.88075C18.9659 8.12175 19.3802 8.54483 19.6077 9.15C19.8353 9.75517 19.8123 10.3552 19.5387 10.95L21.7903 15.2655C21.8773 15.4295 21.9457 15.598 21.9955 15.771C22.0454 15.944 22.0703 16.1242 22.0703 16.3115C22.0703 16.9973 21.836 17.5784 21.3675 18.0548C20.8987 18.5311 20.3238 18.7693 19.6426 18.7693C19.4761 18.7693 19.3132 18.75 19.1539 18.7115C18.9945 18.673 18.8351 18.6153 18.6757 18.5385L17.0915 17.75H5.53793L4.0841 18.5193C3.89362 18.6231 3.69224 18.6907 3.47998 18.722C3.26772 18.7535 3.0553 18.7693 2.8427 18.7693Z" fill="white" />
 						</g>
 					</svg></a>
-				<a href="<?php echo esc_url(page_url_by_slug('kawiarnie')); ?>" class='features-sec w-[23%] max-md:w-[45%] max-md:mb-2 px-4 mr-[2%] h-16 flex items-center justify-between'><span>Kawiarnie</span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<a href="<?php echo esc_url(page_url_by_slug('menu')); ?>" class='features-sec w-[23%] max-md:w-[45%] max-md:mb-2 px-4 mr-[2%] h-16 flex items-center justify-between'><span>Menu Kawiarnie</span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<mask id="mask0_2030_6325" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
 							<rect width="24" height="24" fill="#D9D9D9" />
 						</mask>
@@ -109,7 +109,7 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 
 	<div class="flex relative max-md:flex-col z-10 max-sm:pt-8 max-md:pt-36  pt-48 max-sm:w-full max-md:w-[80%] max-lg:w-[90%]  max-xl:w-[85%] max-2xl:w-[85%]">
 		<div class="mssg_parent max-md:w-full w-1/2 max-lg:w-1/2">
-			<div id="mssg" class="title text-black w-full max-md:p-10 max-md:justify-center sm:text-3xl text-5xl flex max-md:flex-row flex-col mr-[5%]"><span> Capuccino </span> <span class="max-md:ml-2"> Cafe to...</span></div>
+			<div id="mssg" class="title text-black w-full max-md:p-10 max-md:justify-center text-3xl md:text-5xl flex max-md:flex-row flex-col mr-[5%]"><span> Capuccino </span> <span class="max-md:ml-2"> Cafe to...</span></div>
 		</div>
 		<div class="w-full">
 			<a href="<?php echo esc_url(page_url_by_slug('pracownia-tortow-2')); ?>" class="first_service">
@@ -326,8 +326,8 @@ require_once get_stylesheet_directory() . '/inc/instagram.php';
 
 					originalHeaderHTML = oldHeader.outerHTML; // store original
 					isShopHeader = true;
-
-					fetch('/wp-admin/admin-ajax.php?action=load_shop_header')
+					const ajaxurl = "<?php echo admin_url('admin-ajax.php'); ?>";
+					fetch(`${ajaxurl}?action=load_shop_header`)
 						.then(response => response.text())
 						.then(html => {
 							const tempDiv = document.createElement('div');
