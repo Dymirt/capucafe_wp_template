@@ -109,7 +109,7 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 
 	<div class="flex relative max-md:flex-col z-10 max-sm:pt-8 max-md:pt-36  pt-48 max-sm:w-full max-md:w-[80%] max-lg:w-[90%]  max-xl:w-[85%] max-2xl:w-[85%]">
 		<div class="mssg_parent max-md:w-full w-1/2 max-lg:w-1/2">
-			<div id="mssg" class="title text-black w-full max-md:p-10 max-md:justify-center sm:text-3xl text-5xl flex max-md:flex-row flex-col mr-[5%]"><span> Capuccino </span> <span class="max-md:ml-2"> Cafe to...</span></div>
+			<div id="mssg" class="title text-black w-full max-md:p-10 max-md:justify-center text-3xl md:text-5xl flex max-md:flex-row flex-col mr-[5%]"><span> Capuccino </span> <span class="max-md:ml-2"> Cafe to...</span></div>
 		</div>
 		<div class="w-full">
 			<a href="<?php echo esc_url(page_url_by_slug('pracownia-tortow-2')); ?>" class="first_service">
