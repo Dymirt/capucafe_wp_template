@@ -42,6 +42,19 @@ html {
 	box-sizing: border-box;
 }
 
+.page-id-283 #content > .col-full{
+	padding: 0!important;
+	margin: 0!important;
+	max-width: 100vw;
+}
+.page-id-283  header{
+	position:absolute;
+	top:0;
+}
+.page-id-283 .woocommerce-breadcrumb{
+	display: none;
+}
+
 .header a,
 a.features-sec {
 	color: white !important;
