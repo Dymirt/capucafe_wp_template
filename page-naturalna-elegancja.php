@@ -2,6 +2,12 @@
 
 get_header(); ?>
 
+<style>
+	.storefront-breadcrumb {
+		display: none !important;
+	}
+</style>
+
 <main>
 	<!-- hero section -->
 	<div class="hero-rozana relative h-screen max-md:h-[70vh] bg-cover max-md:bg-center flex items-center justify-center">

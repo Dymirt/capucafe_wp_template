@@ -58,7 +58,12 @@ $count = WC()->cart->get_cart_contents_count();
 			?>
 		</header><!-- #masthead -->
 		<?php
-		if (is_front_page() || is_page('torty-weselne') ) {
+		if (is_front_page()
+		|| is_page('torty-weselne')
+		|| is_page('lesna-harmonia')
+		|| is_page('naturalna-elegancja')
+		|| is_page('rozana-romantyka')
+		|| is_page('slodkie-stoly') ) {
 			get_template_part('headers/header', 'homepage');
 		} else {
 			get_template_part('headers/header', 'shop');
