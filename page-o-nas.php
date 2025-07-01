@@ -152,34 +152,38 @@ get_header(); ?>
 										</div>
 								</section>
 
+
 									<section id="torty" id="kawa" class="relative !flex max-md:flex-col items-center min-w-[70vw] max-lg:min-w-[90vw] max-md:w-[70vw] mx-[1%]  ">
 										<div class="md:min-w-[360px] max-md:w-full">   
 												<img   class="flex-1 h-auto md:max-w-[1024px] md:min-w-[500px] max-md:w-full object-cover max-h-[446px] "  src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/kawa.png"/>
 										</div>
 											<div class="   md:max-w-[450px] max-md:w-full w-full md:absolute -right-12 bg-white text-black p-8">
-												<h3 class="!text-[#A9957B]">Kawa z autorskiej mieszanki</h3>
-												<p> Aromatyczna kawa, stworzona z wyjątkowej mieszanki 100% Arabica. Ziarna sprowadzamy prosto z Peru, Etiopii i Gwatemali, a następnie palimy je lokalnie, dbając o najwyższą jakość. Oferujemy zarówno tradycyjne, jak i alternatywne metody parzenia, w tym chemex, drip, aeropress, cold brew i nitro coffee.</p>
+												<h3 class="!text-[#A9957B]">Torty weselne i na każdą okazję</h3>
+												<p> Realizowane torty na zamówienie. Nasi cukiernicy to prawdziwi artyści, którzy z rozmachem urzeczywistnią Wasze wizje i pomysły. Służymy doradztwem w wyborze smaku oraz bogatym portfolio tortów stworzonych na wszelkiego rodzaju uroczystości.</p>
 										</div>
 								</section>
 
+								
 
-									<section id="lody" class="relative !flex max-md:flex-col items-center min-w-[70vw] max-lg:min-w-[90vw] max-md:w-[70vw] mx-[1%]  ">
+
+								<section id="lody"  class="relative !flex max-md:flex-col items-center min-w-[70vw] max-lg:min-w-[90vw] max-md:w-[70vw] mx-[1%]  ">
 										<div class="md:min-w-[360px] max-md:w-full">   
 												<img   class="flex-1 h-auto md:max-w-[1024px] md:min-w-[500px] max-md:w-full object-cover max-h-[446px] "  src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/kawa.png"/>
 										</div>
 											<div class="   md:max-w-[450px] max-md:w-full w-full md:absolute -right-12 bg-white text-black p-8">
-												<h3 class="!text-[#A9957B]">Kawa z autorskiej mieszanki</h3>
-												<p> Aromatyczna kawa, stworzona z wyjątkowej mieszanki 100% Arabica. Ziarna sprowadzamy prosto z Peru, Etiopii i Gwatemali, a następnie palimy je lokalnie, dbając o najwyższą jakość. Oferujemy zarówno tradycyjne, jak i alternatywne metody parzenia, w tym chemex, drip, aeropress, cold brew i nitro coffee.</p>
+												<h3 class="!text-[#A9957B]">Lody naturalne</h3>
+												<p>  Lody w których nie ma miejsca na chemię i ulepszacze. Są za to świeże owoce oraz mleko i śmietana z miejscowej mleczarni. Polecamy smaki zarówno tradycyjne, jak i wegańskie. Oryginalne, sekretne receptury stworzyliśmy na podstawie własnych poszukiwań oraz wiedzy zdobytej od najlepszych lodziarzy w Polsce i Europie.</p>
 										</div>
 								</section>
 
+			 
 								<section id="stoły" class="relative !flex max-md:flex-col items-center min-w-[70vw] max-lg:min-w-[90vw] max-md:w-[70vw] mx-[1%]  ">
 										<div class="md:min-w-[360px] max-md:w-full">   
 												<img   class="flex-1 h-auto md:max-w-[1024px] md:min-w-[500px] max-md:w-full object-cover max-h-[446px] "  src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/kawa.png"/>
 										</div>
 											<div class="   md:max-w-[450px] max-md:w-full w-full md:absolute -right-12 bg-white text-black p-8">
-												<h3 class="!text-[#A9957B]">Kawa z autorskiej mieszanki</h3>
-												<p> Aromatyczna kawa, stworzona z wyjątkowej mieszanki 100% Arabica. Ziarna sprowadzamy prosto z Peru, Etiopii i Gwatemali, a następnie palimy je lokalnie, dbając o najwyższą jakość. Oferujemy zarówno tradycyjne, jak i alternatywne metody parzenia, w tym chemex, drip, aeropress, cold brew i nitro coffee.</p>
+												<h3 class="!text-[#A9957B]">Słodkie stoły</h3>
+												<p> Prawdziwe dzieła sztuki, które z pewnością zapadną w pamięć gości weselnych. Stworzone z kunsztem, przepięknie zaaranżowane, a przy tym zgodne z pomysłem Pary Młodej, indywidualnie dopasowane do sali weselnej i wizji wydarzenia.</p>
 										</div>
 								</section>
 
@@ -188,8 +192,8 @@ get_header(); ?>
 												<img   class="flex-1 h-auto md:max-w-[1024px] md:min-w-[500px] max-md:w-full object-cover max-h-[446px] "  src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/kawa.png"/>
 										</div>
 											<div class="   md:max-w-[450px] max-md:w-full w-full md:absolute -right-12 bg-white text-black p-8">
-												<h3 class="!text-[#A9957B]">Kawa z autorskiej mieszanki</h3>
-												<p> Aromatyczna kawa, stworzona z wyjątkowej mieszanki 100% Arabica. Ziarna sprowadzamy prosto z Peru, Etiopii i Gwatemali, a następnie palimy je lokalnie, dbając o najwyższą jakość. Oferujemy zarówno tradycyjne, jak i alternatywne metody parzenia, w tym chemex, drip, aeropress, cold brew i nitro coffee.</p>
+												<h3 class="!text-[#A9957B]">Monoporcje</h3>
+												<p> Monoporcje, czyli malutkie słodkości o wybitnym smaku. Na specjalne zamówienie tworzymy m.in. mini torciki, mini serniczki, cakepops, cupcakes, mini tarty i wiele innych.</p>
 										</div>
 								</section>
 
@@ -198,8 +202,8 @@ get_header(); ?>
 												<img   class="flex-1 h-auto md:max-w-[1024px] md:min-w-[500px] max-md:w-full object-cover max-h-[446px] "  src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/kawa.png"/>
 										</div>
 											<div class="   md:max-w-[450px] max-md:w-full w-full md:absolute -right-12 bg-white text-black p-8">
-												<h3 class="!text-[#A9957B]">Kawa z autorskiej mieszanki</h3>
-												<p> Aromatyczna kawa, stworzona z wyjątkowej mieszanki 100% Arabica. Ziarna sprowadzamy prosto z Peru, Etiopii i Gwatemali, a następnie palimy je lokalnie, dbając o najwyższą jakość. Oferujemy zarówno tradycyjne, jak i alternatywne metody parzenia, w tym chemex, drip, aeropress, cold brew i nitro coffee.</p>
+												<h3 class="!text-[#A9957B]">Świeżo wyciskane soki i koktajle</h3>
+												<p>Soki i koktajle ze świeżych owoców i warzyw, a więc esencję natury. Smaczne, zdrowe i odżywcze bomby witaminowe, które dodadzą sił i poprawią nawet najgorszy humor.</p>
 										</div>
 								</section>
 								<!-- fix this -->
@@ -208,8 +212,8 @@ get_header(); ?>
 												<img   class="flex-1 h-auto md:max-w-[1024px] md:min-w-[500px] max-md:w-full object-cover max-h-[446px] "  src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/kawa.png"/>
 										</div>
 											<div class="   md:max-w-[450px] max-md:w-full w-full md:absolute -right-12 bg-white text-black p-8 ">
-												<h3 class="!text-[#A9957B]">Kawa z autorskiej mieszanki</h3>
-												<p> Aromatyczna kawa, stworzona z wyjątkowej mieszanki 100% Arabica. Ziarna sprowadzamy prosto z Peru, Etiopii i Gwatemali, a następnie palimy je lokalnie, dbając o najwyższą jakość. Oferujemy zarówno tradycyjne, jak i alternatywne metody parzenia, w tym chemex, drip, aeropress, cold brew i nitro coffee.</p>
+												<h3 class="!text-[#A9957B]">Pieczywo wypiekane na miejscu </h3>
+												<p> Lojalnie ostrzegamy: nasze aromatyczne chleby pszenne lub na zakwasie żytnim, croissanty maślane i czekoladowe oraz pyszne drożdżówki uzależniają!.</p>
 										</div>
 								</section>
 							
