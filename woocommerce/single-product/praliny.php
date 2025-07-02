@@ -118,7 +118,7 @@
 						<input type="hidden" name="add-to-cart" value="<?php echo esc_attr($product_id); ?>" />
 						<input type="hidden" name="product_id" value="<?php echo esc_attr($product_id); ?>" />
 
-						<input type="hidden" name="custom_candies" id="custom_candies_input"  />
+						<input type="hidden" name="custom_candies" id="custom_candies_input" />
 						<input type="hidden" name="box_size" id="box_size_input" />
 
 						<div data-layer="cena i btn" class="CenaIBtn self-stretch flex flex-col justify-start items-start gap-8 pt-2">
@@ -212,7 +212,7 @@
 <script>
 	document.addEventListener('DOMContentLoaded', () => {
 		let globalCount = 0;
-		let maxCandies = 16;
+		let maxCandies = 0;
 		const globalCounterEl = document.getElementById('global-counter');
 		const summaryList = document.getElementById("candy-summary-list");
 
@@ -259,7 +259,7 @@
 				}
 			});
 		};
-		
+
 		document.getElementById("candy-summary-list").addEventListener("click", (e) => {
 			if (e.target.closest(".remove-candy")) {
 				const button = e.target.closest(".remove-candy");
@@ -290,7 +290,7 @@
 			const selectedBoxCard = document.querySelector(".option-card.selected");
 			let boxSize = selectedBoxCard?.dataset.value || "16_szt";
 
-			console.log('Selected box size:', boxSize);
+			//console.log('Selected box size:', boxSize);
 
 			const layoutMap = {
 				"6 sztuk": {
@@ -371,9 +371,8 @@
 
 			if (!countEl || !incrementBtn || !decrementBtn) return;
 
-			let count = 0;
-
 			incrementBtn.addEventListener('click', () => {
+				let count = parseInt(countEl.textContent, 10);
 				if (globalCount < maxCandies) {
 					count++;
 					countEl.textContent = count;
@@ -385,6 +384,7 @@
 			});
 
 			decrementBtn.addEventListener('click', () => {
+				let count = parseInt(countEl.textContent, 10);
 				if (count > 0) {
 					count--;
 					countEl.textContent = count;
@@ -417,7 +417,16 @@
 					// Save selected value on the attribute group div dataset or a hidden input
 					group.dataset.selectedValue = card.dataset.value;
 
-					updateImageSummary();
+					maxCandies = parseInt(card.dataset.value, 10) || 16; // Default to 16 if not set
+
+					//console.log('size:', maxCandies);
+
+					requestAnimationFrame(() => {
+						removeNotFitCandies();
+						updateAll();
+					});
+
+
 
 					let huddenVariationInput = group.querySelector('input[name="variation_id"]');
 					if (!huddenVariationInput) {
@@ -437,6 +446,26 @@
 				});
 			});
 		});
+
+		function removeNotFitCandies() {
+			let tmpCount = 0;
+			document.querySelectorAll('.Karta').forEach(card => {
+				let candycounter = 0;
+				const countEl = card.querySelector('[data-count]');
+				let count = parseInt(countEl.textContent, 10); // ✅ use let instead of const
+				if (tmpCount >= maxCandies) {
+					countEl.textContent = 0;
+					return;
+				}
+				while (tmpCount < maxCandies && candycounter < count) {
+					tmpCount++;
+					candycounter++;
+					countEl.textContent = candycounter;
+				}
+
+			});
+			globalCount = tmpCount;
+		}
 
 		// Save selection to localStorage
 		function saveCandySelectionToStorage() {
