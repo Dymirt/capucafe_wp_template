@@ -84,6 +84,7 @@ do_action('woocommerce_before_main_content');
 				$terms = get_terms([
 					'taxonomy' => 'product_cat',
 					'hide_empty' => true,
+					'visibility' => 'catalog',
 				]);
 
 				$current_term = get_queried_object();
@@ -119,6 +120,7 @@ do_action('woocommerce_before_main_content');
 								'status' => 'publish',
 								'limit'  => -1,
 								'return' => 'ids',
+								'visibility' => 'catalog',
 							]);
 							$total_count = count($total_products); ?>
 							<?php
@@ -132,13 +134,23 @@ do_action('woocommerce_before_main_content');
 							</div>
 							<?php foreach ($terms as $term): ?>
 								<?php
+								$visible_products = wc_get_products([
+									'status'     => 'publish',
+									'limit'      => -1,
+									'return'     => 'ids',
+									'category'   => [$term->slug],
+									'visibility' => 'catalog', // only visible in shop
+								]);
+
+								$visible_count = count($visible_products);
+
 								$is_active = $current_term_id === $term->term_id;
 								$category_class = $is_active
 									? 'text-stone-400 font-bold'
 									: 'text-zinc-500 font-light';
 								?>
-								<div data-layer="<?= esc_attr($term->count); ?>" class="justify-start text-base leading-snug font-['Mulish'] <?= $category_class ?>">
-									(<?= esc_html($term->count); ?>)
+								<div data-layer="<?= esc_attr($visible_count); ?>" class="justify-start text-base leading-snug font-['Mulish'] <?= $category_class ?>">
+									(<?= esc_html($visible_count); ?>)
 								</div>
 							<?php endforeach; ?>
 						</div>
