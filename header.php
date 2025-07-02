@@ -57,18 +57,7 @@ $count = WC()->cart->get_cart_contents_count();
 			//do_action('storefront_header');
 			?>
 		</header><!-- #masthead -->
-		<?php
-		if (is_front_page()
-		|| is_page('torty-weselne')
-		|| is_page('lesna-harmonia')
-		|| is_page('naturalna-elegancja')
-		|| is_page('rozana-romantyka')
-		|| is_page('slodkie-stoly') ) {
-			get_template_part('headers/header', 'homepage');
-		} else {
-			get_template_part('headers/header', 'shop');
-		}
-		?>
+		<?php get_template_part('headers/header', 'shop'); ?>
 
 		<div id="menu-overlay" class="hidden fixed inset-0 bg-black bg-opacity-50 z-[99998]"></div>
 		<!-- Side Menu -->
@@ -140,7 +129,7 @@ $count = WC()->cart->get_cart_contents_count();
 		?>
 
 		<div id="content" class="site-content" tabindex="-1">
-			<?php if (is_front_page() || is_page('o-nas') || is_page('menu')|| is_page('torty-weselne')): ?>
+			<?php if (is_front_page() || is_page('o-nas') || is_page('menu') || is_page('torty-weselne')): ?>
 				<!-- Homepage -->
 				<div class="w-full ">
 				<?php else : ?>
