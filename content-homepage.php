@@ -104,18 +104,18 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 </div>
 
 <!--- services section -->
-<div class="services  max-md:h-auto  bg-cover   bg-center relative flex justify-center max-sm:p-[5%] max-md:bg-none pb-32">
-	<div class="absolute top-0 left-o bg-white  opacity-80 z-1 w-full h-full max-md:hidden"></div>
+<div class="services  max-md:h-auto  bg-cover  bg-center relative justify-center max-sm:p-[5%] max-md:bg-none pb-32 ">
+	<div class="absolute top-0 left-0 bg-white  opacity-80 z-1 w-full h-full max-md:hidden"></div>
 
-	<div class="flex relative max-md:flex-col z-10 max-sm:pt-8 max-md:pt-36  pt-48 max-sm:w-full max-md:w-[80%] max-lg:w-[90%]  max-xl:w-[85%] max-2xl:w-[85%]">
-		<div class="mssg_parent max-md:w-full w-1/2 max-lg:w-1/2">
-			<div id="mssg" class="title text-black w-full max-md:p-10 max-md:justify-center text-3xl md:text-5xl flex max-md:flex-row flex-col mr-[5%]"><span> Capuccino </span> <span class="max-md:ml-2"> Cafe to...</span></div>
+	<div class="flex relative max-md:flex-col z-10 max-sm:pt-8 max-md:pt-36  pt-48  md:w-[80%] lg:w-[1920px] mx-auto">
+		<div class="mssg_parent relative max-md:w-full w-1/2 max-lg:w-1/2 pb-8 ">
+			<div id="" class="title text-black w-full max-md:p-10 max-md:justify-center text-3xl md:text-5xl lg:text-7xl flex max-md:flex-row flex-col mr-[5%] sticky top-[300px]"><span> Capuccino </span> <span class="max-md:ml-2"> Cafe to...</span></div>
 		</div>
 		<div class="w-full">
 			<a href="<?php echo esc_url(page_url_by_slug('pracownia-tortow-2')); ?>" class="first_service">
-				<div class="bg-white rounded-sm overflow-hidden flex flex-row-reverse max-sm:flex-col w-full relative mb-6 hover:bg-[#A9957B] group">
+				<div class="bg-white rounded-sm overflow-hidden flex flex-row-reverse max-sm:flex-col w-full relative mb-6 hover:bg-[#A9957B] group h-60 lg:h-64">
 					<div class='w-1/2 max-md:w-full'>
-						<img class="w-full !h-[220px] object-cover" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/pracownia_tortow.png" />
+						<img class="w-full object-cover" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/pracownia_tortow.png" />
 					</div>
 
 					<div class="flex min-w-72 max-md:w-full w-1/2 p-5 flex-col justify-between max-md:h-40  max-md:justify-center">
@@ -125,16 +125,16 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 							</svg>
 						</div>
 						<div>
-							<div class="self-stretch justify-start text-stone-700 text-xl font-bold mb-1 group-hover:text-[#42352F]">Pracownia tortów</div>
+							<div class="self-stretch justify-start text-stone-700 text-xl lg:text-2xl font-bold mb-1 group-hover:text-[#42352F]">Pracownia tortów</div>
 							<div class="self-stretch justify-start text-zinc-500 text-sm font-normal font-['Mulish'] leading-tight group-hover:text-white">Wykonujemy torty na zamówienie, według projektu i wizji Młodej Pary. Służymy również fachowym doradztwem.</div>
 						</div>
 					</div>
 				</div>
 			</a>
 			<a href="<?php echo esc_url(page_url_by_slug('slodkie-stoly')); ?>">
-				<div class="bg-white rounded-sm overflow-hidden flex flex-row-reverse max-sm:flex-col w-full relative mb-6 groupe hover:bg-[#A9957B] group">
+				<div class="bg-white rounded-sm overflow-hidden flex flex-row-reverse max-sm:flex-col w-full relative mb-6 groupe hover:bg-[#A9957B] group h-60 lg:h-64">
 					<div class='w-1/2 max-md:w-full'>
-						<img class="w-full !h-[220px] object-cover" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/slodkie_stoly.jpg" />
+						<img class="w-full object-cover" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/slodkie_stoly.jpg" />
 					</div>
 					<div class="flex min-w-72 max-md:w-full w-1/2 p-5 flex-col justify-between max-md:h-40  max-md:justify-center">
 						<div class="max-md:hidden">
@@ -143,7 +143,7 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 							</svg>
 						</div>
 						<div>
-							<div class="self-stretch justify-start text-stone-700 text-xl font-bold mb-1 group-hover:text-[#42352F]">Słodkie Stoły</div>
+							<div class="self-stretch justify-start text-stone-700 text-xl lg:text-2xl font-bold mb-1 group-hover:text-[#42352F]">Słodkie Stoły</div>
 							<div class="self-stretch justify-start text-zinc-500 text-sm font-normal font-['Mulish'] leading-tight group-hover:text-white">Słodkie stoły zachwycają bogactwem smaków i przepiękną aranżacją.</div>
 						</div>
 					</div>
@@ -151,9 +151,9 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 
 			</a>
 			<a href="<?php echo esc_url(page_url_by_slug('kawiarnie')); ?>">
-				<div class="bg-white rounded-sm overflow-hidden flex flex-row-reverse max-sm:flex-col w-full relative mb-6 hover:bg-[#A9957B] group">
+				<div class="bg-white rounded-sm overflow-hidden flex flex-row-reverse max-sm:flex-col w-full relative mb-6 hover:bg-[#A9957B] group h-60 lg:h-64">
 					<div class='w-1/2 max-md:w-full'>
-						<img class="w-full !h-[220px] object-cover" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/kawiarnie.png" />
+						<img class="w-full object-cover" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/kawiarnie.png" />
 					</div>
 
 					<div class="flex min-w-72 max-md:w-full w-1/2 p-5 flex-col justify-between max-md:h-40  max-md:justify-center ">
@@ -163,7 +163,7 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 							</svg>
 						</div>
 						<div>
-							<div class="self-stretch justify-start text-stone-700 text-xl font-bold mb-1 group-hover:text-[#42352F]">Kawiarnie</div>
+							<div class="self-stretch justify-start text-stone-700 text-xl lg:text-2xl font-bold mb-1 group-hover:text-[#42352F]">Kawiarnie</div>
 							<div class="self-stretch justify-start text-zinc-500 text-sm font-normal font-['Mulish'] leading-tight group-hover:text-white">Klimatyczne kawiarnie w nadmorskich kurortach. Najwyższej jakości ciasta i desery własnej produkcji oraz aromatyczna kawa.</div>
 						</div>
 					</div>
@@ -171,9 +171,9 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 			</a>
 			<a href="<?php echo esc_url(get_permalink(wc_get_page_id('shop'))); ?>" class="last_service">
 
-				<div class="bg-white rounded-sm overflow-hidden flex flex-row-reverse max-sm:flex-col w-full relative mb-6 hover:bg-[#A9957B] group">
+				<div class="bg-white rounded-sm overflow-hidden flex flex-row-reverse max-sm:flex-col w-full relative mb-6 hover:bg-[#A9957B] group h-60 lg:h-64">
 					<div class='w-1/2 max-md:w-full'>
-						<img class="w-full !h-[220px] object-cover" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/sklep_online.png" />
+						<img class="w-full object-cover" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/sklep_online.png" />
 					</div>
 
 					<div class="flex min-w-72 max-md:w-full w-1/2 p-5 flex-col justify-between max-md:h-40 max-md:justify-center">
@@ -183,27 +183,33 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 							</svg>
 						</div>
 						<div>
-							<div class="self-stretch justify-start text-stone-700 text-xl font-bold mb-1 group-hover:text-[#42352F]">Sklep online</div>
+							<div class="self-stretch justify-start text-stone-700 text-xl lg:text-2xl font-bold mb-1 group-hover:text-[#42352F]">Sklep online</div>
 							<div class="self-stretch justify-start text-zinc-500 text-sm font-normal font-['Mulish'] leading-tight group-hover:text-white">Zapewniamy kompleksową organizację imprez okolicznościowych.</div>
 						</div>
 					</div>
 				</div>
 			</a>
-			<a href="<?php echo esc_url(page_url_by_slug('o-nas')); ?>">
-				<div data-property-1="Default" class="h-12 px-7 rounded outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2.5 hover:bg-[#A9957B] group">
-					<div class="justify-center text-zinc-800 text-sm font-bold font-['Mulish'] uppercase leading-tight  group-hover:!text-white">Więcej o nas</div>
-					<div class="w-6 h-6 relative overflow-hidden">
-						<div class="w-3.5 h-3.5 top-[2px] relative"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<path class="group-hover:fill-white" d="M16.627 12.75H5.25C5.03717 12.75 4.859 12.6782 4.7155 12.5345C4.57183 12.391 4.5 12.2128 4.5 12C4.5 11.7872 4.57183 11.609 4.7155 11.4655C4.859 11.3218 5.03717 11.25 5.25 11.25H16.627L11.4577 6.08076C11.3091 5.93209 11.2357 5.75809 11.2375 5.55876C11.2395 5.35942 11.318 5.18217 11.473 5.02701C11.6282 4.88217 11.8038 4.80717 12 4.80201C12.1962 4.79684 12.3718 4.87184 12.527 5.02701L18.8672 11.3673C18.9609 11.4609 19.0269 11.5597 19.0652 11.6635C19.1037 11.7673 19.123 11.8795 19.123 12C19.123 12.1205 19.1037 12.2327 19.0652 12.3365C19.0269 12.4403 18.9609 12.5391 18.8672 12.6328L12.527 18.973C12.3885 19.1115 12.217 19.1823 12.0125 19.1855C11.808 19.1887 11.6282 19.1178 11.473 18.973C11.318 18.8178 11.2405 18.6397 11.2405 18.4385C11.2405 18.2372 11.318 18.0589 11.473 17.9038L16.627 12.75Z" fill="#A9957B" />
-							</svg>
 
-						</div>
+		</div>
+
+	</div>
+	<div class="relative text-center z-10">
+		<a href="<?php echo esc_url(page_url_by_slug('o-nas')); ?>" class="inline-block">
+			<div data-property-1="Default" class="h-12 px-7 rounded outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2.5 hover:bg-[#A9957B] group">
+				<div class="justify-center text-zinc-800 text-sm font-bold font-['Mulish'] uppercase leading-tight  group-hover:!text-white">Więcej o nas</div>
+				<div class="w-6 h-6 relative overflow-hidden">
+					<div class="w-3.5 h-3.5 top-[2px] relative"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path class="group-hover:fill-white" d="M16.627 12.75H5.25C5.03717 12.75 4.859 12.6782 4.7155 12.5345C4.57183 12.391 4.5 12.2128 4.5 12C4.5 11.7872 4.57183 11.609 4.7155 11.4655C4.859 11.3218 5.03717 11.25 5.25 11.25H16.627L11.4577 6.08076C11.3091 5.93209 11.2357 5.75809 11.2375 5.55876C11.2395 5.35942 11.318 5.18217 11.473 5.02701C11.6282 4.88217 11.8038 4.80717 12 4.80201C12.1962 4.79684 12.3718 4.87184 12.527 5.02701L18.8672 11.3673C18.9609 11.4609 19.0269 11.5597 19.0652 11.6635C19.1037 11.7673 19.123 11.8795 19.123 12C19.123 12.1205 19.1037 12.2327 19.0652 12.3365C19.0269 12.4403 18.9609 12.5391 18.8672 12.6328L12.527 18.973C12.3885 19.1115 12.217 19.1823 12.0125 19.1855C11.808 19.1887 11.6282 19.1178 11.473 18.973C11.318 18.8178 11.2405 18.6397 11.2405 18.4385C11.2405 18.2372 11.318 18.0589 11.473 17.9038L16.627 12.75Z" fill="#A9957B" />
+						</svg>
+
 					</div>
 				</div>
-			</a>
-		</div>
+			</div>
+		</a>
 	</div>
+
 </div>
+
 
 
 <div class="min-h-[60vh] py-12">
@@ -258,7 +264,7 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 			<img class="h-12  w-[35%] mb-5" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/sopotski_mlyn_logo.png" />
 			<h1 class="max-md:!text-6xl  max-lg:!text-3xl !text-6xl !text-white title">Restauracja <br>Sopocki Młyn </h1>
 			<p class="text-[#A9957B] font-['Mulish']">Smak tradycji w sercu Sopotu!</p>
-			<div  class="h-12 px-7 rounded  outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2.5 hover:bg-[#A9957B] group">
+			<div class="h-12 px-7 rounded  outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2.5 hover:bg-[#A9957B] group">
 				<div class="justify-center text-white text-[11px] font-bold font-['Mulish'] uppercase leading-tight">Poznaj menu</div>
 				<div class="w-6 h-6 relative overflow-hidden">
 					<div class="w-3.5 h-4 top-[2px] relative origin-top-left"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -361,58 +367,6 @@ require_once get_stylesheet_directory() . '/inc/instagram.php';
 					}
 				}
 			}, {
-				passive: true
-			});
-		})();
-
-		(function() {
-			if (window.innerWidth < 768) return;
-			const text = document.getElementById('mssg');
-			const firstService = document.querySelector('.first_service');
-			const lastService = document.querySelector('.last_service');
-
-			if (!text || !firstService || !lastService) return;
-
-			const initialWidth = text.offsetWidth;
-			const screenMiddle = window.innerHeight / 2;
-
-			const handleScroll = () => {
-				const firstTop = firstService.getBoundingClientRect().top;
-				const firstMiddle = firstTop + firstService.offsetHeight / 2;
-				const lastTop = lastService.getBoundingClientRect().top;
-				const lastHeight = lastService.offsetHeight;
-				const lastMiddle = lastTop + lastHeight / 2;
-
-
-				// When we're above the first block — reset
-				if (firstTop > screenMiddle) {
-					text.style.position = 'relative';
-					text.style.top = '0';
-					text.style.left = 'auto';
-					text.style.width = 'auto';
-					text.style.zIndex = 'auto';
-					return;
-				}
-
-				// When we're inside the scroll zone — fix to center of screen
-				if (lastMiddle > screenMiddle) {
-					text.style.position = 'fixed';
-					text.style.top = `${screenMiddle}px`;
-					text.style.left = 'auto'; // optional
-					text.style.width = 'auto'; // optional
-					text.style.zIndex = '1000';
-					return;
-				}
-
-				// When past the middle of last service — fix #mssg inside that block
-				text.style.position = 'absolute';
-				text.style.top = `${lastService.offsetTop + lastHeight / 2 - text.offsetHeight / 2}px`;
-				text.style.left = 'auto';
-				text.style.width = 'auto';
-				text.style.zIndex = '1000';
-			};
-
-			window.addEventListener('scroll', handleScroll, {
 				passive: true
 			});
 		})();

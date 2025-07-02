@@ -38,6 +38,11 @@ html {
 	scroll-behavior: auto !important;
 }
 
+body, .site {
+	overflow: visible !important;
+	overflow-x: visible !important;
+}
+
 * {
 	box-sizing: border-box;
 }

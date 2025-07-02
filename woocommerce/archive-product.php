@@ -63,7 +63,7 @@ do_action('woocommerce_before_main_content');
 
 
 
-		<div data-layer="kategorie i filtry" class="KategorieIFiltry w-full inline-flex flex-col justify-start items-start">
+		<div data-layer="kategorie i filtry" class="KategorieIFiltry w-full inline-flex flex-col justify-start items-start sticky top-[120px] left-0">
 			<a href="<?= esc_url($praliny_link); ?>" data-layer="Wybrane filtry" class="WybraneFiltry self-stretch py-4 border-b border-neutral-200 flex flex-col justify-start items-center gap-2.5">
 				<div data-layer="image" class="Image self-stretch h-40 pl-4 pr-[20%] py-4 bg-linear-318 from-stone-700/60 to-stone-700/0 to 54% rounded-sm backdrop-blur-sm flex flex-col justify-between items-start">
 					<div data-layer="Frame" class="Frame size-8 relative overflow-hidden">
