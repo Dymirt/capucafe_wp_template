@@ -215,12 +215,24 @@
 		let maxCandies = 0;
 		const globalCounterEl = document.getElementById('global-counter');
 		const summaryList = document.getElementById("candy-summary-list");
+		const submitButton = document.querySelector('.single_add_to_cart_button');
 
 		function updateAll() {
 			updateGlobalCounterDisplay();
 			saveCandySelectionToStorage();
 			updateSummary(); // Text version
 			updateImageSummary(); // Image box version
+			updateSubmitButtonState(); // ← Add this line
+		}
+
+		function updateSubmitButtonState() {
+			if (globalCount === maxCandies && maxCandies !== 0) {
+				submitButton.disabled = false;
+				submitButton.classList.remove('opacity-50', 'cursor-not-allowed');
+			} else {
+				submitButton.disabled = true;
+				submitButton.classList.add('opacity-50', 'cursor-not-allowed');
+			}
 		}
 
 		function updateGlobalCounterDisplay() {
@@ -361,6 +373,9 @@
 
 			document.getElementById("custom_candies_input").value = JSON.stringify(candies);
 			document.getElementById("box_size_input").value = boxSize;
+
+			localStorage.removeItem('candySelection');
+
 		});
 
 		// Candies selection logic
