@@ -10,12 +10,16 @@ get_header(); ?>
 
 <main>
 	<!-- hero section -->
-	<div class="hero-rozana relative h-screen max-md:h-[70vh] bg-cover max-md:bg-center flex items-center justify-center">
-		<div class="shadow w-full h-full absolute z-1  left-0 max-md:hidden"></div>
-		<div class="!text-white z-50">
-			<h1 class="!text-white !text-[80px] max-md:!text-[40px] !font-['Didot_LT_Pro']">Różana Romantyka</h1>
-			<p class="text-center">Delikatna, romantyczna stylizacja. </p>
-
+	<div class="hero-rozana bg-cover relative max-md:bg-center z-3">
+		<div class="sticky top-0 z-4">
+			<?php get_template_part('headers/header', 'homepage'); ?>
+		</div>
+		<div class="shadow w-full h-full absolute left-0 top-0 max-md:hidden"></div>
+		<div class="relative h-screen max-md:h-[70vh]   flex items-center justify-center">
+			<div class="!text-white">
+				<h1 class="!text-white !text-[80px] max-md:!text-[40px] !font-['Didot_LT_Pro']">Różana Romantyka</h1>
+				<p class="text-center">Delikatna, romantyczna stylizacja. </p>
+			</div>
 		</div>
 	</div>
 
