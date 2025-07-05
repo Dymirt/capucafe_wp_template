@@ -1,7 +1,7 @@
 <div class="self-stretch py-14 flex max-md:flex-col flex-row-reverse justify-start items-center   w-9/10 max-sm:w-full max-md:w-[80%] mx-auto max-lg:w-[91%]  max-xl:w-[85%] max-2xl:w-[85%]">
 
-	<div class="self-stretch px-10 flex flex-col justify-center items-start gap-2.5">
-		<div class="self-stretch justify-start text-stone-700 text-3xl font-normal font-['Didot_LT_Pro']">Po więcej zapraszamy na nasz Instagram</div>
+	<div class="self-stretch px-10 flex flex-col justify-center items-start gap-2.5 2xl:w-1/3">
+		<div class="self-stretch justify-start text-stone-700 text-3xl 2xl:text-4xl font-normal font-['Didot_LT_Pro']">Po więcej zapraszamy na nasz Instagram</div>
 		<div class="w-60 justify-start text-zinc-800 text-base font-light font-['Mulish'] leading-snug">@capuccinocafe_sopot</div>
 		<!-- button -->
 		<a href="https://www.instagram.com/capuccinocafe_sopot/" target="_blank" rel="noopener noreferrer">
@@ -19,11 +19,11 @@
 	</div>
 
 
-	<div class="scroll-hidd flex scrollbar-hidden  w-full mx-auto overflow-x-auto scroll-smooth flex-nowrap snap-x snap-mandatory items-center my-5 justify-center   py-12">
+	<div class="scroll-hidd flex scrollbar-hidden  w-full 2xl:w-4/6 mx-auto overflow-x-auto scroll-smooth flex-nowrap snap-x snap-mandatory items-center my-5 justify-center   py-12">
 		<!--- first post  -->
 		<div class="max-md:w-auto max-xl:w-1/2 items-center justify-center flex md:mr-3">
 
-			<div class="w-44 h-64  snap-start rounded outline-1 outline-offset-[-1px] outline-stone-200 inline-flex flex-col justify-start items-start overflow-hidden">
+			<div class="w-44 h-64 2xl:w-64  2xl:h-84 snap-start rounded outline-1 outline-offset-[-1px] outline-stone-200 inline-flex flex-col justify-start items-start overflow-hidden">
 				<div class="self-stretch px-4 py-2.5 inline-flex justify-start items-center gap-2.5">
 					<img class="w-6 h-6 !rounded-[100px]" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/insta_logo.png" />
 					<div class="justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">capuccinocafe_sopot</div>
@@ -35,7 +35,7 @@
 
 		<div class=" flex snap-start max-md:flex-row max-xl:flex-col max-md:w-auto max-xl:w-1/2">
 			<!--- second post  -->
-			<div class="w-44 h-64 max-md:mx-3 md:mb-5 lg:-mt-12 lg:mr-3 snap-start rounded outline-1 outline-offset-[-1px] outline-stone-200 inline-flex flex-col justify-start items-start overflow-hidden">
+			<div class="w-44 h-64 2xl:w-64  2xl:h-84 max-md:mx-3 md:mb-5 lg:-mt-12 lg:mr-3 snap-start rounded outline-1 outline-offset-[-1px] outline-stone-200 inline-flex flex-col justify-start items-start overflow-hidden">
 				<div class="self-stretch px-4 py-2.5 inline-flex justify-start items-center gap-2.5">
 					<img class="w-6 h-6 !rounded-[100px]" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/insta_logo.png" />
 					<div class="justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">capuccinocafe_sopot</div>
@@ -45,7 +45,7 @@
 			</div>
 
 			<!--- third post  -->
-			<div class="w-44 h-64  snap-start rounded outline-1 outline-offset-[-1px] outline-stone-200 inline-flex flex-col justify-start items-start overflow-hidden ">
+			<div class="w-44 h-64  2xl:!w-64  2xl:!h-84 snap-start rounded outline-1 outline-offset-[-1px] outline-stone-200 inline-flex flex-col justify-start items-start overflow-hidden ">
 				<div class="self-stretch px-4 py-2.5 inline-flex justify-start items-center gap-2.5 ">
 					<img class="w-6 h-6 !rounded-[100px]" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/insta_logo.png" />
 					<div class="justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']">capuccinocafe_sopot</div>

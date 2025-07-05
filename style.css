@@ -136,6 +136,7 @@ article {
 
 .heroSection {
 	background-size: 130%;
+	background-position-y: 0 ;
 	background-position-x: right;
 }
 
@@ -149,6 +150,19 @@ article {
 	font-family: 'Mulish';
 	border-radius: 5px;
 
+}
+@media (min-width:1760px) {
+	.subsections .features-sec {
+    height: 100px;
+    padding: 18px 60px;
+	font-size: 18px;
+}
+.List a {
+	font-size: 18px;
+}
+.product-semple{
+	width: 500px;
+}
 }
 
 .subsections .features-sec:hover {

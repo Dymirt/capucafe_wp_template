@@ -13,14 +13,14 @@ get_header(); ?>
     
     <div class="xl:w-1/3">
       <h5 class=" text-stone-700 text-4xl font-normal font-['Didot_LT_Pro'] max-lg:text-center">2006</h5>
-      <div class=" text-zinc-800 text-lg font-light font-['Mulish'] leading-relaxed">
+      <div class=" text-zinc-800 text-lg 2xl:text-xl font-light font-['Mulish'] leading-relaxed">
         Historia Capuccino Cafe sięga 2006 roku, kiedy w Jastarni powstała kawiarnia założona przez małżeństwo – Grażynę i Dominika Pawlak. Pyszna kawa oraz smakowite ciasta i koktajle szybko zdobyły popularność wśród mieszkańców i turystów. Sukces nadmorskiej kawiarni był dla nas motywacją do dalszego rozwoju umiejętności u wybitnych polskich cukierników, mistrzów Latte Art oraz najbardziej cenionych baristów w kraju.
       </div>
     </div>
 
     <div class="relative flex-1 h-[519px] flex justify-center items-center max-md:flex-col content-center py-5">
       <img
-        class="flex-1 h-full max-w-[1024px] min-w-72  w-full object-cover max-h-[546px]"
+        class="flex-1 h-full max-w-[1024px] min-w-72  w-full object-cover max-h-[546px] max-md:!h-[40vh]"
         src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/capuccinoCafe2006.jpg"
         alt="Capuccino Cafe"
       />
@@ -48,10 +48,10 @@ get_header(); ?>
 </div>
 
 <!--  section -2-  -->
-<div  class="  flex max-md:flex-col my-22">
-	<img   class="  object-cover md:min-h-[300px] w-1/3 max-md:w-full max-md:mb-2" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/Cappuc1.jpg" />
-	<img   class="  md:min-h-[300px] object-cover w-1/3 max-md:w-full max-md:mb-2" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/Cappuc2.jpg" />
-	<img   class="  md:min-h-[300px] object-cover  w-1/3 max-md:w-full max-md:mb-2" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/Cappuc3.jpg" />
+<div  class="  flex max-md:flex-col my-36 py-4">
+	<img   class="  object-cover md:min-h-[320px] w-1/3 max-md:w-full max-md:mb-2" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/Cappuc1.jpg" />
+	<img   class="  md:min-h-[320px] object-cover w-1/3 max-md:w-full max-md:mb-2" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/Cappuc2.jpg" />
+	<img   class="  md:min-h-[320px] object-cover  w-1/3 max-md:w-full max-md:mb-2" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/Cappuc3.jpg" />
 </div>
 
 <!--  section -3- (2015) -->
@@ -62,7 +62,7 @@ get_header(); ?>
 
     <div class="relative flex-1 h-[519px] flex justify-center items-center max-md:flex-col content-center py-5">
       <img
-        class="flex-1 h-full max-w-[1024px] min-w-72  w-full object-cover max-h-[546px]"
+        class="flex-1 h-full max-w-[1024px] min-w-72  w-full object-cover max-h-[546px] max-md:!h-[30vh]"
        	src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/capuccinoCafe2015.jpg"
         alt="Capuccino Cafe"
       />
@@ -87,7 +87,7 @@ get_header(); ?>
       </div>
     </div>
 
-		    <div class="xl:w-1/3">
+		    <div class="xl:w-1/3 2xl:!text-xl">
       <h5 class=" text-stone-700 text-4xl font-normal font-['Didot_LT_Pro'] max-lg:text-center">2015</h5>
       <div class=" text-zinc-800 text-lg font-light font-['Mulish'] leading-relaxed">
 		Doświadczenie, profesjonalna wiedza, współpraca z najlepszymi w branży, a przede wszystkim ogrom pasji i serca zbudowały podwaliny pod kolejne, wyjątkowe przedsięwzięcie – w 2015 roku powstało Capuccino Cafe Sopot. W tym samym roku postanowiliśmy także otworzyć przy lokalu w Sopocie własną pracownię tortów.
@@ -101,17 +101,17 @@ get_header(); ?>
 <div   class="relative flex max-md:flex-col-reverse  md:px-[8%] min-w-screen  my-36 max-md:my-20 ">
 	<div   class=" w-2/4 max-md:w-full max-md:mt-5 min-w-72 inline-flex flex-col max-md:px-[8%] 2xl:pr-[5%]  justify-center  items-start  p-4">
 		<h3  class="  self-stretch justify-start text-stone-700 xl:!text-6xl  !text-4xl font-normal font-['Didot_LT_Pro']">Imprezy okolicznościowe</h3>
-		<p  class="self-stretch justify-start text-zinc-800 text-lg font-light font-['Mulish'] leading-relaxed">Organizujemy wyjątkowe przyjęcia na każdą okazję – urodziny, chrzciny, komunie czy spotkania firmowe. Nasza kameralna sala zachwyca niepowtarzalnym klimatem i stylowym wystrojem. Zapewniamy catering z naszej cukierni i restauracji Sopocki Młyn, profesjonalną, miłą obsługę oraz przytulna atmosferę.</p>
+		<p  class="self-stretch justify-start text-zinc-800 text-lg font-light font-['Mulish'] leading-relaxed 2xl:text-xl">Organizujemy wyjątkowe przyjęcia na każdą okazję – urodziny, chrzciny, komunie czy spotkania firmowe. Nasza kameralna sala zachwyca niepowtarzalnym klimatem i stylowym wystrojem. Zapewniamy catering z naszej cukierni i restauracji Sopocki Młyn, profesjonalną, miłą obsługę oraz przytulna atmosferę.</p>
 	</div>
 	<img   class="flex-1 h-full max-w-[1024px] min-w-72 object-cover max-h-[646px] "  src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/Imprezy-okolicznościowe.jpg"/>
 </div>
 
-<!--  section -5- (slide)  -->
-<div class="relative md:h-screen max-md:px-[4%] max-md:min-h-screen max-md:py-[10vh] flex items-center justify-center bg-stone-200 px-[8%]  "> 
+<!--  section -5- (slider)  -->
+<div class="relative max-md:px-[4%]  py-22 flex items-center justify-center bg-stone-200 px-[8%]  "> 
 <span class="w-[10%] h-full absolute z-10  bg-stone-200  flex  left-0 top-0 max-md:hidden"></span>
 <span class="w-[10%] h-full absolute z-10  bg-stone-200  flex right-0 top-0 max-md:hidden"></span>
 		<div>
-				<div class="max-md:flex  justify-center items-center max-md:min-h-[20vh]">
+				<div class="max-md:flex  justify-center items-center py-8">
 					<h2 class="text-center md:!mb-10 max-md:!m-0 !font-['Didot LT Pro']  ">Co oferujemy w kawiarniach </h2>
 				<!--arrows icons -->
 					<div class="max-md:flex max-md:w-1/3 justify-end">
@@ -127,7 +127,7 @@ get_header(); ?>
 					</div>
 				</div>
 					<!-- horizontal nav -->
-					<div class="flex flex-wrap justify-center items-center gap-4 mb-5 max-md:px-5">
+					<div class="flex flex-wrap justify-center items-center gap-4 mb-10 max-md:px-5">
 							<a href="#kawa" class="hover:!text-stone-400 text-xs  font-['Mulish'] uppercase !text-black">Kawa</a>
 							<a href="#torty" class="hover:!text-stone-400 text-xs  font-['Mulish'] uppercase !text-black">Torty weselne i okazyjne</a>
 							<a href="#lody" class="hover:!text-stone-400 text-xs  font-['Mulish'] uppercase !text-black">Lody</a>
@@ -142,85 +142,99 @@ get_header(); ?>
 						
 
 						<div  class="scroll-hidd  flex flex-nowrap snap-x snap-mandatory gap-5 pb-5 max-md:mt-10">
-								<section id="kawa" class="relative !flex max-md:flex-col items-center min-w-[70vw] max-lg:min-w-[90vw] max-md:w-[70vw] mx-[1%]  ">
-										<div class="md:min-w-[360px] max-md:w-full"> 
-												<img   class="flex-1 h-auto md:max-w-[1024px] md:min-w-[500px] max-md:w-full object-cover max-h-[446px] "  src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/kawa.png"/>
+								<section id="kawa" class="  relative max-md:w-full !flex max-md:flex-col items-center    mx-[1%] max-md:bg-white ">
+										<div class="max-md:min-w-[85vw] md:min-w-[700px] h-full max-lg:w-[400px]"> 
+												<img   class=" flex-1  md:max-w-[1024px] md:min-w-[600px] max-md:w-full object-cover max-h-[546px] max-md:!h-[30vh] !h-full"  src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/kawa.png"/>
 										</div>
-										<div class="   md:max-w-[450px] max-md:w-full w-full md:absolute -right-12 bg-white text-black p-8">
-												<h3 class="!text-[#A9957B]">Kawa z autorskiej mieszanki</h3>
-												<p class='px-2'> Aromatyczna kawa, stworzona z wyjątkowej mieszanki 100% Arabica. Ziarna sprowadzamy prosto z Peru, Etiopii i Gwatemali, a następnie palimy je lokalnie, dbając o najwyższą jakość. Oferujemy zarówno tradycyjne, jak i alternatywne metody parzenia, w tym chemex, drip, aeropress, cold brew i nitro coffee.</p>
-										</div>
-								</section>
-
-
-									<section id="torty" id="kawa" class="relative !flex max-md:flex-col items-center min-w-[70vw] max-lg:min-w-[90vw] max-md:w-[70vw] mx-[1%]  ">
-										<div class="md:min-w-[360px] max-md:w-full">   
-												<img   class="flex-1 h-auto md:max-w-[1024px] md:min-w-[500px] max-md:w-full object-cover max-h-[446px] "  src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/kawa.png"/>
-										</div>
-											<div class="   md:max-w-[450px] max-md:w-full w-full md:absolute -right-12 bg-white text-black p-8">
-												<h3 class="!text-[#A9957B]">Torty weselne i na każdą okazję</h3>
-												<p> Realizowane torty na zamówienie. Nasi cukiernicy to prawdziwi artyści, którzy z rozmachem urzeczywistnią Wasze wizje i pomysły. Służymy doradztwem w wyborze smaku oraz bogatym portfolio tortów stworzonych na wszelkiego rodzaju uroczystości.</p>
+										<div class="max-md:min-w-[85vw] md:w-[400px]  h-full  relative flex justify-center items-center " >
+											<div class="md:h-[260px] md:w-[450px]  max-md:min-h-[320px]  h-full top-4 bg-white text-black p-8 md:-ml-22">
+													<h3 class="!text-[#A9957B]">Kawa z autorskiej mieszanki</h3>
+													<p class='px-2'> Aromatyczna kawa, stworzona z wyjątkowej mieszanki 100% Arabica. Ziarna sprowadzamy prosto z Peru, Etiopii i Gwatemali, a następnie palimy je lokalnie, dbając o najwyższą jakość. Oferujemy zarówno tradycyjne, jak i alternatywne metody parzenia, w tym chemex, drip, aeropress, cold brew i nitro coffee.</p>
+											</div>
 										</div>
 								</section>
-
 								
+  
+						<!-- Torty -->
+						<section id="torty" class="relative !flex max-md:flex-col items-center mx-[1%] 2xl:mx-[0.5%] max-md:bg-white">
+										<div class="max-md:min-w-[85vw] md:min-w-[700px] h-full max-lg:w-[400px]"> 
+												<img   class=" flex-1  md:max-w-[1024px] md:min-w-[600px] max-md:w-full object-cover max-h-[546px] max-md:!h-[30vh] !h-full"  src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/kawa.png"/>
+										</div>
+										<div class="max-md:min-w-[85vw] md:w-[400px]  h-full  relative flex justify-center items-center " >
+											<div class="md:h-[260px] md:w-[450px]  max-md:min-h-[320px]  h-full top-4 bg-white text-black p-8 md:-ml-22">
+								<h3 class="!text-[#A9957B]">Torty weselne i na każdą okazję</h3>
+								<p class='px-2'>Realizowane torty na zamówienie. Nasi cukiernicy to prawdziwi artyści, którzy z rozmachem urzeczywistnią Wasze wizje i pomysły...</p>
+							</div>
+							</div>
+						</section>
 
+				<!-- Lody -->
+				<section id="lody" class="relative !flex max-md:flex-col items-center mx-[1%] 2xl:mx-[0.5%] max-md:bg-white">
+										<div class="max-md:min-w-[85vw] md:min-w-[700px] h-full max-lg:w-[400px]"> 
+												<img   class=" flex-1  md:max-w-[1024px] md:min-w-[600px] max-md:w-full object-cover max-h-[546px] max-md:!h-[30vh] !h-full"  src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/kawa.png"/>
+										</div>
+										<div class="max-md:min-w-[85vw] md:w-[400px]  h-fullrelative md:flex justify-center items-center " >
+											<div class="md:h-[260px] md:w-[450px]  max-md:min-h-[320px]  h-full top-4 bg-white text-black p-8 md:-ml-22">
+						<h3 class="!text-[#A9957B]">Lody naturalne</h3>
+						<p class='px-2'>Lody w których nie ma miejsca na chemię i ulepszacze. Są za to świeże owoce oraz mleko i śmietana z miejscowej mleczarni...</p>
+					</div>
+					</div>
+				</section>
 
-								<section id="lody"  class="relative !flex max-md:flex-col items-center min-w-[70vw] max-lg:min-w-[90vw] max-md:w-[70vw] mx-[1%]  ">
-										<div class="md:min-w-[360px] max-md:w-full">   
-												<img   class="flex-1 h-auto md:max-w-[1024px] md:min-w-[500px] max-md:w-full object-cover max-h-[446px] "  src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/kawa.png"/>
-										</div>
-											<div class="   md:max-w-[450px] max-md:w-full w-full md:absolute -right-12 bg-white text-black p-8">
-												<h3 class="!text-[#A9957B]">Lody naturalne</h3>
-												<p>  Lody w których nie ma miejsca na chemię i ulepszacze. Są za to świeże owoce oraz mleko i śmietana z miejscowej mleczarni. Polecamy smaki zarówno tradycyjne, jak i wegańskie. Oryginalne, sekretne receptury stworzyliśmy na podstawie własnych poszukiwań oraz wiedzy zdobytej od najlepszych lodziarzy w Polsce i Europie.</p>
-										</div>
-								</section>
+				<!-- Stoły -->
+				<section id="stoły" class="relative !flex max-md:flex-col items-center mx-[1%] 2xl:mx-[0.5%] max-md:bg-white">
+				<div class="max-md:min-w-[85vw] md:min-w-[700px] h-full max-lg:w-[400px]"> 
+					<img   class=" flex-1  md:max-w-[1024px] md:min-w-[600px] max-md:w-full object-cover max-h-[546px] max-md:!h-[30vh] !h-full"  src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/kawa.png"/>
+				</div>
+				<div class="max-md:min-w-[85vw] md:w-[400px]  h-full  relative flex justify-center items-center " >
+					<div class="md:h-[260px] md:w-[450px]  max-md:min-h-[320px]  h-full top-4 bg-white text-black p-8 md:-ml-22">
+						<h3 class="!text-[#A9957B]">Słodkie stoły</h3>
+						<p class='px-2'>Prawdziwe dzieła sztuki, które z pewnością zapadną w pamięć gości weselnych. Stworzone z kunsztem, przepięknie zaaranżowane...</p>
+					</div>
+					</div>
+				</section>
 
-			 
-								<section id="stoły" class="relative !flex max-md:flex-col items-center min-w-[70vw] max-lg:min-w-[90vw] max-md:w-[70vw] mx-[1%]  ">
-										<div class="md:min-w-[360px] max-md:w-full">   
-												<img   class="flex-1 h-auto md:max-w-[1024px] md:min-w-[500px] max-md:w-full object-cover max-h-[446px] "  src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/kawa.png"/>
+				<!-- Monoporcje -->
+				<section id="monoporcje" class="relative !flex max-md:flex-col items-center mx-[1%] 2xl:mx-[0.5%] max-md:bg-white">
+										<div class="max-md:min-w-[85vw] md:min-w-[700px] h-full max-lg:w-[400px]"> 
+												<img   class=" flex-1  md:max-w-[1024px] md:min-w-[600px] max-md:w-full object-cover max-h-[546px] max-md:!h-[30vh] !h-full"  src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/kawa.png"/>
 										</div>
-											<div class="   md:max-w-[450px] max-md:w-full w-full md:absolute -right-12 bg-white text-black p-8">
-												<h3 class="!text-[#A9957B]">Słodkie stoły</h3>
-												<p> Prawdziwe dzieła sztuki, które z pewnością zapadną w pamięć gości weselnych. Stworzone z kunsztem, przepięknie zaaranżowane, a przy tym zgodne z pomysłem Pary Młodej, indywidualnie dopasowane do sali weselnej i wizji wydarzenia.</p>
-										</div>
-								</section>
+										<div class="max-md:min-w-[85vw] md:w-[400px]  h-full  relative flex justify-center items-center " >
+											<div class="md:h-[260px] md:w-[450px]  max-md:min-h-[320px]  h-full top-4 bg-white text-black p-8 md:-ml-22">
+						<h3 class="!text-[#A9957B]">Monoporcje</h3>
+						<p class='px-2'>Monoporcje, czyli malutkie słodkości o wybitnym smaku. Tworzymy mini torciki, mini serniczki, cakepops, cupcakes...</p>
+					</div>
+					</div>
+				</section>
 
-								<section id="monoporcje" class="relative !flex max-md:flex-col items-center min-w-[70vw] max-lg:min-w-[90vw] max-md:w-[70vw] mx-[1%]  ">
-										<div class="md:min-w-[360px] max-md:w-full">   
-												<img   class="flex-1 h-auto md:max-w-[1024px] md:min-w-[500px] max-md:w-full object-cover max-h-[446px] "  src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/kawa.png"/>
+				<!-- Koktajle -->
+				<section id="koktajle" class="relative !flex max-md:flex-col items-center mx-[1%] 2xl:mx-[0.5%] max-md:bg-white">
+										<div class="max-md:min-w-[85vw] md:min-w-[700px] h-full max-lg:w-[400px]"> 
+												<img   class=" flex-1  md:max-w-[1024px] md:min-w-[600px] max-md:w-full object-cover max-h-[546px] max-md:!h-[30vh] !h-full"  src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/kawa.png"/>
 										</div>
-											<div class="   md:max-w-[450px] max-md:w-full w-full md:absolute -right-12 bg-white text-black p-8">
-												<h3 class="!text-[#A9957B]">Monoporcje</h3>
-												<p> Monoporcje, czyli malutkie słodkości o wybitnym smaku. Na specjalne zamówienie tworzymy m.in. mini torciki, mini serniczki, cakepops, cupcakes, mini tarty i wiele innych.</p>
-										</div>
-								</section>
+										<div class="max-md:min-w-[85vw] md:w-[400px]  h-full  relative flex justify-center items-center " >
+											<div class="md:h-[260px] md:w-[450px]  max-md:min-h-[320px]  h-full top-4 bg-white text-black p-8 md:-ml-22">
+							<h3 class="!text-[#A9957B]">Świeżo wyciskane soki i koktajle</h3>
+							<p class='px-2'>Soki i koktajle ze świeżych owoców i warzyw, a więc esencję natury. Smaczne, zdrowe i odżywcze bomby witaminowe...</p>
+						</div>
+					</div>
+				</section>
 
-								<section id="koktajle" class="relative !flex max-md:flex-col items-center min-w-[70vw] max-lg:min-w-[90vw] max-md:w-[70vw] mx-[1%]  ">
-										<div cclass="md:min-w-[360px] max-md:w-full">  
-												<img   class="flex-1 h-auto md:max-w-[1024px] md:min-w-[500px] max-md:w-full object-cover max-h-[446px] "  src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/kawa.png"/>
+				<!-- Pieczywo -->
+				<section id="pieczywo" class="relative !flex max-md:flex-col items-center mx-[1%] 2xl:mx-[0.5%] max-md:bg-white">
+										<div class="max-md:min-w-[85vw] md:min-w-[700px] h-full max-lg:w-[400px]"> 
+												<img   class=" flex-1  md:max-w-[1024px] md:min-w-[600px] max-md:w-full object-cover max-h-[546px] max-md:!h-[30vh] !h-full"  src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/kawa.png"/>
 										</div>
-											<div class="   md:max-w-[450px] max-md:w-full w-full md:absolute -right-12 bg-white text-black p-8">
-												<h3 class="!text-[#A9957B]">Świeżo wyciskane soki i koktajle</h3>
-												<p>Soki i koktajle ze świeżych owoców i warzyw, a więc esencję natury. Smaczne, zdrowe i odżywcze bomby witaminowe, które dodadzą sił i poprawią nawet najgorszy humor.</p>
-										</div>
-								</section>
-								<!-- fix this -->
-							<section id="pieczywo" class="relative !flex max-md:flex-col items-center min-w-[70vw] max-lg:min-w-[90vw] max-md:w-[70vw] mx-[1%]   ">
-										<div cclass="md:min-w-[360px] max-md:w-full !mr-[500px]">  
-												<img   class="flex-1 h-auto md:max-w-[1024px] md:min-w-[500px] max-md:w-full object-cover max-h-[446px] "  src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/kawa.png"/>
-										</div>
-											<div class="   md:max-w-[450px] max-md:w-full w-full md:absolute -right-12 bg-white text-black p-8 ">
-												<h3 class="!text-[#A9957B]">Pieczywo wypiekane na miejscu </h3>
-												<p> Lojalnie ostrzegamy: nasze aromatyczne chleby pszenne lub na zakwasie żytnim, croissanty maślane i czekoladowe oraz pyszne drożdżówki uzależniają!.</p>
-										</div>
-								</section>
-							
+										<div class="max-md:min-w-[85vw] md:w-[640px]  h-full  relative flex  items-center " >
+											<div class="md:h-[260px] md:w-[450px]  max-md:min-h-[320px]  h-full top-4 bg-white text-black p-8 md:-ml-22">
+							<h3 class="!text-[#A9957B]">Pieczywo wypiekane na miejscu</h3>
+							<p class='px-2'>Lojalnie ostrzegamy: nasze chleby, croissanty oraz drożdżówki są uzależniające!</p>
+						</div>
+					</div>
+				</section>
 
-								
-								
-							
+			</div>
+
 					</div>
 					</div>
 
@@ -346,7 +360,7 @@ get_header(); ?>
 <div   class="relative flex max-md:flex-col-reverse  md:px-[8%] w-full  my-36 max-md:my-20 ">
 	<div   class=" w-2/4 max-md:w-full max-md:mt-5 min-w-72 inline-flex flex-col max-md:px-[8%] 2xl:pr-[5%]  justify-center  items-start  p-4">
 		<h3  class="  self-stretch justify-start text-stone-700 text-4xl xl:!text-6xl  font-normal font-['Didot_LT_Pro']">Nasz Zespół</h3>
-		<p  class="self-stretch justify-start text-zinc-800 text-lg font-light font-['Mulish'] leading-relaxed">Jesteśmy rodzinną firmą i grupą pasjonatów. Nasz zespół zasilają m.in. certyfikowani specjaliści cukiernictwa, wybitni bariści oraz artystka dekoracji tortów. Od lat nieustannie rozwijamy się, dążąc do perfekcji w tym, co robimy. Dużo satysfakcji dostarcza nam zarówno zaufanie naszych Klientów, jak i uznanie w branży. Słodkości Capuccino Cafe Sopot trafiają aż do 20 najlepszych kawiarni w Trójmieście.</p>
+		<p  class="self-stretch justify-start text-zinc-800 text-lg font-light font-['Mulish'] leading-relaxed 2xl:text-xl">Jesteśmy rodzinną firmą i grupą pasjonatów. Nasz zespół zasilają m.in. certyfikowani specjaliści cukiernictwa, wybitni bariści oraz artystka dekoracji tortów. Od lat nieustannie rozwijamy się, dążąc do perfekcji w tym, co robimy. Dużo satysfakcji dostarcza nam zarówno zaufanie naszych Klientów, jak i uznanie w branży. Słodkości Capuccino Cafe Sopot trafiają aż do 20 najlepszych kawiarni w Trójmieście.</p>
 	</div>
 	<img   class="flex-1 h-full max-w-[1024px] min-w-72 object-cover max-h-[646px] "  src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/capuccinoTeam.jpg"/>
 </div>

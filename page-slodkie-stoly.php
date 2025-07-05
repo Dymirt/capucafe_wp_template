@@ -2,13 +2,23 @@
 
 get_header(); ?>
 
+<style>
+	.storefront-breadcrumb {
+		display: none !important;
+	}
+</style>
+
+<<?php
+
+get_header(); ?>
+
 <main>
 <!-- hero section -->
-<div class="hero-rozana relative h-screen max-md:h-[70vh] bg-cover max-md:bg-center flex items-center justify-center">
+<div class="hero-rozana relative  md:min-h-[800px] max-md:h-[70vh] bg-cover max-md:bg-center flex items-center justify-center">
     	<div class="shadow w-full h-full absolute z-1  left-0 max-md:hidden"></div>
     <div class="!text-white z-50">
         <h1 class="!text-white !text-[80px] max-md:!text-[40px] !font-['Didot_LT_Pro']">Różana Romantyka</h1>
-        <p class="text-center">Delikatna, romantyczna stylizacja. </p>
+        <p class="text-center xl:!text-lg 2xl:!text-xl">Delikatna, romantyczna stylizacja. </p>
 
     </div>
 </div>
@@ -18,6 +28,8 @@ get_header(); ?>
 	<div class="max-md:p-[7%] p-[5%] max-xl:py-16 flex max-md:flex-col max-2xl:flex-row max-lg:order-2 order-1">
 		<h1 class="title max-md:w-full w-2/5">Więcej o stylu</h1>
 		<div class=" max-md:w-full w-3/5">Pełna romantyzmu stylizacja słodkiego stołu dostarczy pięknych wrażeń na weselu. Białe patery wypełnione po brzegi słodkościami w ciepłych odcieniach różu skradną nie jedno serce wśród Waszych gości. Pastelowe świece i świeże kwiaty nadają całej aranżacji kunsztu i stylu, przy której nie da się przejść obojętnie</div>
+		</div>
+</div>
 	</div>
 </div>
 
@@ -45,10 +57,10 @@ get_header(); ?>
 		</div>
 		<div id="productScrollWrapper" class="flex flex-nowrap overflow-x-auto scroll-smooth w-full ">
 			<div id="productScroll" class="flex flex-nowrap snap-x snap-mandatory gap-5 pb-5">
-						<img class="w-full max-md:h-auto max-h-[400px] object-cover lg:w-[90%]" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/Galeria-stylu1.png" />
-                        <img class="w-full max-md:h-auto max-h-[400px] object-cover lg:w-[90%]" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/Galeria-stylu2.jpg" />
-                        <img class="w-full max-md:h-auto max-h-[400px] object-cover lg:w-[90%]" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/Galeria-stylu3.png" />
-                        <img class="w-full max-md:h-auto max-h-[400px] object-cover lg:w-[90%]" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/Galeria-stylu1.png" />
+						<img class="w-full max-md:h-auto max-h-[400px] 2xl:!min-w-[660px] 4xl:!min-w-[800px] object-cover lg:w-[90%]" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/Galeria-stylu1.png" />
+                        <img class="w-full max-md:h-auto max-h-[400px] 2xl:!min-w-[660px] 4xl:!min-w-[800px] object-cover lg:w-[90%]" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/Galeria-stylu2.jpg" />
+                        <img class="w-full max-md:h-auto max-h-[400px] 2xl:!min-w-[660px] 4xl:!min-w-[800px] object-cover lg:w-[90%]" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/Galeria-stylu3.png" />
+                        <img class="w-full max-md:h-auto max-h-[400px] 2xl:!min-w-[660px] 4xl:!min-w-[800px] object-cover lg:w-[90%]" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/Galeria-stylu1.png" />
 			</div>
 		</div>
 	</div>
@@ -56,10 +68,10 @@ get_header(); ?>
 
 
 
-        <div class="relative flex max-lg:h-auto h-[80vh] max-md:h-auto max-md:flex-col overflow-hidden">
+        <div class="relative flex max-lg:h-auto  max-md:py-8 max-md:h-auto max-md:flex-col overflow-hidden">
 
                 <div class=" self-stretch w-1/2 max-md:w-full backdrop-blur-lg inline-flex flex-col justify-center items-center gap-6 max-lg:p-[5%]">
-                    <div class="w-full max-w-96 justify-start text-zinc-800 text-lg  max-lg:text-sm font-light font-['Mulish'] leading-relaxed">Słodkości przygotowane są w ilości około 200 gramów na osobę, co odpowiada 3 porcjom. <br/>W ramach usługi oferujemy kompleksową aranżację dekoracji oraz słodkości, wykonaną przez naszych doświadczonych artystów. Zapewniamy także demontaż i odbiór wypożyczonych elementów po zakończeniu imprezy.</div>
+                    <div class="w-full max-w-96 justify-start text-zinc-800 text-lg  max-lg:text-sm xl:text-lg 2xl:text-xl font-light font-['Mulish'] leading-relaxed">Słodkości przygotowane są w ilości około 200 gramów na osobę, co odpowiada 3 porcjom. <br/>W ramach usługi oferujemy kompleksową aranżację dekoracji oraz słodkości, wykonaną przez naszych doświadczonych artystów. Zapewniamy także demontaż i odbiór wypożyczonych elementów po zakończeniu imprezy.</div>
                     <div class="w-full max-w-96 flex flex-col justify-start items-start">
                         <div class="self-stretch justify-start text-stone-700 text-3xl font-normal font-['Didot_LT_Pro']">Cena: 70 zł/os.</div>
                         <div class="self-stretch justify-start text-zinc-500 text-xs font-normal font-['Mulish']">przy zamówieniu na 100 osób.</div>
@@ -88,14 +100,14 @@ get_header(); ?>
 
     <div class="w-full flex justify-center items-center max-md:flex-col">
         <div class="flex-1  w-1/2 max-md:w-full  flex justify-start items-center gap-2.5">
-                                 <img class="w-full max-h-[400px] object-cover" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/Galeria-stylu6.jpg" />
+                                 <img class="w-full !h-[300px] xl:!h-auto object-cover" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/Galeria-stylu6.jpg" />
         </div>
 
         <div class="flex-1  self-stretch w-1/2 max-md:w-full p-4 flex justify-center items-center max-md:justify-start gap-6  max-md:mb-4">
             <div class="p-4">
             <h4 class="w-full  justify-start !text-stone-400 !text-4xl font-['Didot_LT_Pro']">Naturalna Elegancja</h4>
-            <div class="w-full max-w-96 justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">Ta aranżacja emanuje subtelną elegancją i naturalnym pięknem. Stół pokryty lnianym obrusem prezentuje słodkości na marmurowych paterach, otoczonych designerską florystyką, ceramicznymi wazonami oraz naczyniami z bielonego drewna. Idealną na romantyczne przyjęcia.</div>
-				<div   class="h-12 px-7 mt-4 rounded outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2.5 hover:bg-[#A9957B] group">
+            <div class="w-full max-w-96 xl:max-w-100 justify-start text-zinc-800 text-sm xl:text-[1rem] 2xl:text-lg 4xl:text-xl font-normal font-['Mulish'] leading-tight">Ta aranżacja emanuje subtelną elegancją i naturalnym pięknem. Stół pokryty lnianym obrusem prezentuje słodkości na marmurowych paterach, otoczonych designerską florystyką, ceramicznymi wazonami oraz naczyniami z bielonego drewna. Idealną na romantyczne przyjęcia.</div>
+				<div   class="h-12 px-7 mt-4 rounded  outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2.5 hover:bg-[#A9957B] group">
 					<div class="justify-center text-zinc-800 text-sm font-bold font-['Mulish'] uppercase leading-tight  group-hover:!text-white">Więcej</div>
 					<div class="w-6 h-6 relative overflow-hidden">
 						<div class="w-3.5 h-3.5 top-[2px] relative"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -116,7 +128,7 @@ get_header(); ?>
         <div class="flex-1  self-stretch w-1/2 max-md:w-full p-4 flex justify-center max-md:justify-start items-center gap-6 ">
             <div class="p-4">
             <h4 class="w-full  justify-start !text-stone-400 !text-4xl font-['Didot_LT_Pro']">Leśna Harmonia</h4>
-            <div class="w-full max-w-96 justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">Inspirowana barwami ziemi kompozycja, w której słodkości ułożone są wśród delikatnych liści na transparentnych paterach. Stół pokryty szałwiowym obrusem, ozdobiony świecami na kamiennych postumentach, nadaje aranżacji wykwintności i oryginalności. Idealna propozycja dla miłośników natury i rustykalnych klimatów.</div>
+            <div class="w-full max-w-96 xl:max-w-100 justify-start text-zinc-800 text-sm xl:text-[1rem] 2xl:text-lg 4xl:text-xl font-normal font-['Mulish'] leading-tight">Inspirowana barwami ziemi kompozycja, w której słodkości ułożone są wśród delikatnych liści na transparentnych paterach. Stół pokryty szałwiowym obrusem, ozdobiony świecami na kamiennych postumentach, nadaje aranżacji wykwintności i oryginalności. Idealna propozycja dla miłośników natury i rustykalnych klimatów.</div>
 				<div   class="h-12 px-7 mt-4 rounded outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2.5 hover:bg-[#A9957B] group">
 					<div class="justify-center text-zinc-800 text-sm font-bold font-['Mulish'] uppercase leading-tight  group-hover:!text-white">Więcej</div>
 					<div class="w-6 h-6 relative overflow-hidden">
@@ -130,8 +142,8 @@ get_header(); ?>
         </div>
         </div>
 
-                <div class="flex-1  w-1/2 max-md:w-full flex justify-start items-center gap-2.5">
-                                 <img class="w-full max-h-[400px] object-cover" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/Galeria-stylu7.jpg" />
+                <div class="flex-1  w-1/2 max-md:w-full flexjustify-start items-center gap-2.5">
+                                 <img class="w-full !h-[300px] xl:!h-auto object-cover" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/Galeria-stylu7.jpg" />
         </div>
     </div>
     

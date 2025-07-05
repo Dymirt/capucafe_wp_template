@@ -9,11 +9,11 @@ get_header(); ?>
 </style>
 <main>
 <!-- hero section -->
-<div class="hero-Naturalna relative  md:min-h-[800px] max-md:h-[70vh] bg-cover max-md:bg-center flex items-center justify-center">
+<div class="Hero-LesnaHarmonia relative  md:min-h-[800px] max-md:h-[70vh] bg-cover max-md:bg-center flex items-center justify-center">
     	<div class="shadow w-full h-full absolute z-1  left-0 max-md:hidden"></div>
     <div class="!text-white z-50">
-        <h1 class="!text-white !text-[80px] max-md:!text-[40px] !font-['Didot_LT_Pro']">Naturalna Elegancja</h1>
-        <p class="text-center xl:!text-lg 2xl:!text-xl">Subtelna elegancja i naturalne piękno </p>
+        <h1 class="!text-white !text-[80px] max-md:!text-[40px] !font-['Didot_LT_Pro'] text-center">Leśna Harmonia</h1>
+        <p class="text-center xl:!text-lg 2xl:!text-xl">Idealna propozycja dla miłośników natury i rustykalnych klimatów</p>
 
     </div>
 </div>
@@ -22,7 +22,7 @@ get_header(); ?>
 <div class=" my-10">
 	<div class="max-md:p-[7%] p-[5%] max-xl:py-16 flex max-md:flex-col max-2xl:flex-row max-lg:order-2 order-1">
 		<h1 class="title max-md:w-full w-2/5">Więcej o stylu</h1>
-		<div class=" max-md:w-full w-3/5">Subtelna i naturalna aranżacja słodkiego stołu, która z łatwością odnajdzie swoje miejsce w każdym weselnym wnętrzu. Wyjątkowy stół z Riviery Maison pokryty lnianym obrusem z elegancją prezentuje słodkości na marmurowych paterach. Designerska florystyka, ceramiczne wazony oraz naczynia z drewna bielonego doświetlone blaskiem świec nadają wytworności całej stylizacji.
+		<div class=" max-md:w-full w-3/5">Inspirowana barwami Ziemi kompozycja słodkiego stołu sprawdzi się we wszelakiej stylizacji wesela. Wyjątkowe słodkości ułożone wśród delikatnych liści na transparentnych paterach nawiązują do naturalnego piękna. Pokryty szałwiowym obrusem stół ze świecami na kamiennych postumentach nadaje całej aranżacji wykwintności i nad wyraz oryginalności.
 </div>
 	</div>
 </div>
@@ -51,9 +51,9 @@ get_header(); ?>
 		</div>
 		<div id="productScrollWrapper" class="flex flex-nowrap overflow-x-auto scroll-smooth w-full ">
 			<div id="productScroll" class="flex flex-nowrap snap-x snap-mandatory gap-5 pb-5">
-						<img class="w-full max-md:h-auto max-h-[400px] 2xl:!min-w-[660px] 4xl:!min-w-[800px] object-cover lg:w-[90%]" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/NaturalnaElegancj2.png" />
-                        <img class="w-full max-md:h-auto max-h-[400px] 2xl:!min-w-[660px] 4xl:!min-w-[800px] object-cover lg:w-[90%]" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/NaturalnaElegancj3.png" />
-                        <img class="w-full max-md:h-auto max-h-[400px] 2xl:!min-w-[660px] 4xl:!min-w-[800px] object-cover lg:w-[90%]" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/NaturalnaElegancj4.png" />
+						<img class="w-full max-md:h-auto max-h-[400px] 2xl:!min-w-[660px] 4xl:!min-w-[800px] object-cover lg:w-[90%]" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/Lesna-Harmonia2.png" />
+                        <img class="w-full max-md:h-auto max-h-[400px] 2xl:!min-w-[660px] 4xl:!min-w-[800px] object-cover lg:w-[90%]" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/Lesna-Harmonia3.png" />
+                        <img class="w-full max-md:h-auto max-h-[400px] 2xl:!min-w-[660px] 4xl:!min-w-[800px] object-cover lg:w-[90%]" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/Lesna-Harmonia4.png" />
 			</div>
 		</div>
 	</div>
@@ -81,8 +81,8 @@ get_header(); ?>
 
                     
                 </div>
-                <div class="w-1/2 h-full max-md:w-full ">
-                    <img class="w-full  object-cover" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/NaturalnaElegancj5.png" />
+                <div class="w-1/2 h-[600px] max-md:w-full ">
+                    <img class="w-full !h-full object-cover" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/Lesna-Harmonia5.jpg" />
                 </div>
         </div>
 
@@ -120,7 +120,7 @@ get_header(); ?>
 
         <div class="flex-1  self-stretch w-1/2 max-md:w-full p-4 flex justify-center max-md:justify-start items-center gap-6 ">
             <div class="p-4">
-            <h4 class="w-full  justify-start !text-stone-400 !text-4xl font-['Didot_LT_Pro']">Leśna Harmonia</h4>
+            <h4 class="w-full  justify-start !text-stone-400 !text-4xl font-['Didot_LT_Pro']">Naturalna Elegancja</h4>
             <div class="w-full max-w-96 xl:max-w-100 justify-start text-zinc-800 text-sm xl:text-[1rem] 2xl:text-lg 4xl:text-xl font-normal font-['Mulish'] leading-tight">Inspirowana barwami ziemi kompozycja, w której słodkości ułożone są wśród delikatnych liści na transparentnych paterach. Stół pokryty szałwiowym obrusem, ozdobiony świecami na kamiennych postumentach, nadaje aranżacji wykwintności i oryginalności. Idealna propozycja dla miłośników natury i rustykalnych klimatów.</div>
 				<div   class="h-12 px-7 mt-4 rounded outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2.5 hover:bg-[#A9957B] group">
 					<div class="justify-center text-zinc-800 text-sm font-bold font-['Mulish'] uppercase leading-tight  group-hover:!text-white">Więcej</div>
@@ -136,7 +136,7 @@ get_header(); ?>
         </div>
 
                 <div class="flex-1  w-1/2 max-md:w-full flexjustify-start items-center gap-2.5">
-                                 <img class="w-full !h-[300px] xl:!h-auto object-cover" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/Galeria-stylu7.jpg" />
+                                 <img class="w-full !h-[300px] xl:!h-auto object-cover" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/Galeria-stylu6.jpg" />
         </div>
     </div>
     

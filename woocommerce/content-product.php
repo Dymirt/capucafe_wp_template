@@ -1,4 +1,4 @@
-<div class="product-semple p-2 w-full md:w-[40%] lg:w-[30%] inline-flex flex-col justify-start items-start snap-start">
+<div class=" max-lg:w-[300px]  p-2  max-2xl:w-[350px] w-[400px] inline-flex flex-col justify-start items-start snap-start">
 	<a href="<?php the_permalink(); ?>" style="display: block; width: 100%; height: 100%;">
 		<?php woocommerce_show_product_sale_flash(); ?>
 		<?php the_post_thumbnail('woocommerce_thumbnail', ['class' => 'w-64 h-64 object-cover w-full']); ?>

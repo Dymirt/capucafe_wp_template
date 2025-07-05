@@ -11,30 +11,19 @@
 $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 ?>
 
-<style>
-	.product-semple {
-		width: 300px !important
-	}
 
-	.woocommerce-message {
-		position: fixed !important;
-		bottom: 10px !important;
-		z-index: 9999 !important;
-		right: 0;
-	}
-</style>
 
-<div class="heroSection w-screen h-[100vh]  flex items-center px-[5%]  xl:px-[6%] relative bg-cover bg-black bg-no-repeat max-xl:bg-center   max-lg:bg-top max-md:bg-contain">
+<div class="heroSection w-screen h-[100vh]  flex items-center px-[5%]  xl:px-[6%] relative bg-cover bg-black bg-no-repeat max-xl:bg-center   max-lg:bg-top max-md:bg-contain xl:!bg-[length:100%]">
 	<div class="shadow w-full h-full absolute z-1  left-0"></div>
 
 	<div class='  text-white relative z-10 w-full'>
 		<!-- title -->
 		<div class="h-[60vh]  flex items-end max-md:justify-center  ">
 			<div>
-				<div class='title  max-xl:text-6xl mb-8 max-sm:text-5xl  max-2xl:text-7xl text-7xl title'>
-					O słodkościach <br>Wiemy <br class='max-md:hidden'>Wszystko
+				<div class='title  max-xl:text-6xl mb-8 max-sm:text-5xl  max-2xl:text-7xl text-[100px] title 2xl:leading-28'>
+					O słodkościach <br class="2xl:hidden">Wiemy <br class='max-md:hidden'>Wszystko
 				</div>
-				<div class='subtitle text-xl max-md:text-center'>I chętnie się z wami tym podzielimy!</div>
+				<div class='subtitle text-xl max-md:text-center 2xl:text-4xl'>I chętnie się z wami tym podzielimy!</div>
 			</div>
 
 		</div>
@@ -83,15 +72,15 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 </div>
 
 <!--- paragraph  section -->
-<div class="flex items-center  justify-center max-sm:min-h-[60vh] max-xl:min-h-[50vh] max-2xl:min-h-[50vh] min-h-[40vh] max-md:p-[2%]">
-	<div class='flex  w-9/10 max-md:w-[80%] max-md:flex-col justify-end max-xl:justify-between max-lg:w-[91%]  max-xl:w-[85%] max-2xl:w-[85%]'>
-		<p class='w-1/3 max-md:w-full max-xl:w-[46%]  '>Capuccino Cafe to artystyczna pracownia tortów weselnych, komunijnych i okolicznościowych. Dzięki wieloletniemu doświadczeniu, kunsztowi naszych cukierników i najwyższej jakości składnikom zdobyliśmy renomę i zaufanie Klientów. Tworzymy wyjątkowe torty według autorskich pomysłów oraz wizji zamawiających, a także zachwycające słodkie stoły.</p>
+<div class="flex items-center  justify-center  max-md:p-[2%] text-sm 2xl:text-xl 4xl:text-xl my-16">
+	<div class='flex  w-9/10 max-md:w-[80%] max-md:flex-col justify-end max-xl:justify-between max-lg:w-[91%]  max-xl:w-[85%] max-2xl:w-[85%] '>
+		<p class='w-1/3 max-md:w-full max-xl:w-[46%] xl:pr-2.5 '>Capuccino Cafe to artystyczna pracownia tortów weselnych, komunijnych i okolicznościowych. Dzięki wieloletniemu doświadczeniu, kunsztowi naszych cukierników i najwyższej jakości składnikom zdobyliśmy renomę i zaufanie Klientów. Tworzymy wyjątkowe torty według autorskich pomysłów oraz wizji zamawiających, a także zachwycające słodkie stoły.</p>
 		<p class='w-1/3 max-md:w-full max-xl:w-[46%]  '> To także klimatyczne kawiarnie w nadmorskich kurortach, serwujące pyszne ciasta, desery i kawę z autorskiej mieszanki. W ofercie mamy bez, tarty, serniki, lody naturalne oraz propozycje niskokaloryczne.</p>
 	</div>
 </div>
 
 <!--- video section -->
-<div class='flex items-center justify-center relative h-[40vh] max-md:mt-4 mt-[10vh]'>
+<div class='flex items-center justify-center relative md:h-[600px] 2xl:h-[700px]  '>
 	<div class="relative max-2xl:w-[80%] max-lg:min-w-[90%]  max-2xl:min-w-[85%] max-w-[90vw]  max-sm:w-full max-md:min-w-[80%] max-h-[80vh] z-50 flex  justify-center items-center">
 		<div class=" max-md:w-[80px] max-md:h-[80px] w-[100px] h-[100px] bg-[#A9957B] top-1/2 flex justify-center  items-center z-10 left-1/2 -translate-x-1/2 -translate-y-1/2 absolute rounded-full">
 			<div class="max-md:w-[70px] max-md:h-[70px] w-[90px] h-[90px] rounded-full  border-[#42352F] border flex items-center justify-center"><svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -99,15 +88,15 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 				</svg>
 			</div>
 		</div>
-		<img src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/video_falback.jpg') " class="  object-cover  w-full z-40  !max-h-[70vh]">
+		<img src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/video_falback.jpg') " class="  object-cover  w-full z-40 max-md:!h-auto md:!h-[600px] 2xl:!h-[700px] ">
 	</div>
 </div>
 
 <!--- services section -->
-<div class="services  max-md:h-auto  bg-cover   bg-center relative flex justify-center max-sm:p-[5%] max-md:bg-none pb-32">
+<div class="services  max-md:h-auto  bg-cover   bg-center relative flex justify-center max-sm:p-[5%] max-md:bg-none pb-32 -mt-[50px] ">
 	<div class="absolute top-0 left-o bg-white  opacity-80 z-1 w-full h-full max-md:hidden"></div>
 
-	<div class="flex relative max-md:flex-col z-10 max-sm:pt-8 max-md:pt-36  pt-48 max-sm:w-full max-md:w-[80%] max-lg:w-[90%]  max-xl:w-[85%] max-2xl:w-[85%]">
+	<div class="flex relative max-md:flex-col z-10 max-sm:pt-8 max-md:pt-36  pt-48 max-sm:w-full max-md:w-[80%] max-lg:w-[90%]  max-xl:w-[85vw] max-2xl:w-[85%]">
 		<div class="mssg_parent max-md:w-full w-1/2 max-lg:w-1/2">
 			<div id="mssg" class="title text-black w-full max-md:p-10 max-md:justify-center sm:text-3xl text-5xl flex max-md:flex-row flex-col mr-[5%]"><span> Capuccino </span> <span class="max-md:ml-2"> Cafe to...</span></div>
 		</div>
@@ -206,11 +195,11 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 </div>
 
 
-<div class="min-h-[60vh] py-12">
+<div class=" py-12">
 
 	<div class=" pl-[5%] ">
 		<div data-layer="title" class="Title flex justify-between items-center w-full pr-[5%]">
-			<div data-layer="Nasze bestsellery" class="NaszeBestsellery text-stone-700 text-3xl font-normal font-['Didot_LT_Pro']">
+			<div data-layer="Nasze bestsellery" class="NaszeBestsellery text-stone-700 text-3xl font-normal font-['Didot_LT_Pro'] my-6">
 				Nasze bestsellery
 			</div>
 			<div data-layer="strzalki" class="Strzalki flex items-center gap-2.5">
@@ -245,7 +234,7 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 	</div>
 	<div class="max-md:p-[7%] p-[5%] max-xl:py-16 flex max-md:flex-col max-2xl:flex-row max-lg:order-2 order-1">
 		<h1 class="title max-md:w-full w-2/5">Jakość składników</h1>
-		<div class=" max-md:w-full w-3/5">W Capuccino Cafe doskonale wiemy, że nic nie zastąpi naturalnych i oryginalnych produktów. Korzystamy z wysokiej jakości składników, które kupujemy od lokalnych producentów z naszego regionu. Dzięki temu zapewniamy świeżość i najlepszą jakość wypieków, równocześnie kultywując pomorską tradycję kulinarną. W 2018 r. otrzymaliśmy Certyfikat Dziedzictwa Kulinarnego przyznawany przez Europejską Sieć Regionalnego Dziedzictwa Kulinarnego.</div>
+		<div class=" max-md:w-full w-3/5 2xl:text-xl">W Capuccino Cafe doskonale wiemy, że nic nie zastąpi naturalnych i oryginalnych produktów. Korzystamy z wysokiej jakości składników, które kupujemy od lokalnych producentów z naszego regionu. Dzięki temu zapewniamy świeżość i najlepszą jakość wypieków, równocześnie kultywując pomorską tradycję kulinarną. W 2018 r. otrzymaliśmy Certyfikat Dziedzictwa Kulinarnego przyznawany przez Europejską Sieć Regionalnego Dziedzictwa Kulinarnego.</div>
 	</div>
 </div>
 
@@ -256,7 +245,7 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 		<div>
 
 			<img class="h-12  w-[35%] mb-5" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/sopotski_mlyn_logo.png" />
-			<h1 class="max-md:!text-6xl  max-lg:!text-3xl !text-6xl !text-white title">Restauracja <br>Sopocki Młyn </h1>
+			<h1 class="max-md:!text-6xl  max-lg:!text-3xl !text-6xl !text-white title 4xl:!text-8xl">Restauracja <br>Sopocki Młyn </h1>
 			<p class="text-[#A9957B] font-['Mulish']">Smak tradycji w sercu Sopotu!</p>
 			<div  class="h-12 px-7 rounded  outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2.5 hover:bg-[#A9957B] group">
 				<div class="justify-center text-white text-[11px] font-bold font-['Mulish'] uppercase leading-tight">Poznaj menu</div>
@@ -278,7 +267,7 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 
 <!-- Najnowsze aktualności  -->
 <div class=" bg-[#F2EDE7] flex items-center justify-end   max-md:h-auto max-lg:min-h-[50vh] py-[5vh] max-md:px-[7%]">
-	<div class="max-md:w-full  max-2xl:w-[92%]">
+	<div class="max-md:w-full  md:w-[92%]">
 		<h1 class="title">Najnowsze aktualności</h1>
 		<div class="mb-8 scroll-hidd flex flex-nowrap overflow-x-auto scroll-smooth w-full">
 			<?php echo do_shortcode('[recent_posts]'); ?>
