@@ -292,7 +292,7 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 
 	<!-- Najnowsze aktualności  -->
 	<div class=" bg-[#F2EDE7] flex items-center justify-end   max-md:h-auto max-lg:min-h-[50vh] py-[5vh] max-md:px-[7%]">
-		<div class="max-md:w-full  max-2xl:w-[92%]">
+		<div class="w-full  max-2xl:w-[92%]">
 			<h1 class="title">Najnowsze aktualności</h1>
 			<div class="mb-8 scroll-hidd flex flex-nowrap overflow-x-auto scroll-smooth w-full">
 				<?php echo do_shortcode('[recent_posts]'); ?>
