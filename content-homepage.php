@@ -22,10 +22,14 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 		z-index: 9999 !important;
 		right: 0;
 	}
+	section.storefront_woocommerce_brands, .storefront-product-section {
+		display: none !important;
+	}
 </style>
 <main>
 
-	<?php //get_template_part('headers/header', 'shop'); ?>
+	<?php //get_template_part('headers/header', 'shop');
+	?>
 	<!-- hero section -->
 	<div class="heroSection bg-cover relative max-md:bg-center z-3 max-xl:bg-center max-lg:bg-top max-md:bg-contain bg-no-repeat !bg-cover">
 		<div class="sticky top-0 z-4">
@@ -93,8 +97,8 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 	<!--- paragraph  section -->
 	<div class="flex items-center  justify-center max-sm:min-h-[60vh] max-xl:min-h-[50vh] max-2xl:min-h-[50vh] min-h-[40vh] max-md:p-[2%]">
 		<div class='flex  w-9/10 max-md:w-[80%] max-md:flex-col justify-end max-xl:justify-between max-lg:w-[91%]  max-xl:w-[85%] max-2xl:w-[85%]'>
-			<p class='w-1/3 max-md:w-full max-xl:w-[46%]  '>Capuccino Cafe to artystyczna pracownia tortów weselnych, komunijnych i okolicznościowych. Dzięki wieloletniemu doświadczeniu, kunsztowi naszych cukierników i najwyższej jakości składnikom zdobyliśmy renomę i zaufanie Klientów. Tworzymy wyjątkowe torty według autorskich pomysłów oraz wizji zamawiających, a także zachwycające słodkie stoły.</p>
-			<p class='w-1/3 max-md:w-full max-xl:w-[46%]  '> To także klimatyczne kawiarnie w nadmorskich kurortach, serwujące pyszne ciasta, desery i kawę z autorskiej mieszanki. W ofercie mamy bez, tarty, serniki, lody naturalne oraz propozycje niskokaloryczne.</p>
+			<div class='w-1/3 max-md:w-full max-xl:w-[46%]  '>Capuccino Cafe to artystyczna pracownia tortów weselnych, komunijnych i okolicznościowych. Dzięki wieloletniemu doświadczeniu, kunsztowi naszych cukierników i najwyższej jakości składnikom zdobyliśmy renomę i zaufanie Klientów. Tworzymy wyjątkowe torty według autorskich pomysłów oraz wizji zamawiających, a także zachwycające słodkie stoły.</div>
+			<div class='w-1/3 max-md:w-full max-xl:w-[46%]  '> To także klimatyczne kawiarnie w nadmorskich kurortach, serwujące pyszne ciasta, desery i kawę z autorskiej mieszanki. W ofercie mamy bez, tarty, serniki, lody naturalne oraz propozycje niskokaloryczne.</div>
 		</div>
 	</div>
 
@@ -253,13 +257,13 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 
 
 
-	<div class="flex flex-col my-10">
+	<div class="flex flex-col my-10 lg:my-0">
 		<div class="md:w-full relative  max-lg:order-1 order-2 flex justify-center">
-			<img class="w-full max-md:h-auto max-h-[400px] object-cover lg:w-[90%]" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/jakosc_skladnokow.jpg" />
+			<img class="w-full max-md:h-auto max-h-[900px] object-cover" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/jakosc_skladnokow.jpg" />
 		</div>
-		<div class="max-md:p-[7%] p-[5%] max-xl:py-16 flex max-md:flex-col max-2xl:flex-row max-lg:order-2 order-1">
-			<h1 class="title max-md:w-full w-2/5">Jakość składników</h1>
-			<div class=" max-md:w-full w-3/5">W Capuccino Cafe doskonale wiemy, że nic nie zastąpi naturalnych i oryginalnych produktów. Korzystamy z wysokiej jakości składników, które kupujemy od lokalnych producentów z naszego regionu. Dzięki temu zapewniamy świeżość i najlepszą jakość wypieków, równocześnie kultywując pomorską tradycję kulinarną. W 2018 r. otrzymaliśmy Certyfikat Dziedzictwa Kulinarnego przyznawany przez Europejską Sieć Regionalnego Dziedzictwa Kulinarnego.</div>
+		<div class="max-md:p-[7%] p-[5%] lg:px-72 lg:py-24 max-xl:py-16 flex max-md:flex-col max-2xl:flex-row max-lg:order-2 order-1 gap-14">
+			<div class="title max-md:w-full w-2/5 text-4xl md:text-5xl lg:text-6xl xl:text-7xl">Jakość składników</div>
+			<div class=" max-md:w-full w-3/5 lg:text-lg">W Capuccino Cafe doskonale wiemy, że nic nie zastąpi naturalnych i oryginalnych produktów. Korzystamy z wysokiej jakości składników, które kupujemy od lokalnych producentów z naszego regionu. Dzięki temu zapewniamy świeżość i najlepszą jakość wypieków, równocześnie kultywując pomorską tradycję kulinarną. W 2018 r. otrzymaliśmy Certyfikat Dziedzictwa Kulinarnego przyznawany przez Europejską Sieć Regionalnego Dziedzictwa Kulinarnego.</div>
 		</div>
 	</div>
 
@@ -267,12 +271,11 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 
 	<div class=" bg-[#42352F] flex max-md:flex-col-reverse max-md:h-auto max-lg:min-h-[50vh]">
 		<div class="w-1/2 max-md:w-full px-[7%]  max-md:py-8  flex items-center">
-			<div>
-
-				<img class="h-12  w-[35%] mb-5" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/sopotski_mlyn_logo.png" />
-				<h1 class="max-md:!text-6xl  max-lg:!text-3xl !text-6xl !text-white title">Restauracja <br>Sopocki Młyn </h1>
-				<p class="text-[#A9957B] font-['Mulish']">Smak tradycji w sercu Sopotu!</p>
-				<div class="h-12 px-7 rounded  outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2.5 hover:bg-[#A9957B] group">
+			<div class="flex flex-col gap-15">
+				<img class="h-12  w-[35%] lg:!w-40 lg:!h-16" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/sopotski_mlyn_logo.png" />
+				<div class="max-md:!text-6xl  max-lg:!text-3xl !text-6xl !text-white title">Restauracja <br>Sopocki Młyn </div>
+				<div class="text-[#A9957B] font-['Mulish']">Smak tradycji w sercu Sopotu!</div>
+				<a target="_blank" href="https://sopockimlyn.pl/" class="h-12 px-7 rounded  outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2.5 hover:bg-[#A9957B] group">
 					<div class="justify-center text-white text-[11px] font-bold font-['Mulish'] uppercase leading-tight">Poznaj menu</div>
 					<div class="w-6 h-6 relative overflow-hidden">
 						<div class="w-3.5 h-4 top-[2px] relative origin-top-left"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -280,7 +283,7 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 							</svg>
 						</div>
 					</div>
-				</div>
+				</a>
 			</div>
 		</div>
 		<div class="w-1/2  max-md:w-full">
@@ -291,8 +294,8 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 
 
 	<!-- Najnowsze aktualności  -->
-	<div class=" bg-[#F2EDE7] flex items-center justify-end   max-md:h-auto max-lg:min-h-[50vh] py-[5vh] max-md:px-[7%]">
-		<div class="w-full max-2xl:w-[92%]">
+	<div class=" bg-[#F2EDE7] flex items-center justify-end   max-md:h-auto max-lg:min-h-[50vh] py-[5vh] px-10">
+		<div class="w-full">
 			<h1 class="title">Najnowsze aktualności</h1>
 			<div class="mb-8 scroll-hidd flex flex-nowrap overflow-x-auto scroll-smooth w-full">
 				<?php echo do_shortcode('[recent_posts]'); ?>
