@@ -29,10 +29,10 @@
 		?>
 
 		<div data-property-1="mobile v2" class="w-full self-stretch px-5 md:px-32 pt-36 md:pt-24 relative bg-stone-700 md:flex justify-start content-start items-start gap-7">
-			<div class="w-48 min-w-44 h-full basis-auto">
+			<div class="w-48 min-w-44 h-full basis-auto mb-4">
 				<?php echo get_custom_logo(); ?>
 			</div>
-			<div class="flex md:flex-row flex-wrap">
+			<div class="flex md:flex-row flex-wrap gap-4">
 				<?php
 				wp_nav_menu([
 					'theme_location' => 'footer-mobile-menu-location',
