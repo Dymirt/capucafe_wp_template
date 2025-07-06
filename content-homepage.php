@@ -287,7 +287,7 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 			</div>
 		</div>
 		<div class="w-1/2  max-md:w-full">
-			<img class="max-md:!h-auto max-lg:!h-full object-cover" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/sopotski_mlyn.jpg" />
+			<img class="!h-full object-cover" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/sopotski_mlyn.jpg" />
 		</div>
 	</div>
 
