@@ -15,7 +15,7 @@
 				</div>
 			</div>
 		</div>
-		<div data-layer="txt" class="Txt flex-1 self-stretch pr-10 inline-flex flex-col justify-start items-start gap-6">
+		<div data-layer="txt" class="Txt flex-1 self-stretch inline-flex flex-col justify-start items-start gap-6">
 			<div data-layer="Frame 107" class="Frame107 self-stretch py-12 flex flex-col justify-start items-start gap-6">
 				<div data-layer="Stwórz własny zestaw pralin" class="StwRzWAsnyZestawPralin self-stretch justify-start text-stone-700 text-2xl font-normal font-['Didot_LT_Pro']">Stwórz własny zestaw pralin</div>
 				<div data-layer="Ilosc" class="Ilosc self-stretch flex flex-col justify-start items-start gap-2">
@@ -173,17 +173,17 @@
 							$extra_image_url = $extra_image_id ? wp_get_attachment_image_url($extra_image_id, 'thumbnail') : $thumb;
 
 						?>
-							<div data-layer="karta" data-property-1="Default" class="Karta flex-1 min-w-20 pb-4 bg-white rounded-sm inline-flex flex-col justify-start items-center gap-2">
-								<div data-layer="photo" class="Photo self-stretch h-full bg-stone-200 inline-flex justify-start items-center gap-2.5">
+							<div data-layer="karta" data-property-1="Default" class="Karta flex w-22 h-max pb-4 bg-white rounded-sm inline-flex flex-col justify-start items-center gap-2">
+								<div data-layer="photo" class="Photo h-22 w-full self-stretch bg-stone-200 inline-flex justify-start items-center gap-2.5">
 									<img
-										class="1 flex-1 h-24"
+										class="1 !h-full !w-full object-cover rounded-sm"
 										src="<?= esc_url($thumb); ?>"
 										data-extra-image="<?= esc_url($extra_image_url); ?>" />
 								</div>
-								<div class="AgrestWCzekoladzie self-stretch h-7 text-center justify-start text-zinc-800 text-[10px] font-normal font-['Mulish']"><?= $title; ?></div>
+								<div class="AgrestWCzekoladzie self-stretch h-7 text-center justify-start text-zinc-800 text-[10px] font-normal font-['Mulish'] overflow-hidden"><?= $title; ?></div>
 								<div class="Ilosc h-7 p-2 bg-white rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2">
 									<button type="button" class="decrement text-xl font-bold px-1">-</button>
-									<div class="candy-count text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight" data-count>0</div>
+									<div class="candy-count text-zinc-800 text-xs font-normal font-['Mulish'] leading-tight" data-count>0</div>
 									<button type="button" class="increment text-xl font-bold px-">+</button>
 								</div>
 							</div>
