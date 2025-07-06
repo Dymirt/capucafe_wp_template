@@ -17,15 +17,6 @@
 		</div>
 	</div>
 	<div data-layer="karusela" class="Karusela w-full overflow-x-auto whitespace-nowrap flex gap-6 snap-x scroll-smooth">
-		<div data-layer="karta" class="Karta w-96 min-h-72 p-10 bg-stone-200 rounded-sm inline-flex flex-col justify-start items-start gap-6 snap-start shrink-0">
-			<div data-layer="Frame 125" class="Frame125 size-20 inline-flex justify-start items-center gap-2.5">
-				<img data-layer="malina-120x120 1" class="Malina120x1201 flex-1 h-20" src="https://placehold.co/80x80" />
-			</div>
-			<div data-layer="txt" class="Txt self-stretch backdrop-blur-lg flex flex-col justify-center items-start">
-				<div data-layer="Malina" class="Malina self-stretch justify-start text-stone-700 text-3xl font-normal font-['Didot_LT_Pro']">Malina</div>
-				<div data-layer="z musem na bazie białej czekolady i śmietany" class="ZMusemNaBazieBiaEjCzekoladyIMietany self-stretch justify-start text-zinc-800 text-base font-light font-['Mulish'] leading-snug break-words whitespace-normal overflow-hidden">z musem na bazie białej czekolady i śmietany</div>
-			</div>
-		</div>
 		<?php
 		$smaki = get_posts([
 			'post_type'      => 'torty_smaki',
@@ -52,90 +43,6 @@
 			</div>
 		<?php endforeach;
 		wp_reset_postdata(); ?>
-
-		<div data-layer="karta" class="Karta w-60 min-h-72 p-6 md:w-96 md:min-h-72 md:p-10 bg-stone-200 rounded-sm inline-flex flex-col justify-start items-start gap-6 snap-start shrink-0">
-			<div data-layer="Frame 125" class="Frame125 size-20 inline-flex justify-start items-center gap-2.5">
-				<img data-layer="malina-120x120 1" class="Malina120x1201 flex-1 h-20" src="https://placehold.co/80x80" />
-			</div>
-			<div data-layer="txt" class="Txt self-stretch backdrop-blur-lg flex flex-col justify-center items-start">
-				<div data-layer="Palona biała czekolada" class="PalonaBiaACzekolada self-stretch justify-start text-stone-700 text-2xl md:text-3xl font-normal font-['Didot_LT_Pro'] break-words whitespace-normal overflow-hidden">Palona biała czekolada</div>
-				<div data-layer="z owocami czerwonej porzeczki" class="ZOwocamiCzerwonejPorzeczki self-stretch justify-start text-zinc-800 text-base font-light font-['Mulish'] leading-snug break-words whitespace-normal overflow-hidden">z owocami czerwonej porzeczki</div>
-			</div>
-		</div>
-
-
-		<div data-layer="karta" class="Karta w-96 min-h-72 p-10 bg-stone-200 rounded-sm inline-flex flex-col justify-start items-start gap-6 snap-start shrink-0">
-			<div data-layer="Frame 125" class="Frame125 size-20 inline-flex justify-start items-center gap-2.5">
-				<img data-layer="malina-120x120 1" class="Malina120x1201 flex-1 h-20" src="https://placehold.co/80x80" />
-			</div>
-			<div data-layer="txt" class="Txt self-stretch backdrop-blur-lg flex flex-col justify-center items-start">
-				<div data-layer="Mango-marakuja" class="MangoMarakuja self-stretch justify-start text-stone-700 text-3xl font-normal font-['Didot_LT_Pro']">Mango-marakuja</div>
-				<div data-layer="na musie mango z orzeźwiającą żelką z marakui" class="NaMusieMangoZOrzeWiajCElkZMarakui self-stretch justify-start text-zinc-800 text-base font-light font-['Mulish'] leading-snug break-words whitespace-normal overflow-hidden">na musie mango z orzeźwiającą żelką z marakui</div>
-			</div>
-		</div>
-		<div data-layer="karta" class="Karta w-96 min-h-72 p-10 bg-stone-200 rounded-sm inline-flex flex-col justify-start items-start gap-6 snap-start shrink-0">
-			<div data-layer="Frame 125" class="Frame125 size-20 inline-flex justify-start items-center gap-2.5">
-				<img data-layer="malina-120x120 1" class="Malina120x1201 flex-1 h-20" src="https://placehold.co/80x80" />
-			</div>
-			<div data-layer="txt" class="Txt self-stretch backdrop-blur-lg flex flex-col justify-center items-start">
-				<div data-layer="Cytryna" class="Cytryna self-stretch justify-start text-stone-700 text-3xl font-normal font-['Didot_LT_Pro']">Cytryna</div>
-				<div data-layer="z aperolem i czekoladą z marakują" class="ZAperolemICzekoladZMarakuj self-stretch justify-start text-zinc-800 text-base font-light font-['Mulish'] leading-snug break-words whitespace-normal overflow-hidden">z aperolem i czekoladą z marakują</div>
-			</div>
-		</div>
-		<div data-layer="karta" class="Karta w-96 min-h-72 p-10 bg-stone-200 rounded-sm inline-flex flex-col justify-start items-start gap-6 snap-start shrink-0">
-			<div data-layer="Frame 125" class="Frame125 size-20 inline-flex justify-start items-center gap-2.5">
-				<img data-layer="malina-120x120 1" class="Malina120x1201 flex-1 h-20" src="https://placehold.co/80x80" />
-			</div>
-			<div data-layer="txt" class="Txt self-stretch backdrop-blur-lg flex flex-col justify-center items-start">
-				<div data-layer="Rokitnik" class="Rokitnik self-stretch justify-start text-stone-700 text-3xl font-normal font-['Didot_LT_Pro']">Rokitnik</div>
-				<div data-layer="z musem na bazie śmietany i białej czekolady" class="ZMusemNaBazieMietanyIBiaEjCzekolady self-stretch justify-start text-zinc-800 text-lg font-light font-['Mulish'] leading-snug break-words whitespace-normal overflow-hidden">z musem na bazie śmietany i białej czekolady</div>
-			</div>
-		</div>
-		<div data-layer="karta" class="Karta w-96 min-h-72 p-10 bg-stone-200 rounded-sm inline-flex flex-col justify-start items-start gap-6 snap-start shrink-0">
-			<div data-layer="Frame 125" class="Frame125 size-20 inline-flex justify-start items-center gap-2.5">
-				<img data-layer="malina-120x120 1" class="Malina120x1201 flex-1 h-20" src="https://placehold.co/80x80" />
-			</div>
-			<div data-layer="txt" class="Txt self-stretch backdrop-blur-lg flex flex-col justify-center items-start">
-				<div data-layer="Czarna porzeczka" class="CzarnaPorzeczka self-stretch justify-start text-stone-700 text-3xl font-normal font-['Didot_LT_Pro']">Czarna porzeczka</div>
-				<div data-layer="z musem z czarnej porzeczki i gorzkiej czekolady" class="ZMusemZCzarnejPorzeczkiIGorzkiejCzekolady self-stretch justify-start text-zinc-800 text-base font-light font-['Mulish'] leading-snug break-words whitespace-normal overflow-hidden">z musem z czarnej porzeczki i gorzkiej czekolady</div>
-			</div>
-		</div>
-		<div data-layer="karta" class="Karta w-96 min-h-72 p-10 bg-stone-200 rounded-sm inline-flex flex-col justify-start items-start gap-6 snap-start shrink-0">
-			<div data-layer="Frame 125" class="Frame125 size-20 inline-flex justify-start items-center gap-2.5">
-				<img data-layer="malina-120x120 1" class="Malina120x1201 flex-1 h-20" src="https://placehold.co/80x80" />
-			</div>
-			<div data-layer="txt" class="Txt self-stretch backdrop-blur-lg flex flex-col justify-center items-start">
-				<div data-layer="Wiśnia" class="WiNia self-stretch justify-start text-stone-700 text-3xl font-normal font-['Didot_LT_Pro']">Wiśnia</div>
-				<div data-layer="z musem na bazie mlecznej i gorzkiej czekolady" class="ZMusemNaBazieMlecznejIGorzkiejCzekolady self-stretch justify-start text-zinc-800 text-base font-light font-['Mulish'] leading-snug break-words whitespace-normal overflow-hidden">z musem na bazie mlecznej i gorzkiej czekolady</div>
-			</div>
-		</div>
-		<div data-layer="karta" class="Karta w-96 min-h-72 p-10 bg-stone-200 rounded-sm inline-flex flex-col justify-start items-start gap-6 snap-start shrink-0">
-			<div data-layer="Frame 125" class="Frame125 size-20 inline-flex justify-start items-center gap-2.5">
-				<img data-layer="malina-120x120 1" class="Malina120x1201 flex-1 h-20" src="https://placehold.co/80x80" />
-			</div>
-			<div data-layer="txt" class="Txt self-stretch backdrop-blur-lg flex flex-col justify-center items-start">
-				<div data-layer="Ferrero rocher" class="FerreroRocher self-stretch justify-start text-stone-700 text-3xl font-normal font-['Didot_LT_Pro']">Ferrero rocher</div>
-				<div data-layer="na bazie musu czekoladowego z ganagem czekoladowym i chrupką" class="NaBazieMusuCzekoladowegoZGanagemCzekoladowymIChrupk self-stretch justify-start text-zinc-800 text-base font-light font-['Mulish'] leading-snug break-words whitespace-normal overflow-hidden">na bazie musu czekoladowego z ganagem czekoladowym i chrupką</div>
-			</div>
-		</div>
-		<div data-layer="karta" class="Karta w-96 min-h-72 p-10 bg-stone-200 rounded-sm inline-flex flex-col justify-start items-start gap-6 snap-start shrink-0">
-			<div data-layer="Frame 125" class="Frame125 size-20 inline-flex justify-start items-center gap-2.5">
-				<img data-layer="malina-120x120 1" class="Malina120x1201 flex-1 h-20" src="https://placehold.co/80x80" />
-			</div>
-			<div data-layer="txt" class="Txt self-stretch backdrop-blur-lg flex flex-col justify-center items-start">
-				<div data-layer="Truskawka" class="Truskawka self-stretch justify-start text-stone-700 text-3xl font-normal font-['Didot_LT_Pro']">Truskawka</div>
-				<div data-layer="z kremem waniliowym i poziomkami" class="ZKrememWaniliowymIPoziomkami self-stretch justify-start text-zinc-800 text-base font-light font-['Mulish'] leading-snug break-words whitespace-normal overflow-hidden">z kremem waniliowym i poziomkami</div>
-			</div>
-		</div>
-		<div data-layer="karta" class="Karta w-96 min-h-72 p-10 bg-stone-200 rounded-sm inline-flex flex-col justify-start items-start gap-6 snap-start shrink-0">
-			<div data-layer="Frame 125" class="Frame125 size-20 inline-flex justify-start items-center gap-2.5">
-				<img data-layer="malina-120x120 1" class="Malina120x1201 flex-1 h-20" src="https://placehold.co/80x80" />
-			</div>
-			<div data-layer="txt" class="Txt self-stretch backdrop-blur-lg flex flex-col justify-center items-start">
-				<div data-layer="Brownie" class="Brownie self-stretch justify-start text-stone-700 text-3xl font-normal font-['Didot_LT_Pro']">Brownie</div>
-				<div data-layer="z chrupiącą prażynką oraz z musem na bazie sosu angielskiego, śmietany i białej czekolady z owocami" class="ZChrupiCPraYnkOrazZMusemNaBazieSosuAngielskiegoMietanyIBiaEjCzekoladyZOwocami self-stretch justify-start text-zinc-800 text-base font-light font-['Mulish'] leading-snug break-words whitespace-normal overflow-hidden">z chrupiącą prażynką oraz z musem na bazie sosu angielskiego, śmietany i białej czekolady z owocami</div>
-			</div>
-		</div>
 	</div>
 	<div data-layer="Frame 128" class="Frame128 self-stretch flex flex-col justify-start items-center gap-2.5 hidden">
 		<div data-layer="Frame 120" class="Frame120 size- inline-flex justify-start items-center gap-2.5">

@@ -46,76 +46,76 @@ window.toggleSubmenu = function (id) {
 };
 
 
- document.addEventListener('DOMContentLoaded', () => {
-  const scrollContainer = document.querySelector('.scroll-hidd');
-  const navLinks = document.querySelectorAll('a[href^="#"]');
+document.addEventListener('DOMContentLoaded', () => {
+	const scrollContainer = document.querySelector('.scroll-hidd');
+	const navLinks = document.querySelectorAll('a[href^="#"]');
 
-  if (!scrollContainer) return;
+	if (!scrollContainer) return;
 
-  navLinks.forEach(link => {
-    const targetId = link.getAttribute('href').substring(1);
-    const targetEl = document.getElementById(targetId);
+	navLinks.forEach(link => {
+		const targetId = link.getAttribute('href').substring(1);
+		const targetEl = document.getElementById(targetId);
 
-    if (!targetEl) return;
+		if (!targetEl) return;
 
-    link.addEventListener('click', e => {
-      e.preventDefault();
+		link.addEventListener('click', e => {
+			e.preventDefault();
 
-    
-      targetEl.scrollIntoView({
-        behavior: 'smooth',
-        block: 'nearest',
-        inline: 'start'
-      });
 
-      
-     if (location.hash !== `#${targetId}`) {
-		history.pushState(null, '', `#${targetId}`);
-		} 
-	else {
-		history.replaceState(null, '', ' ');
-		history.pushState(null, '', `#${targetId}`);
-}
+			targetEl.scrollIntoView({
+				behavior: 'smooth',
+				block: 'nearest',
+				inline: 'start'
+			});
 
-    });
-  });
+
+			if (location.hash !== `#${targetId}`) {
+				history.pushState(null, '', `#${targetId}`);
+			}
+			else {
+				history.replaceState(null, '', ' ');
+				history.pushState(null, '', `#${targetId}`);
+			}
+
+		});
+	});
 });
 
- 
+
 const sections = document.querySelectorAll('section');
 const dots = document.querySelectorAll('#dot-indicators span');
 
 function updateActiveDot() {
-  let closestSection = null;
-  let minDistance = Infinity;
+	let closestSection = null;
+	let minDistance = Infinity;
 
-  sections.forEach(section => {
-    const rect = section.getBoundingClientRect();
-    const distance = Math.abs(rect.left);
-    if (distance < minDistance) {
-      minDistance = distance;
-      closestSection = section;
-    }
-  });
+	sections.forEach(section => {
+		const rect = section.getBoundingClientRect();
+		const distance = Math.abs(rect.left);
+		if (distance < minDistance) {
+			minDistance = distance;
+			closestSection = section;
+		}
+	});
 
-  if (!closestSection) return;
+	if (!closestSection) return;
 
-  const targetId = closestSection.id;
+	const targetId = closestSection.id;
 
-  dots.forEach(dot => {
-    if (dot.dataset.target === targetId) {
-      dot.classList.add('bg-blue-500', 'opacity-100');
-      dot.classList.remove('bg-black', 'opacity-30');
-    } else {
-      dot.classList.remove('bg-blue-500', 'opacity-100');
-      dot.classList.add('bg-black', 'opacity-30');
-    }
-  });
+	dots.forEach(dot => {
+		if (dot.dataset.target === targetId) {
+			dot.classList.add('bg-blue-500', 'opacity-100');
+			dot.classList.remove('bg-black', 'opacity-30');
+		} else {
+			dot.classList.remove('bg-blue-500', 'opacity-100');
+			dot.classList.add('bg-black', 'opacity-30');
+		}
+	});
 }
 
 scrollContainer.addEventListener('scroll', () => {
-  updateActiveDot();
+	updateActiveDot();
 });
 
- 
+
 
