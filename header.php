@@ -126,6 +126,9 @@ $count = WC()->cart->get_cart_contents_count();
 		|| is_page('menu')
 		|| is_page('torty-weselne')
 		|| is_page('torty-okazjonalne')
+		|| is_page('rozana-romantyka')
+		|| is_page('naturalna-elegancja')
+		|| is_page('lesna-harmonia')
 		): ?>
 				<!-- Homepage -->
 				<div class="w-full ">

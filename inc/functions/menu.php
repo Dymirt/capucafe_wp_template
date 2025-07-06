@@ -38,7 +38,6 @@ class Footer_Walker_Nav_Menu extends Walker_Nav_Menu
 			} else {
 				$output .= '</div>';
 			}
-
 		} else {
 			$output .= '<a class="justify-start font-[\'Mulish\'] uppercase pl-4 !no-underline self-stretch justify-start !text-white text-sm font-normal leading-tight basis-full" href="' . esc_url($item->url) . '">';
 			$output .= esc_html($item->title);
@@ -193,10 +192,16 @@ class Top_Walker_Nav_Menu extends Walker_Nav_Menu
 							$child = $item_data['item'];
 							$thumb = $item_data['thumbnail'];
 
-							$output .= '<div class="h-full ">';
+							$title = esc_html($child->title);
+							$words = explode(' ', $title);
+							$multiline_title = implode('<br>', $words);
+
+
+
+							$output .= '<div class="relative h-full">';
 							$output .= '<a href="' . esc_url($child->url) . '" class="text-stone-700 hover:underline">';
 							$output .= '<img src="' . esc_url($thumb) . '" class="!w-full !h-full object-cover rounded mb-2" alt="' . esc_attr($child->title) . '">';
-							$output .= '<div class="text-center text-xs font-medium">' . esc_html($child->title) . '</div>';
+							$output .= '<div class="absolute left-8 top-1/2 -translate-y-1/2 text-center text-4xl text-left text-white font-[\'Didot_LT_Pro\']">' . $multiline_title . '</div>';
 							$output .= '</a>';
 							$output .= '</div>';
 						}

@@ -44,7 +44,7 @@
 				?>
 
 			</div>
-			<div class="self-stretch flex flex-col justify-start items-center gap-6">
+			<div class="self-stretch flex flex-col justify-start items-center gap-6 mt-8">
 
 				<!-- Socials -->
 				<div class="self-stretch py-1 flex flex-col justify-center items-start gap-4">
