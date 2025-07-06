@@ -86,36 +86,28 @@ $count = WC()->cart->get_cart_contents_count();
 		</div>
 
 		<script>
-			document.addEventListener('DOMContentLoaded', function() {
-				bindMenuEvents();
-			});
-
-			function bindMenuEvents() {
-				const menuToggle = document.getElementById('menu-toggle');
-				const menuClose = document.getElementById('menu-close');
+			function openMenu() {
 				const sideMenu = document.getElementById('side-menu');
 				const overlay = document.getElementById('menu-overlay');
+				const menuClose = document.getElementById('menu-close');
 
-				if (!menuToggle || !menuClose || !sideMenu || !overlay) return;
-
-				function openMenu() {
-					sideMenu.classList.remove('translate-x-full');
-					overlay.classList.remove('hidden');
-				}
-
-				function closeMenu() {
-					sideMenu.classList.add('translate-x-full');
-					overlay.classList.add('hidden');
-				}
-
-				menuToggle.addEventListener('click', openMenu);
+				sideMenu.classList.remove('translate-x-full');
+				overlay.classList.remove('hidden');
 				menuClose.addEventListener('click', closeMenu);
 				overlay.addEventListener('click', closeMenu);
 
 				document.addEventListener('keydown', function(e) {
 					if (e.key === 'Escape') closeMenu();
 				});
-			}
+
+			};
+
+			function closeMenu() {
+				const sideMenu = document.getElementById('side-menu');
+				const overlay = document.getElementById('menu-overlay');
+				sideMenu.classList.add('translate-x-full');
+				overlay.classList.add('hidden');
+			};
 		</script>
 
 		<?php
