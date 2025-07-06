@@ -23,7 +23,7 @@ get_header(); ?>
 		</div>
 	</div>
 
-	<div class="self-stretch px-32 py-40 bg-white blur-[0px] inline-flex justify-center items-start gap-24">
+	<div class="self-stretch p-8 md:px-32 md:py-40 bg-white blur-[0px] inline-flex justify-center items-start gap-24">
 		<div class="flex-1 text-center justify-start text-zinc-800 text-2xl font-light font-['Mulish'] leading-9">Słodkie stoły zachwycają bogactwem smaków i przepiękną aranżacją. Przygotowujemy je zgodnie z pomysłem Pary Młodej i wizją wydarzenia. Dokładamy starań, by były idealnie skomponowane z salą weselną i jej wystrojem.</div>
 	</div>
 
@@ -87,7 +87,7 @@ get_header(); ?>
 
 
 
-	<div class="relative flex max-lg:h-auto h-[80vh] max-md:h-auto max-md:flex-col overflow-hidden">
+	<div class="relative flex max-lg:h-auto max-md:h-auto max-md:flex-col overflow-hidden">
 
 		<div class=" self-stretch w-1/2 max-md:w-full backdrop-blur-lg inline-flex flex-col justify-center items-center gap-6 max-lg:p-[5%]">
 			<div class="w-full max-w-96 justify-start text-zinc-800 text-lg  max-lg:text-sm font-light font-['Mulish'] leading-relaxed">Słodkości przygotowane są w ilości około 200 gramów na osobę, co odpowiada 3 porcjom. <br />W ramach usługi oferujemy kompleksową aranżację dekoracji oraz słodkości, wykonaną przez naszych doświadczonych artystów. Zapewniamy także demontaż i odbiór wypożyczonych elementów po zakończeniu imprezy.</div>
