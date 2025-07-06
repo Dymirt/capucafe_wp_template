@@ -138,6 +138,27 @@ get_header(); ?>
 	document.addEventListener('DOMContentLoaded', () => {
 		loadMenu('sopot');
 	});
+
+	function toggleSiblings(button) {
+		const parent = button.parentNode;
+		const siblings = Array.from(parent.children);
+
+		const areHidden = siblings
+			.filter(el => el !== button)
+			.every(el => el.classList.contains('!hidden'));
+
+		siblings.forEach(el => {
+			if (el !== button) {
+				if (areHidden) {
+					el.classList.remove('!hidden');
+					button.querySelector('.ChevronLeft').classList.remove('rotate-180');
+				} else {
+					el.classList.add('!hidden');
+					button.querySelector('.ChevronLeft').classList.add('rotate-180');
+				}
+			}
+		});
+	};
 </script>
 
 <?php get_footer(); ?>
