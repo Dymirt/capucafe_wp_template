@@ -182,9 +182,9 @@
 								</div>
 								<div class="AgrestWCzekoladzie self-stretch h-7 text-center justify-start text-zinc-800 text-[10px] font-normal font-['Mulish'] overflow-hidden"><?= $title; ?></div>
 								<div class="Ilosc h-7 p-2 bg-white rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2">
-									<button type="button" class="decrement text-xl font-bold px-1">-</button>
+									<button type="button" class="decrement text-2xl font-bold px-1 !bg-transparent">-</button>
 									<div class="candy-count text-zinc-800 text-xs font-normal font-['Mulish'] leading-tight" data-count>0</div>
-									<button type="button" class="increment text-xl font-bold px-">+</button>
+									<button type="button" class="increment text-xl font-bold px-1 !bg-transparent">+</button>
 								</div>
 							</div>
 						<?php endforeach; ?>
@@ -197,10 +197,11 @@
 					<div id="candy-summary-list" data-layer="aktywne filtry" class="AktywneFiltry self-stretch inline-flex justify-start items-start gap-2 flex-wrap content-start overflow-hidden">
 						<div></div>
 
-						<div data-layer="btn" class="Btn h-9 px-2 flex justify-center items-center">
-							<div data-layer="BTN XS" data-property-1="Default" class="BtnXs size- border-b border-zinc-800 flex justify-center items-center gap-2.5">
-								<div data-layer="Poznaj nas" class="PoznajNas justify-center text-zinc-800 text-xs font-normal font-['Mulish']">Wyczyść wszystkie</div>
-							</div>
+
+					</div>
+					<div data-layer="btn" id="clear_all" class="Btn h-9 px-2 flex justify-center items-center">
+						<div data-layer="BTN XS" data-property-1="Default" class="BtnXs size- border-b border-zinc-800 flex justify-center items-center gap-2.5">
+							<div data-layer="Poznaj nas" class="PoznajNas justify-center text-zinc-800 text-xs font-normal font-['Mulish']">Wyczyść wszystkie</div>
 						</div>
 					</div>
 				</div>
@@ -216,6 +217,20 @@
 		const globalCounterEl = document.getElementById('global-counter');
 		const summaryList = document.getElementById("candy-summary-list");
 		const submitButton = document.querySelector('.single_add_to_cart_button');
+		const clearAllButton = document.getElementById('clear_all');
+
+		clearAllButton.addEventListener('click', clearAllCandies);
+
+		function clearAllCandies() {
+			document.querySelectorAll('.Karta').forEach(card => {
+				const countEl = card.querySelector('[data-count]');
+				if (countEl) {
+					countEl.textContent = '0';
+				}
+			});
+			globalCount = 0;
+			updateAll();
+		}
 
 		function updateAll() {
 			updateGlobalCounterDisplay();
@@ -377,6 +392,8 @@
 			localStorage.removeItem('candySelection');
 
 		});
+
+
 
 		// Candies selection logic
 		document.querySelectorAll('.Karta').forEach(card => {
@@ -575,6 +592,8 @@
 		// Initialize restoration
 		loadCandySelectionFromStorage();
 		bindStorageEvents();
+
+
 
 	});
 </script>
