@@ -130,7 +130,7 @@ class Top_Walker_Nav_Menu extends Walker_Nav_Menu
 
 	function start_lvl(&$output, $depth = 0, $args = [])
 	{
-		// No submenus
+		// No default submenu
 	}
 
 	function end_lvl(&$output, $depth = 0, $args = [])
@@ -141,10 +141,72 @@ class Top_Walker_Nav_Menu extends Walker_Nav_Menu
 	function start_el(&$output, $item, $depth = 0, $args = [], $id = 0)
 	{
 		if ($depth === 0) {
-			$output .= '<div class="size- flex justify-center items-center gap-2.5">';
-			$output .= '<a href="' . esc_url($item->url) . '" class="justify-center text-zinc-800 text-base font-light font-[Mulish] leading-snug focus:outline-none focus:ring-0 active:bg-transparent no-underline uppercase">';
-			$output .= esc_html($item->title);
-			$output .= '</a></div>';
+			$has_children = !empty($args->has_children);
+
+			$output .= '<div class="relative group flex justify-center items-center gap-2.5">';
+
+			$output .= '<a href="' . esc_url($item->url) . '" class="text-zinc-800 text-base font-light uppercase">' . esc_html($item->title) . '</a>';
+
+			if ($has_children && !empty($args->child_menu_items)) {
+
+
+				if ($has_children && !empty($args->child_menu_items)) {
+					$with_thumbnails = [];
+					$without_thumbnails = [];
+
+					// First pass: sort children
+					foreach ($args->child_menu_items as $child) {
+						$thumbnail = get_the_post_thumbnail_url($child->object_id, 'large');
+						if ($thumbnail) {
+							$with_thumbnails[] = [
+								'item' => $child,
+								'thumbnail' => $thumbnail
+							];
+						} else {
+							$without_thumbnails[] = $child;
+						}
+					}
+
+					$output .= '
+				<div class="fixed flex justify-center  basis-full items-center top-[100px] h-72 left-0 mt-2 w-full py-8 bg-white border border-stone-300 shadow-lg rounded text-sm !text-stone-800
+							opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 gap-10">
+					';
+
+					// 🔤 Group: without thumbnails
+					if (!empty($without_thumbnails)) {
+						$output .= '<div class="flex flex-col min-w-80 gap-3 items-start ">';
+						foreach ($without_thumbnails as $child) {
+							$output .= '<div class="py-1">';
+							$output .= '<a href="' . esc_url($child->url) . '" class="!text-stone-600 hover:underline">';
+							$output .= esc_html($child->title);
+							$output .= '</a>';
+							$output .= '</div>';
+						}
+						$output .= '</div>';
+					}
+
+					// 🖼️ Group: with thumbnails
+					if (!empty($with_thumbnails)) {
+						foreach ($with_thumbnails as $item_data) {
+							$child = $item_data['item'];
+							$thumb = $item_data['thumbnail'];
+
+							$output .= '<div class="h-full ">';
+							$output .= '<a href="' . esc_url($child->url) . '" class="text-stone-700 hover:underline">';
+							$output .= '<img src="' . esc_url($thumb) . '" class="!w-full !h-full object-cover rounded mb-2" alt="' . esc_attr($child->title) . '">';
+							$output .= '<div class="text-center text-xs font-medium">' . esc_html($child->title) . '</div>';
+							$output .= '</a>';
+							$output .= '</div>';
+						}
+					}
+
+
+
+					$output .= '</div>'; // close modal
+				}
+			}
+
+			$output .= '</div>';
 		}
 	}
 
@@ -155,7 +217,18 @@ class Top_Walker_Nav_Menu extends Walker_Nav_Menu
 
 	public function display_element($element, &$children_elements, $max_depth, $depth = 0, $args = [], &$output = '')
 	{
-		// Still need to pass the reference!
+		$id_field = $this->db_fields['id'];
+
+		// Set has_children flag
+		$args[0]->has_children = !empty($children_elements[$element->$id_field]);
+
+		// If children exist, pass them to the element renderer
+		if (!empty($args[0]->has_children)) {
+			$args[0]->child_menu_items = $children_elements[$element->$id_field];
+		} else {
+			$args[0]->child_menu_items = [];
+		}
+
 		parent::display_element($element, $children_elements, $max_depth, $depth, $args, $output);
 	}
 }
