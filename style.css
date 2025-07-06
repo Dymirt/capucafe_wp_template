@@ -218,3 +218,10 @@ article {
 	background-position: center;
 	background-repeat: no-repeat;
 }
+
+#torty_okazjonale_main_baner {
+	background-image: url(./resources/img/torty_okazjonalne/baner.jpg);
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
