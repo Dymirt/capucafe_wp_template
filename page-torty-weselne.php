@@ -8,20 +8,18 @@ get_header(); ?>
 	}
 </style>
 
-<div id="torty_weselne_main_baner">
-	<div data-layer="image" class="Image w-full self-stretch h-[760px] pb-8 bg-linear-to-b from-black/0 to-[#42352F] inline-flex flex-col justify-end items-start gap-44 overflow-hidden">
-		<div data-layer="Frame 4" class="Frame4 self-stretch px-10 py-4 flex flex-col md:justify-center items-start gap-6">
-			<div data-layer="Wyjątkowe torty weselne" class="WyjTkoweTortyWeselne self-stretch text-center justify-start text-white text-5xl md:text-7xl font-normal font-['Didot_LT_Pro']">Wyjątkowe torty weselne</div>
-			<div data-layer="– smak, elegancja i niezapomniane wrażenia" class="SmakElegancjaINiezapomnianeWraEnia self-stretch md:text-center justify-center text-white text-lg md:text-2xl font-light font-['Mulish'] leading-9">– smak, elegancja i niezapomniane wrażenia</div>
-		</div>
-		<div data-layer="Frame 5" class="Frame5 self-stretch flex justify-start items-center ">
-			<div data-layer="przewiń w doł" class="PrzewiWDo text-center justify-center text-white text-base font-bold font-['Mulish'] leading-snug hidden">przewiń w doł</div>
-			<div data-layer="Bounding box" class="BoundingBox size-6 bg-zinc-300 hidden"></div>
-			<div data-layer="chevron_left" class="ChevronLeft w-1.5 h-3 bg-stone-400 hidden"></div>
+<div id="torty_weselne_main_baner" class="bg-cover relative max-md:bg-center z-3 h-[760px]">
+	<div class="sticky top-0 z-4">
+		<?php get_template_part('headers/header', 'homepage'); ?>
+	</div>
+	<div class="shadow w-full h-full absolute left-0 top-0 max-md:hidden"></div>
+	<div class="relative h-screen max-md:h-[70vh] !h-full flex items-center justify-center">
+		<div class="!text-white">
+			<div class="!text-white !text-[80px] max-md:!text-[40px] !font-['Didot_LT_Pro']">Wyjątkowe torty weselne</div>
+			<div class="text-center">– smak, elegancja i niezapomniane wrażenia</div>
 		</div>
 	</div>
 </div>
-
 
 
 
