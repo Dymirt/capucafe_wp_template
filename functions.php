@@ -298,3 +298,8 @@ function load_custom_menu() {
 
     wp_die(); // important
 }
+
+// Remove storefront_woocommerce_brands from homepage
+add_action('init', function() {
+    remove_action( 'homepage', 'storefront_woocommerce_brands', 40 );
+});
