@@ -270,7 +270,7 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 	<!-- Restauracja section -->
 
 	<div class=" bg-[#42352F] flex max-md:flex-col-reverse max-md:h-auto max-lg:min-h-[50vh]">
-		<div class="w-1/2 max-md:w-full px-[7%]  max-md:py-8  flex items-center">
+		<div class="w-1/2 max-md:w-full px-[7%] py-8  flex items-center">
 			<div class="flex flex-col gap-15">
 				<img class="h-12  w-[35%] lg:!w-40 lg:!h-16" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/sopotski_mlyn_logo.png" />
 				<div class="max-md:!text-6xl  max-lg:!text-3xl !text-6xl !text-white title">Restauracja <br>Sopocki Młyn </div>
