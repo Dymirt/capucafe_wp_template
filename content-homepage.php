@@ -121,9 +121,9 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 			</div>
 			<div class="w-full">
 				<a href="<?php echo esc_url(page_url_by_slug('pracownia-tortow-2')); ?>" class="first_service">
-					<div class="bg-white rounded-sm overflow-hidden flex flex-row-reverse max-sm:flex-col w-full relative mb-6 hover:bg-[#A9957B] group h-60 lg:h-64">
+					<div class="bg-white rounded-sm overflow-hidden flex flex-row-reverse max-sm:flex-col w-full relative mb-6 hover:bg-[#A9957B] group md:h-60 lg:h-64">
 						<div class='w-1/2 max-md:w-full'>
-							<img class="w-full object-cover" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/pracownia_tortow.png" />
+							<img class="w-full object-cover !h-60 md:!h-full" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/pracownia_tortow.png" />
 						</div>
 
 						<div class="flex min-w-72 max-md:w-full w-1/2 p-5 flex-col justify-between max-md:h-40  max-md:justify-center">
@@ -140,9 +140,9 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 					</div>
 				</a>
 				<a href="<?php echo esc_url(page_url_by_slug('slodkie-stoly')); ?>">
-					<div class="bg-white rounded-sm overflow-hidden flex flex-row-reverse max-sm:flex-col w-full relative mb-6 groupe hover:bg-[#A9957B] group h-60 lg:h-64">
+					<div class="bg-white rounded-sm overflow-hidden flex flex-row-reverse max-sm:flex-col w-full relative mb-6 groupe hover:bg-[#A9957B] group md:h-60 lg:h-64">
 						<div class='w-1/2 max-md:w-full'>
-							<img class="w-full object-cover" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/slodkie_stoly.jpg" />
+							<img class="w-full object-cover !h-60 md:!h-full" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/slodkie_stoly.jpg" />
 						</div>
 						<div class="flex min-w-72 max-md:w-full w-1/2 p-5 flex-col justify-between max-md:h-40  max-md:justify-center">
 							<div class="max-md:hidden">
@@ -159,9 +159,9 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 
 				</a>
 				<a href="<?php echo esc_url(page_url_by_slug('kawiarnie')); ?>">
-					<div class="bg-white rounded-sm overflow-hidden flex flex-row-reverse max-sm:flex-col w-full relative mb-6 hover:bg-[#A9957B] group h-60 lg:h-64">
+					<div class="bg-white rounded-sm overflow-hidden flex flex-row-reverse max-sm:flex-col w-full relative mb-6 hover:bg-[#A9957B] group md:h-60 lg:h-64">
 						<div class='w-1/2 max-md:w-full'>
-							<img class="w-full object-cover" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/kawiarnie.png" />
+							<img class="w-full object-cover !h-60 md:!h-full" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/kawiarnie.png" />
 						</div>
 
 						<div class="flex min-w-72 max-md:w-full w-1/2 p-5 flex-col justify-between max-md:h-40  max-md:justify-center ">
@@ -179,9 +179,9 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 				</a>
 				<a href="<?php echo esc_url(get_permalink(wc_get_page_id('shop'))); ?>" class="last_service">
 
-					<div class="bg-white rounded-sm overflow-hidden flex flex-row-reverse max-sm:flex-col w-full relative mb-6 hover:bg-[#A9957B] group h-60 lg:h-64">
+					<div class="bg-white rounded-sm overflow-hidden flex flex-row-reverse max-sm:flex-col w-full relative mb-6 hover:bg-[#A9957B] group md:h-60 lg:h-64">
 						<div class='w-1/2 max-md:w-full'>
-							<img class="w-full object-cover" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/sklep_online.png" />
+							<img class="w-full object-cover !h-60 md:!h-full" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/sklep_online.png" />
 						</div>
 
 						<div class="flex min-w-72 max-md:w-full w-1/2 p-5 flex-col justify-between max-md:h-40 max-md:justify-center">
