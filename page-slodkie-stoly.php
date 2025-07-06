@@ -10,24 +10,45 @@ get_header(); ?>
 
 <main>
 	<!-- hero section -->
-	<div class="hero-rozana bg-cover relative max-md:bg-center z-3">
+	<div class="hero-stoly bg-cover relative max-md:bg-center z-3">
 		<div class="sticky top-0 z-4">
 			<?php get_template_part('headers/header', 'homepage'); ?>
 		</div>
 		<div class="shadow w-full h-full absolute left-0 top-0 max-md:hidden"></div>
 		<div class="relative h-screen max-md:h-[70vh]   flex items-center justify-center">
 			<div class="!text-white">
-				<h1 class="!text-white !text-[80px] max-md:!text-[40px] !font-['Didot_LT_Pro']">Różana Romantyka</h1>
-				<p class="text-center">Delikatna, romantyczna stylizacja. </p>
+				<div class="!text-white !text-[80px] max-md:!text-[40px] !font-['Didot_LT_Pro']">Słodkie stoły</div>
+				<div class="text-center">– smak, elegancja i niezapomniane wrażenia</div>
 			</div>
 		</div>
 	</div>
 
-	<!-- Więcej o stylu section -->
-	<div class=" my-10">
-		<div class="max-md:p-[7%] p-[5%] max-xl:py-16 flex max-md:flex-col max-2xl:flex-row max-lg:order-2 order-1">
-			<h1 class="title max-md:w-full w-2/5">Więcej o stylu</h1>
-			<div class=" max-md:w-full w-3/5">Pełna romantyzmu stylizacja słodkiego stołu dostarczy pięknych wrażeń na weselu. Białe patery wypełnione po brzegi słodkościami w ciepłych odcieniach różu skradną nie jedno serce wśród Waszych gości. Pastelowe świece i świeże kwiaty nadają całej aranżacji kunsztu i stylu, przy której nie da się przejść obojętnie</div>
+	<div class="self-stretch px-32 py-40 bg-white blur-[0px] inline-flex justify-center items-start gap-24">
+		<div class="flex-1 text-center justify-start text-zinc-800 text-2xl font-light font-['Mulish'] leading-9">Słodkie stoły zachwycają bogactwem smaków i przepiękną aranżacją. Przygotowujemy je zgodnie z pomysłem Pary Młodej i wizją wydarzenia. Dokładamy starań, by były idealnie skomponowane z salą weselną i jej wystrojem.</div>
+	</div>
+
+	<div data-layer="dlaczego my" class="DlaczegoMy self-stretch py-28 bg-[#F9F8F6] inline-flex flex-col justify-start items-center gap-24">
+		<div data-layer="title" class="Title self-stretch inline-flex justify-center items-start gap-2.5">
+			<div data-layer="Dlaczego warto nam powierzyć tort weselny?" class="DlaczegoWartoNamPowierzyTortWeselny  px-10 pb-5 flex-1 md:text-center justify-start text-[#42352F] text-3xl md:text-5xl font-normal font-['Didot_LT_Pro']">Dlaczego warto nam powierzyć słodki stół?</div>
+		</div>
+		<div data-layer="div" class="Div w-full grid md:grid-cols-2">
+			<div class="flex justify-center items-center">
+				<img data-layer="image" class="Image  py-4 w-full object-cover !h-full" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/slodkie-stoly/2.jpg" />
+			</div>
+			<div data-layer="div" class="Div px-0 md:px-10 lg:px-28 inline-flex flex-col justify-center items-center">
+				<div data-layer="txt" class="Txt self-stretch md:h-80 p-8 backdrop-blur-lg flex flex-col justify-center items-start gap-3 md:gap-8">
+					<div data-layer="Proponujemy degustację" class="ProponujemyDegustacj self-stretch justify-start text-[#A9957B] text-3xl font-normal font-['Didot_LT_Pro']">Kompleksowa realizacja</div>
+					<div data-layer="pomożemy Wam wybrać perfekcyjny smak Waszego tortu." class="PomoEmyWamWybraPerfekcyjnySmakWaszegoTortu self-stretch justify-start text-zinc-800 text-lg font-light font-['Mulish'] leading-relaxed">Od doradztwa w doborze słodkości, przez przygotowanie świeżych wypieków, po efektowną aranżację – zajmujemy się każdym detalem. Dzięki nam oszczędzasz czas i masz pewność spójnego stylu.</div>
+				</div>
+				<div data-layer="txt" class="Txt self-stretch md:h-80 p-8 backdrop-blur-lg flex flex-col justify-center items-start gap-3 md:gap-8">
+					<div data-layer="Mistrzowska precyzja" class="MistrzowskaPrecyzja self-stretch justify-start text-[#A9957B] text-3xl font-normal font-['Didot_LT_Pro']">Nieograniczone możliwości dekoracji</div>
+					<div data-layer="nasz zespół to doświadczeni cukiernicy oraz artystka specjalizująca się w ręcznych dekoracjach i figurkach." class="NaszZespToDoWiadczeniCukiernicyOrazArtystkaSpecjalizujCaSiWRCznychDekoracjachIFigurkach self-stretch justify-start text-zinc-800 text-lg font-light font-['Mulish'] leading-relaxed">Wypożyczamy unikatowe dodatki (beczki, drabinki) i tworzymy spersonalizowane kompozycje kwiatowe. Twój słodki stół będzie wyglądał jak z magazynu wnętrzarskiego!</div>
+				</div>
+				<div data-layer="txt" class="Txt self-stretch md:h-80 p-8 backdrop-blur-lg flex flex-col justify-center items-start gap-3 md:gap-8">
+					<div data-layer="Pełne wsparcie" class="PeNeWsparcie self-stretch justify-start text-[#A9957B] text-3xl font-normal font-['Didot_LT_Pro']">Mistrzowska precyzja</div>
+					<div data-layer="doradzimy w wyborze designu, rozmiaru i smaku, a także dostarczymy tort na salę, abyście mogli cieszyć się tym dniem bez stresu." class="DoradzimyWWyborzeDesignuRozmiaruISmakuATakEDostarczymyTortNaSalAbyCieMogliCieszySiTymDniemBezStresu self-stretch justify-start text-zinc-800 text-lg font-light font-['Mulish'] leading-relaxed">Nasi cukiernicy i floryści dbają o harmonię smaku i designu. Każdy element – od koloru posypki do układu kwiatów – jest przemyślany, by zachwycać gości.</div>
+				</div>
+			</div>
 		</div>
 	</div>
 
