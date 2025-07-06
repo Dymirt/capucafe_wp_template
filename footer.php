@@ -28,16 +28,22 @@
 		// do_action( 'storefront_footer' );
 		?>
 
-		<div data-property-1="mobile v2" class="w-full self-stretch px-5 pt-36 relative bg-stone-700 inline-flex flex-col justify-start items-start gap-7">
-			<?php
-			wp_nav_menu([
-				'theme_location' => 'footer-mobile-menu-location',
-				'walker'         => new Footer_Walker_Nav_Menu(),
-				'container'      => false,
-				'items_wrap'     => '%3$s', // no ul
-				'fallback_cb'    => '',     // IMPORTANT! <- Empty string, not false!
-			]);
-			?>
+		<div data-property-1="mobile v2" class="w-full self-stretch px-5 md:px-32 pt-36 md:pt-24 relative bg-stone-700 md:flex justify-start content-start items-start gap-7">
+			<div class="w-48 min-w-44 h-full basis-auto">
+				<?php echo get_custom_logo(); ?>
+			</div>
+			<div class="flex md:flex-row flex-wrap">
+				<?php
+				wp_nav_menu([
+					'theme_location' => 'footer-mobile-menu-location',
+					'walker'         => new Footer_Walker_Nav_Menu(),
+					'container'      => false,
+					'items_wrap'     => '%3$s', // no ul
+					'fallback_cb'    => '',     // IMPORTANT! <- Empty string, not false!
+				]);
+				?>
+
+			</div>
 			<div class="self-stretch flex flex-col justify-start items-center gap-6">
 
 				<!-- Socials -->
@@ -72,11 +78,6 @@
 				<div class="py-5 inline-flex justify-center items-center gap-2.5">
 					<div class="text-center justify-start text-stone-200 text-[10px] font-normal font-['Mulish']">© 2025 Copyright Capuccino Cafe</div>
 				</div>
-			</div>
-			<div class="w-36 h-2.5 left-[21px] top-[197px] absolute"></div>
-			<div class="w-36 h-2.5 left-[21px] top-[251px] absolute"></div>
-			<div class="w-40 h-12 left-[20px] top-[40px] absolute overflow-hidden">
-				<?php echo get_custom_logo(); ?>
 			</div>
 		</div>
 
