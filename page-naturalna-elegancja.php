@@ -10,15 +10,15 @@ get_header(); ?>
 
 <main>
 	<!-- hero section -->
-	<div class="hero-rozana bg-cover relative max-md:bg-center z-3">
+	<div class="hero-naturalna bg-cover relative max-md:bg-center z-3">
 		<div class="sticky top-0 z-4">
 			<?php get_template_part('headers/header', 'homepage'); ?>
 		</div>
 		<div class="shadow w-full h-full absolute left-0 top-0 max-md:hidden"></div>
 		<div class="relative h-screen max-md:h-[70vh]   flex items-center justify-center">
 			<div class="!text-white">
-				<h1 class="!text-white !text-[80px] max-md:!text-[40px] !font-['Didot_LT_Pro']">Różana Romantyka</h1>
-				<p class="text-center">Delikatna, romantyczna stylizacja. </p>
+				<h1 class="!text-white !text-[80px] max-md:!text-[40px] !font-['Didot_LT_Pro']">Naturalna Elegancja</h1>
+				<p class="text-center">Subtelna elegancja i naturalne piękno</p>
 			</div>
 		</div>
 	</div>
@@ -27,7 +27,8 @@ get_header(); ?>
 	<div class=" my-10">
 		<div class="max-md:p-[7%] p-[5%] max-xl:py-16 flex max-md:flex-col max-2xl:flex-row max-lg:order-2 order-1">
 			<h1 class="title max-md:w-full w-2/5">Więcej o stylu</h1>
-			<div class=" max-md:w-full w-3/5">Pełna romantyzmu stylizacja słodkiego stołu dostarczy pięknych wrażeń na weselu. Białe patery wypełnione po brzegi słodkościami w ciepłych odcieniach różu skradną nie jedno serce wśród Waszych gości. Pastelowe świece i świeże kwiaty nadają całej aranżacji kunsztu i stylu, przy której nie da się przejść obojętnie</div>
+			<div class=" max-md:w-full w-3/5">Subtelna i naturalna aranżacja słodkiego stołu, która z łatwością odnajdzie swoje miejsce w każdym weselnym wnętrzu. Wyjątkowy stół z Riviery Maison pokryty lnianym obrusem z elegancją prezentuje słodkości na marmurowych paterach. Designerska florystyka, ceramiczne wazony oraz naczynia z drewna bielonego doświetlone blaskiem świec nadają wytworności całej stylizacji.
+			</div>
 		</div>
 	</div>
 
@@ -55,10 +56,12 @@ get_header(); ?>
 			</div>
 			<div id="productScrollWrapper" class="flex flex-nowrap overflow-x-auto scroll-smooth w-full ">
 				<div id="productScroll" class="flex flex-nowrap snap-x snap-mandatory gap-5 pb-5">
-					<img class="w-full max-md:h-auto max-h-[400px] object-cover lg:w-[90%]" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/Galeria-stylu1.png" />
-					<img class="w-full max-md:h-auto max-h-[400px] object-cover lg:w-[90%]" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/Galeria-stylu2.jpg" />
-					<img class="w-full max-md:h-auto max-h-[400px] object-cover lg:w-[90%]" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/Galeria-stylu3.png" />
-					<img class="w-full max-md:h-auto max-h-[400px] object-cover lg:w-[90%]" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/Galeria-stylu1.png" />
+					<img class="!h-[400px] object-cover" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/naturalna_galery/image.png" />
+					<img class="!h-[400px] object-cover" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/naturalna_galery/image-1.png" />
+					<img class="!h-[400px] object-cover" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/naturalna_galery/image-2.png" />
+					<img class="!h-[400px] object-cover" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/naturalna_galery/image-3.png" />
+					<img class="!h-[400px] object-cover" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/naturalna_galery/image-4.png" />
+					<img class="!h-[400px] object-cover" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/naturalna_galery/image-5.png" />
 				</div>
 			</div>
 		</div>
@@ -71,14 +74,16 @@ get_header(); ?>
 		<div class=" self-stretch w-1/2 max-md:w-full backdrop-blur-lg inline-flex flex-col justify-center items-center gap-6 max-lg:p-[5%]">
 			<div class="w-full max-w-96 justify-start text-zinc-800 text-lg  max-lg:text-sm font-light font-['Mulish'] leading-relaxed">Słodkości przygotowane są w ilości około 200 gramów na osobę, co odpowiada 3 porcjom. <br />W ramach usługi oferujemy kompleksową aranżację dekoracji oraz słodkości, wykonaną przez naszych doświadczonych artystów. Zapewniamy także demontaż i odbiór wypożyczonych elementów po zakończeniu imprezy.</div>
 			<div class="w-full max-w-96 flex flex-col justify-start items-start">
-				<div class="self-stretch justify-start text-stone-700 text-3xl font-normal font-['Didot_LT_Pro']">Cena: 70 zł/os.</div>
+				<div class="self-stretch justify-start text-stone-700 text-3xl font-normal font-['Didot_LT_Pro']">Cena: 75 zł/os.</div>
 				<div class="self-stretch justify-start text-zinc-500 text-xs font-normal font-['Mulish']">przy zamówieniu na 100 osób.</div>
 			</div>
 			<div class="w-full max-w-96 pt-3  max-md:pt-1 flex flex-col justify-start items-start gap-3">
 				<div class="self-stretch justify-start text-zinc-800 text-lg font-bold font-['Mulish'] leading-relaxed">Zamów</div>
 				<div class="self-stretch inline-flex justify-start items-center gap-3">
-					<div class="w-7 h-7 relative overflow-hidden">
-						<div class="w-6 h-6 left-[2.31px] top-[2.38px] absolute bg-stone-400"></div>
+					<div class=" relative overflow-hidden">
+						<svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 29 29" fill="none">
+							<path d="M22.9301 15.3066C22.6735 15.3066 22.4051 15.2249 22.1485 15.1666C21.6287 15.052 21.1179 14.9 20.6201 14.7116C20.0789 14.5147 19.484 14.5249 18.9498 14.7403C18.4157 14.9557 17.98 15.361 17.7268 15.8782L17.4701 16.4032C16.3338 15.7711 15.2896 14.986 14.3668 14.0699C13.4507 13.1471 12.6656 12.1029 12.0335 10.9666L12.5235 10.6399C13.0407 10.3866 13.446 9.95102 13.6614 9.41687C13.8768 8.88273 13.887 8.2878 13.6901 7.74657C13.5049 7.24773 13.3529 6.73717 13.2351 6.21823C13.1768 5.96157 13.1301 5.69323 13.0951 5.4249C12.9534 4.60312 12.523 3.85893 11.8813 3.32635C11.2397 2.79376 10.4289 2.50778 9.59512 2.5199H6.09512C5.59232 2.51518 5.09441 2.61885 4.63528 2.82385C4.17615 3.02886 3.76658 3.33038 3.43445 3.7079C3.10233 4.08541 2.85544 4.53006 2.7106 5.01157C2.56577 5.49307 2.52638 6.00014 2.59512 6.49823C3.21665 11.3858 5.44882 15.9271 8.93905 19.4046C12.4293 22.8822 16.9786 25.0978 21.8685 25.7016H22.3118C23.1721 25.7028 24.0027 25.3872 24.6451 24.8149C25.0142 24.4848 25.3091 24.0801 25.5102 23.6276C25.7113 23.1751 25.8141 22.6851 25.8118 22.1899V18.6899C25.7975 17.8795 25.5024 17.0992 24.9768 16.4822C24.4513 15.8651 23.7279 15.4496 22.9301 15.3066ZM23.5135 22.3066C23.5132 22.4722 23.4778 22.6359 23.4094 22.7868C23.341 22.9377 23.2412 23.0722 23.1168 23.1816C22.9889 23.2981 22.8367 23.3847 22.6713 23.4351C22.5058 23.4856 22.3312 23.4986 22.1601 23.4732C17.7908 22.913 13.7324 20.9141 10.625 17.7919C7.51751 14.6697 5.53793 10.6018 4.99845 6.2299C4.97988 6.05901 4.99616 5.88612 5.04629 5.72169C5.09642 5.55726 5.17937 5.4047 5.29012 5.27323C5.39945 5.14879 5.53402 5.04905 5.68489 4.98065C5.83576 4.91226 5.99947 4.87678 6.16512 4.87657H9.66512C9.93642 4.87053 10.2013 4.95926 10.4143 5.12748C10.6272 5.29571 10.7749 5.5329 10.8318 5.79823C10.8785 6.11712 10.9368 6.43212 11.0068 6.74323C11.1416 7.35824 11.3209 7.96261 11.5435 8.55157L9.91012 9.3099C9.77046 9.37398 9.64484 9.46501 9.54047 9.57776C9.43609 9.69052 9.35502 9.82278 9.3019 9.96696C9.24878 10.1111 9.22467 10.2644 9.23094 10.4179C9.23721 10.5714 9.27375 10.7222 9.33845 10.8616C11.0175 14.4581 13.9086 17.3492 17.5051 19.0282C17.7892 19.1449 18.1077 19.1449 18.3918 19.0282C18.5373 18.9762 18.671 18.8958 18.7852 18.7916C18.8993 18.6875 18.9916 18.5617 19.0568 18.4216L19.7801 16.7882C20.3832 17.0039 20.9988 17.1831 21.6235 17.3249C21.9346 17.3949 22.2496 17.4532 22.5685 17.4999C22.8338 17.5568 23.071 17.7045 23.2392 17.9174C23.4074 18.1303 23.4962 18.3953 23.4901 18.6666L23.5135 22.3066ZM22.4168 11.8066C22.7262 11.8066 23.023 11.6837 23.2417 11.4649C23.4605 11.2461 23.5835 10.9493 23.5835 10.6399V5.97323C23.5835 5.66382 23.4605 5.36707 23.2417 5.14828C23.023 4.92948 22.7262 4.80657 22.4168 4.80657C22.1074 4.80657 21.8106 4.92948 21.5918 5.14828C21.373 5.36707 21.2501 5.66382 21.2501 5.97323V10.6399C21.2501 10.9493 21.373 11.2461 21.5918 11.4649C21.8106 11.6837 22.1074 11.8066 22.4168 11.8066ZM17.7501 11.8066C18.0595 11.8066 18.3563 11.6837 18.5751 11.4649C18.7939 11.2461 18.9168 10.9493 18.9168 10.6399V5.97323C18.9168 5.66382 18.7939 5.36707 18.5751 5.14828C18.3563 4.92948 18.0595 4.80657 17.7501 4.80657C17.4407 4.80657 17.144 4.92948 16.9252 5.14828C16.7064 5.36707 16.5835 5.66382 16.5835 5.97323V10.6399C16.5835 10.9493 16.7064 11.2461 16.9252 11.4649C17.144 11.6837 17.4407 11.8066 17.7501 11.8066Z" fill="#A9957B" />
+						</svg>
 					</div>
 					<div class="text-center justify-start text-stone-700 text-3xl font-normal font-['Didot_LT_Pro']">780 127 222</div>
 				</div>
@@ -87,7 +92,7 @@ get_header(); ?>
 
 		</div>
 		<div class="w-1/2 h-full max-md:w-full ">
-			<img class="w-full  object-cover" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/Galeria-stylu4.png" />
+			<img class="w-full !h-full object-cover" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/naturalna-eleg-stol.jpg" />
 		</div>
 	</div>
 
@@ -98,14 +103,14 @@ get_header(); ?>
 
 		<div class="w-full flex justify-center items-center max-md:flex-col">
 			<div class="flex-1  w-1/2 max-md:w-full  flex justify-start items-center gap-2.5">
-				<img class="w-full max-h-[400px] object-cover" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/Galeria-stylu6.jpg" />
+				<img class="w-full max-h-[400px] object-cover" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/Galeria-stylu1.png" />
 			</div>
 
 			<div class="flex-1  self-stretch w-1/2 max-md:w-full p-4 flex justify-center items-center max-md:justify-start gap-6  max-md:mb-4">
 				<div class="p-4">
-					<h4 class="w-full  justify-start !text-stone-400 !text-4xl font-['Didot_LT_Pro']">Naturalna Elegancja</h4>
-					<div class="w-full max-w-96 justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">Ta aranżacja emanuje subtelną elegancją i naturalnym pięknem. Stół pokryty lnianym obrusem prezentuje słodkości na marmurowych paterach, otoczonych designerską florystyką, ceramicznymi wazonami oraz naczyniami z bielonego drewna. Idealną na romantyczne przyjęcia.</div>
-					<div class="h-12 px-7 mt-4 rounded outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2.5 hover:bg-[#A9957B] group">
+					<div class="w-full  justify-start !text-stone-400 !text-4xl font-['Didot_LT_Pro']">Różana Romantyka</div>
+					<div class="w-full max-w-96 justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">Delikatna, romantyczna stylizacja, w której białe patery wypełnione po brzegi słodkościami w ciepłych odcieniach różu skradną niejedno serce i podniebienie. Pastelowe świece i świeże kwiaty nadają aranżacji kunsztu i stylu, tworząc niezapomnianą oprawę dla wyjątkowych chwil.</div>
+					<a href="<?php echo esc_url(page_url_by_slug('rozana-romantyka')); ?>" class="h-12 px-7 mt-4 !rounded !outline !outline-1 !outline-offset-[-1px] !outline-stone-400 inline-flex justify-center items-center gap-2.5 hover:!bg-[#A9957B] group">
 						<div class="justify-center text-zinc-800 text-sm font-bold font-['Mulish'] uppercase leading-tight  group-hover:!text-white">Więcej</div>
 						<div class="w-6 h-6 relative overflow-hidden">
 							<div class="w-3.5 h-3.5 top-[2px] relative"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -114,7 +119,7 @@ get_header(); ?>
 
 							</div>
 						</div>
-					</div>
+					</a>
 				</div>
 			</div>
 		</div>
@@ -125,10 +130,10 @@ get_header(); ?>
 
 			<div class="flex-1  self-stretch w-1/2 max-md:w-full p-4 flex justify-center max-md:justify-start items-center gap-6 ">
 				<div class="p-4">
-					<h4 class="w-full  justify-start !text-stone-400 !text-4xl font-['Didot_LT_Pro']">Leśna Harmonia</h4>
+					<div class="w-full  justify-start !text-stone-400 !text-4xl font-['Didot_LT_Pro']">Leśna Harmonia</div>
 					<div class="w-full max-w-96 justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">Inspirowana barwami ziemi kompozycja, w której słodkości ułożone są wśród delikatnych liści na transparentnych paterach. Stół pokryty szałwiowym obrusem, ozdobiony świecami na kamiennych postumentach, nadaje aranżacji wykwintności i oryginalności. Idealna propozycja dla miłośników natury i rustykalnych klimatów.</div>
-					<div class="h-12 px-7 mt-4 rounded outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2.5 hover:bg-[#A9957B] group">
-						<div class="justify-center text-zinc-800 text-sm font-bold font-['Mulish'] uppercase leading-tight  group-hover:!text-white">Więcej</div>
+					<a href="<?php echo esc_url(page_url_by_slug('lesna-harmonia')); ?>" class="h-12 px-7 mt-4 !rounded !outline !outline-1 !outline-offset-[-1px] !outline-stone-400 inline-flex justify-center items-center gap-2.5 hover:!bg-[#A9957B] group">
+						<div class="justify-center !text-zinc-800 text-sm font-bold font-['Mulish'] uppercase leading-tight  group-hover:!text-white">Więcej</div>
 						<div class="w-6 h-6 relative overflow-hidden">
 							<div class="w-3.5 h-3.5 top-[2px] relative"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 									<path class="group-hover:fill-white" d="M16.627 12.75H5.25C5.03717 12.75 4.859 12.6782 4.7155 12.5345C4.57183 12.391 4.5 12.2128 4.5 12C4.5 11.7872 4.57183 11.609 4.7155 11.4655C4.859 11.3218 5.03717 11.25 5.25 11.25H16.627L11.4577 6.08076C11.3091 5.93209 11.2357 5.75809 11.2375 5.55876C11.2395 5.35942 11.318 5.18217 11.473 5.02701C11.6282 4.88217 11.8038 4.80717 12 4.80201C12.1962 4.79684 12.3718 4.87184 12.527 5.02701L18.8672 11.3673C18.9609 11.4609 19.0269 11.5597 19.0652 11.6635C19.1037 11.7673 19.123 11.8795 19.123 12C19.123 12.1205 19.1037 12.2327 19.0652 12.3365C19.0269 12.4403 18.9609 12.5391 18.8672 12.6328L12.527 18.973C12.3885 19.1115 12.217 19.1823 12.0125 19.1855C11.808 19.1887 11.6282 19.1178 11.473 18.973C11.318 18.8178 11.2405 18.6397 11.2405 18.4385C11.2405 18.2372 11.318 18.0589 11.473 17.9038L16.627 12.75Z" fill="#A9957B" />
@@ -136,7 +141,7 @@ get_header(); ?>
 
 							</div>
 						</div>
-					</div>
+					</a>
 				</div>
 			</div>
 
@@ -167,96 +172,8 @@ get_header(); ?>
 				</div>
 			</div>
 			<div class="w-full max-w-[560px] min-w-72 flex flex-col justify-start items-start gap-5">
-				<div data-property-1="Default" data-property-2="Default" class="self-stretch flex flex-col justify-start items-start gap-[5px]">
-					<div class="self-stretch inline-flex justify-start items-start gap-2.5 overflow-hidden">
-						<div class="justify-center"><span class="text-zinc-800 text-xs font-normal font-['Mulish']">Imię i nazwisko </span><span class="text-red-500 text-xs font-normal font-['Mulish']">*</span></div>
-					</div>
-					<div class="self-stretch p-2 bg-white rounded-[5px] outline outline-1 outline-offset-[-1px] outline-neutral-200 inline-flex justify-start items-center gap-2 overflow-hidden">
-						<div class="flex-1 h-6 flex justify-start items-center overflow-hidden">
-							<div class="flex-1 h-5 justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">Jan Kowalski</div>
-						</div>
-					</div>
-				</div>
-				<div data-property-1="Default" data-property-2="Default" class="self-stretch flex flex-col justify-start items-start gap-[5px]">
-					<div class="self-stretch inline-flex justify-start items-start gap-2.5 overflow-hidden">
-						<div class="justify-center"><span class="text-zinc-800 text-xs font-normal font-['Mulish']">Twój adres e-mail </span><span class="text-red-500 text-xs font-normal font-['Mulish']">*</span></div>
-					</div>
-					<div class="self-stretch p-2 bg-white rounded-[5px] outline outline-1 outline-offset-[-1px] outline-neutral-200 inline-flex justify-start items-center gap-2 overflow-hidden">
-						<div class="flex-1 h-6 flex justify-start items-center overflow-hidden">
-							<div class="w-28 h-5 justify-start text-zinc-500 text-sm font-normal font-['Mulish'] leading-tight">Email</div>
-						</div>
-					</div>
-				</div>
-				<div class="self-stretch inline-flex justify-start items-end gap-2.5">
-					<div data-property-1="Default" data-property-2="Default" class="inline-flex flex-col justify-start items-start gap-[5px]">
-						<div class="self-stretch inline-flex justify-start items-start gap-2.5 overflow-hidden">
-							<div class="justify-center text-zinc-800 text-xs font-normal font-['Mulish']">Numer telefonu</div>
-						</div>
-						<div class="self-stretch p-2 bg-white rounded-[5px] outline outline-1 outline-offset-[-1px] outline-neutral-200 inline-flex justify-between items-center overflow-hidden">
-							<div class="h-6 flex justify-start items-center overflow-hidden">
-								<div class="justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">+48</div>
-							</div>
-							<div class="w-6 h-6 relative overflow-hidden">
-								<div class="w-2.5 h-1.5 left-[6.75px] top-[8.88px] absolute bg-stone-400"></div>
-							</div>
-						</div>
-					</div>
-					<div data-property-1="Default" data-property-2="Default" class="flex-1 inline-flex flex-col justify-start items-start gap-[5px]">
-						<div class="self-stretch p-2 bg-white rounded-[5px] outline outline-1 outline-offset-[-1px] outline-neutral-200 inline-flex justify-start items-center gap-2 overflow-hidden">
-							<div class="w-52 h-6 flex justify-start items-center overflow-hidden">
-								<div class="flex-1 justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">123 456 789</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div data-property-1="Default" data-property-2="Default" class="self-stretch flex flex-col justify-start items-start gap-[5px]">
-					<div class="self-stretch inline-flex justify-start items-start gap-2.5 overflow-hidden">
-						<div class="justify-center text-zinc-800 text-xs font-normal font-['Mulish']">Planowana ilość osób</div>
-					</div>
-					<div class="self-stretch p-2 bg-white rounded-[5px] outline outline-1 outline-offset-[-1px] outline-neutral-200 inline-flex justify-start items-center gap-2 overflow-hidden">
-						<div class="flex-1 h-6 flex justify-start items-center overflow-hidden">
-							<div class="flex-1 h-5 justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">48</div>
-						</div>
-					</div>
-				</div>
-				<div class="self-stretch h-40 flex flex-col justify-start items-start gap-[5px]">
-					<div class="self-stretch h-4 relative overflow-hidden">
-						<div class="left-0 top-[1px] absolute justify-center"><span class="text-zinc-800 text-xs font-normal font-['Mulish']">Treść </span><span class="text-red-500 text-xs font-normal font-['Mulish']">*</span></div>
-					</div>
-					<div class="self-stretch flex-1 p-2 relative bg-white rounded-[5px] outline outline-1 outline-offset-[-1px] outline-neutral-200 inline-flex justify-center items-end gap-2 overflow-hidden">
-						<div class="flex-1 self-stretch flex justify-start items-center overflow-hidden">
-							<div class="flex-1 self-stretch justify-start text-zinc-500 text-sm font-normal font-['Mulish'] leading-tight">Treść wiadomości</div>
-						</div>
-						<div class="w-3.5 h-3.5 pt-24 left-[542px] top-[122px] absolute flex justify-end items-end gap-2.5">
-							<div class="w-2 h-2 outline outline-1 outline-offset-[-0.50px] outline-neutral-200"></div>
-						</div>
-					</div>
-				</div>
-				<div data-active="off" data-enable="no" data-type="checkbox" class="self-stretch inline-flex justify-center items-start gap-2.5">
-					<div class="flex justify-start items-start gap-2.5">
-						<div class="w-4 h-4 bg-white rounded border border-neutral-200"></div>
-					</div>
-					<div class="flex-1 justify-start text-zinc-500 text-xs font-normal font-['Mulish']">Wyrażam zgodę na przetwarzanie moich danych osobowych: imienia i nazwiska, numeru telefonu oraz adresu mailowego w celu przedstawienia oferty wykonanie dzieła, którego przedmiotem są usługi gastronomiczne oraz oświadczam, że zapoznałem/am się z zasadami i warunkami przetwarzania moich danych osobowych przez firmę KOPI Dominik Pawlak, które to zasady w pełni i dobrowolnie akceptuję.</div>
-				</div>
-				<div data-active="off" data-enable="no" data-type="checkbox" class="self-stretch inline-flex justify-center items-start gap-2.5">
-					<div class="flex justify-start items-start gap-2.5">
-						<div class="w-4 h-4 bg-white rounded border border-neutral-200"></div>
-					</div>
-					<div class="flex-1 justify-start text-zinc-500 text-xs font-normal font-['Mulish']">Wyrażam zgodę na przesyłanie na udostępniony przeze mnie adres poczty elektronicznej informacji dotyczących szczegółów zawartej umowy o dzieło.</div>
-				</div>
-				<div data-active="off" data-enable="no" data-type="checkbox" class="self-stretch inline-flex justify-center items-start gap-2.5">
-					<div class="flex justify-start items-start gap-2.5">
-						<div class="w-4 h-4 bg-white rounded border border-neutral-200"></div>
-					</div>
-					<div class="flex-1 justify-start text-zinc-500 text-xs font-normal font-['Mulish']">Wyrażam zgodę na kontaktowanie się ze mną telefonicznie w celu przedstawienia mi ofertę handlową firmy KOPI Dominik Pawlak.</div>
-				</div>
-				<div class="self-stretch pt-5 flex flex-col justify-start items-start gap-10">
-					<div data-property-1="Default" class="h-12 px-7 rounded outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2.5">
-						<div class="justify-center text-zinc-800 text-sm font-bold font-['Mulish'] uppercase leading-tight">Wyślij</div>
-						<div class="w-6 h-6 relative overflow-hidden">
-							<div class="w-3.5 h-3.5 left-[4.50px] top-[4.80px] absolute bg-stone-400"></div>
-						</div>
-					</div>
+				<div data-layer="Base" data-property-1="Default" data-property-2="Default" class="Base self-stretch flex flex-col justify-start items-start gap-[5px]">
+					<?php echo do_shortcode('[contact-form-7 id="633cabd" title="KONTAKT"]'); ?>
 				</div>
 			</div>
 		</div>

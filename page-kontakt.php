@@ -74,7 +74,6 @@ get_header(); ?>
 			<div data-layer="div" class="Div w-full max-w-[490px] flex flex-col justify-start items-start gap-5">
 				<div data-layer="Base" data-property-1="Default" data-property-2="Default" class="Base self-stretch flex flex-col justify-start items-start gap-[5px]">
 					<?php echo do_shortcode('[contact-form-7 id="633cabd" title="KONTAKT"]'); ?>
-
 				</div>
 			</div>
 		</div>
