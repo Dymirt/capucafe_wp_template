@@ -153,7 +153,7 @@ get_header(); ?>
 
 					<section id="torty" id="kawa" class="relative !flex max-md:flex-col items-center min-w-[70vw] max-lg:min-w-[90vw] max-md:w-[70vw] mx-[1%]  ">
 						<div class="md:min-w-[360px] max-md:w-full">
-							<img class="flex-1 h-auto md:max-w-[1024px] md:min-w-[500px] max-md:w-full object-cover max-h-[446px] " src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/kawa.png" />
+							<img class="flex-1 h-auto md:max-w-[1024px] md:min-w-[500px] max-md:w-full object-cover max-h-[446px] " src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/torty.jpg" />
 						</div>
 						<div class="   md:max-w-[450px] max-md:w-full w-full md:absolute -right-12 bg-white text-black p-8">
 							<h3 class="!text-[#A9957B]">Torty weselne i na każdą okazję</h3>
@@ -166,7 +166,7 @@ get_header(); ?>
 
 					<section id="lody" class="relative !flex max-md:flex-col items-center min-w-[70vw] max-lg:min-w-[90vw] max-md:w-[70vw] mx-[1%]  ">
 						<div class="md:min-w-[360px] max-md:w-full">
-							<img class="flex-1 h-auto md:max-w-[1024px] md:min-w-[500px] max-md:w-full object-cover max-h-[446px] " src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/kawa.png" />
+							<img class="flex-1 h-auto md:max-w-[1024px] md:min-w-[500px] max-md:w-full object-cover max-h-[446px] " src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/lody.jpg" />
 						</div>
 						<div class="   md:max-w-[450px] max-md:w-full w-full md:absolute -right-12 bg-white text-black p-8">
 							<h3 class="!text-[#A9957B]">Lody naturalne</h3>
@@ -177,7 +177,7 @@ get_header(); ?>
 
 					<section id="stoły" class="relative !flex max-md:flex-col items-center min-w-[70vw] max-lg:min-w-[90vw] max-md:w-[70vw] mx-[1%]  ">
 						<div class="md:min-w-[360px] max-md:w-full">
-							<img class="flex-1 h-auto md:max-w-[1024px] md:min-w-[500px] max-md:w-full object-cover max-h-[446px] " src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/kawa.png" />
+							<img class="flex-1 h-auto md:max-w-[1024px] md:min-w-[500px] max-md:w-full object-cover max-h-[446px] " src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/stoly.jpg" />
 						</div>
 						<div class="   md:max-w-[450px] max-md:w-full w-full md:absolute -right-12 bg-white text-black p-8">
 							<h3 class="!text-[#A9957B]">Słodkie stoły</h3>
@@ -187,7 +187,7 @@ get_header(); ?>
 
 					<section id="monoporcje" class="relative !flex max-md:flex-col items-center min-w-[70vw] max-lg:min-w-[90vw] max-md:w-[70vw] mx-[1%]  ">
 						<div class="md:min-w-[360px] max-md:w-full">
-							<img class="flex-1 h-auto md:max-w-[1024px] md:min-w-[500px] max-md:w-full object-cover max-h-[446px] " src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/kawa.png" />
+							<img class="flex-1 h-auto md:max-w-[1024px] md:min-w-[500px] max-md:w-full object-cover max-h-[446px] " src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/monoporcje.png" />
 						</div>
 						<div class="   md:max-w-[450px] max-md:w-full w-full md:absolute -right-12 bg-white text-black p-8">
 							<h3 class="!text-[#A9957B]">Monoporcje</h3>
@@ -196,8 +196,8 @@ get_header(); ?>
 					</section>
 
 					<section id="koktajle" class="relative !flex max-md:flex-col items-center min-w-[70vw] max-lg:min-w-[90vw] max-md:w-[70vw] mx-[1%]  ">
-						<div cclass="md:min-w-[360px] max-md:w-full">
-							<img class="flex-1 h-auto md:max-w-[1024px] md:min-w-[500px] max-md:w-full object-cover max-h-[446px] " src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/kawa.png" />
+						<div class="md:min-w-[360px] max-md:w-full">
+							<img class="flex-1 h-auto md:max-w-[1024px] md:min-w-[500px] max-md:w-full object-cover max-h-[446px] " src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/koktajle.png" />
 						</div>
 						<div class="   md:max-w-[450px] max-md:w-full w-full md:absolute -right-12 bg-white text-black p-8">
 							<h3 class="!text-[#A9957B]">Świeżo wyciskane soki i koktajle</h3>
@@ -206,8 +206,8 @@ get_header(); ?>
 					</section>
 					<!-- fix this -->
 					<section id="pieczywo" class="relative !flex max-md:flex-col items-center min-w-[70vw] max-lg:min-w-[90vw] max-md:w-[70vw] mx-[1%]   ">
-						<div cclass="md:min-w-[360px] max-md:w-full !mr-[500px]">
-							<img class="flex-1 h-auto md:max-w-[1024px] md:min-w-[500px] max-md:w-full object-cover max-h-[446px] " src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/kawa.png" />
+						<div class="md:min-w-[360px] max-md:w-full !mr-[500px]">
+							<img class="flex-1 h-auto md:max-w-[1024px] md:min-w-[500px] max-md:w-full object-cover max-h-[446px] " src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/pieczywo.jpg" />
 						</div>
 						<div class="   md:max-w-[450px] max-md:w-full w-full md:absolute -right-12 bg-white text-black p-8 ">
 							<h3 class="!text-[#A9957B]">Pieczywo wypiekane na miejscu </h3>
