@@ -34,7 +34,7 @@ get_header(); ?>
 
 
 	<!-- Galeria section -->
-	<div class="min-h-[60vh] py-12 bg-[#F2EDE7]">
+	<div class="py-12 bg-[#F2EDE7]">
 		<div class=" pl-[5%] ">
 			<div data-layer="title" class="Title flex justify-between items-center w-full pr-[5%] py-[5vh]">
 				<div class=" text-stone-700 text-3xl font-normal font-['Didot_LT_Pro']">

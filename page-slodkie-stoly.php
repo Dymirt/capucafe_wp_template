@@ -54,7 +54,7 @@ get_header(); ?>
 
 
 	<!-- Galeria section -->
-	<div class="min-h-[60vh] py-12 bg-[#F2EDE7]">
+	<div class="py-12 bg-[#F2EDE7]">
 		<div class=" pl-[5%] ">
 			<div data-layer="title" class="Title flex justify-between items-center w-full pr-[5%] py-[5vh]">
 				<div class=" text-stone-700 text-3xl font-normal font-['Didot_LT_Pro']">
@@ -104,18 +104,7 @@ get_header(); ?>
 			<div class="flex-1 h-14 text-center justify-start text-stone-700 text-3xl md:text-5xl font-normal font-['Didot_LT_Pro']">Co może znaleźć się na słodkim stole?</div>
 		</div>
 		<div class="w-full inline-flex justify-start items-start gap-6 flex-wrap content-start">
-			<div class="flex-1 max-w-[500px] min-w-80 max-h-[1260px] bg-white inline-flex flex-col justify-center items-center">
-				<div class="w-full h-80 max-w-[800px] max-h-[670.65px] inline-flex justify-start items-center gap-2.5">
-					<img class="flex-1 self-stretch" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/mini_deser/image.png" />
-				</div>
-				<div class="w-full max-w-[800px] min-w-80 p-8 backdrop-blur-lg flex flex-col justify-start items-start gap-6">
-					<div class="w-full max-w-80 justify-start text-stone-400 text-3xl font-normal font-['Didot_LT_Pro']">Mini torcik Rozetka
-					</div>
-					<div class="w-full max-w-80 justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">– Brownie z owocami,  – Z chrupiącą prażynką,  – Z białą czekoladą,  – Palona biała czekolada,  – Z czerwoną porzeczką,  – Malina z białą czekoladą,  – Mus cytrynowy,  – Z Aperolem.</div>
-					<div class="w-full max-w-80 justify-start text-stone-700 text-3xl font-normal font-['Didot_LT_Pro']">22 zł/szt</div>
-				</div>
-			</div>
-			<div class="flex-1 h-[666px] max-w-[500px] min-w-80 max-h-[1260px] bg-white inline-flex flex-col justify-center items-center">
+			<div class="h-[666px] w-80 max-h-[1260px] bg-white inline-flex flex-col justify-center items-center w-80">
 				<div class="w-full h-80 max-w-[800px] max-h-[670.65px] inline-flex justify-start items-center gap-2.5">
 					<img class="flex-1 self-stretch" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/mini_deser/image-1.png" />
 				</div>
@@ -125,7 +114,17 @@ get_header(); ?>
 					<div class="w-full max-w-80 justify-start text-stone-700 text-3xl font-normal font-['Didot_LT_Pro']">24 zł/szt</div>
 				</div>
 			</div>
-			<div class="flex-1 h-[666px] max-w-[500px] min-w-80 max-h-[1260px] bg-white inline-flex flex-col justify-center items-center">
+			<div class="h-[666px] w-80 max-h-[1260px] bg-white inline-flex flex-col justify-center items-center">
+				<div class="w-full h-80 max-w-[800px] max-h-[670.65px] inline-flex justify-start items-center gap-2.5">
+					<img class="flex-1 self-stretch" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/mini_deser/image-1.png" />
+				</div>
+				<div class="w-full flex-1 max-w-[800px] p-8 backdrop-blur-lg flex flex-col justify-start items-start gap-6">
+					<div class="w-full max-w-80 justify-start text-stone-400 text-3xl font-normal font-['Didot_LT_Pro']">Mini torcik Kubik</div>
+					<div class="w-full max-w-80 justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">– Wiśnia z mleczną,  – I deserową czekoladą,  – Ferrero Rocher,  – Z ganachem czekoladowym,  – Z orzechem laskowym,  – Mango z marakują,  – Z kokosem.</div>
+					<div class="w-full max-w-80 justify-start text-stone-700 text-3xl font-normal font-['Didot_LT_Pro']">24 zł/szt</div>
+				</div>
+			</div>
+			<div class="h-[666px] w-80 max-h-[1260px] bg-white inline-flex flex-col justify-center items-center">
 				<div class="w-full h-80 max-w-[800px] max-h-[670.65px] inline-flex justify-start items-center gap-2.5">
 					<img class="flex-1 self-stretch" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/mini_deser/image-2.png" />
 				</div>
@@ -136,7 +135,7 @@ get_header(); ?>
 					<div class="w-full max-w-80 justify-start text-stone-700 text-3xl font-normal font-['Didot_LT_Pro']">24 zł/szt</div>
 				</div>
 			</div>
-			<div class="flex-1 h-[666px] max-w-[500px] min-w-80 max-h-[1260px] bg-white inline-flex flex-col justify-center items-center">
+			<div class="h-[666px] w-80 max-h-[1260px] bg-white inline-flex flex-col justify-center items-center">
 				<div class="w-full h-80 max-w-[800px] max-h-[670.65px] inline-flex justify-start items-center gap-2.5">
 					<img class="flex-1 self-stretch" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/mini_deser/image-3.png" />
 				</div>
@@ -146,7 +145,7 @@ get_header(); ?>
 					<div class="w-full max-w-80 justify-start text-stone-700 text-3xl font-normal font-['Didot_LT_Pro']">22 zł/szt</div>
 				</div>
 			</div>
-			<div class="flex-1 h-[666px] max-w-[500px] min-w-80 max-h-[1260px] bg-white inline-flex flex-col justify-center items-center">
+			<div class="h-[666px] w-80 max-h-[1260px] bg-white inline-flex flex-col justify-center items-center">
 				<div class="w-full h-80 max-w-[800px] max-h-[670.65px] inline-flex justify-start items-center gap-2.5">
 					<img class="flex-1 self-stretch" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/mini_deser/image-4.png" />
 				</div>
@@ -156,7 +155,7 @@ get_header(); ?>
 					<div class="w-full max-w-80 justify-start text-stone-700 text-3xl font-normal font-['Didot_LT_Pro']">22 zł/szt</div>
 				</div>
 			</div>
-			<div class="flex-1 h-[666px] max-w-[500px] min-w-80 max-h-[1260px] bg-white inline-flex flex-col justify-center items-center">
+			<div class="h-[666px] w-80 max-h-[1260px] bg-white inline-flex flex-col justify-center items-center">
 				<div class="w-full h-80 max-w-[800px] max-h-[670.65px] inline-flex justify-start items-center gap-2.5">
 					<img class="flex-1 self-stretch" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/mini_deser/image-5.png" />
 				</div>
@@ -166,7 +165,7 @@ get_header(); ?>
 					<div class="w-full max-w-80 justify-start text-stone-700 text-3xl font-normal font-['Didot_LT_Pro']">20 zł/szt</div>
 				</div>
 			</div>
-			<div class="flex-1 h-[666px] max-w-[500px] min-w-80 max-h-[1260px] bg-white inline-flex flex-col justify-center items-center">
+			<div class="h-[666px] w-80 max-h-[1260px] bg-white inline-flex flex-col justify-center items-center">
 				<div class="w-full h-80 max-w-[800px] max-h-[670.65px] inline-flex justify-start items-center gap-2.5">
 					<img class="flex-1 self-stretch" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/mini_deser/image-6.png" />
 				</div>
@@ -176,7 +175,7 @@ get_header(); ?>
 					<div class="w-full max-w-80 justify-start text-stone-700 text-3xl font-normal font-['Didot_LT_Pro']">22 zł/szt</div>
 				</div>
 			</div>
-			<div class="flex-1 h-[666px] max-w-[500px] min-w-80 max-h-[1260px] bg-white inline-flex flex-col justify-center items-center">
+			<div class="h-[666px] w-80 max-h-[1260px] bg-white inline-flex flex-col justify-center items-center">
 				<div class="w-full h-80 max-w-[800px] max-h-[670.65px] inline-flex justify-start items-center gap-2.5">
 					<img class="flex-1 self-stretch" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/mini_deser/image-7.png" />
 				</div>
@@ -186,7 +185,7 @@ get_header(); ?>
 					<div class="w-full max-w-80 justify-start text-stone-700 text-3xl font-normal font-['Didot_LT_Pro']">22 zł/szt</div>
 				</div>
 			</div>
-			<div class="flex-1 h-[666px] max-w-[500px] min-w-80 max-h-[1260px] bg-white inline-flex flex-col justify-center items-center">
+			<div class="h-[666px] w-80 max-h-[1260px] bg-white inline-flex flex-col justify-center items-center">
 				<div class="w-full h-80 max-w-[800px] max-h-[670.65px] inline-flex justify-start items-center gap-2.5">
 					<img class="flex-1 self-stretch" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/mini_deser/image-8.png" />
 				</div>
@@ -196,7 +195,7 @@ get_header(); ?>
 					<div class="w-full max-w-80 justify-start text-stone-700 text-3xl font-normal font-['Didot_LT_Pro']">9 zł/szt</div>
 				</div>
 			</div>
-			<div class="flex-1 h-[666px] max-w-[500px] min-w-80 max-h-[1260px] bg-white inline-flex flex-col justify-center items-center">
+			<div class="h-[666px] w-80 max-h-[1260px] bg-white inline-flex flex-col justify-center items-center">
 				<div class="w-full h-80 max-w-[800px] max-h-[670.65px] inline-flex justify-start items-center gap-2.5">
 					<img class="flex-1 self-stretch" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/mini_deser/image-9.png" />
 				</div>
@@ -206,7 +205,7 @@ get_header(); ?>
 					<div class="w-full max-w-80 justify-start text-stone-700 text-3xl font-normal font-['Didot_LT_Pro']">10 zł/szt</div>
 				</div>
 			</div>
-			<div class="flex-1 h-[666px] max-w-[500px] min-w-80 max-h-[1260px] bg-white inline-flex flex-col justify-center items-center">
+			<div class="h-[666px] w-80 max-h-[1260px] bg-white inline-flex flex-col justify-center items-center">
 				<div class="w-full h-80 max-w-[800px] max-h-[670.65px] inline-flex justify-start items-center gap-2.5">
 					<img class="flex-1 self-stretch" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/mini_deser/image-10.png" />
 				</div>
@@ -216,7 +215,7 @@ get_header(); ?>
 					<div class="w-full max-w-80 justify-start text-stone-700 text-3xl font-normal font-['Didot_LT_Pro']">20 zł/szt</div>
 				</div>
 			</div>
-			<div class="flex-1 h-[666px] max-w-[500px] min-w-80 max-h-[1260px] bg-white inline-flex flex-col justify-center items-center">
+			<div class="h-[666px] w-80 max-h-[1260px] bg-white inline-flex flex-col justify-center items-center">
 				<div class="w-full h-80 max-w-[800px] max-h-[670.65px] inline-flex justify-start items-center gap-2.5">
 					<img class="flex-1 self-stretch" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/mini_deser/image-11.png" />
 				</div>
@@ -237,11 +236,11 @@ get_header(); ?>
 		<h2 class="text-center  text-stone-700 !text-4xl py-16 max-md:p-4 font-['Didot_LT_Pro']">Nasze propozycje na najbliższy sezon!</h2>
 
 		<div class="w-full flex justify-center items-center max-md:flex-col">
-			<div class="flex-1  w-1/2 max-md:w-full  flex justify-start items-center gap-2.5">
+			<div class="w-1/2 max-md:w-full flex justify-start items-center gap-2.5">
 				<img class="w-full max-h-[400px] object-cover" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/Galeria-stylu6.jpg" />
 			</div>
 
-			<div class="flex-1  self-stretch w-1/2 max-md:w-full p-4 flex justify-center items-center max-md:justify-start gap-6  max-md:mb-4">
+			<div class="self-stretch w-1/2 max-md:w-full p-4 flex justify-center items-center max-md:justify-start gap-6  max-md:mb-4">
 				<div class="p-4">
 					<h4 class="w-full  justify-start !text-stone-400 !text-4xl font-['Didot_LT_Pro']">Naturalna Elegancja</h4>
 					<div class="w-full max-w-96 justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">Ta aranżacja emanuje subtelną elegancją i naturalnym pięknem. Stół pokryty lnianym obrusem prezentuje słodkości na marmurowych paterach, otoczonych designerską florystyką, ceramicznymi wazonami oraz naczyniami z bielonego drewna. Idealną na romantyczne przyjęcia.</div>
@@ -263,7 +262,7 @@ get_header(); ?>
 
 		<div class="w-full flex justify-center items-center max-md:flex-col-reverse">
 
-			<div class="flex-1  self-stretch w-1/2 max-md:w-full p-4 flex justify-center max-md:justify-start items-center gap-6 ">
+			<div class="self-stretch w-1/2 max-md:w-full p-4 flex justify-center max-md:justify-start items-center gap-6 ">
 				<div class="p-4">
 					<h4 class="w-full  justify-start !text-stone-400 !text-4xl font-['Didot_LT_Pro']">Leśna Harmonia</h4>
 					<div class="w-full max-w-96 justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">Inspirowana barwami ziemi kompozycja, w której słodkości ułożone są wśród delikatnych liści na transparentnych paterach. Stół pokryty szałwiowym obrusem, ozdobiony świecami na kamiennych postumentach, nadaje aranżacji wykwintności i oryginalności. Idealna propozycja dla miłośników natury i rustykalnych klimatów.</div>
@@ -280,15 +279,15 @@ get_header(); ?>
 				</div>
 			</div>
 
-			<div class="flex-1  w-1/2 max-md:w-full flex justify-start items-center gap-2.5">
+			<div class="w-1/2 max-md:w-full flex justify-start items-center gap-2.5">
 				<img class="w-full max-h-[400px] object-cover" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/Galeria-stylu7.jpg" />
 			</div>
 		</div>
 		<div class="w-full flex justify-center items-center max-md:flex-col-reverse">
-			<div class="flex-1  w-1/2 max-md:w-full flex justify-start items-center gap-2.5">
+			<div class="w-1/2 max-md:w-full flex justify-start items-center gap-2.5">
 				<img class="w-full max-h-[400px] object-cover" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/rozana_stol.jpg" />
 			</div>
-			<div class="flex-1  self-stretch w-1/2 max-md:w-full p-4 flex justify-center items-center max-md:justify-start gap-6  max-md:mb-4">
+			<div class="self-stretch w-1/2 max-md:w-full p-4 flex justify-center items-center max-md:justify-start gap-6  max-md:mb-4">
 				<div class="p-4">
 					<div class="w-full  justify-start !text-stone-400 !text-4xl font-['Didot_LT_Pro']">Różana Romantyka</div>
 					<div class="w-full max-w-96 justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">Delikatna, romantyczna stylizacja, w której białe patery wypełnione po brzegi słodkościami w ciepłych odcieniach różu skradną niejedno serce i podniebienie. Pastelowe świece i świeże kwiaty nadają aranżacji kunsztu i stylu, tworząc niezapomnianą oprawę dla wyjątkowych chwil.</div>
