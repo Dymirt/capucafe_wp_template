@@ -103,7 +103,7 @@ get_header(); ?>
 		<div class="self-stretch inline-flex justify-center items-center gap-2.5">
 			<div class="flex-1 h-14 text-center justify-start text-stone-700 text-3xl md:text-5xl font-normal font-['Didot_LT_Pro']">Co może znaleźć się na słodkim stole?</div>
 		</div>
-		<div class="w-full inline-flex justify-start items-start gap-6 flex-wrap content-start">
+		<div class="w-full inline-flex items-center justify-center gap-6 flex-wrap">
 			<div class="h-[666px] w-80 max-h-[1260px] bg-white inline-flex flex-col justify-center items-center w-80">
 				<div class="w-full h-80 max-w-[800px] max-h-[670.65px] inline-flex justify-start items-center gap-2.5">
 					<img class="flex-1 self-stretch" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/mini_deser/image-1.png" />
