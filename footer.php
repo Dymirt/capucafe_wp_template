@@ -32,7 +32,7 @@
 			<div class="w-48 min-w-44 h-full basis-auto mb-4">
 				<?php echo get_custom_logo(); ?>
 			</div>
-			<div class="flex md:flex-row flex-wrap gap-4">
+			<div class="flex md:flex-col flex-wrap gap-4 md:h-[160px] grow">
 				<?php
 				wp_nav_menu([
 					'theme_location' => 'footer-mobile-menu-location',
