@@ -39,7 +39,7 @@ class Footer_Walker_Nav_Menu extends Walker_Nav_Menu
 				$output .= '</div>';
 			}
 		} else {
-			$output .= '<a class="justify-start font-[\'Mulish\'] uppercase pl-4 !no-underline self-stretch justify-start !text-white text-sm font-normal leading-tight basis-full" href="' . esc_url($item->url) . '">';
+			$output .= '<a class="justify-start font-[\'Mulish\'] pl-4 !no-underline self-stretch justify-start !text-white text-sm font-normal leading-tight basis-full" href="' . esc_url($item->url) . '">';
 			$output .= esc_html($item->title);
 			$output .= '</a>';
 		}
