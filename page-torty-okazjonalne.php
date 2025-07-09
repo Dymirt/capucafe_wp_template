@@ -13,7 +13,7 @@ get_header(); ?>
 	</div>
 	<div class="shadow w-full h-full absolute left-0 top-0 max-md:hidden"></div>
 	<div class="relative h-screen max-md:h-[70vh] !h-full flex items-center justify-center">
-		<div class="!text-white">
+		<div class="!text-white p-8">
 			<div class="!text-white !text-[80px] max-md:!text-[40px] !font-['Didot_LT_Pro']">Torty na każdą okazję</div>
 			<div class="text-center">– urodziny, komunie, wieczory panieńskie, wydarzenia firmowe, rocznice i nie tylko.</div>
 		</div>
@@ -24,7 +24,7 @@ get_header(); ?>
 
 
 
-<div class="self-stretch px-32 py-40 bg-white blur-[0px] inline-flex justify-center items-start gap-24">
+<div class="self-stretch px-10 py-14 md:px-32 md:py-40 bg-white blur-[0px] inline-flex justify-center items-start gap-24">
 	<div class="flex-1 text-center justify-start text-zinc-800 text-2xl font-light font-['Mulish'] leading-9">Niezależnie od tego, czy świętujesz urodziny, chrzciny, czy firmowy sukces – tort powinien być wyjątkowym akcentem. W Pracowni Tortów Capuccino Cafe przygotowujemy słodkie arcydzieła, które zachwycą zarówno smakiem, jak i wyglądem.</div>
 </div>
 <?php
