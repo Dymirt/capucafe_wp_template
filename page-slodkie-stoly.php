@@ -106,12 +106,12 @@ get_header(); ?>
 		<div class="w-full inline-flex items-center justify-center gap-6 flex-wrap">
 			<div class="h-[666px] w-80 max-h-[1260px] bg-white inline-flex flex-col justify-center items-center w-80">
 				<div class="w-full h-80 max-w-[800px] max-h-[670.65px] inline-flex justify-start items-center gap-2.5">
-					<img class="flex-1 self-stretch" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/mini_deser/image-1.png" />
+					<img class="flex-1 self-stretch" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/mini_deser/image.png" />
 				</div>
 				<div class="w-full flex-1 max-w-[800px] p-8 backdrop-blur-lg flex flex-col justify-start items-start gap-6">
-					<div class="w-full max-w-80 justify-start text-stone-400 text-3xl font-normal font-['Didot_LT_Pro']">Mini torcik Kubik</div>
-					<div class="w-full max-w-80 justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">– Wiśnia z mleczną,  – I deserową czekoladą,  – Ferrero Rocher,  – Z ganachem czekoladowym,  – Z orzechem laskowym,  – Mango z marakują,  – Z kokosem.</div>
-					<div class="w-full max-w-80 justify-start text-stone-700 text-3xl font-normal font-['Didot_LT_Pro']">24 zł/szt</div>
+					<div class="w-full max-w-80 justify-start text-stone-400 text-3xl font-normal font-['Didot_LT_Pro']">Mini torcik Rozetka</div>
+					<div class="w-full max-w-80 justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">– Brownie z owocami, – Z chrupiącą prażynką, – Z białą czekoladą, – Palona biała czekolada, – Z czerwoną porzeczką, – Malina z białą czekoladą, – Mus cytrynowy, – Z Aperolem.</div>
+					<div class="w-full max-w-80 justify-start text-stone-700 text-3xl font-normal font-['Didot_LT_Pro']">22 zł/szt</div>
 				</div>
 			</div>
 			<div class="h-[666px] w-80 max-h-[1260px] bg-white inline-flex flex-col justify-center items-center">
