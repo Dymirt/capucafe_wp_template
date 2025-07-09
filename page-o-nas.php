@@ -141,8 +141,8 @@ get_header(); ?>
 
 				<div class="scroll-hidd  flex flex-nowrap snap-x snap-mandatory gap-5 pb-5 max-md:mt-10">
 					<section id="kawa" class="relative !flex max-md:flex-col items-center min-w-[70vw] max-lg:min-w-[90vw] max-md:w-[70vw] mx-[1%]  ">
-						<div class="md:min-w-[360px] max-md:w-full">
-							<img class="flex-1 h-auto md:max-w-[1024px] md:min-w-[500px] max-md:w-full object-cover max-h-[446px] " src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/kawa.png" />
+						<div class="w-full md:pr-[30%]">
+							<img class="w-full object-cover !h-100" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/kawa.png" />
 						</div>
 						<div class="   md:max-w-[450px] max-md:w-full w-full md:absolute -right-12 bg-white text-black p-8">
 							<h3 class="!text-[#A9957B]">Kawa z autorskiej mieszanki</h3>
@@ -151,9 +151,9 @@ get_header(); ?>
 					</section>
 
 
-					<section id="torty" id="kawa" class="relative !flex max-md:flex-col items-center min-w-[70vw] max-lg:min-w-[90vw] max-md:w-[70vw] mx-[1%]  ">
-						<div class="md:min-w-[360px] max-md:w-full">
-							<img class="flex-1 h-auto md:max-w-[1024px] md:min-w-[500px] max-md:w-full object-cover max-h-[446px] " src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/torty.jpg" />
+					<section id="torty" class="relative !flex max-md:flex-col items-center min-w-[70vw] max-lg:min-w-[90vw] max-md:w-[70vw] mx-[1%]">
+						<div class="w-full md:pr-[30%] h-100">
+							<img class="w-full object-cover !h-100" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/torty.jpg" />
 						</div>
 						<div class="   md:max-w-[450px] max-md:w-full w-full md:absolute -right-12 bg-white text-black p-8">
 							<h3 class="!text-[#A9957B]">Torty weselne i na każdą okazję</h3>
@@ -162,54 +162,52 @@ get_header(); ?>
 					</section>
 
 
-
-
-					<section id="lody" class="relative !flex max-md:flex-col items-center min-w-[70vw] max-lg:min-w-[90vw] max-md:w-[70vw] mx-[1%]  ">
-						<div class="md:min-w-[360px] max-md:w-full">
-							<img class="flex-1 h-auto md:max-w-[1024px] md:min-w-[500px] max-md:w-full object-cover max-h-[446px] " src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/lody.jpg" />
+					<section id="lody" class="relative !flex max-md:flex-col items-center min-w-[70vw] max-lg:min-w-[90vw] max-md:w-[70vw] mx-[1%]">
+						<div class="w-full md:pr-[30%] h-100">
+							<img class="w-full object-cover !h-full" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/lody.jpg" />
 						</div>
-						<div class="   md:max-w-[450px] max-md:w-full w-full md:absolute -right-12 bg-white text-black p-8">
+						<div class="md:max-w-[450px] max-md:w-full w-full md:absolute -right-12 bg-white text-black p-8">
 							<h3 class="!text-[#A9957B]">Lody naturalne</h3>
 							<p> Lody w których nie ma miejsca na chemię i ulepszacze. Są za to świeże owoce oraz mleko i śmietana z miejscowej mleczarni. Polecamy smaki zarówno tradycyjne, jak i wegańskie. Oryginalne, sekretne receptury stworzyliśmy na podstawie własnych poszukiwań oraz wiedzy zdobytej od najlepszych lodziarzy w Polsce i Europie.</p>
 						</div>
 					</section>
 
 
-					<section id="stoły" class="relative !flex max-md:flex-col items-center min-w-[70vw] max-lg:min-w-[90vw] max-md:w-[70vw] mx-[1%]  ">
-						<div class="md:min-w-[360px] max-md:w-full">
-							<img class="flex-1 h-auto md:max-w-[1024px] md:min-w-[500px] max-md:w-full object-cover max-h-[446px] " src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/stoly.jpg" />
+					<section id="stoły" class="relative !flex max-md:flex-col items-center min-w-[70vw] max-lg:min-w-[90vw] max-md:w-[70vw] mx-[1%]">
+						<div class="w-full md:pr-[30%]">
+							<img class="w-full object-cover !h-100" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/stoly.jpg" />
 						</div>
-						<div class="   md:max-w-[450px] max-md:w-full w-full md:absolute -right-12 bg-white text-black p-8">
+						<div class="md:max-w-[450px] max-md:w-full w-full md:absolute -right-12 bg-white text-black p-8">
 							<h3 class="!text-[#A9957B]">Słodkie stoły</h3>
 							<p> Prawdziwe dzieła sztuki, które z pewnością zapadną w pamięć gości weselnych. Stworzone z kunsztem, przepięknie zaaranżowane, a przy tym zgodne z pomysłem Pary Młodej, indywidualnie dopasowane do sali weselnej i wizji wydarzenia.</p>
 						</div>
 					</section>
 
-					<section id="monoporcje" class="relative !flex max-md:flex-col items-center min-w-[70vw] max-lg:min-w-[90vw] max-md:w-[70vw] mx-[1%]  ">
-						<div class="md:min-w-[360px] max-md:w-full">
-							<img class="flex-1 h-auto md:max-w-[1024px] md:min-w-[500px] max-md:w-full object-cover max-h-[446px] " src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/monoporcje.png" />
+					<section id="monoporcje" class="relative !flex max-md:flex-col items-center min-w-[70vw] max-lg:min-w-[90vw] max-md:w-[70vw] mx-[1%]">
+						<div class="w-full md:pr-[30%]">
+							<img class="w-full object-cover !h-100" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/monoporcje.png" />
 						</div>
-						<div class="   md:max-w-[450px] max-md:w-full w-full md:absolute -right-12 bg-white text-black p-8">
+						<div class="md:max-w-[450px] max-md:w-full w-full md:absolute -right-12 bg-white text-black p-8">
 							<h3 class="!text-[#A9957B]">Monoporcje</h3>
 							<p> Monoporcje, czyli malutkie słodkości o wybitnym smaku. Na specjalne zamówienie tworzymy m.in. mini torciki, mini serniczki, cakepops, cupcakes, mini tarty i wiele innych.</p>
 						</div>
 					</section>
 
-					<section id="koktajle" class="relative !flex max-md:flex-col items-center min-w-[70vw] max-lg:min-w-[90vw] max-md:w-[70vw] mx-[1%]  ">
-						<div class="md:min-w-[360px] max-md:w-full">
-							<img class="flex-1 h-auto md:max-w-[1024px] md:min-w-[500px] max-md:w-full object-cover max-h-[446px] " src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/koktajle.png" />
+					<section id="koktajle" class="relative !flex max-md:flex-col items-center min-w-[70vw] max-lg:min-w-[90vw] max-md:w-[70vw] mx-[1%]">
+						<div class="w-full md:pr-[30%]">
+							<img class="w-full object-cover !h-100" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/koktajle.png" />
 						</div>
-						<div class="   md:max-w-[450px] max-md:w-full w-full md:absolute -right-12 bg-white text-black p-8">
+						<div class="md:max-w-[450px] max-md:w-full w-full md:absolute -right-12 bg-white text-black p-8">
 							<h3 class="!text-[#A9957B]">Świeżo wyciskane soki i koktajle</h3>
 							<p>Soki i koktajle ze świeżych owoców i warzyw, a więc esencję natury. Smaczne, zdrowe i odżywcze bomby witaminowe, które dodadzą sił i poprawią nawet najgorszy humor.</p>
 						</div>
 					</section>
 					<!-- fix this -->
-					<section id="pieczywo" class="relative !flex max-md:flex-col items-center min-w-[70vw] max-lg:min-w-[90vw] max-md:w-[70vw] mx-[1%]   ">
-						<div class="md:min-w-[360px] max-md:w-full !mr-[500px]">
-							<img class="flex-1 h-auto md:max-w-[1024px] md:min-w-[500px] max-md:w-full object-cover max-h-[446px] " src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/pieczywo.jpg" />
+					<section id="pieczywo" class="relative !flex max-md:flex-col items-center min-w-[70vw] max-lg:min-w-[90vw] max-md:w-[70vw] mx-[1%]">
+						<div class="w-full md:pr-[30%]">
+							<img class="w-full object-cover !h-100" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/pieczywo.jpg" />
 						</div>
-						<div class="   md:max-w-[450px] max-md:w-full w-full md:absolute -right-12 bg-white text-black p-8 ">
+						<div class="md:max-w-[450px] max-md:w-full w-full md:absolute left-[50%] bg-white text-black p-8 ">
 							<h3 class="!text-[#A9957B]">Pieczywo wypiekane na miejscu </h3>
 							<p> Lojalnie ostrzegamy: nasze aromatyczne chleby pszenne lub na zakwasie żytnim, croissanty maślane i czekoladowe oraz pyszne drożdżówki uzależniają!.</p>
 						</div>
