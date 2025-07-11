@@ -72,7 +72,7 @@ class Header_Walker_Nav_Menu extends Walker_Nav_Menu
 	function start_lvl(&$output, $depth = 0, $args = [])
 	{
 		// Start submenu container inside the parent wrapper
-		$output .= '<div class="Frame56 self-stretch flex flex-col justify-start items-start gap-3 duration-150">';
+		$output .= '<div class="Frame56 self-stretch flex flex-col justify-start items-start gap-3 duration-150 bg-white">';
 	}
 
 	function end_lvl(&$output, $depth = 0, $args = [])
@@ -87,7 +87,7 @@ class Header_Walker_Nav_Menu extends Walker_Nav_Menu
 		$url = esc_url($item->url);
 
 		if ($depth === 0) {
-			$output .= '<div class="Frame56 self-stretch w-full px-6 pt-8 pb-5 border-b border-neutral-100 inline-flex flex-col justify-between items-start gap-3">';
+			$output .= '<div class="Frame56 self-stretch w-full px-6 pt-8 pb-5 border-b border-neutral-100 inline-flex flex-col justify-between items-start gap-3 bg-white">';
 			$output .= '<div class="Frame79 self-stretch inline-flex justify-start items-center">';
 			$output .= '<a href="' . $url . '" class="Sklep flex-1 h-3.5 justify-start text-zinc-800 text-sm font-bold font-[\'Mulish\'] uppercase leading-tight">';
 			$output .= $title . '</a>';

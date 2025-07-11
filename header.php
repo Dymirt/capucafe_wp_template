@@ -61,7 +61,7 @@ $count = WC()->cart->get_cart_contents_count();
 
 		<div id="menu-overlay" class="hidden fixed inset-0 bg-black bg-opacity-50 z-[2]"></div>
 		<!-- Side Menu -->
-		<div id="side-menu" class="fixed inset-0 bg-white shadow-lg transform translate-x-full transition-transform duration-300 z-[2] overflow-y-auto">
+		<div id="side-menu" class="fixed inset-0 shadow-lg transform translate-x-full transition-transform duration-300 z-[4] overflow-y-auto bg-transparent">
 			<div class="p-4 border-b flex justify-end items-center h-[100px]">
 				<div id="menu-close" class="hover:colour-red">
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
