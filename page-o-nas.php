@@ -155,7 +155,7 @@ get_header(); ?>
 						<div class="w-full md:pr-[30%] h-100">
 							<img class="w-full object-cover !h-100" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/torty.jpg" />
 						</div>
-						<div class="   md:max-w-[450px] max-md:w-full w-full md:absolute -right-12 bg-white text-black p-8">
+						<div class="md:max-w-[450px] max-md:w-full w-full md:absolute -right-12 bg-white text-black p-8">
 							<h3 class="!text-[#A9957B]">Torty weselne i na każdą okazję</h3>
 							<p> Realizowane torty na zamówienie. Nasi cukiernicy to prawdziwi artyści, którzy z rozmachem urzeczywistnią Wasze wizje i pomysły. Służymy doradztwem w wyborze smaku oraz bogatym portfolio tortów stworzonych na wszelkiego rodzaju uroczystości.</p>
 						</div>

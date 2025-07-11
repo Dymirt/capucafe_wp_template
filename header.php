@@ -61,8 +61,8 @@ $count = WC()->cart->get_cart_contents_count();
 
 		<div id="menu-overlay" class="hidden fixed inset-0 bg-black bg-opacity-50 z-[2]"></div>
 		<!-- Side Menu -->
-		<div id="side-menu" class="fixed top-[100px] right-0 w-full h-full bg-white shadow-lg transform translate-x-full transition-transform duration-300 z-[5]">
-			<div class="p-4 border-b flex justify-between items-center">
+		<div id="side-menu" class="fixed inset-0 bg-white shadow-lg transform translate-x-full transition-transform duration-300 z-[2] overflow-y-auto">
+			<div class="p-4 border-b flex justify-end items-center h-[100px]">
 				<div id="menu-close" class="hover:colour-red">
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
 						<mask id="mask0_419_5348" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
@@ -74,6 +74,7 @@ $count = WC()->cart->get_cart_contents_count();
 					</svg>
 				</div>
 			</div>
+			<div class="collapse duration-150"></div> <!--tailwindcss collapse class to hide the menu items by default-->
 			<?php
 			wp_nav_menu([
 				'theme_location' => 'mobile-menu',
@@ -108,6 +109,29 @@ $count = WC()->cart->get_cart_contents_count();
 				sideMenu.classList.add('translate-x-full');
 				overlay.classList.add('hidden');
 			};
+
+			function toggleMenuSiblings(button) {
+				const parent = button.parentNode.parentNode; // Get the parent of the button's parent (the menu item)
+				const siblings = Array.from(parent.children).slice(1);
+
+				console.log(siblings);
+
+				const areHidden = siblings
+					.filter(el => el !== button)
+					.every(el => el.classList.contains('!collapse'));
+
+				siblings.forEach(el => {
+					if (el !== button) {
+						if (areHidden) {
+							el.classList.remove('!collapse');
+							button.querySelector('.BoundingBox').classList.remove('rotate-180');
+						} else {
+							el.classList.add('!collapse');
+							button.querySelector('.BoundingBox').classList.add('rotate-180');
+						}
+					}
+				});
+			};
 		</script>
 
 		<?php
@@ -121,15 +145,16 @@ $count = WC()->cart->get_cart_contents_count();
 		?>
 
 		<div id="content" class="site-content" tabindex="-1">
-			<?php if (is_front_page()
-			|| is_page('o-nas')
-		|| is_page('menu')
-		|| is_page('torty-weselne')
-		|| is_page('torty-okazjonalne')
-		|| is_page('rozana-romantyka')
-		|| is_page('naturalna-elegancja')
-		|| is_page('lesna-harmonia')
-		): ?>
+			<?php if (
+				is_front_page()
+				|| is_page('o-nas')
+				|| is_page('menu')
+				|| is_page('torty-weselne')
+				|| is_page('torty-okazjonalne')
+				|| is_page('rozana-romantyka')
+				|| is_page('naturalna-elegancja')
+				|| is_page('lesna-harmonia')
+			): ?>
 				<!-- Homepage -->
 				<div class="w-full ">
 				<?php else : ?>

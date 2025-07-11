@@ -72,7 +72,7 @@ class Header_Walker_Nav_Menu extends Walker_Nav_Menu
 	function start_lvl(&$output, $depth = 0, $args = [])
 	{
 		// Start submenu container inside the parent wrapper
-		$output .= '<div class="Frame56 self-stretch flex flex-col justify-start items-start gap-3">';
+		$output .= '<div class="Frame56 self-stretch flex flex-col justify-start items-start gap-3 duration-150">';
 	}
 
 	function end_lvl(&$output, $depth = 0, $args = [])
@@ -87,13 +87,13 @@ class Header_Walker_Nav_Menu extends Walker_Nav_Menu
 		$url = esc_url($item->url);
 
 		if ($depth === 0) {
-			$output .= '<div class="Frame56 self-stretch min-w-72 px-6 pt-8 pb-5 border-b border-neutral-100 inline-flex flex-col justify-start items-start gap-3">';
+			$output .= '<div class="Frame56 self-stretch w-full px-6 pt-8 pb-5 border-b border-neutral-100 inline-flex flex-col justify-between items-start gap-3">';
 			$output .= '<div class="Frame79 self-stretch inline-flex justify-start items-center">';
 			$output .= '<a href="' . $url . '" class="Sklep flex-1 h-3.5 justify-start text-zinc-800 text-sm font-bold font-[\'Mulish\'] uppercase leading-tight">';
 			$output .= $title . '</a>';
 
 			if ($has_children) {
-				$output .= '<div class="BoundingBox size-6">';
+				$output .= '<div class="BoundingBox size-6" onclick="toggleMenuSiblings(this)">';
 				$output .= '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><mask id="mask0_474_36488" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24"><rect x="24" width="24" height="24" transform="rotate(90 24 0)" fill="#D9D9D9"/></mask><g mask="url(#mask0_474_36488)"><path d="M12.0001 10.8L8.10007 14.7C7.91674 14.8834 7.68341 14.975 7.40007 14.975C7.11674 14.975 6.88341 14.8834 6.70007 14.7C6.51674 14.5167 6.42507 14.2834 6.42507 14C6.42507 13.7167 6.51674 13.4834 6.70007 13.3L11.3001 8.70005C11.4001 8.60005 11.5084 8.52922 11.6251 8.48755C11.7417 8.44588 11.8667 8.42505 12.0001 8.42505C12.1334 8.42505 12.2584 8.44588 12.3751 8.48755C12.4917 8.52922 12.6001 8.60005 12.7001 8.70005L17.3001 13.3C17.4834 13.4834 17.5751 13.7167 17.5751 14C17.5751 14.2834 17.4834 14.5167 17.3001 14.7C17.1167 14.8834 16.8834 14.975 16.6001 14.975C16.3167 14.975 16.0834 14.8834 15.9001 14.7L12.0001 10.8Z" fill="#A9957B"/></g></svg>';
 				$output .= '</div>'; // End BoundingBox
 			}
