@@ -44,7 +44,7 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 				<!-- title -->
 				<div class="h-[60vh]  flex items-end max-md:justify-center  ">
 					<div>
-						<div class='title  max-xl:text-6xl mb-8 max-sm:text-5xl  max-2xl:text-7xl text-7xl title'>
+						<div class="max-xl:text-6xl mb-8 max-sm:text-5xl  max-2xl:text-7xl text-7xl title">
 							O słodkościach <br>Wiemy <br class='max-md:hidden'>Wszystko
 						</div>
 						<div class='subtitle text-xl max-md:text-center mb-8'>I chętnie się z wami tym podzielimy!</div>
@@ -133,7 +133,7 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 
 		<div class="flex relative max-md:flex-col z-2 max-sm:pt-8 max-md:pt-36  pt-48  md:w-[80%] max-w-[1920px] mx-auto">
 			<div class="mssg_parent relative max-md:w-full w-1/2 max-lg:w-1/2 pb-8 ">
-				<div id="" class="title text-black w-full max-md:p-10 max-md:justify-center text-3xl md:text-5xl lg:text-7xl flex max-md:flex-row flex-col mr-[5%] sticky top-[300px]"><span> Capuccino </span> <span class="max-md:ml-2"> Cafe to...</span></div>
+				<div id="" class="text-black w-full max-md:p-10 max-md:justify-center text-3xl md:text-5xl lg:text-7xl flex max-md:flex-row flex-col mr-[5%] sticky top-[300px] title"><span> Capuccino </span> <span class="max-md:ml-2"> Cafe to...</span></div>
 			</div>
 			<div class="w-full">
 				<a href="<?php echo esc_url(page_url_by_slug('torty-weselne')); ?>" class="first_service">
@@ -240,7 +240,7 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 
 		<div class=" pl-[5%] ">
 			<div data-layer="title" class="Title flex justify-between items-center w-full pr-[5%]">
-				<div data-layer="Nasze bestsellery" class="NaszeBestsellery text-stone-700 text-3xl font-normal font-['Didot_LT_Pro']">
+				<div data-layer="Nasze bestsellery" class="NaszeBestsellery text-stone-700 text-3xl font-normal title">
 					Nasze bestsellery
 				</div>
 				<div data-layer="strzalki" class="Strzalki flex items-center gap-2.5">
@@ -285,7 +285,7 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 		<div class="w-1/2 max-md:w-full px-[7%] py-8  flex items-center">
 			<div class="flex flex-col gap-15">
 				<img class="h-12  w-[35%] lg:!w-40 lg:!h-16" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/sopotski_mlyn_logo.png" />
-				<div class="max-md:!text-6xl  max-lg:!text-3xl !text-6xl !text-white title">Restauracja <br>Sopocki Młyn </div>
+				<div class="max-md:text-6xl  max-lg:text-3xl text-6xl !text-white title">Restauracja <br>Sopocki Młyn </div>
 				<div class="text-[#A9957B] font-['Mulish']">Smak tradycji w sercu Sopotu!</div>
 				<a target="_blank" href="https://sopockimlyn.pl/" class="h-12 px-7 rounded  outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2.5 hover:bg-[#A9957B] group">
 					<div class="justify-center text-white text-[11px] font-bold font-['Mulish'] uppercase leading-tight">Poznaj menu</div>
