@@ -132,6 +132,46 @@ $count = WC()->cart->get_cart_contents_count();
 					}
 				});
 			};
+
+			document.addEventListener('DOMContentLoaded', () => {
+				document.querySelectorAll('.menu-item-swap').forEach((el) => {
+					const link = el.querySelector('a');
+					if (link) {
+						const href = link.getAttribute('href');
+						const text = link.textContent || link.innerText;
+
+						if (text.trim().toLowerCase().endsWith('-swap')) {
+							let cleanText = text.trim().slice(0, -5); // remove "-swap"
+
+							// Create new wrapper
+							const newDiv = document.createElement('div');
+							newDiv.className = 'relative h-full';
+							newDiv.innerHTML = `
+					<a href="${href}" class="text-stone-700 hover:underline">
+						<img src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/${cleanText.toLowerCase()}-icon.png"
+						     class="!w-full !h-full object-cover rounded mb-2" alt="${cleanText} Icon">
+						<div class="absolute left-8 top-1/2 -translate-y-1/2 text-center text-4xl text-left text-white font-['Didot_LT_Pro']">
+							${cleanText}
+						</div>
+					</a>
+				`;
+
+							// Move newDiv to be sibling after el's parent
+							const parent = el.parentElement;
+							const grandparent = parent?.parentElement;
+
+							if (parent && grandparent) {
+								grandparent.insertBefore(newDiv, parent.nextSibling);
+								el.remove(); // remove original
+								//if parent is empty, remove it
+								if (parent.children.length === 0) {
+									parent.remove();
+								}
+							}
+						}
+					}
+				});
+			});
 		</script>
 
 		<?php

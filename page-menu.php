@@ -46,6 +46,8 @@ get_header(); ?>
 			.then(html => {
 				document.getElementById('menu-container').innerHTML = html;
 				setActiveButton(location); // update active button style
+				//change window hash to the location
+				window.location.hash = location;
 
 				const titleDivs = document.querySelectorAll('#menu-container div[data-layer="Title"]');
 
@@ -136,7 +138,19 @@ get_header(); ?>
 
 	// Load Sopot menu by default on page load
 	document.addEventListener('DOMContentLoaded', () => {
-		loadMenu('sopot');
+		if (window.location.hash) {
+			const hash = window.location.hash.substring(1); // Remove the #
+			if (hash === 'jastarnia') {
+				loadMenu('jastarnia');
+				setActiveButton('jastarnia');
+			} else {
+				loadMenu('sopot');
+				setActiveButton('sopot');
+			}
+		} else {
+			loadMenu('sopot');
+			setActiveButton('sopot');
+		}
 	});
 
 	function toggleSiblings(button) {

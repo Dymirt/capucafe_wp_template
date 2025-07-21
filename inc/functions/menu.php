@@ -177,7 +177,7 @@ class Top_Walker_Nav_Menu extends Walker_Nav_Menu
 					if (!empty($without_thumbnails)) {
 						$output .= '<div class="flex flex-col min-w-80 gap-3 items-start ">';
 						foreach ($without_thumbnails as $child) {
-							$output .= '<div class="py-1">';
+							$output .= '<div class="py-1 menu-item-swap">';
 							$output .= '<a href="' . esc_url($child->url) . '" class="!text-stone-600 hover:underline">';
 							$output .= esc_html($child->title);
 							$output .= '</a>';
