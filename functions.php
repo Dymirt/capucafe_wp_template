@@ -119,7 +119,7 @@ function custom_recent_posts_shortcode()
 		echo '<div class="self-stretch flex flex-col md:flex-row justify-start items-center gap-10">';
 		while ($recent_posts->have_posts()) : $recent_posts->the_post();
 	?>
-			<article class="self-stretch flex flex-col justify-start items-start md:basis-64">
+			<div class="self-stretch flex flex-col justify-start items-start md:basis-64">
 				<a href="<?php the_permalink(); ?>">
 					<?php if (has_post_thumbnail()) : ?>
 						<img class="!h-[220px] !w-full object-cover" src="<?php the_post_thumbnail_url('medium'); ?>" alt="<?php the_title_attribute(); ?>">
@@ -140,7 +140,7 @@ function custom_recent_posts_shortcode()
 						</a>
 					</div>
 				</div>
-			</article>
+			</div>
 	<?php
 		endwhile;
 		echo '</div>';
@@ -329,37 +329,37 @@ add_action('wp_footer', function () {
 	if (!is_checkout()) return;
 	?>
 	<script>
-	document.addEventListener('DOMContentLoaded', function () {
-		const fieldIds = [
-			'billing_address_1_field',
-			'billing_address_2_field',
-			'billing_postcode_field',
-			'billing_city_field',
-			'billing_state_field',
-		];
+		document.addEventListener('DOMContentLoaded', function() {
+			const fieldIds = [
+				'billing_address_1_field',
+				'billing_address_2_field',
+				'billing_postcode_field',
+				'billing_city_field',
+				'billing_state_field',
+			];
 
-		function toggleBillingFields() {
-			const selected = document.querySelector('input[name^="shipping_method"]:checked');
-			const isPickup = selected && selected.value.includes('local_pickup');
+			function toggleBillingFields() {
+				const selected = document.querySelector('input[name^="shipping_method"]:checked');
+				const isPickup = selected && selected.value.includes('local_pickup');
 
-			fieldIds.forEach(id => {
-				const field = document.getElementById(id);
-				if (field) {
-					field.style.display = isPickup ? 'none' : '';
-				}
+				fieldIds.forEach(id => {
+					const field = document.getElementById(id);
+					if (field) {
+						field.style.display = isPickup ? 'none' : '';
+					}
+				});
+			}
+
+			// Use small delay to ensure WooCommerce fields are fully initialized
+			setTimeout(toggleBillingFields, 100);
+
+			// Also run again after changes
+			document.querySelectorAll('input[name^="shipping_method"]').forEach(input => {
+				input.addEventListener('change', toggleBillingFields);
 			});
-		}
-
-		// Use small delay to ensure WooCommerce fields are fully initialized
-		setTimeout(toggleBillingFields, 100);
-
-		// Also run again after changes
-		document.querySelectorAll('input[name^="shipping_method"]').forEach(input => {
-			input.addEventListener('change', toggleBillingFields);
 		});
-	});
 	</script>
-	<?php
+<?php
 });
 
 add_filter('woocommerce_checkout_fields', function ($fields) {
@@ -371,7 +371,6 @@ add_filter('woocommerce_checkout_fields', function ($fields) {
 		$fields['billing']['billing_postcode']['required'] = false;
 		$fields['billing']['billing_city']['required'] = false;
 		unset($fields['billing']['billing_postcode']['validate']);
-
 	}
 	return $fields;
 });
