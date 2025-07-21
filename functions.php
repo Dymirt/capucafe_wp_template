@@ -339,7 +339,7 @@ add_action('wp_footer', function () {
 			];
 
 			function toggleBillingFields() {
-				const selected = document.querySelector('input[name^="shipping_method"]:checked');
+				const selected = document.querySelector('input[name^="shipping_method"]');
 				const isPickup = selected && selected.value.includes('local_pickup');
 
 				fieldIds.forEach(id => {
