@@ -141,7 +141,7 @@ function custom_recent_posts_shortcode()
 					</div>
 				</div>
 			</article>
-<?php
+	<?php
 		endwhile;
 		echo '</div>';
 		wp_reset_postdata();
@@ -284,22 +284,94 @@ add_filter('woocommerce_cart_item_name', function ($product_name, $cart_item, $c
 add_action('wp_ajax_load_menu', 'load_custom_menu');
 add_action('wp_ajax_nopriv_load_menu', 'load_custom_menu');
 
-function load_custom_menu() {
-    $location = $_GET['location'] ?? 'sopot';
+function load_custom_menu()
+{
+	$location = $_GET['location'] ?? 'sopot';
 
-    if ($location === 'sopot') {
-        include get_stylesheet_directory() . '/inc/sopot-menu.php';
-    } elseif ($location === 'jastarnia') {
-        include get_stylesheet_directory() . '/inc/jastarnia-menu.php';
-    } else {
-        http_response_code(400);
-        echo 'Invalid menu';
-    }
+	if ($location === 'sopot') {
+		include get_stylesheet_directory() . '/inc/sopot-menu.php';
+	} elseif ($location === 'jastarnia') {
+		include get_stylesheet_directory() . '/inc/jastarnia-menu.php';
+	} else {
+		http_response_code(400);
+		echo 'Invalid menu';
+	}
 
-    wp_die(); // important
+	wp_die(); // important
 }
 
 // Remove storefront_woocommerce_brands from homepage
-add_action('init', function() {
-    remove_action( 'homepage', 'storefront_woocommerce_brands', 40 );
+add_action('init', function () {
+	remove_action('homepage', 'storefront_woocommerce_brands', 40);
+});
+
+// Hide shipping address for local pickup
+add_filter('woocommerce_cart_needs_shipping_address', 'conditionally_hide_shipping_address', 10, 1);
+
+function conditionally_hide_shipping_address($needs_shipping)
+{
+	$chosen_methods = WC()->session->get('chosen_shipping_methods');
+
+	if (is_array($chosen_methods) && isset($chosen_methods[0])) {
+		$shipping_method = $chosen_methods[0];
+
+		// Replace "local_pickup" with the method ID you want to hide address for
+		if (strpos($shipping_method, 'local_pickup') !== false) {
+			return false; // Do not show shipping address
+		}
+	}
+
+	return $needs_shipping;
+}
+
+
+add_action('wp_footer', function () {
+	if (!is_checkout()) return;
+	?>
+	<script>
+	document.addEventListener('DOMContentLoaded', function () {
+		const fieldIds = [
+			'billing_address_1_field',
+			'billing_address_2_field',
+			'billing_postcode_field',
+			'billing_city_field',
+			'billing_state_field',
+		];
+
+		function toggleBillingFields() {
+			const selected = document.querySelector('input[name^="shipping_method"]:checked');
+			const isPickup = selected && selected.value.includes('local_pickup');
+
+			fieldIds.forEach(id => {
+				const field = document.getElementById(id);
+				if (field) {
+					field.style.display = isPickup ? 'none' : '';
+				}
+			});
+		}
+
+		// Use small delay to ensure WooCommerce fields are fully initialized
+		setTimeout(toggleBillingFields, 100);
+
+		// Also run again after changes
+		document.querySelectorAll('input[name^="shipping_method"]').forEach(input => {
+			input.addEventListener('change', toggleBillingFields);
+		});
+	});
+	</script>
+	<?php
+});
+
+add_filter('woocommerce_checkout_fields', function ($fields) {
+	$chosen_methods = WC()->session->get('chosen_shipping_methods');
+	$local_pickup = isset($chosen_methods[0]) && strpos($chosen_methods[0], 'local_pickup') !== false;
+
+	if ($local_pickup) {
+		$fields['billing']['billing_address_1']['required'] = false;
+		$fields['billing']['billing_postcode']['required'] = false;
+		$fields['billing']['billing_city']['required'] = false;
+		unset($fields['billing']['billing_postcode']['validate']);
+
+	}
+	return $fields;
 });
