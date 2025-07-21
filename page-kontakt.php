@@ -7,7 +7,7 @@ get_header(); ?>
 
 <main id="main" class="site-main">
 	<div class="grid grid-cols-1 md:grid-cols-2 px-4">
-		<div data-layer="div" class="Div w-full min-w-80 px-5 py-8 bg-stone-50 inline-flex flex-col justify-start items-start gap-3 flex-1 h-full">
+		<div data-layer="div" class="Div w-full min-w-80 px-5 py-8 background_2 inline-flex flex-col justify-start items-start gap-3 flex-1 h-full">
 			<div data-layer="Title" class="Title w-56 min-w-56 py-3 inline-flex justify-center items-center gap-2.5">
 				<div data-layer="Kontakt" class="Kontakt flex-1 justify-start text-stone-700 text-3xl font-normal font-['Didot_LT_Pro']">Kontakt</div>
 			</div>
@@ -66,7 +66,7 @@ get_header(); ?>
 		</div>
 
 		<!-- Contact Form Section -->
-		<div data-layer="div" class="Div w-full min-w-80 px-5 pt-8 pb-20 bg-stone-200 inline-flex flex-col justify-start items-start gap-3 flex-1 h-full">
+		<div data-layer="div" class="Div w-full min-w-80 px-5 pt-8 pb-20 background_1 inline-flex flex-col justify-start items-start gap-3 flex-1 h-full">
 			<div data-layer="Title" class="Title w-full max-w-[490px] py-3 inline-flex justify-start items-center gap-2.5">
 				<div data-layer="Formularz kontaktowy" class="FormularzKontaktowy flex-1 min-w-80 justify-start text-stone-700 text-3xl font-normal font-['Didot_LT_Pro']">Formularz kontaktowy
 				</div>
@@ -78,6 +78,7 @@ get_header(); ?>
 			</div>
 		</div>
 	</div>
+	<div class="w-full h-20 bg-white"></div>
 
 
 
