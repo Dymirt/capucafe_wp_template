@@ -119,8 +119,8 @@ function custom_recent_posts_shortcode()
 		echo '<div class="self-stretch flex flex-col md:flex-row justify-start items-center gap-10">';
 		while ($recent_posts->have_posts()) : $recent_posts->the_post();
 	?>
-			<div class="self-stretch flex flex-col justify-start items-start md:basis-64">
-				<a href="<?php the_permalink(); ?>">
+			<div class="self-stretch flex flex-col justify-start items-start md:basis-64 w-64">
+				<a href="<?php the_permalink(); ?>" class="w-full">
 					<?php if (has_post_thumbnail()) : ?>
 						<img class="!h-[220px] !w-full object-cover" src="<?php the_post_thumbnail_url('medium'); ?>" alt="<?php the_title_attribute(); ?>">
 					<?php else : ?>
