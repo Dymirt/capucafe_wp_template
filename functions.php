@@ -374,3 +374,54 @@ add_filter('woocommerce_checkout_fields', function ($fields) {
 	}
 	return $fields;
 });
+
+
+add_action('wp_footer', function () {
+	if (!is_checkout()) return;
+	?>
+	<script>
+	document.addEventListener('DOMContentLoaded', function () {
+		const invoiceCheckbox = document.getElementById('billing_invoice_ask');
+		const companyField = document.getElementById('billing_company_field');
+
+		function toggleCompanyField() {
+			if (invoiceCheckbox.checked) {
+				companyField.style.display = '';
+			} else {
+				companyField.style.display = 'none';
+				const input = companyField.querySelector('input');
+				if (input) input.value = ''; // opcjonalnie czyści pole
+			}
+		}
+
+		// Wywołaj raz po załadowaniu
+		toggleCompanyField();
+
+		// Wywołuj przy każdej zmianie checkboxa
+		invoiceCheckbox.addEventListener('change', toggleCompanyField);
+	});
+	</script>
+	<?php
+});
+
+add_action('wp_footer', function () {
+	if (!is_checkout()) return;
+	?>
+	<script>
+	document.addEventListener('DOMContentLoaded', function () {
+		const companyField = document.getElementById('billing_company_field');
+		if (!companyField || !companyField.nextElementSibling) return;
+
+		const nextSibling = companyField.nextElementSibling;
+		const parent = companyField.parentNode;
+
+		// Move it below its next sibling
+		if (nextSibling.nextSibling) {
+			parent.insertBefore(companyField, nextSibling.nextSibling);
+		} else {
+			parent.appendChild(companyField);
+		}
+	});
+	</script>
+	<?php
+});
