@@ -19,6 +19,11 @@ class Footer_Walker_Nav_Menu extends Walker_Nav_Menu
 	function start_el(&$output, $item, $depth = 0, $args = [], $id = 0)
 	{
 		if ($depth === 0) {
+			$has_children = !empty($item->has_children);
+			if ($has_children){
+				$output .= '<div>';
+			}
+
 			$output .= '<div class="w-full md:w-48 min-w-44 flex flex-row md:flex-col content-start">';
 			$output .= '<a class="justify-start !text-stone-400 text-sm font-bold font-[\'Mulish\'] uppercase !no-underline" href="' . esc_url($item->url) . '">';
 			$output .= esc_html($item->title);
@@ -26,7 +31,6 @@ class Footer_Walker_Nav_Menu extends Walker_Nav_Menu
 
 			// 🛠 Check if this item has children
 			//$has_children = !empty($args->has_children);
-			$has_children = !empty($item->has_children);
 
 			if ($has_children) {
 				$submenu_id = $this->submenu_id + 1; // next submenu created in start_lvl
@@ -34,6 +38,7 @@ class Footer_Walker_Nav_Menu extends Walker_Nav_Menu
 				$output .= '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M12 12.6001L15.9 8.7001C16.0833 8.51676 16.3167 8.4251 16.6 8.4251C16.8833 8.4251 17.1167 8.51676 17.3 8.7001C17.4833 8.88343 17.575 9.11676 17.575 9.4001C17.575 9.68343 17.4833 9.91676 17.3 10.1001L12.7 14.7001C12.6 14.8001 12.4917 14.8709 12.375 14.9126C12.2583 14.9543 12.1333 14.9751 12 14.9751C11.8667 14.9751 11.7417 14.9543 11.625 14.9126C11.5083 14.8709 11.4 14.8001 11.3 14.7001L6.69999 10.1001C6.51665 9.91676 6.42499 9.68343 6.42499 9.4001C6.42499 9.11676 6.51665 8.88343 6.69999 8.7001C6.88332 8.51676 7.11665 8.4251 7.39999 8.4251C7.68332 8.4251 7.91665 8.51676 8.09999 8.7001L12 12.6001Z" fill="#A9957B"/>
                             </svg>';
+				$output .= '</div>';
 				$output .= '</div>';
 			} else {
 				$output .= '</div>';
