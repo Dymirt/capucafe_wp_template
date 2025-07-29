@@ -4,7 +4,7 @@
 require_once get_stylesheet_directory() . '/inc/functions/enqueue.php';
 
 // Register custom post types
-require_once get_stylesheet_directory() . '/inc/custom-post-types/slodki-stol.php';
+#require_once get_stylesheet_directory() . '/inc/custom-post-types/slodki-stol.php';
 require_once get_stylesheet_directory() . '/inc/custom-post-types/praliny_candy.php';
 require_once get_stylesheet_directory() . '/inc/custom-post-types/smaki-tortow.php';
 
