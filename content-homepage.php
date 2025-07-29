@@ -316,7 +316,7 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 			<div class="flex items-center justify-center">
 
 
-				<a href="#" class="inline-flex h-[50px] px-[30px] py-0 justify-center items-center gap-[10px] shrink-0 rounded border border-[#A9957B] hover:!bg-[#A9957B] group">
+				<a href="<?php echo esc_url(page_url_by_slug('aktualnosci')); ?>" class="inline-flex h-[50px] px-[30px] py-0 justify-center items-center gap-[10px] shrink-0 rounded border border-[#A9957B] hover:!bg-[#A9957B] group">
 					<span class="!text-black group-hover:!text-white"> zobacz wszystkie</span>
 					<span>
 						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
