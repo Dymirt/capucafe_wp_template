@@ -15,9 +15,9 @@ get_header(); ?>
 			<?php get_template_part('headers/header', 'homepage'); ?>
 		</div>
 		<div class="shadow w-full h-full absolute left-0 top-0 max-md:hidden"></div>
-		<div class="relative h-screen max-md:h-[70vh]   flex items-center justify-center">
+		<div class="relative h-screen max-md:h-[70vh] flex items-center justify-center">
 			<div class="!text-white">
-				<div class="!text-white !text-[80px] max-md:!text-[40px] !font-['Didot_LT_Pro']">Słodkie stoły</div>
+				<div class="!text-white !text-[80px] max-md:!text-[40px] title">Słodkie stoły</div>
 				<div class="text-center">– smak, elegancja i niezapomniane wrażenia</div>
 			</div>
 		</div>
@@ -312,7 +312,7 @@ get_header(); ?>
 
 	<!--- contact section -->
 
-	<div class="self-stretch px-10 py-28 bg-stone-200 flex flex-col justify-start items-center w-full">
+	<div class="self-stretch px-10 py-28 bg-[#F2EDE7] flex flex-col justify-start items-center w-full">
 		<div class="w-full max-w-[940px] flex flex-col justify-start items-start gap-4">
 			<div class="self-stretch text-center justify-start text-stone-700 text-5xl font-normal font-['Didot_LT_Pro'] ">Chcesz słodki stół, o którym będą mówić jeszcze długo po imprezie?</div>
 			<div class="self-stretch text-center   text-stone-700 text-lg font-light font-['Mulish'] leading-relaxed mb-4">Umów się na konsultację – stworzymy razem coś wyjątkowego!</div>
