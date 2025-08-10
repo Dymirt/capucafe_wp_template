@@ -21,7 +21,7 @@ class Footer_Walker_Nav_Menu extends Walker_Nav_Menu
 		if ($depth === 0) {
 			$has_children = !empty($item->has_children);
 			if ($has_children){
-				$output .= '<div>';
+				$output .= '<div class="w-full md:w-48 min-w-44">';
 			}
 
 			$output .= '<div class="w-full md:w-48 min-w-44 flex flex-row md:flex-col justify-start">';
