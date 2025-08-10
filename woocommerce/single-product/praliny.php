@@ -14,6 +14,10 @@
 					</div>
 				</div>
 			</div>
+			<?php
+			// your custom placement point
+			do_action('ccafe_product_tabs_after_gallery');
+			?>
 		</div>
 		<div data-layer="txt" class="Txt flex-1 self-stretch inline-flex flex-col justify-start items-start gap-6">
 			<div data-layer="Frame 107" class="Frame107 self-stretch py-12 flex flex-col justify-start items-start gap-6">
@@ -127,7 +131,7 @@
 								<div data-layer="Cena brutto/1kg 00,00 zł" class="CenaBrutto1kg0000Z self-stretch justify-start text-zinc-500 text-xs font-normal font-['Mulish']">Cena brutto/1kg 00,00 zł</div>
 							</div>
 							<button type="submit" data-layer="BTN" class="single_add_to_cart_button Btn !p-0 w-full max-w-72 inline-flex flex-col justify-start items-start gap-4">
-								<div data-layer="BTN midle dark" data-property-1="koszyk defoult" class="BtnMidleDark w-full self-stretch h-12 px-7 bg-stone-400 rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-4">
+								<div data-layer="BTN midle dark" data-property-1="koszyk defoult" class="BtnMidleDark w-full self-stretch h-12 px-7 bg-[#A9957B] rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-4">
 									<div data-layer="Poznaj nas" class="PoznajNas justify-center text-white text-sm font-bold font-['Mulish'] uppercase leading-tight">Dodaj do koszyka</div>
 									<div data-layer="shopping_bag" class="ShoppingBag"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
 											<mask id="mask0_6021_17907" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
@@ -209,6 +213,16 @@
 		</div>
 	</div>
 </div>
+<?php
+/**
+ * Hook: woocommerce_after_single_product_summary.
+ *
+ * @hooked woocommerce_output_product_data_tabs - 10
+ * @hooked woocommerce_upsell_display - 15
+ * @hooked woocommerce_output_related_products - 20
+ */
+do_action('woocommerce_after_single_product_summary');
+?>
 
 <script>
 	document.addEventListener('DOMContentLoaded', () => {

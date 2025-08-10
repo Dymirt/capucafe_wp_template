@@ -378,50 +378,227 @@ add_filter('woocommerce_checkout_fields', function ($fields) {
 
 add_action('wp_footer', function () {
 	if (!is_checkout()) return;
-	?>
+?>
 	<script>
-	document.addEventListener('DOMContentLoaded', function () {
-		const invoiceCheckbox = document.getElementById('billing_invoice_ask');
-		const companyField = document.getElementById('billing_company_field');
+		document.addEventListener('DOMContentLoaded', function() {
+			const invoiceCheckbox = document.getElementById('billing_invoice_ask');
+			const companyField = document.getElementById('billing_company_field');
 
-		function toggleCompanyField() {
-			if (invoiceCheckbox.checked) {
-				companyField.style.display = '';
-			} else {
-				companyField.style.display = 'none';
-				const input = companyField.querySelector('input');
-				if (input) input.value = ''; // opcjonalnie czyści pole
+			function toggleCompanyField() {
+				if (invoiceCheckbox.checked) {
+					companyField.style.display = '';
+				} else {
+					companyField.style.display = 'none';
+					const input = companyField.querySelector('input');
+					if (input) input.value = ''; // opcjonalnie czyści pole
+				}
 			}
-		}
 
-		// Wywołaj raz po załadowaniu
-		toggleCompanyField();
+			// Wywołaj raz po załadowaniu
+			toggleCompanyField();
 
-		// Wywołuj przy każdej zmianie checkboxa
-		invoiceCheckbox.addEventListener('change', toggleCompanyField);
-	});
+			// Wywołuj przy każdej zmianie checkboxa
+			invoiceCheckbox.addEventListener('change', toggleCompanyField);
+		});
 	</script>
-	<?php
+<?php
 });
 
 add_action('wp_footer', function () {
 	if (!is_checkout()) return;
-	?>
+?>
 	<script>
-	document.addEventListener('DOMContentLoaded', function () {
-		const companyField = document.getElementById('billing_company_field');
-		if (!companyField || !companyField.nextElementSibling) return;
+		document.addEventListener('DOMContentLoaded', function() {
+			const companyField = document.getElementById('billing_company_field');
+			if (!companyField || !companyField.nextElementSibling) return;
 
-		const nextSibling = companyField.nextElementSibling;
-		const parent = companyField.parentNode;
+			const nextSibling = companyField.nextElementSibling;
+			const parent = companyField.parentNode;
 
-		// Move it below its next sibling
-		if (nextSibling.nextSibling) {
-			parent.insertBefore(companyField, nextSibling.nextSibling);
-		} else {
-			parent.appendChild(companyField);
-		}
-	});
+			// Move it below its next sibling
+			if (nextSibling.nextSibling) {
+				parent.insertBefore(companyField, nextSibling.nextSibling);
+			} else {
+				parent.appendChild(companyField);
+			}
+		});
 	</script>
+<?php
+});
+
+
+// ADMIN UI: repeatable Nutritional Values (key = name, value = amount)
+add_action('woocommerce_product_options_general_product_data', function () {
+	global $post;
+
+	$pairs = get_post_meta($post->ID, '_nutritional_values_kv', true);
+	if (!is_array($pairs)) $pairs = [];
+
+	// Security
+	wp_nonce_field('save_nutritional_values_kv', 'nutritional_values_kv_nonce');
+
+?>
+	<div class="options_group">
+		<p class="form-field">
+			<label><?php _e('Wartości odżywcze', 'yourtextdomain'); ?></label>
+		</p>
+
+		<table class="widefat striped" id="nutritional-values-table" style="max-width:720px">
+			<thead>
+				<tr>
+					<th style="width:50%"><?php _e('Składnik (np. Sól)', 'yourtextdomain'); ?></th>
+					<th style="width:40%"><?php _e('Wartość (np. 0.1 g)', 'yourtextdomain'); ?></th>
+					<th style="width:10%"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php if (empty($pairs)) : ?>
+					<tr>
+						<td><input type="text" name="_nutri_key[]" class="short" placeholder="<?php esc_attr_e('Sól', 'yourtextdomain'); ?>"></td>
+						<td><input type="text" name="_nutri_val[]" class="short" placeholder="<?php esc_attr_e('0.1 g', 'yourtextdomain'); ?>"></td>
+						<td><button type="button" class="button remove-row">×</button></td>
+					</tr>
+					<?php else : foreach ($pairs as $k => $v) : ?>
+						<tr>
+							<td><input type="text" name="_nutri_key[]" class="short" value="<?php echo esc_attr($k); ?>"></td>
+							<td><input type="text" name="_nutri_val[]" class="short" value="<?php echo esc_attr($v); ?>"></td>
+							<td><button type="button" class="button remove-row">×</button></td>
+						</tr>
+				<?php endforeach;
+				endif; ?>
+			</tbody>
+		</table>
+
+		<p><button type="button" class="button" id="add-nutri-row"><?php _e('Dodaj pozycję', 'yourtextdomain'); ?></button></p>
+
+		<script>
+			(function() {
+				const table = document.getElementById('nutritional-values-table').getElementsByTagName('tbody')[0];
+				document.getElementById('add-nutri-row').addEventListener('click', function() {
+					const tr = document.createElement('tr');
+					tr.innerHTML = `
+                    <td><input type="text" name="_nutri_key[]" class="short" placeholder="<?php echo esc_js(__('Sól', 'yourtextdomain')); ?>"></td>
+                    <td><input type="text" name="_nutri_val[]" class="short" placeholder="<?php echo esc_js(__('0.1 g', 'yourtextdomain')); ?>"></td>
+                    <td><button type="button" class="button remove-row">×</button></td>
+                `;
+					table.appendChild(tr);
+				});
+
+				table.addEventListener('click', function(e) {
+					if (e.target && e.target.classList.contains('remove-row')) {
+						const row = e.target.closest('tr');
+						if (row && table.rows.length > 1) row.remove();
+					}
+				});
+			})();
+		</script>
+	</div>
 	<?php
 });
+
+// SAVE
+add_action('woocommerce_admin_process_product_object', function (WC_Product $product) {
+	if (
+		!isset($_POST['nutritional_values_kv_nonce']) ||
+		!wp_verify_nonce($_POST['nutritional_values_kv_nonce'], 'save_nutritional_values_kv')
+	) {
+		return;
+	}
+
+	$keys = isset($_POST['_nutri_key']) ? (array) $_POST['_nutri_key'] : [];
+	$vals = isset($_POST['_nutri_val']) ? (array) $_POST['_nutri_val'] : [];
+
+	$clean = [];
+	$count = max(count($keys), count($vals));
+
+	for ($i = 0; $i < $count; $i++) {
+		$k = isset($keys[$i]) ? sanitize_text_field(wp_unslash($keys[$i])) : '';
+		$v = isset($vals[$i]) ? sanitize_text_field(wp_unslash($vals[$i])) : '';
+		if ($k !== '' && $v !== '') {
+			$clean[$k] = $v; // associative array: "Sól" => "0.1 g"
+		}
+	}
+
+	if (!empty($clean)) {
+		$product->update_meta_data('_nutritional_values_kv', $clean);
+	} else {
+		$product->delete_meta_data('_nutritional_values_kv');
+	}
+});
+
+// One tab that shows BOTH the textarea content and the key→value table
+add_filter('woocommerce_product_tabs', function ($tabs) {
+	$tabs['nutri'] = [
+		'title'    => __('Wartości odżywcze', 'yourtextdomain'),
+		'priority' => 25,
+		'callback' => function () {
+			// Get current product safely inside the callback
+			$product = wc_get_product(get_the_ID());
+			if (!$product) {
+				return;
+			}
+
+			// 1) Free-text (from textarea)
+			$vals = $product->get_meta('_nutritional_values');
+
+			// 2) Key→Value pairs (array). If you stored JSON, decode it first.
+			$kv = $product->get_meta('_nutritional_values_kv', true);
+			if (is_string($kv)) {
+				$decoded = json_decode($kv, true);
+				if (json_last_error() === JSON_ERROR_NONE) {
+					$kv = $decoded;
+				}
+			}
+
+			// Nothing to show? Bail.
+			if (empty($vals) && (empty($kv) || !is_array($kv))) {
+				return;
+			}
+	?>
+		<div class="self-stretch pt-4 pb-10 bg-white border-t border-neutral-200 flex flex-col justify-center items-center gap-5">
+			<div class="self-stretch flex flex-col justify-center items-center gap-2.5">
+				<?php
+				$kv = get_post_meta(get_the_ID(), '_nutritional_values_kv', true);
+				if (is_array($kv) && !empty($kv)) : ?>
+					<div class="self-stretch inline-flex justify-start items-center gap-2.5">
+						<div class="w-96 justify-start text-zinc-800 text-base font-light font-['Mulish'] leading-snug">Wartość odżywcza 100 g produktu</div>
+					</div>
+
+					<?php foreach ($kv as $k => $v): ?>
+						<div class="self-stretch inline-flex justify-between items-center">
+							<div class="flex-1 justify-start text-zinc-800 text-base font-light font-['Mulish'] leading-snug"><?php echo esc_html($k); ?></div>
+							<div class="justify-start text-zinc-800 text-base font-light font-['Mulish'] leading-snug"><?php echo esc_html($v); ?></div>
+						</div>
+					<?php endforeach; ?>
+				<?php endif; ?>
+			</div>
+		</div>
+<?php
+		},
+	];
+
+	return $tabs;
+});
+
+
+// Move tabs only on the product with slug "praliny"
+add_action('wp', function () {
+    if ( ! is_product() ) return;
+
+    $product = wc_get_product( get_queried_object_id() );
+    if ( ! $product || $product->get_slug() !== 'praliny' ) return;
+
+    // 1) Stop tabs from rendering in the default spot (below summary)
+    remove_action('woocommerce_after_single_product_summary', 'woocommerce_output_product_data_tabs', 10);
+
+    // 2) Fire your custom hook after the gallery (left column)
+    // If you already put `do_action('ccafe_product_tabs_after_gallery')` in the template,
+    // skip this "bridge".
+    add_action('woocommerce_before_single_product_summary', function () {
+        do_action('ccafe_product_tabs_after_gallery');
+    }, 30);
+
+    // 3) Attach the tabs output to your custom hook
+    add_action('ccafe_product_tabs_after_gallery', 'woocommerce_output_product_data_tabs', 10);
+});
+
