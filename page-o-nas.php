@@ -105,9 +105,9 @@ get_header(); ?>
 	</div>
 
 	<!--  section -5- (slide)  -->
-	<div class="relative md:h-screen max-md:px-[4%] max-md:min-h-screen max-md:py-[10vh] flex items-center justify-center bg-stone-200 px-[8%]  ">
-		<span class="w-[10%] h-full absolute z-2  bg-stone-200  flex  left-0 top-0 max-md:hidden"></span>
-		<span class="w-[10%] h-full absolute z-2  bg-stone-200  flex right-0 top-0 max-md:hidden"></span>
+	<div class="relative md:h-screen max-md:px-[4%] max-md:min-h-screen max-md:py-[10vh] flex items-center justify-center bg-[#F2EDE7] px-[8%]  ">
+		<span class="w-[10%] h-full absolute z-2  bg-[#F2EDE7]  flex  left-0 top-0 max-md:hidden"></span>
+		<span class="w-[10%] h-full absolute z-2  bg-[#F2EDE7]  flex right-0 top-0 max-md:hidden"></span>
 		<div>
 			<div class="max-md:flex  justify-center items-center max-md:min-h-[20vh]">
 				<h2 class="text-center md:!mb-10 max-md:!m-0 !font-['Didot LT Pro']  ">Co oferujemy w kawiarniach </h2>
