@@ -113,6 +113,9 @@ function custom_recent_posts_shortcode()
 	$recent_posts = new WP_Query(array(
 		'post_type'      => 'post',
 		'posts_per_page' => 10,
+		'orderby'        => 'date',
+		'order'          => 'DESC',
+		'post_status'    => 'publish',
 	));
 
 	if ($recent_posts->have_posts()) :
