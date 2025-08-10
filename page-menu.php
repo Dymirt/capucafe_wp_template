@@ -4,7 +4,7 @@ get_header(); ?>
 
 
 <div data-layer="all" class="All flex">
-	<div data-layer="L kategorie i filtry" class="LKategorieIFiltry self-stretch px-[5%] py-10 bg-stone-200 justify-start items-center hidden lg:flex lg:flex-col">
+	<div data-layer="L kategorie i filtry" class="LKategorieIFiltry self-stretch px-[5%] py-10 bg-[#F2EDE7] justify-start items-center hidden lg:flex lg:flex-col">
 		<div data-layer="lista" class="Lista self-stretch min-w-72 pt-4 pb-6 flex flex-col justify-start items-center gap-3.5">
 			<div data-layer="title" class="Title self-stretch pr-2 py-2.5 inline-flex justify-start items-start gap-3">
 				<div data-layer="Szybka nawigacja" class="SzybkaNawigacja flex-1 justify-start text-stone-700 text-xl font-bold font-['Mulish']">Szybka nawigacja</div>
