@@ -16,7 +16,7 @@
 				</div>
 			</div>
 
-			<a href="?add-to-cart=<?php the_ID(); ?>" data-layer="btn" class="Btn h-12 min-w-12 p-1 !bg-stone-400 rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex flex-col justify-center items-center gap-2.5">
+			<a href="?add-to-cart=<?php the_ID(); ?>" data-layer="btn" class="Btn h-12 min-w-12 p-1 !bg-[#B1A08E] rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex flex-col justify-center items-center gap-2.5">
 				<div data-layer="shopping_bag" class="ShoppingBag relative "><svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
 						<mask id="mask0_6013_12241" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="25">
 							<rect y="0.278809" width="24" height="24" fill="#D9D9D9" />
