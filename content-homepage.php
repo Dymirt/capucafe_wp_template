@@ -273,7 +273,7 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 		<div class="md:w-full relative  max-lg:order-1 order-2 flex justify-center">
 			<img class="w-full max-md:h-auto max-h-[900px] object-cover" src="<?php echo get_stylesheet_directory_uri(); ?>/resources/img/jakosc_skladnokow.jpg" />
 		</div>
-		<div class="max-md:p-[7%] p-[5%] lg:px-72 lg:py-24 max-xl:py-16 flex max-md:flex-col max-2xl:flex-row max-lg:order-2 order-1 gap-14">
+		<div class="max-md:p-[7%] p-[5%] lg:px-60 lg:py-24 max-xl:py-16 flex max-md:flex-col max-2xl:flex-row max-lg:order-2 order-1 gap-14">
 			<div class="title max-md:w-full w-2/5 text-4xl md:text-5xl lg:text-6xl xl:text-7xl">Jakość składników</div>
 			<div class=" max-md:w-full w-3/5 lg:text-lg">W Capuccino Cafe doskonale wiemy, że nic nie zastąpi naturalnych i oryginalnych produktów. Korzystamy z wysokiej jakości składników, które kupujemy od lokalnych producentów z naszego regionu. Dzięki temu zapewniamy świeżość i najlepszą jakość wypieków, równocześnie kultywując pomorską tradycję kulinarną. W 2018 r. otrzymaliśmy Certyfikat Dziedzictwa Kulinarnego przyznawany przez Europejską Sieć Regionalnego Dziedzictwa Kulinarnego.</div>
 		</div>
