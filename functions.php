@@ -576,7 +576,7 @@ add_filter('woocommerce_product_tabs', function ($tabs) {
 				<?php endif; ?>
 			</div>
 		</div>
-<?php
+	<?php
 		},
 	];
 
@@ -586,22 +586,110 @@ add_filter('woocommerce_product_tabs', function ($tabs) {
 
 // Move tabs only on the product with slug "praliny"
 add_action('wp', function () {
-    if ( ! is_product() ) return;
+	if (! is_product()) return;
 
-    $product = wc_get_product( get_queried_object_id() );
-    if ( ! $product || $product->get_slug() !== 'praliny' ) return;
+	$product = wc_get_product(get_queried_object_id());
+	if (! $product || $product->get_slug() !== 'praliny') return;
 
-    // 1) Stop tabs from rendering in the default spot (below summary)
-    remove_action('woocommerce_after_single_product_summary', 'woocommerce_output_product_data_tabs', 10);
+	// 1) Stop tabs from rendering in the default spot (below summary)
+	remove_action('woocommerce_after_single_product_summary', 'woocommerce_output_product_data_tabs', 10);
 
-    // 2) Fire your custom hook after the gallery (left column)
-    // If you already put `do_action('ccafe_product_tabs_after_gallery')` in the template,
-    // skip this "bridge".
-    add_action('woocommerce_before_single_product_summary', function () {
-        do_action('ccafe_product_tabs_after_gallery');
-    }, 30);
+	// 2) Fire your custom hook after the gallery (left column)
+	// If you already put `do_action('ccafe_product_tabs_after_gallery')` in the template,
+	// skip this "bridge".
+	add_action('woocommerce_before_single_product_summary', function () {
+		do_action('ccafe_product_tabs_after_gallery');
+	}, 30);
 
-    // 3) Attach the tabs output to your custom hook
-    add_action('ccafe_product_tabs_after_gallery', 'woocommerce_output_product_data_tabs', 10);
+	// 3) Attach the tabs output to your custom hook
+	add_action('ccafe_product_tabs_after_gallery', 'woocommerce_output_product_data_tabs', 10);
 });
 
+add_filter('woocommerce_add_to_cart_fragments', function ($fragments) {
+	// counts
+	ob_start(); ?>
+	<span class="js-cart-count"><?php echo (int) WC()->cart->get_cart_contents_count(); ?></span>
+	<?php $fragments['.js-cart-count'] = ob_get_clean();
+
+	ob_start(); ?>
+	<span class="js-cart-button-count"><?php echo (int) WC()->cart->get_cart_contents_count(); ?></span>
+	<?php $fragments['.js-cart-button-count'] = ob_get_clean();
+
+	// header badge (optional)
+	ob_start(); ?>
+	<span class="js-cart-badge text-[6px]"><?php echo (int) WC()->cart->get_cart_contents_count(); ?></span>
+	<?php $fragments['.js-cart-badge'] = ob_get_clean();
+
+	// subtotal
+	ob_start(); ?>
+	<span class="js-cart-subtotal"><?php echo WC()->cart->get_cart_subtotal(); ?></span>
+	<?php $fragments['.js-cart-subtotal'] = ob_get_clean();
+
+	// --- NEW: per-line fragments ---
+	foreach (WC()->cart->get_cart() as $cart_item_key => $cart_item) {
+		$product = $cart_item['data'] ?? null;
+		$qty     = (int) ($cart_item['quantity'] ?? 0);
+		if (! $product || $qty <= 0) continue;
+
+		// line subtotal
+		ob_start(); ?>
+		<span class="js-line-subtotal">
+			<?php echo wp_kses_post(WC()->cart->get_product_subtotal($product, $qty)); ?>
+		</span>
+		<?php
+		$fragments['[data-cart-item="' . $cart_item_key . '"] .js-line-subtotal'] = ob_get_clean();
+
+		// qty (optional, to keep qty text in sync with server)
+		ob_start(); ?>
+		<span class="js-qty-val"><?php echo (int) $qty; ?></span>
+<?php
+		$fragments['[data-cart-item="' . $cart_item_key . '"] .js-qty-val'] = ob_get_clean();
+	}
+
+	// If you want your custom list to persist after AJAX, also return your mini-cart HTML
+	// that lives inside .widget_shopping_cart_content:
+	ob_start();
+	// render the SAME loop you use in the popover (extract to a template part if you like)
+	wc_get_template('cart/mini-cart.php'); // or include your own partial that outputs your custom HTML
+	$fragments['.widget_shopping_cart_content'] = ob_get_clean();
+
+	return $fragments;
+}, 20);
+
+// Make sure cart fragments script is loaded
+add_action('wp_enqueue_scripts', function () {
+	wp_enqueue_script('wc-cart-fragments');
+});
+
+
+
+
+// AJAX: update cart item quantity (plus/minus in mini cart)
+add_action('wp_ajax_ccafe_update_cart_item_qty', 'ccafe_update_cart_item_qty');
+add_action('wp_ajax_nopriv_ccafe_update_cart_item_qty', 'ccafe_update_cart_item_qty');
+function ccafe_update_cart_item_qty()
+{
+	check_ajax_referer('ccafe_update_qty', 'nonce');
+
+	$key = isset($_POST['cart_item_key']) ? wc_clean(wp_unslash($_POST['cart_item_key'])) : '';
+	$qty = isset($_POST['quantity']) ? (int) $_POST['quantity'] : -1;
+
+	if ($key === '') {
+		wp_send_json_error(['message' => 'Missing key'], 400);
+	}
+
+	if ($qty <= 0) {
+		WC()->cart->remove_cart_item($key);
+	} else {
+		WC()->cart->set_quantity($key, $qty, true); // true = recalc totals
+	}
+
+	// Return refreshed fragments (same as Woo does)
+	WC_AJAX::get_refreshed_fragments();
+	wp_die();
+}
+
+// Ensure cart fragments are loaded (usually already)
+add_action('wp_enqueue_scripts', function () {
+	wp_enqueue_script('wc-cart-fragments');
+});

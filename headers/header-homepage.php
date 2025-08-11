@@ -16,34 +16,148 @@
 		]);
 		?>
 	</div>
-	<div class="h-16 flex justify-center items-center gap-4">
+	<div class="flex relative justify-center items-center gap-4">
 		<?php
 		$page_moje_konto = get_page_by_path('moje-konto');
 		$moje_konto_url = get_permalink($page_moje_konto->ID);
 		?>
 		<a href="<?php echo esc_url($moje_konto_url); ?>" data-property-1="Default" class="w-6 h-7 relative overflow-hidden group">
-			<svg xmlns="http://www.w3.org/2000/svg"  width="24" height="25" viewBox="0 0 24 25" fill="none">
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
 				<path class="group-hover:!fill-[#A9957B]" d="M15.71 13.21C16.6904 12.4386 17.406 11.3809 17.7572 10.1839C18.1085 8.98694 18.0779 7.71024 17.6698 6.53145C17.2617 5.35265 16.4963 4.33037 15.4801 3.60683C14.4639 2.8833 13.2474 2.49448 12 2.49448C10.7525 2.49448 9.53611 2.8833 8.51993 3.60683C7.50374 4.33037 6.73834 5.35265 6.33021 6.53145C5.92208 7.71024 5.89151 8.98694 6.24276 10.1839C6.59401 11.3809 7.3096 12.4386 8.29 13.21C6.61007 13.883 5.14428 14.9993 4.04889 16.4399C2.95349 17.8805 2.26956 19.5913 2.07 21.39C2.05555 21.5213 2.06711 21.6542 2.10402 21.781C2.14093 21.9079 2.20246 22.0262 2.28511 22.1293C2.45202 22.3375 2.69478 22.4708 2.96 22.5C3.22521 22.5292 3.49116 22.4518 3.69932 22.2849C3.90749 22.118 4.04082 21.8752 4.07 21.61C4.28958 19.6552 5.22168 17.8498 6.68822 16.5388C8.15475 15.2278 10.0529 14.503 12.02 14.503C13.9871 14.503 15.8852 15.2278 17.3518 16.5388C18.8183 17.8498 19.7504 19.6552 19.97 21.61C19.9972 21.8557 20.1144 22.0826 20.2991 22.247C20.4838 22.4114 20.7228 22.5015 20.97 22.5H21.08C21.3421 22.4698 21.5817 22.3373 21.7466 22.1312C21.9114 21.9252 21.9881 21.6623 21.96 21.4C21.7595 19.5962 21.0719 17.881 19.9708 16.4382C18.8698 14.9954 17.3969 13.8795 15.71 13.21ZM12 12.5C11.2089 12.5 10.4355 12.2654 9.77772 11.8259C9.11992 11.3863 8.60723 10.7616 8.30448 10.0307C8.00173 9.29981 7.92251 8.49554 8.07686 7.71962C8.2312 6.94369 8.61216 6.23096 9.17157 5.67155C9.73098 5.11214 10.4437 4.73118 11.2196 4.57684C11.9956 4.4225 12.7998 4.50171 13.5307 4.80446C14.2616 5.10721 14.8863 5.6199 15.3259 6.2777C15.7654 6.93549 16 7.70885 16 8.49998C16 9.56084 15.5786 10.5783 14.8284 11.3284C14.0783 12.0786 13.0609 12.5 12 12.5Z" fill="white" />
 			</svg>
 		</a>
-		<?php
-		$page_koszyk = get_page_by_path('koszyk');
-		$koszyk_url = get_permalink($page_koszyk ->ID);
-		?>
-		<a href="<?php echo esc_url($koszyk_url); ?>" data-property-1="Default" class="w-6 h-6 relative overflow-hidden  group">
-			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="21" viewBox="0 0 16 21" fill="none">
-				<path class="group-hover:!fill-[#A9957B]" d="M15 5.49998H12V4.49998C12 3.43911 11.5786 2.4217 10.8284 1.67155C10.0783 0.921405 9.06087 0.499977 8 0.499977C6.93913 0.499977 5.92172 0.921405 5.17157 1.67155C4.42143 2.4217 4 3.43911 4 4.49998V5.49998H1C0.734784 5.49998 0.48043 5.60533 0.292893 5.79287C0.105357 5.98041 0 6.23476 0 6.49998V17.5C0 18.2956 0.316071 19.0587 0.87868 19.6213C1.44129 20.1839 2.20435 20.5 3 20.5H13C13.7956 20.5 14.5587 20.1839 15.1213 19.6213C15.6839 19.0587 16 18.2956 16 17.5V6.49998C16 6.23476 15.8946 5.98041 15.7071 5.79287C15.5196 5.60533 15.2652 5.49998 15 5.49998ZM6 4.49998C6 3.96954 6.21071 3.46084 6.58579 3.08576C6.96086 2.71069 7.46957 2.49998 8 2.49998C8.53043 2.49998 9.03914 2.71069 9.41421 3.08576C9.78929 3.46084 10 3.96954 10 4.49998V5.49998H6V4.49998ZM14 17.5C14 17.7652 13.8946 18.0195 13.7071 18.2071C13.5196 18.3946 13.2652 18.5 13 18.5H3C2.73478 18.5 2.48043 18.3946 2.29289 18.2071C2.10536 18.0195 2 17.7652 2 17.5V7.49998H4V8.49998C4 8.76519 4.10536 9.01955 4.29289 9.20708C4.48043 9.39462 4.73478 9.49998 5 9.49998C5.26522 9.49998 5.51957 9.39462 5.70711 9.20708C5.89464 9.01955 6 8.76519 6 8.49998V7.49998H10V8.49998C10 8.76519 10.1054 9.01955 10.2929 9.20708C10.4804 9.39462 10.7348 9.49998 11 9.49998C11.2652 9.49998 11.5196 9.39462 11.7071 9.20708C11.8946 9.01955 12 8.76519 12 8.49998V7.49998H14V17.5Z" fill="white" />
-			</svg>
-			<div class="w-2.5 h-2.5 left-[13px] top-[13px] absolute bg-red-500 rounded-[30px] inline-flex flex-col justify-center items-center gap-2.5">
-				<div class="justify-center text-white text-[6px] font-extrabold font-['Mulish'] uppercase leading-[7.80px]"><?php echo WC()->cart->get_cart_contents_count() ?></div>
+		<div class="w-6 h-7 relative overflow-hidden group">
+			<?php
+			$page_koszyk = get_page_by_path('koszyk');
+			$koszyk_url = get_permalink($page_koszyk->ID);
+			?>
+			<a href="<?php echo esc_url($koszyk_url); ?>" data-property-1="Default" class="w-6 h-6 relative overflow-hidden  group">
+				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="21" viewBox="0 0 16 21" fill="none">
+					<path class="group-hover:!fill-[#A9957B]" d="M15 5.49998H12V4.49998C12 3.43911 11.5786 2.4217 10.8284 1.67155C10.0783 0.921405 9.06087 0.499977 8 0.499977C6.93913 0.499977 5.92172 0.921405 5.17157 1.67155C4.42143 2.4217 4 3.43911 4 4.49998V5.49998H1C0.734784 5.49998 0.48043 5.60533 0.292893 5.79287C0.105357 5.98041 0 6.23476 0 6.49998V17.5C0 18.2956 0.316071 19.0587 0.87868 19.6213C1.44129 20.1839 2.20435 20.5 3 20.5H13C13.7956 20.5 14.5587 20.1839 15.1213 19.6213C15.6839 19.0587 16 18.2956 16 17.5V6.49998C16 6.23476 15.8946 5.98041 15.7071 5.79287C15.5196 5.60533 15.2652 5.49998 15 5.49998ZM6 4.49998C6 3.96954 6.21071 3.46084 6.58579 3.08576C6.96086 2.71069 7.46957 2.49998 8 2.49998C8.53043 2.49998 9.03914 2.71069 9.41421 3.08576C9.78929 3.46084 10 3.96954 10 4.49998V5.49998H6V4.49998ZM14 17.5C14 17.7652 13.8946 18.0195 13.7071 18.2071C13.5196 18.3946 13.2652 18.5 13 18.5H3C2.73478 18.5 2.48043 18.3946 2.29289 18.2071C2.10536 18.0195 2 17.7652 2 17.5V7.49998H4V8.49998C4 8.76519 4.10536 9.01955 4.29289 9.20708C4.48043 9.39462 4.73478 9.49998 5 9.49998C5.26522 9.49998 5.51957 9.39462 5.70711 9.20708C5.89464 9.01955 6 8.76519 6 8.49998V7.49998H10V8.49998C10 8.76519 10.1054 9.01955 10.2929 9.20708C10.4804 9.39462 10.7348 9.49998 11 9.49998C11.2652 9.49998 11.5196 9.39462 11.7071 9.20708C11.8946 9.01955 12 8.76519 12 8.49998V7.49998H14V17.5Z" fill="white" />
+				</svg>
+				<div class="w-2.5 h-2.5 left-[13px] top-[13px] absolute bg-red-500 rounded-[30px] inline-flex flex-col justify-center items-center gap-2.5">
+					<span class="js-cart-badge text-[6px]"><?php echo WC()->cart->get_cart_contents_count(); ?></span>
+				</div>
+			</a>
+
+			<div class=" fixed top-[100px] right-20 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+				<div class=" p-8 bg-white shadow-[0px_4px_16px_0px_rgba(0,0,0,0.10)] border-b border-neutral-200 inline-flex flex-col justify-start items-start gap-6">
+					<div class="self-stretch justify-center text-zinc-800 text-sm font-bold uppercase leading-tight">
+						Koszyk (<span class="js-cart-count"><?php echo WC()->cart->get_cart_contents_count(); ?></span>)
+					</div>
+					<?php foreach (WC()->cart->get_cart() as $cart_item_key => $cart_item) :
+						$product   = $cart_item['data'];
+						if (! $product || ! $product->exists() || $cart_item['quantity'] <= 0) continue;
+
+						$qty = (int) $cart_item['quantity'];
+						// Ensure variation thumbnails are used when available and allow filters to modify the output
+						if ($product->is_type('variation')) {
+							$img_id = $product->get_image_id();
+							if (! $img_id) {
+								$parent = wc_get_product($product->get_parent_id());
+								$img_id = $parent ? $parent->get_image_id() : 0;
+							}
+						} else {
+							$img_id = $product->get_image_id();
+						}
+
+						$thumb_url = $img_id
+							? wp_get_attachment_image_url($img_id, 'woocommerce_thumbnail')
+							: wc_placeholder_img_src('woocommerce_thumbnail');
+						// Let plugins/themes alter the cart item thumbnail (matches Woo default template behavior)
+						$name      = $product->get_name();
+						$permalink = $product->is_visible() ? $product->get_permalink($cart_item) : '';
+						$subtotal  = WC()->cart->get_product_subtotal($product, $qty); // formatted HTML
+						$remove_url = wc_get_cart_remove_url($cart_item_key);
+					?>
+						<div class="inline-flex justify-start items-start gap-5" data-cart-item="<?php echo esc_attr($cart_item_key); ?>">
+							<img class="w-24 h-24 py-4" src="<?php echo esc_url($thumb_url); ?>" />
+							<div class="w-56 min-w-56 inline-flex flex-col justify-start items-start gap-3">
+								<div class="self-stretch inline-flex justify-start items-start gap-3">
+									<div class="flex-1 justify-center text-zinc-800 text-sm font-bold font-['Mulish'] leading-tight"><?php echo $name; ?></div>
+
+									<div class="relative overflow-hidden">
+										<a href="<?php echo esc_url($remove_url); ?>"
+											class="w-4 h-4 relative overflow-hidden remove remove_from_cart_button"
+											aria-label="<?php esc_attr_e('Usuń pozycję', 'woocommerce'); ?>"
+											data-cart_item_key="<?php echo esc_attr($cart_item_key); ?>"
+											data-product_id="<?php echo esc_attr($product->get_id()); ?>"
+											data-product_sku="<?php echo esc_attr($product->get_sku()); ?>">
+										</a>
+									</div>
+								</div>
+								<?php
+								if (!empty($cart_item['custom_candies'])) {
+									$output = '<ul class="custom-candies-list text-black" style="margin-top: 8px; font-size: 0.875rem;">';
+									foreach ($cart_item['custom_candies'] as $candy) {
+										$output .= '<li><strong>' . esc_html($candy['name']) . '</strong>: ' . esc_html($candy['quantity']) . ' szt.</li>';
+									}
+									$output .= '</ul>';
+									echo $output;
+								}
+								?>
+								<div class="self-stretch inline-flex justify-center items-center">
+									<div class="h-8 px-1.5 py-2 rounded outline outline-1 outline-offset-[-1px] outline-stone-400 flex items-center gap-2.5"
+										data-qty-box
+										data-cart-item="<?php echo esc_attr($cart_item_key); ?>">
+
+										<!-- − -->
+										<div
+											class="w-5 h-5 flex items-center justify-center rounded border border-stone-400 js-qty-minus"
+											aria-label="Mniej">−</div>
+
+										<!-- value -->
+										<span class="js-qty-val text-zinc-800 text-lg font-light leading-relaxed">
+											<?php echo (int) $qty; ?>
+										</span>
+
+										<!-- + -->
+										<div type=""
+											class="w-5 h-5 flex items-center justify-center rounded border border-stone-400 js-qty-plus"
+											aria-label="Więcej">+</div>
+									</div>
+
+
+									<div class="flex-1 flex justify-end items-start gap-2.5">
+										<div class="flex-1 text-right justify-center text-zinc-800 text-sm font-normal leading-tight">
+											<span class="js-line-subtotal">
+												<?php echo wp_kses_post(WC()->cart->get_product_subtotal($product, $qty)); ?>
+											</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					<?php endforeach; ?>
+
+					<div class="self-stretch pt-5 border-t border-neutral-200 flex flex-col justify-start items-start">
+
+						<div class="self-stretch inline-flex justify-start items-start">
+							<div class="flex-1 justify-center text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">Razem</div>
+							<div class="flex-1 text-right justify-center text-zinc-800 text-sm font-normal leading-tight">
+								<span class="js-cart-subtotal"><?php echo WC()->cart->get_cart_subtotal(); ?></span>
+							</div>
+						</div>
+						<div class="self-stretch pt-5 inline-flex justify-start items-start gap-2.5">
+							<div class="self-stretch pt-5 inline-flex justify-start items-start gap-2.5">
+								<a href="<?php echo esc_url(wc_get_page_permalink('shop')); ?>" data-property-1="Default" class="flex-1 h-11 px-7 rounded outline outline-1 outline-offset-[-1px] outline-stone-400 flex justify-center items-center gap-2.5">
+									<div class="justify-center text-zinc-800 text-sm font-bold font-['Mulish'] uppercase leading-tight">Kontynuj zakupy</div>
+								</a>
+								<a href="<?php echo esc_url($koszyk_url); ?>" data-property-1="hover" class="flex-1 h-11 px-7 !bg-[#A9957B] rounded outline outline-1 outline-offset-[-1px] !outline-[#A9957B] flex justify-center items-center gap-4">
+									<div class="justify-center text-white text-sm font-bold uppercase leading-tight">
+										koszyk (<span class="js-cart-button-count"><?php echo WC()->cart->get_cart_contents_count(); ?></span>)
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
-		</a>
-		<div  class="w-6 h-6 relative overflow-hidden md:hidden" onclick="openMenu()">
+		</div>
+		<div class="w-6 h-6 relative overflow-hidden md:hidden" onclick="openMenu()">
 			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 25" fill="none">
 				<path d="M3 7.49998H21C21.2652 7.49998 21.5196 7.39462 21.7071 7.20708C21.8946 7.01955 22 6.76519 22 6.49998C22 6.23476 21.8946 5.98041 21.7071 5.79287C21.5196 5.60533 21.2652 5.49998 21 5.49998H3C2.73478 5.49998 2.48043 5.60533 2.29289 5.79287C2.10536 5.98041 2 6.23476 2 6.49998C2 6.76519 2.10536 7.01955 2.29289 7.20708C2.48043 7.39462 2.73478 7.49998 3 7.49998ZM21 17.5H3C2.73478 17.5 2.48043 17.6053 2.29289 17.7929C2.10536 17.9804 2 18.2348 2 18.5C2 18.7652 2.10536 19.0195 2.29289 19.2071C2.48043 19.3946 2.73478 19.5 3 19.5H21C21.2652 19.5 21.5196 19.3946 21.7071 19.2071C21.8946 19.0195 22 18.7652 22 18.5C22 18.2348 21.8946 17.9804 21.7071 17.7929C21.5196 17.6053 21.2652 17.5 21 17.5ZM21 11.5H3C2.73478 11.5 2.48043 11.6053 2.29289 11.7929C2.10536 11.9804 2 12.2348 2 12.5C2 12.7652 2.10536 13.0195 2.29289 13.2071C2.48043 13.3946 2.73478 13.5 3 13.5H21C21.2652 13.5 21.5196 13.3946 21.7071 13.2071C21.8946 13.0195 22 12.7652 22 12.5C22 12.2348 21.8946 11.9804 21.7071 11.7929C21.5196 11.6053 21.2652 11.5 21 11.5Z" fill="white" />
 			</svg>
 		</div>
 	</div>
 </div>
-
-

@@ -172,6 +172,99 @@ $count = WC()->cart->get_cart_contents_count();
 					}
 				});
 			});
+			document.addEventListener('click', function(e) {
+				const btn = e.target.closest('.remove_from_cart_button');
+				if (!btn) return;
+
+				const row = btn.closest('[data-cart-item]');
+				if (row) {
+					row.style.transition = 'opacity .2s ease, height .2s ease, margin .2s ease, padding .2s ease';
+					row.style.opacity = '0';
+					// collapse space after fade
+					setTimeout(() => {
+						row.style.height = '0';
+						row.style.margin = '0';
+						row.style.padding = '0';
+					}, 200);
+					// fully remove from DOM a bit later
+					setTimeout(() => row.remove(), 450);
+				}
+				// Important: don't call preventDefault — let Woo do its AJAX remove.
+			});
+
+			(function() {
+				const ajaxUrl = (window.wc_add_to_cart_params && wc_add_to_cart_params.ajax_url) ?
+					wc_add_to_cart_params.ajax_url :
+					(window.ajaxurl || '/wp-admin/admin-ajax.php');
+				const nonce = '<?php echo esc_js(wp_create_nonce('ccafe_update_qty')); ?>';
+
+				function applyFragments(data) {
+					if (!data || !data.fragments) return;
+					Object.keys(data.fragments).forEach(selector => {
+						document.querySelectorAll(selector).forEach(el => {
+							const wrapper = document.createElement('div');
+							wrapper.innerHTML = data.fragments[selector];
+							const fresh = wrapper.firstElementChild;
+							if (fresh) el.replaceWith(fresh);
+						});
+					});
+				}
+
+				async function updateQty(key, newQty) {
+					const body = new URLSearchParams({
+						action: 'ccafe_update_cart_item_qty',
+						nonce: nonce,
+						cart_item_key: key,
+						quantity: newQty
+					});
+
+					const res = await fetch(ajaxUrl, {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+						},
+						body
+					});
+
+					// Woo returns JSON with { fragments, cart_hash }
+					const data = await res.json().catch(() => null);
+					applyFragments(data);
+				}
+
+				document.addEventListener('click', function(e) {
+					const plus = e.target.closest('.js-qty-plus');
+					const minus = e.target.closest('.js-qty-minus');
+					if (!plus && !minus) return;
+
+					const box = (plus || minus).closest('[data-qty-box]');
+					if (!box) return;
+
+					const key = box.dataset.cartItem;
+					const valEl = box.querySelector('.js-qty-val');
+					const cur = parseInt(valEl.textContent.trim(), 10) || 0;
+					const next = plus ? cur + 1 : cur - 1;
+
+					// optimistic UI
+					if (next <= 0) {
+						const row = box.closest('[data-cart-item]') || box.parentElement;
+						if (row) {
+							row.style.transition = 'opacity .2s ease, height .2s ease, margin .2s ease, padding .2s ease';
+							row.style.opacity = '0';
+							setTimeout(() => {
+								row.style.height = '0';
+								row.style.margin = '0';
+								row.style.padding = '0';
+							}, 200);
+							setTimeout(() => row.remove(), 450);
+						}
+					} else {
+						valEl.textContent = next;
+					}
+
+					// server update (fragments will refresh totals, counts, list)
+					updateQty(key, Math.max(0, next));
+				});
+			})();
 		</script>
 
 		<?php
