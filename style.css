@@ -41,6 +41,11 @@ Template:			storefront
 	font-style: normal;
 	ascent-override: 90%;
 }
+body a {
+	text-decoration: none !important;
+	color: inherit !important;
+}
+
 
 .background_1 {
 	background-color: #F2EDE7;
