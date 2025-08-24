@@ -237,10 +237,9 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 
 
 	<div class="min-h-[60vh] py-12">
-
 		<div class=" pl-[5%] ">
 			<div data-layer="title" class="Title flex justify-between items-center w-full pr-[5%]">
-				<div data-layer="Nasze bestsellery" class="NaszeBestsellery text-stone-700 text-3xl font-normal title">
+				<div data-layer="Nasze bestsellery" class="NaszeBestsellery text-stone-700 text-3xl font-normal title pb-4">
 					Nasze bestsellery
 				</div>
 				<div data-layer="strzalki" class="Strzalki flex items-center gap-2.5">
@@ -258,8 +257,8 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 				</div>
 			</div>
 			<div id="productScrollWrapper" class="flex flex-nowrap overflow-x-auto scroll-smooth w-full ">
-				<div id="productScroll" class="flex flex-nowrap snap-x snap-mandatory gap-5 pb-5">
-					<?php echo do_shortcode('[best_selling_products limit="6"]'); ?>
+				<div id="productScroll" class="flex flex-nowrap snap-x snap-mandatory pb-5">
+					<?php echo do_shortcode('[best_selling_products limit="10"]'); ?>
 				</div>
 			</div>
 		</div>
