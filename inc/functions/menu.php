@@ -7,7 +7,7 @@ class Footer_Walker_Nav_Menu extends Walker_Nav_Menu
 	function start_lvl(&$output, $depth = 0, $args = [])
 	{
 		$this->submenu_id++;
-		$output .= '<div id="submenu-' . $this->submenu_id . '" class="submenu flex flex-col gap-2 hidden md:flex">';
+		$output .= '<div id="submenu-' . $this->submenu_id . '" class="submenu flex flex-col mt-4 gap-4 hidden md:flex">';
 	}
 
 	function end_lvl(&$output, $depth = 0, $args = [])
