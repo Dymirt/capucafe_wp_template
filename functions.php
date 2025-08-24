@@ -119,7 +119,7 @@ function custom_recent_posts_shortcode()
 	));
 
 	if ($recent_posts->have_posts()) :
-		echo '<div class="self-stretch flex flex-col md:flex-row justify-start items-center gap-10">';
+		echo '<div class="self-stretch flex flex-col sm:flex-row justify-start items-center gap-4 lg:gap-10">';
 		while ($recent_posts->have_posts()) : $recent_posts->the_post();
 	?>
 			<div class="self-stretch flex flex-col justify-start items-start md:basis-64 w-64">
