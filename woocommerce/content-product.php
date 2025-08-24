@@ -1,9 +1,9 @@
-<div data-property-1="Default" class="self-stretch w-60 bg-white rounded inline-flex justify-center items-start group">
+<div data-property-1="Default" class="self-stretch w-full md:w-60 bg-white rounded inline-flex justify-center items-start group">
 	<div class="flex-1 p-4 inline-flex flex-col justify-start items-start lg:group-hover:outline lg:group-hover:outline-1 lg:group-hover:outline-offset-[-1px] lg:group-hover:outline-[#A9957B]">
 		<div class="self-stretch inline-flex justify-center items-center gap-2.5 overflow-hidden">
 			<a href="<?php the_permalink(); ?>" style="display: block; width: 100%; height: 100%;">
 				<?php woocommerce_show_product_sale_flash(); ?>
-				<?php the_post_thumbnail('woocommerce_thumbnail', ['class' => '!w-64 !!h-64 object-cover']); ?>
+				<?php the_post_thumbnail('woocommerce_thumbnail', ['class' => '!w-full !!h-full object-cover']); ?>
 			</a>
 		</div>
 		<div class="self-stretch h-32 flex flex-col justify-start items-start">
