@@ -6,7 +6,7 @@
 					<img
 						id="main-variation-image"
 						data-layer="image 1"
-						class="Image1 flex-1 h-96 object-cover"
+						class="Image1 flex-1 h-[512px] object-cover"
 						src="<?php echo get_the_post_thumbnail_url(get_the_ID(), 'woocommerce_single'); ?>"
 						alt="<?php the_title_attribute(); ?>" />
 					<div id="candy-image-summary"
@@ -130,7 +130,7 @@
 								<div id="variation-price" data-layer="80,00 zł" class="00Z self-stretch justify-start text-stone-700 text-3xl font-normal font-['Didot_LT_Pro']">30-80,00 zł</div>
 								<div data-layer="Cena brutto/1kg 00,00 zł" class="CenaBrutto1kg0000Z self-stretch justify-start text-zinc-500 text-xs font-normal font-['Mulish']">Cena brutto/1kg 00,00 zł</div>
 							</div>
-							<button type="submit" data-layer="BTN" class="single_add_to_cart_button Btn !p-0 w-full max-w-72 inline-flex flex-col justify-start items-start gap-4">
+							<button type="submit" data-layer="BTN" class="single_add_to_cart_button Btn !p-0 inline-flex flex-col justify-start items-start gap-4">
 								<div data-layer="BTN midle dark" data-property-1="koszyk defoult" class="BtnMidleDark w-full self-stretch h-12 px-7 bg-[#A9957B] rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-4">
 									<div data-layer="Poznaj nas" class="PoznajNas justify-center text-white text-sm font-bold font-['Mulish'] uppercase leading-tight">Dodaj do koszyka</div>
 									<div data-layer="shopping_bag" class="ShoppingBag"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
