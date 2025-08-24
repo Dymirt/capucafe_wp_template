@@ -14,6 +14,9 @@ module.exports = {
 			fontFamily: {
 				didot: ['DidoDidot', 'serif'],
 			},
+			maxWidth: {
+				'content': '1280px',
+			},
 		},
 	},
 	safelist: [
