@@ -28,11 +28,11 @@
 		// do_action( 'storefront_footer' );
 		?>
 
-		<div data-property-1="mobile v2" class="w-full self-stretch px-5 md:px-32 pt-36 md:pt-24 relative bg-[#42352F] md:flex justify-start content-start items-start gap-7">
+		<div data-property-1="mobile v2" class="w-full self-stretch px-5 md:px-32 pt-36 md:pt-24 relative bg-[#42352F] md:flex justify-start content-start md:justify-center md:content-center items-start gap-7">
 			<div class="w-48 min-w-44 h-full basis-auto mb-4">
 				<?php echo get_custom_logo(); ?>
 			</div>
-			<div class="flex md:flex-col flex-wrap gap-4 md:h-[180px] grow">
+			<div class="flex md:flex-col flex-wrap gap-4 md:h-[300px] xl:h-[180px] max-w-[700px] grow">
 				<?php
 				wp_nav_menu([
 					'theme_location' => 'footer-mobile-menu-location',

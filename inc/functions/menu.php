@@ -21,10 +21,10 @@ class Footer_Walker_Nav_Menu extends Walker_Nav_Menu
 		if ($depth === 0) {
 			$has_children = !empty($item->has_children);
 			if ($has_children){
-				$output .= '<div class="w-full md:w-48 min-w-44">';
+				$output .= '<div class="w-full max-w-fit">';
 			}
 
-			$output .= '<div class="w-full md:w-48 min-w-44 flex flex-row md:flex-col justify-start">';
+			$output .= '<div class="w-full max-w-fit flex flex-row md:flex-col justify-start">';
 			$output .= '<a class="justify-start !text-stone-400 text-sm font-bold font-[\'Mulish\'] uppercase !no-underline" href="' . esc_url($item->url) . '">';
 			$output .= esc_html($item->title);
 			$output .= '</a>';
