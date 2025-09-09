@@ -327,7 +327,7 @@ function conditionally_hide_shipping_address($needs_shipping)
 	return $needs_shipping;
 }
 
-
+/*
 add_action('wp_footer', function () {
 	if (!is_checkout()) return;
 	?>
@@ -377,6 +377,7 @@ add_filter('woocommerce_checkout_fields', function ($fields) {
 	}
 	return $fields;
 });
+*/
 
 
 add_action('wp_footer', function () {
