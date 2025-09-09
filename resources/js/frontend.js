@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	const scrollLeftBtn = document.getElementById('scrollLeft');
 	const scrollRightBtn = document.getElementById('scrollRight');
 	if (!scrollContainer || !scrollLeftBtn || !scrollRightBtn) return;
-	
+
 	scrollLeftBtn.addEventListener('click', () => {
 		if (scrollContainer.scrollLeft === 0) {
 			scrollContainer.scrollTo({
@@ -112,10 +112,11 @@ function updateActiveDot() {
 		}
 	});
 }
-
-scrollContainer.addEventListener('scroll', () => {
-	updateActiveDot();
-});
+if (scrollContainer) {
+	scrollContainer.addEventListener('scroll', () => {
+		updateActiveDot();
+	});
+}
 
 
 
