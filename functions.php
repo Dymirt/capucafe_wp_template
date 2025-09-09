@@ -379,7 +379,7 @@ add_filter('woocommerce_checkout_fields', function ($fields) {
 });
 */
 
-
+/*
 add_action('wp_footer', function () {
 	if (!is_checkout()) return;
 ?>
@@ -408,6 +408,7 @@ add_action('wp_footer', function () {
 <?php
 });
 
+
 add_action('wp_footer', function () {
 	if (!is_checkout()) return;
 ?>
@@ -429,6 +430,7 @@ add_action('wp_footer', function () {
 	</script>
 <?php
 });
+*/
 
 
 // ADMIN UI: repeatable Nutritional Values (key = name, value = amount)
