@@ -2,7 +2,8 @@ document.addEventListener('DOMContentLoaded', function () {
 	const scrollContainer = document.getElementById('productScrollWrapper');
 	const scrollLeftBtn = document.getElementById('scrollLeft');
 	const scrollRightBtn = document.getElementById('scrollRight');
-
+	if (!scrollContainer || !scrollLeftBtn || !scrollRightBtn) return;
+	
 	scrollLeftBtn.addEventListener('click', () => {
 		if (scrollContainer.scrollLeft === 0) {
 			scrollContainer.scrollTo({
@@ -16,7 +17,6 @@ document.addEventListener('DOMContentLoaded', function () {
 			});
 		}
 	});
-
 	scrollRightBtn.addEventListener('click', () => {
 		if (scrollContainer.scrollLeft + scrollContainer.clientWidth >= scrollContainer.scrollWidth - 5) {
 			scrollContainer.scrollTo({
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		const targetEl = document.getElementById(targetId);
 
 		if (!targetEl) return;
-
+		// TypeError
 		link.addEventListener('click', e => {
 			e.preventDefault();
 
