@@ -112,11 +112,5 @@ function updateActiveDot() {
 		}
 	});
 }
-if (scrollContainer) {
-	scrollContainer.addEventListener('scroll', () => {
-		updateActiveDot();
-	});
-}
-
 
 
