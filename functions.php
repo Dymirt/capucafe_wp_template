@@ -587,6 +587,104 @@ add_filter('woocommerce_product_tabs', function ($tabs) {
 });
 
 
+
+add_action('wp_enqueue_scripts', function () {
+    wp_add_inline_script(
+        'wc-blocks-checkout', // если не уверены, см. альтернативу ниже
+        "
+(function(){
+  // формат YYYY-MM-DD в локальном часовом поясе
+  const pad = n => String(n).padStart(2,'0');
+  const todayD = new Date();
+  const todayStr = todayD.getFullYear()+'-'+pad(todayD.getMonth()+1)+'-'+pad(todayD.getDate());
+  const tomorrowD = new Date(todayD.getFullYear(), todayD.getMonth(), todayD.getDate()+1);
+  const tomorrowStr = tomorrowD.getFullYear()+'-'+pad(tomorrowD.getMonth()+1)+'-'+pad(tomorrowD.getDate());
+
+  function markAndBlockToday(root=document) {
+    root.querySelectorAll('.react-datepicker__day--today').forEach(el=>{
+      el.classList.add('react-datepicker__day--disabled');
+      el.setAttribute('aria-disabled','true');
+      el.style.pointerEvents = 'none'; // на всякий
+      el.removeAttribute('tabindex');
+      el.removeAttribute('aria-selected');
+    });
+  }
+
+  // Жёсткая блокировка кликов/клавиш на today (capture = true важно!)
+  function interceptEvents(){
+    const stopIfToday = (e) => {
+      const cell = e.target.closest && e.target.closest('.react-datepicker__day');
+      if (!cell) return;
+      if (cell.classList.contains('react-datepicker__day--today')) {
+        e.stopPropagation();
+        e.preventDefault();
+      }
+    };
+    ['click','mousedown','pointerdown','keydown','touchstart'].forEach(evt=>{
+      document.addEventListener(evt, (e)=>{
+        // по Enter/Space тоже блокируем
+        if (evt==='keydown' && !(e.key==='Enter' || e.key===' ')) return;
+        interceptEvents._handler && interceptEvents._handler(e); // noop если нет
+        const cell = e.target.closest && e.target.closest('.react-datepicker__day');
+        if (cell && cell.classList.contains('react-datepicker__day--today')) {
+          e.stopPropagation();
+          e.preventDefault();
+        }
+      }, true);
+    });
+  }
+
+  function guardInput(){
+    const input = document.querySelector('.pickup-date-picker');
+    if (!input) return;
+
+    const invalidate = (msg) => {
+      // покажем ошибку под блоком (если есть контейнер WC Blocks)
+      const err = input.closest('.th-datepicker-field')?.querySelector('.wc-block-components-validation-error p');
+      if (err) err.textContent = msg || 'Wybierz datę od jutra.';
+    };
+
+    const enforce = () => {
+      if (!input.value) return;
+      // если сегодня или раньше — исправляем на завтра (или чистим)
+      if (input.value <= todayStr) {
+        // вариант A: автоставим завтра
+        input.value = tomorrowStr;
+        input.dispatchEvent(new Event('change', { bubbles:true }));
+        invalidate('Dzisiejszy odbiór niedostępny — ustawiono jutro.');
+      }
+    };
+
+    // начальное состояние
+    if (input.value && input.value <= todayStr) {
+      input.value = tomorrowStr; // или '' если хочешь заставить выбрать вручную
+      input.dispatchEvent(new Event('change', { bubbles:true }));
+      invalidate('Dzisiejszy odbiór niedostępny — ustawiono jutro.');
+    }
+
+    // слушатели
+    input.addEventListener('change', enforce);
+    input.addEventListener('input', enforce);
+  }
+
+  // Наблюдаем за ререндерами React
+  const mo = new MutationObserver(() => {
+    markAndBlockToday(document);
+  });
+  mo.observe(document.documentElement, { childList:true, subtree:true });
+
+  document.addEventListener('DOMContentLoaded', function(){
+    markAndBlockToday();
+    interceptEvents();
+    guardInput();
+  });
+})();
+        "
+    );
+});
+
+
+
 // Move tabs only on the product with slug "praliny"
 add_action('wp', function () {
 	if (! is_product()) return;
