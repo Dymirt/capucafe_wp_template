@@ -32,6 +32,7 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 
 	<?php //get_template_part('headers/header', 'shop');
 	?>
+	<h1 class="hidden"><?php the_title(); ?></h1>
 	<!-- hero section -->
 	<div class="heroSection bg-cover relative max-md:bg-center z-3 max-xl:bg-center max-lg:bg-top max-md:bg-contain bg-no-repeat !bg-cover">
 		<div class="sticky top-0 z-4">
