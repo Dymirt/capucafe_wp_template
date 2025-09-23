@@ -280,7 +280,7 @@ $count = WC()->cart->get_cart_contents_count();
 		<div id="content" class="site-content" tabindex="-1">
 			<?php if (
 				is_front_page()
-				|| is_page('o-nas')
+				|| is_page('o-nas') // TODO redo with container
 				|| is_page('menu')
 				|| is_page('torty-weselne')
 				|| is_page('torty-okazjonalne')
@@ -294,6 +294,7 @@ $count = WC()->cart->get_cart_contents_count();
 					<!-- Not homepage -->
 					<div class="col-full">
 					<?php endif; ?>
+					<h1 class="hidden"><?php the_title(); ?></h1>
 
 					<?php
 					do_action('storefront_content_top');
