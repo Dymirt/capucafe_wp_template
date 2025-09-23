@@ -294,7 +294,6 @@ $count = WC()->cart->get_cart_contents_count();
 					<!-- Not homepage -->
 					<div class="col-full">
 					<?php endif; ?>
-					<h1 class="hidden">    <?php echo get_post_meta( get_the_ID(), '_yoast_wpseo_title', true ) ?: get_the_title(); ?></h1>
-
+					<h1 class="hidden"><?php echo esc_html(wp_get_document_title()); ?></h1>
 					<?php
 					do_action('storefront_content_top');
