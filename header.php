@@ -295,5 +295,6 @@ $count = WC()->cart->get_cart_contents_count();
 					<div class="col-full">
 					<?php endif; ?>
 					<h1 class="hidden"><?php echo esc_html(wp_get_document_title()); ?></h1>
+					<h2 class="hidden"><?php echo esc_html( $desc ); ?></h2>
 					<?php
 					do_action('storefront_content_top');
