@@ -295,6 +295,59 @@ $count = WC()->cart->get_cart_contents_count();
 					<div class="col-full">
 					<?php endif; ?>
 					<h1 class="hidden"><?php echo esc_html(wp_get_document_title()); ?></h1>
-					<h2 class="hidden"><?php echo esc_html( $desc ); ?></h2>
-					<?php
+<?php
+$desc = '';
+
+if ( function_exists('is_product_category') && is_product_category() ) {
+    // Product category archive
+    $term = get_queried_object(); // WP_Term
+    $desc = get_term_meta( $term->term_id, 'wpseo_desc', true );
+
+    if ( ! $desc && function_exists('wpseo_replace_vars') ) {
+        $opts = get_option( 'wpseo_titles', [] );
+        $raw  = $opts['metadesc-tax-product_cat'] ?? '';
+        if ( $raw ) { $desc = wpseo_replace_vars( $raw, $term ); }
+    }
+
+} elseif ( function_exists('is_product_tag') && is_product_tag() ) {
+    // Product tag archive
+    $term = get_queried_object(); // WP_Term
+    $desc = get_term_meta( $term->term_id, 'wpseo_desc', true );
+
+    if ( ! $desc && function_exists('wpseo_replace_vars') ) {
+        $opts = get_option( 'wpseo_titles', [] );
+        $raw  = $opts['metadesc-tax-product_tag'] ?? '';
+        if ( $raw ) { $desc = wpseo_replace_vars( $raw, $term ); }
+    }
+
+} elseif ( function_exists('is_shop') && is_shop() ) {
+    // WooCommerce Shop (product archive)
+    $shop_id = wc_get_page_id( 'shop' );          // actual Page ID behind /sklep/
+    $desc    = get_post_meta( $shop_id, '_yoast_wpseo_metadesc', true );
+
+    if ( ! $desc && function_exists('wpseo_replace_vars') ) {
+        $opts = get_option( 'wpseo_titles', [] );
+        // Yoast template for product post type archive
+        $raw  = $opts['metadesc-ptarchive-product'] ?? '';
+        if ( $raw ) { $desc = wpseo_replace_vars( $raw, get_post( $shop_id ) ); }
+    }
+
+} else {
+    // Fallback for other singulars
+    $post_id = get_queried_object_id();
+    if ( $post_id ) {
+        $desc = get_post_meta( $post_id, '_yoast_wpseo_metadesc', true );
+    }
+}
+
+// Optional last-resort fallback:
+if ( ! $desc ) {
+    // DON’T force something if you truly want “Yoast meta only”;
+    // otherwise you can use site tagline or nothing.
+    // $desc = get_bloginfo('description');
+}
+?>
+<?php if ( $desc ) : ?>
+    <h2 class="hidden"><?php echo esc_html( $desc ); ?></h2>
+<?php endif; ?>					<?php
 					do_action('storefront_content_top');
