@@ -647,114 +647,7 @@ add_action('wp_enqueue_scripts', function () {
   }
 
 
-
-
-
-// helper: 3-digit day pad used by react-datepicker (e.g. --001 .. --031)
-const pad3 = n => String(n).padStart(3,'0');
-
-// helper: PL+EN month map (diacritics-safe)
-const monthIdx = (() => {
-  const m = {
-    // EN
-    january:0,february:1,march:2,april:3,may:4,june:5,
-    july:6,august:7,september:8,october:9,november:10,december:11,
-    // PL (nom/gen; no diacritics)
-    styczen:0,stycznia:0, luty:1,lutego:1, marzec:2,marca:2,
-    kwiecien:3,kwietnia:3, maj:4,maja:4, czerwiec:5,czerwca:5,
-    lipiec:6,lipca:6, sierpien:7,sierpnia:7, wrzesien:8,wrzesnia:8,
-    pazdziernik:9,pazdziernika:9, listopad:10,listopada:10,
-    grudzien:11,grudnia:11
-  }; return m;
-})();
-const strip = s => s.normalize('NFD').replace(/[\u0300-\u036f]/g,'');
-
-// parse container header like "September 2025" or "wrzesień 2025"
-function getMonthYearFromHeader(txt){
-  if (!txt) return {y:null,m:null};
-  const s = strip(txt.toLowerCase()).trim();
-  const m = s.match(/^([a-z]+)\s+(\d{4})$/);
-  if (!m) return {y:null,m:null};
-  const mon = monthIdx[m[1]];
-  const y   = parseInt(m[2],10);
-  return (mon === undefined) ? {y:null,m:null} : {y, m:mon};
-}
-
-// robust fallback for outside-month cells
-function parseLabelToDate(label){
-  if (!label) return null;
-  let s = strip(label.toLowerCase()).replace(/^\s*(choose|wybierz)\s+/,'');
-  // dd month yyyy
-  let m = s.match(/(\d{1,2})\s+([a-z]+)\s+(\d{4})/i);
-  if (m) {
-    const d = parseInt(m[1],10);
-    const mon = monthIdx[m[2]];
-    const y = parseInt(m[3],10);
-    if (mon !== undefined) return new Date(y, mon, d);
-  }
-  // month dd, yyyy
-  m = s.match(/([a-z]+)\s+(\d{1,2}),?\s+(\d{4})/i);
-  if (m) {
-    const mon = monthIdx[m[1]];
-    const d = parseInt(m[2],10);
-    const y = parseInt(m[3],10);
-    if (mon !== undefined) return new Date(y, mon, d);
-  }
-  const dt = new Date(label);
-  return isNaN(dt) ? null : new Date(dt.getFullYear(), dt.getMonth(), dt.getDate());
-}
-
-// === REPLACE THIS in your code ===
-function markAndBlockBeforeMin(root=document) {
-  const minY = minDate.getFullYear();
-  const minM = minDate.getMonth();
-  const minD = minDate.getDate();
-
-  const disable = (el) => {
-    el.classList.add('react-datepicker__day--disabled');
-    el.setAttribute('aria-disabled','true');
-    el.style.pointerEvents = 'none';
-    el.removeAttribute('tabindex');
-    el.removeAttribute('aria-selected');
-  };
-
-  // Pass 1: handle each displayed month container using its header (fast path)
-  root.querySelectorAll('.react-datepicker__month-container').forEach(cont => {
-    const {y, m} = getMonthYearFromHeader(cont.querySelector('.react-datepicker__current-month')?.textContent || '');
-    if (y === null) return; // fallback will still catch via aria-label
-
-    // Entire month is before minDate -> disable all days
-    if (y < minY || (y === minY && m < minM)) {
-      cont.querySelectorAll('.react-datepicker__day').forEach(disable);
-      return;
-    }
-
-    // Same month/year as minDate -> disable days 1..(minD-1) but only in-month cells
-    if (y === minY && m === minM) {
-      for (let d = 1; d < minD; d++) {
-        cont
-          .querySelectorAll(`.react-datepicker__day--${pad3(d)}:not(.react-datepicker__day--outside-month)`)
-          .forEach(disable);
-      }
-    }
-    // Months after minDate: nothing to do here
-  });
-
-  // Pass 2: guard outside-month cells everywhere by parsing aria-label/title (slow but safe)
-  root.querySelectorAll('.react-datepicker__day--outside-month').forEach(el => {
-    const d = parseLabelToDate(el.getAttribute('aria-label') || el.getAttribute('title'));
-    if (d && d < minDate) disable(el);
-  });
-}
-// === END replacement ===
-
-
-
-
-
-
-
-
+  
 
   function interceptEvents(){
     const stopIfTodayOrBeforeMin = (e) => {
@@ -844,12 +737,13 @@ function markAndBlockBeforeMin(root=document) {
 
   // Observe re-renders and re-apply visual block for 'today'
   const mo = new MutationObserver(() => {
-  document.querySelectorAll('.react-datepicker').forEach(dp => markAndBlockBeforeMin(dp));  });
+    markAndBlockToday(document);
+  });
   mo.observe(document.documentElement, { childList:true, subtree:true });
 
   document.addEventListener('DOMContentLoaded', function(){
-  markAndBlockBeforeMin();
-      interceptEvents();
+    markAndBlockToday();
+    interceptEvents();
     guardInput();
   });
 })();
