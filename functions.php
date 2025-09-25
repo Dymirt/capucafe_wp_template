@@ -587,7 +587,7 @@ add_filter('woocommerce_product_tabs', function ($tabs) {
 });
 
 
-
+/*
 add_action('wp_enqueue_scripts', function () {
 	wp_add_inline_script(
 		'wc-blocks-checkout',
@@ -766,7 +766,7 @@ add_action('wp_enqueue_scripts', function () {
 
 
 
-
+*/
 // Move tabs only on the product with slug "praliny"
 add_action('wp', function () {
 	if (! is_product()) return;
@@ -876,3 +876,110 @@ function ccafe_update_cart_item_qty()
 add_action('wp_enqueue_scripts', function () {
 	wp_enqueue_script('wc-cart-fragments');
 });
+
+
+
+add_filter('option_thwdtp_general_settings', function ($opts) {
+    if (empty($opts) || !is_array($opts)) return $opts;
+
+    // Czas sklepu (jak w pluginie)
+    $now = apply_filters('thwdtp_current_datetime', current_datetime()); // WP_DateTime (tz-aware)
+    $w   = (int) $now->format('w'); // 0=Nd,1=Pn,...,5=Pt,6=Sob
+    $h   = (int) $now->format('G'); // 0..23
+    $i   = (int) $now->format('i'); // 0..59
+
+    // Godzina startu okna odbioru (tu: 10:00) — łatwo nadpisać filtrem
+    $startHour   = (int) apply_filters('ccafe_pickup_start_hour', 10);
+    $startMinute = (int) apply_filters('ccafe_pickup_start_minute', 0);
+
+    // cutoff: 18:00 JESZCZE OK; dopiero >18:00 liczymy jako "po 18"
+    $afterCutoff = ($h > 18) || ($h === 18 && $i > 0);
+
+    // Wylicz minDays wg reguł
+    if ($w >= 1 && $w <= 4) {                 // Pon..Czw
+        $minDays = $afterCutoff ? 2 : 1;
+    } elseif ($w === 5) {                     // Piątek
+        $minDays = $afterCutoff ? 3 : 1;      // >18:00 => pon
+    } elseif ($w === 6) {                     // Sobota
+        $minDays = 2;                          // pon
+    } else {                                  // Niedziela (0)
+        $minDays = 1;                          // pon
+    }
+
+    // Najwcześniejsza DATA (o północy) + pomocniczo Y-m-d
+    $minDate = clone $now;
+    $minDate->setTime(0, 0, 0);
+    $minDate->modify("+{$minDays} day");
+    $minDateYmd = $minDate->format('Y-m-d');
+
+    // Docelowy moment = tego dnia o 10:00
+    $target = clone $minDate;
+    $target->setTime($startHour, $startMinute, 0);
+
+    // Minuty od "teraz" do target (10:00)
+    // Formuła stabilna: (minDays * 1440 + startMinutes) - minutesSinceMidnight(now)
+    $minutesSinceMidnight = $h * 60 + $i;
+    $startMinutes         = $startHour * 60 + $startMinute;
+    $mins = $minDays * 1440 + $startMinutes - $minutesSinceMidnight;
+    if ($mins < 1) $mins = 1; // bez zera
+
+    // --- Zapis do struktury opcji pluginu ---
+    // Delivery (dni)
+    if (isset($opts['delivery_date']) && is_array($opts['delivery_date'])) {
+        $opts['delivery_date']['min_preperation_days_delivery'] = (string) $mins;
+    }
+
+    // Pickup (minuty do 10:00) — w Twojej instalacji siedzi pod pickup_date
+    if (isset($opts['pickup_date']) && is_array($opts['pickup_date'])) {
+        $opts['pickup_date']['min_preperation_time_pickup'] = (string) $mins; // u Ciebie to string
+        $opts['pickup_date']['min_date_ymd'] = $minDateYmd;                   // dla flatpickr.minDate
+    }
+
+    // Mirror (gdyby build czytał z pickup_time)
+    if (isset($opts['pickup_time']['time_settings']) && is_array($opts['pickup_time']['time_settings'])) {
+        $opts['pickup_time']['time_settings']['min_preperation_time_pickup'] = $mins;
+    }
+
+    return $opts;
+}, PHP_INT_MAX);
+
+
+add_action('wp_footer', function () {
+    if (! (is_checkout() || has_block('woocommerce/checkout'))) return;
+    if (! current_user_can('manage_options')) return;
+
+    $now = apply_filters('thwdtp_current_datetime', current_datetime());
+    $opts = get_option('thwdtp_general_settings');
+
+    $payload = [
+        'now'                    => $now->format('c'),
+        'weekday'                => (int) $now->format('w'),
+        'hour'                   => (int) $now->format('G'),
+        'minute'                 => (int) $now->format('i'),
+        'db.delivery_days'       => $opts['delivery_date']['min_preperation_days_delivery'] ?? null,
+        'db.pickup_minutes_date' => $opts['pickup_date']['min_preperation_time_pickup'] ?? null,
+        'db.pickup_minutes_time' => $opts['pickup_time']['time_settings']['min_preperation_time_pickup'] ?? null,
+        'db.pickup_min_date_ymd' => $opts['pickup_date']['min_date_ymd'] ?? null,
+    ];
+    echo '<script>console.log("THWDTP calc", ' . wp_json_encode($payload) . ');</script>';
+}, 99);
+
+
+
+add_action('wp_footer', function () {
+    if ( ! (is_checkout() || has_block('woocommerce/checkout')) ) return;
+    if ( ! current_user_can('manage_options') ) return;
+
+    $opts = get_option('thwdtp_general_settings');
+    $payload = [
+        'db.delivery_days'        => $opts['delivery_date']['min_preperation_days_delivery'] ?? null,
+        'db.pickup_minutes_time'  => $opts['pickup_time']['time_settings']['min_preperation_time_pickup'] ?? null,
+        'db.pickup_minutes_date'  => $opts['pickup_date']['min_preperation_time_pickup'] ?? null,
+    ];
+    echo '<script>console.log("THWDTP DB", ' . wp_json_encode($payload) . ');';
+    echo 'console.log("THWDTP JS", window.thwdtp_public_var || "(no thwdtp_public_var)");</script>';
+
+    echo '<style>.thwdtp-debug{position:fixed;right:8px;bottom:8px;z-index:99999;padding:8px 10px;background:#111;color:#fff;font:12px/1.4 monospace;border-radius:6px;opacity:.85}</style>';
+    echo '<div class="thwdtp-debug">days(delivery): <b>' . esc_html((string)($payload['db.delivery_days'] ?? '')) .
+         '</b> | mins(pickup): <b>' . esc_html((string)($payload['db.pickup_minutes_time'] ?? '')) . '</b></div>';
+}, 99);
