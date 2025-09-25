@@ -596,127 +596,88 @@ add_action('wp_enqueue_scripts', function () {
   const pad = n => String(n).padStart(2,'0');
   const fmt = d => d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
 
-  // --- Business rules (same as before) ---
+  // --- NEW: business rules ---
+  // cutoff 18:00 local; after 18:00 => earliest is +2 days
+  // friday after 18:00 => earliest is Monday
   function computeMinDate(now=new Date()){
-    const d = new Date(now.getFullYear(), now.getMonth(), now.getDate()); // today 00:00
+    const d = new Date(now.getFullYear(), now.getMonth(), now.getDate()); // today at 00:00
     const hour = now.getHours();
     const isAfterCutoff = hour >= 18;
-    const weekday = d.getDay(); // 0 Sun .. 5 Fri 6 Sat
+    const weekday = d.getDay(); // 0=Sun, 1=Mon, ... 5=Fri, 6=Sat
 
+    // Base: earliest is tomorrow
     let min = new Date(d);
-    min.setDate(min.getDate() + 1);       // base: tomorrow
+    min.setDate(min.getDate() + 1);
+
     if (isAfterCutoff) {
-      min.setDate(min.getDate() + 1);     // after 18:00 => +2
-      if (weekday === 5) min.setDate(min.getDate() + 1); // Fri after 18 => Monday
+      // After 18:00: day after tomorrow
+      min.setDate(min.getDate() + 1);
+
+      // Special: Friday after 18:00 -> Monday
+      if (weekday === 5) {
+        // Move to next Monday
+        // Current d is Friday; min is Sunday by +2; push to Monday (+1)
+        min.setDate(min.getDate() + 1);
+      }
     }
 
-    // // If weekends must be skipped entirely, uncomment:
-    // while (min.getDay() === 0 || min.getDay() === 6) { min.setDate(min.getDate() + 1); }
+    // OPTIONAL: uncomment if weekends are not allowed at all:
+    // while (min.getDay() === 0 || min.getDay() === 6) { // Sun or Sat
+    //   min.setDate(min.getDate() + 1);
+    //}
 
     return min;
   }
 
-  const now     = new Date();
+  const now = new Date();
+  const todayD = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const todayStr = fmt(todayD);
   const minDate = computeMinDate(now);
+  const minStr  = fmt(minDate);
 
-  // --- Parsing dates from day cells (PL + EN) ---
-  const monthMap = (() => {
-    const m = {
-      // EN
-      january:0,february:1,march:2,april:3,may:4,june:5,
-      july:6,august:7,september:8,october:9,november:10,december:11,
-      // PL (nominative + genitive, ascii)
-      styczen:0,stycznia:0,
-      luty:1,lutego:1,
-      marzec:2,marca:2,
-      kwiecien:3,kwietnia:3,
-      maj:4,maja:4,
-      czerwiec:5,czerwca:5,
-      lipiec:6,lipca:6,
-      sierpien:7,sierpnia:7,
-      wrzesien:8,wrzesnia:8,
-      pazdziernik:9,pazdziernika:9,
-      listopad:10,listopada:10,
-      grudzien:11,grudnia:11
-    };
-    return m;
-  })();
-
-  const stripDiacritics = s => s.normalize('NFD').replace(/[\\u0300-\\u036f]/g,'');
-  function parseLabelToDate(label){
-    if (!label) return null;
-    // remove leading verbs like 'Choose', 'Wybierz', etc.
-    let s = label.replace(/^\\s*(Choose|Wybierz|Choisir|Wählen|Waehlen)\\s+/i,'');
-    s = stripDiacritics(s.toLowerCase());
-
-    // Try patterns like: 'poniedzialek, 29 wrzesnia 2025' or 'Monday, September 29, 2025'
-    // 1) dd month yyyy
-    let m = s.match(/(\\d{1,2})\\s+([a-ząćęłńóśźż]+)\\s+(\\d{4})/i);
-    if (m) {
-      const day = parseInt(m[1],10);
-      const mon = monthMap[stripDiacritics(m[2])];
-      const yr  = parseInt(m[3],10);
-      if (mon !== undefined) return new Date(yr, mon, day);
-    }
-    // 2) month dd, yyyy
-    m = s.match(/([a-ząćęłńóśźż]+)\\s+(\\d{1,2}),?\\s+(\\d{4})/i);
-    if (m) {
-      const mon = monthMap[stripDiacritics(m[1])];
-      const day = parseInt(m[2],10);
-      const yr  = parseInt(m[3],10);
-      if (mon !== undefined) return new Date(yr, mon, day);
-    }
-    // Fallback: native Date (may work in EN)
-    const dt = new Date(label);
-    if (!isNaN(dt)) return new Date(dt.getFullYear(), dt.getMonth(), dt.getDate());
-    return null;
-  }
-
-  // --- VISUAL + INTERACTION LOCK on days < minDate ---
-  function markAndBlockInvalidDays(root=document){
-    root.querySelectorAll('.react-datepicker__day').forEach(cell=>{
-      // skip if lib already disabled
-      if (cell.classList.contains('react-datepicker__day--disabled')) return;
-
-      const label = cell.getAttribute('aria-label') || cell.getAttribute('aria-label-text') || cell.getAttribute('title') || '';
-      const d = parseLabelToDate(label);
-      if (!d) return;
-
-      if (d < minDate) {
-        cell.classList.add('react-datepicker__day--disabled');
-        cell.setAttribute('aria-disabled','true');
-        cell.style.pointerEvents = 'none';
-        cell.removeAttribute('tabindex');
-        cell.removeAttribute('aria-selected');
-      }
+  function markAndBlockToday(root=document) {
+    // keep hard blocking only for 'today' cell; input guard will enforce minDate anyway
+    root.querySelectorAll('.react-datepicker__day--today').forEach(el=>{
+      el.classList.add('react-datepicker__day--disabled');
+      el.setAttribute('aria-disabled','true');
+      el.style.pointerEvents = 'none';
+      el.removeAttribute('tabindex');
+      el.removeAttribute('aria-selected');
     });
   }
 
-  // Hard-stop events on disabled/before-min cells
   function interceptEvents(){
-    const block = (e) => {
+    const stopIfTodayOrBeforeMin = (e) => {
       const cell = e.target.closest?.('.react-datepicker__day');
       if (!cell) return;
 
-      // already marked disabled?
-      if (cell.classList.contains('react-datepicker__day--disabled')) {
-        e.stopPropagation(); e.preventDefault(); return;
+      // Try to read the date from aria-label like: 'Choose Monday, September 29, 2025'
+      // Fallback: only block 'today' via class (safe).
+      const label = cell.getAttribute('aria-label') || cell.getAttribute('aria-label-text') || '';
+      let parsed = null;
+      if (label) {
+        // very tolerant parse
+        const tryDate = new Date(label.replace(/^Choose\s+/i,'').replace(/^Wybierz\s+/i,''));
+        if (!isNaN(tryDate)) parsed = new Date(tryDate.getFullYear(), tryDate.getMonth(), tryDate.getDate());
       }
-      // Just in case a cell wasn't marked yet but is < minDate
-      const label = cell.getAttribute('aria-label') || cell.getAttribute('aria-label-text') || cell.getAttribute('title') || '';
-      const d = parseLabelToDate(label);
-      if (d && d < minDate) { e.stopPropagation(); e.preventDefault(); }
+
+      const isToday = cell.classList.contains('react-datepicker__day--today');
+      const isBeforeMin = parsed ? (parsed < minDate) : false;
+
+      if (isToday || isBeforeMin) {
+        e.stopPropagation();
+        e.preventDefault();
+      }
     };
 
     ['click','mousedown','pointerdown','keydown','touchstart'].forEach(evt=>{
       document.addEventListener(evt, (e)=>{
         if (evt==='keydown' && !(e.key==='Enter' || e.key===' ')) return;
-        block(e);
+        stopIfTodayOrBeforeMin(e);
       }, true);
     });
   }
 
-  // --- Input guard (your existing one, unchanged) ---
   function guardInput(){
     const input = document.querySelector('.pickup-date-picker');
     if (!input) return;
@@ -741,6 +702,7 @@ add_action('wp_enqueue_scripts', function () {
 
     const enforce = () => {
       if (!input.value) return;
+      // Compare dates
       const iv = new Date(input.value);
       const ivDate = new Date(iv.getFullYear(), iv.getMonth(), iv.getDate());
       if (isNaN(ivDate)) return;
@@ -749,8 +711,10 @@ add_action('wp_enqueue_scripts', function () {
         input.value = fmt(minDate);
         input.dispatchEvent(new Event('change', { bubbles:true }));
 
-        const afterCutoff = now.getHours() >= 18;
-        const wd = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getDay();
+        // Build message based on rule hit
+        const d = now;
+        const afterCutoff = d.getHours() >= 18;
+        const wd = d.getDay();
         if (wd === 5 && afterCutoff) {
           invalidate('Po 18:00 w piątek najbliższy odbiór to poniedziałek. Ustawiono poniedziałek.');
         } else if (afterCutoff) {
@@ -761,19 +725,21 @@ add_action('wp_enqueue_scripts', function () {
       }
     };
 
+    // Initial correction (covers autofill)
     if (input.value) enforce();
+
     input.addEventListener('change', enforce);
     input.addEventListener('input', enforce);
   }
 
-  // Observe only when datepicker is in DOM; re-mark on month nav/rerender
+  // Observe re-renders and re-apply visual block for 'today'
   const mo = new MutationObserver(() => {
-    document.querySelectorAll('.react-datepicker').forEach(dp => markAndBlockInvalidDays(dp));
+    markAndBlockToday(document);
   });
-  mo.observe(document.body, { childList:true, subtree:true });
+  mo.observe(document.documentElement, { childList:true, subtree:true });
 
   document.addEventListener('DOMContentLoaded', function(){
-    markAndBlockInvalidDays(document);
+    markAndBlockToday();
     interceptEvents();
     guardInput();
   });
@@ -781,7 +747,6 @@ add_action('wp_enqueue_scripts', function () {
         "
 	);
 });
-
 
 
 
