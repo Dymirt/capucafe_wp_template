@@ -622,9 +622,9 @@ add_action('wp_enqueue_scripts', function () {
     }
 
     // OPTIONAL: uncomment if weekends are not allowed at all:
-     while (min.getDay() === 0 || min.getDay() === 6) { // Sun or Sat
-       min.setDate(min.getDate() + 1);
-    }
+    // while (min.getDay() === 0 || min.getDay() === 6) { // Sun or Sat
+    //   min.setDate(min.getDate() + 1);
+    //}
 
     return min;
   }
