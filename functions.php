@@ -879,7 +879,6 @@ add_action('wp_enqueue_scripts', function () {
 
 
 
-<?php
 /**
  * Dynamic min date rules for ThemeHigh "Order Delivery Date and Time".
  *
