@@ -587,7 +587,7 @@ add_filter('woocommerce_product_tabs', function ($tabs) {
 });
 
 
-/*
+
 add_action('wp_enqueue_scripts', function () {
 	wp_add_inline_script(
 		'wc-blocks-checkout',
@@ -764,7 +764,7 @@ add_action('wp_enqueue_scripts', function () {
 	);
 });
 
-*/
+
 
 
 // Move tabs only on the product with slug "praliny"
@@ -876,107 +876,3 @@ function ccafe_update_cart_item_qty()
 add_action('wp_enqueue_scripts', function () {
 	wp_enqueue_script('wc-cart-fragments');
 });
-
-
-
-/**
- * Dynamic min date rules for ThemeHigh "Order Delivery Date and Time".
- *
- * Rule:
- * - base: earliest = tomorrow
- * - after 18:00 local: earliest = +2 days
- * - Friday after 18:00: earliest = Monday (+3 days)
- */
-
-// 1) Runtime tweak of plugin settings (no core edits).
-add_filter('option_thwdtp_general_settings', function ($opts) {
-    if (empty($opts)) return $opts;
-
-    // Use WP store timezone (same as plugin does via current_datetime()).
-    $now     = current_datetime();              // \WP_DateTime
-    $weekday = (int) $now->format('w');         // 0=Sun .. 5=Fri 6=Sat
-    $hour    = (int) $now->format('G');         // 0..23
-
-    $minDays = 1;                               // base: tomorrow
-    if ($hour >= 18) {
-        $minDays = 2;                           // after 18:00
-        if ($weekday === 5) {                   // Friday
-            $minDays = 3;                       // -> Monday
-        }
-    }
-
-    // Apply to delivery date (used by flatpickr as minDate).
-    if (isset($opts['delivery_date'])) {
-        $opts['delivery_date']['min_preperation_days_delivery'] = $minDays;
-    }
-
-    // If you also use pickup calendar and plugin supports its own min key, set it too:
-    if (isset($opts['pickup_date']['min_preperation_days_pickup'])) {
-        $opts['pickup_date']['min_preperation_days_pickup'] = $minDays;
-    }
-
-    return $opts;
-}, 10);
-
-/**
- * 2) Server-side validation (prevents manual POST of an earlier date).
- * If invalid, blocks checkout with an error.
- */
-add_action('woocommerce_after_checkout_validation', function ($data, $errors) {
-
-    // Detect chosen shipping (same logic as plugin).
-    $shipping_method = isset($_POST['shipping_method'][0]) ? sanitize_text_field($_POST['shipping_method'][0]) : '';
-    if (!$shipping_method) {
-        $chosen = WC()->session->get('chosen_shipping_methods');
-        $shipping_method = isset($chosen[0]) ? sanitize_text_field($chosen[0]) : '';
-    }
-
-    $is_pickup = ( $shipping_method && strpos($shipping_method, 'local_pickup') !== false );
-    $field_key = $is_pickup ? 'thwdtp_pickup_datepicker' : 'thwdtp_delivery_datepicker';
-
-    $val = isset($_POST[$field_key]) ? sanitize_text_field(wp_unslash($_POST[$field_key])) : '';
-    if (!$val) return;
-
-    // Compute min date (same rule, in store TZ).
-    $now     = current_datetime();
-    $weekday = (int) $now->format('w');
-    $hour    = (int) $now->format('G');
-
-    $minDays = 1;
-    if ($hour >= 18) {
-        $minDays = 2;
-        if ($weekday === 5) $minDays = 3;
-    }
-
-    // Build minDate at 00:00
-    $minDate = (clone $now);
-    $minDate->setTime(0, 0, 0);
-    $minDate->modify('+' . $minDays . ' day');
-
-    // Figure out the field format the plugin uses
-    $format = THWDTP_Utils::get_time_format($is_pickup ? 'pickup_date' : 'delivery_date');
-    $format = $format ?: 'Y-m-d';
-
-    // Parse user input according to format; fallback to strtotime
-    $userDt = \DateTime::createFromFormat($format, $val);
-    if (!$userDt) {
-        $ts = strtotime($val);
-        if ($ts !== false) $userDt = (new \DateTime())->setTimestamp($ts);
-    }
-    if (!$userDt) return; // can't parse → let plugin handle
-
-    // Normalize user date to 00:00 for compare
-    $userDt->setTime(0, 0, 0);
-
-    if ($userDt < new \DateTime($minDate->format('Y-m-d'))) {
-        $niceMin = wp_date($format, $minDate->getTimestamp()); // store TZ-aware
-        if ($weekday === 5 && $hour >= 18) {
-            $msg = sprintf(__('Po 18:00 w piątek najbliższy termin to %s (poniedziałek).', 'your-textdomain'), $niceMin);
-        } elseif ($hour >= 18) {
-            $msg = sprintf(__('Po 18:00 najbliższy termin to %s (pojutrze).', 'your-textdomain'), $niceMin);
-        } else {
-            $msg = sprintf(__('Najwcześniejszy termin to %s (od jutra).', 'your-textdomain'), $niceMin);
-        }
-        $errors->add('thwdtp_min_date', $msg);
-    }
-}, 10, 2);
