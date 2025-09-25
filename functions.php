@@ -646,8 +646,19 @@ add_action('wp_enqueue_scripts', function () {
     });
   }
 
+    function markAndBlock30(root=document) {
+    // keep hard blocking only for 'today' cell; input guard will enforce minDate anyway
+    root.querySelectorAll('.react-datepicker__day--30').forEach(el=>{
+      el.classList.add('react-datepicker__day--disabled');
+      el.setAttribute('aria-disabled','true');
+      el.style.pointerEvents = 'none';
+      el.removeAttribute('tabindex');
+      el.removeAttribute('aria-selected');
+    });
+  }
 
-  
+
+
 
   function interceptEvents(){
     const stopIfTodayOrBeforeMin = (e) => {
@@ -738,11 +749,13 @@ add_action('wp_enqueue_scripts', function () {
   // Observe re-renders and re-apply visual block for 'today'
   const mo = new MutationObserver(() => {
     markAndBlockToday(document);
+	markAndBlock30(document);
   });
   mo.observe(document.documentElement, { childList:true, subtree:true });
 
   document.addEventListener('DOMContentLoaded', function(){
     markAndBlockToday();
+	markAndBlock30();
     interceptEvents();
     guardInput();
   });
