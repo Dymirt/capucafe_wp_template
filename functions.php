@@ -443,7 +443,7 @@ add_action('woocommerce_product_options_general_product_data', function () {
 	// Security
 	wp_nonce_field('save_nutritional_values_kv', 'nutritional_values_kv_nonce');
 
-?>
+	?>
 	<div class="options_group">
 		<p class="form-field">
 			<label><?php _e('Wartości odżywcze', 'yourtextdomain'); ?></label>
@@ -589,47 +589,91 @@ add_filter('woocommerce_product_tabs', function ($tabs) {
 
 
 add_action('wp_enqueue_scripts', function () {
-    wp_add_inline_script(
-        'wc-blocks-checkout', // если не уверены, см. альтернативу ниже
-        "
+	wp_add_inline_script(
+		'wc-blocks-checkout',
+		"
 (function(){
-  // формат YYYY-MM-DD в локальном часовом поясе
   const pad = n => String(n).padStart(2,'0');
-  const todayD = new Date();
-  const todayStr = todayD.getFullYear()+'-'+pad(todayD.getMonth()+1)+'-'+pad(todayD.getDate());
-  const tomorrowD = new Date(todayD.getFullYear(), todayD.getMonth(), todayD.getDate()+1);
-  const tomorrowStr = tomorrowD.getFullYear()+'-'+pad(tomorrowD.getMonth()+1)+'-'+pad(tomorrowD.getDate());
+  const fmt = d => d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+
+  // --- NEW: business rules ---
+  // cutoff 18:00 local; after 18:00 => earliest is +2 days
+  // friday after 18:00 => earliest is Monday
+  function computeMinDate(now=new Date()){
+    const d = new Date(now.getFullYear(), now.getMonth(), now.getDate()); // today at 00:00
+    const hour = now.getHours();
+    const isAfterCutoff = hour >= 18;
+    const weekday = d.getDay(); // 0=Sun, 1=Mon, ... 5=Fri, 6=Sat
+
+    // Base: earliest is tomorrow
+    let min = new Date(d);
+    min.setDate(min.getDate() + 1);
+
+    if (isAfterCutoff) {
+      // After 18:00: day after tomorrow
+      min.setDate(min.getDate() + 1);
+
+      // Special: Friday after 18:00 -> Monday
+      if (weekday === 5) {
+        // Move to next Monday
+        // Current d is Friday; min is Sunday by +2; push to Monday (+1)
+        min.setDate(min.getDate() + 1);
+      }
+    }
+
+    // OPTIONAL: uncomment if weekends are not allowed at all:
+    // while (min.getDay() === 0 || min.getDay() === 6) { // Sun or Sat
+    //   min.setDate(min.getDate() + 1);
+    // }
+
+    return min;
+  }
+
+  const now = new Date();
+  const todayD = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const todayStr = fmt(todayD);
+  const minDate = computeMinDate(now);
+  const minStr  = fmt(minDate);
 
   function markAndBlockToday(root=document) {
+    // keep hard blocking only for 'today' cell; input guard will enforce minDate anyway
     root.querySelectorAll('.react-datepicker__day--today').forEach(el=>{
       el.classList.add('react-datepicker__day--disabled');
       el.setAttribute('aria-disabled','true');
-      el.style.pointerEvents = 'none'; // на всякий
+      el.style.pointerEvents = 'none';
       el.removeAttribute('tabindex');
       el.removeAttribute('aria-selected');
     });
   }
 
-  // Жёсткая блокировка кликов/клавиш на today (capture = true важно!)
   function interceptEvents(){
-    const stopIfToday = (e) => {
-      const cell = e.target.closest && e.target.closest('.react-datepicker__day');
+    const stopIfTodayOrBeforeMin = (e) => {
+      const cell = e.target.closest?.('.react-datepicker__day');
       if (!cell) return;
-      if (cell.classList.contains('react-datepicker__day--today')) {
+
+      // Try to read the date from aria-label like: 'Choose Monday, September 29, 2025'
+      // Fallback: only block 'today' via class (safe).
+      const label = cell.getAttribute('aria-label') || cell.getAttribute('aria-label-text') || '';
+      let parsed = null;
+      if (label) {
+        // very tolerant parse
+        const tryDate = new Date(label.replace(/^Choose\s+/i,'').replace(/^Wybierz\s+/i,''));
+        if (!isNaN(tryDate)) parsed = new Date(tryDate.getFullYear(), tryDate.getMonth(), tryDate.getDate());
+      }
+
+      const isToday = cell.classList.contains('react-datepicker__day--today');
+      const isBeforeMin = parsed ? (parsed < minDate) : false;
+
+      if (isToday || isBeforeMin) {
         e.stopPropagation();
         e.preventDefault();
       }
     };
+
     ['click','mousedown','pointerdown','keydown','touchstart'].forEach(evt=>{
       document.addEventListener(evt, (e)=>{
-        // по Enter/Space тоже блокируем
         if (evt==='keydown' && !(e.key==='Enter' || e.key===' ')) return;
-        interceptEvents._handler && interceptEvents._handler(e); // noop если нет
-        const cell = e.target.closest && e.target.closest('.react-datepicker__day');
-        if (cell && cell.classList.contains('react-datepicker__day--today')) {
-          e.stopPropagation();
-          e.preventDefault();
-        }
+        stopIfTodayOrBeforeMin(e);
       }, true);
     });
   }
@@ -638,36 +682,57 @@ add_action('wp_enqueue_scripts', function () {
     const input = document.querySelector('.pickup-date-picker');
     if (!input) return;
 
+    const ensureErrorContainer = () => {
+      const host = input.closest('.th-datepicker-field') || input.parentElement;
+      if (!host) return null;
+      let box = host.querySelector('.wc-block-components-validation-error');
+      if (!box) {
+        box = document.createElement('div');
+        box.className = 'wc-block-components-validation-error';
+        box.innerHTML = '<p></p>';
+        host.appendChild(box);
+      }
+      return box.querySelector('p');
+    };
+
     const invalidate = (msg) => {
-      // покажем ошибку под блоком (если есть контейнер WC Blocks)
-      const err = input.closest('.th-datepicker-field')?.querySelector('.wc-block-components-validation-error p');
-      if (err) err.textContent = msg || 'Wybierz datę od jutra.';
+      const p = ensureErrorContainer();
+      if (p) p.textContent = msg || 'Wybierz dostępny termin.';
     };
 
     const enforce = () => {
       if (!input.value) return;
-      // если сегодня или раньше — исправляем на завтра (или чистим)
-      if (input.value <= todayStr) {
-        // вариант A: автоставим завтра
-        input.value = tomorrowStr;
+      // Compare dates
+      const iv = new Date(input.value);
+      const ivDate = new Date(iv.getFullYear(), iv.getMonth(), iv.getDate());
+      if (isNaN(ivDate)) return;
+
+      if (ivDate < minDate) {
+        input.value = fmt(minDate);
         input.dispatchEvent(new Event('change', { bubbles:true }));
-        invalidate('Dzisiejszy odbiór niedostępny — ustawiono jutro.');
+
+        // Build message based on rule hit
+        const d = now;
+        const afterCutoff = d.getHours() >= 18;
+        const wd = d.getDay();
+        if (wd === 5 && afterCutoff) {
+          invalidate('Po 18:00 w piątek najbliższy odbiór to poniedziałek. Ustawiono poniedziałek.');
+        } else if (afterCutoff) {
+          invalidate('Po 18:00 najbliższy odbiór to pojutrze. Ustawiono najwcześniejszy termin.');
+        } else {
+          invalidate('Dzisiejszy odbiór niedostępny. Ustawiono najwcześniejszy termin.');
+        }
       }
     };
 
-    // начальное состояние
-    if (input.value && input.value <= todayStr) {
-      input.value = tomorrowStr; // или '' если хочешь заставить выбрать вручную
-      input.dispatchEvent(new Event('change', { bubbles:true }));
-      invalidate('Dzisiejszy odbiór niedostępny — ustawiono jutro.');
-    }
+    // Initial correction (covers autofill)
+    if (input.value) enforce();
 
-    // слушатели
     input.addEventListener('change', enforce);
     input.addEventListener('input', enforce);
   }
 
-  // Наблюдаем за ререндерами React
+  // Observe re-renders and re-apply visual block for 'today'
   const mo = new MutationObserver(() => {
     markAndBlockToday(document);
   });
@@ -680,8 +745,9 @@ add_action('wp_enqueue_scripts', function () {
   });
 })();
         "
-    );
+	);
 });
+
 
 
 
