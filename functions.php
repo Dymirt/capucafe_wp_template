@@ -648,7 +648,7 @@ add_action('wp_enqueue_scripts', function () {
 
     function markAndBlock30(root=document) {
     // keep hard blocking only for 'today' cell; input guard will enforce minDate anyway
-    root.querySelectorAll('.react-datepicker__day--30').forEach(el=>{
+    root.querySelectorAll('.react-datepicker__day--030').forEach(el=>{
       el.classList.add('react-datepicker__day--disabled');
       el.setAttribute('aria-disabled','true');
       el.style.pointerEvents = 'none';
