@@ -487,11 +487,11 @@ add_action('woocommerce_product_options_general_product_data', function () {
 				document.getElementById('add-nutri-row').addEventListener('click', function() {
 					const tr = document.createElement('tr');
 					tr.innerHTML = `
-                    <td><input type="text" name="_nutri_key[]" class="short" placeholder="<?php echo esc_js(__('Sól', 'yourtextdomain')); ?>"></td>
-                    <td><input type="text" name="_nutri_val[]" class="short" placeholder="<?php echo esc_js(__('0.1 g', 'yourtextdomain')); ?>"></td>
-					<td><input type="text" name="_nutri_rws[]" class="short" placeholder="<?php echo esc_js(__('5%', 'yourtextdomain')); ?>"></td>
-                    <td><button type="button" class="button remove-row">×</button></td>
-                `;
+						<td><input type="text" name="_nutri_key[]" class="short" placeholder="<?php echo esc_js(__('Sól', 'yourtextdomain')); ?>"></td>
+						<td><input type="text" name="_nutri_val[]" class="short" placeholder="<?php echo esc_js(__('0.1 g', 'yourtextdomain')); ?>"></td>
+						<td><input type="text" name="_nutri_rws[]" class="short" placeholder="<?php echo esc_js(__('5%', 'yourtextdomain')); ?>"></td>
+						<td><button type="button" class="button remove-row">×</button></td>
+					`;
 					table.appendChild(tr);
 				});
 
