@@ -453,7 +453,8 @@ add_action('woocommerce_product_options_general_product_data', function () {
 			<thead>
 				<tr>
 					<th style="width:50%"><?php _e('Składnik (np. Sól)', 'yourtextdomain'); ?></th>
-					<th style="width:40%"><?php _e('Wartość (np. 0.1 g)', 'yourtextdomain'); ?></th>
+					<th style="width:20%"><?php _e('Wartość (np. 0.1 g)', 'yourtextdomain'); ?></th>
+					<th style="width:20%"><?php _e('RWS (np. 0.1 g)', 'yourtextdomain'); ?></th>
 					<th style="width:10%"></th>
 				</tr>
 			</thead>
@@ -464,17 +465,20 @@ add_action('woocommerce_product_options_general_product_data', function () {
 						<td><input type="text" name="_nutri_val[]" class="short" placeholder="<?php esc_attr_e('0.1 g', 'yourtextdomain'); ?>"></td>
 						<td><button type="button" class="button remove-row">×</button></td>
 					</tr>
-					<?php else : foreach ($pairs as $k => $v) : ?>
+					<?php else : foreach ($pairs as $k => $data) :
+						$val = isset($data['val']) ? $data['val'] : '';
+						$rws = isset($data['rws']) ? $data['rws'] : '';
+					?>
 						<tr>
 							<td><input type="text" name="_nutri_key[]" class="short" value="<?php echo esc_attr($k); ?>"></td>
-							<td><input type="text" name="_nutri_val[]" class="short" value="<?php echo esc_attr($v); ?>"></td>
+							<td><input type="text" name="_nutri_val[]" class="short" value="<?php echo esc_attr($val); ?>"></td>
+							<td><input type="text" name="_nutri_rws[]" class="short" value="<?php echo esc_attr($rws); ?>"></td>
 							<td><button type="button" class="button remove-row">×</button></td>
 						</tr>
 				<?php endforeach;
 				endif; ?>
 			</tbody>
 		</table>
-
 		<p><button type="button" class="button" id="add-nutri-row"><?php _e('Dodaj pozycję', 'yourtextdomain'); ?></button></p>
 
 		<script>
@@ -485,6 +489,7 @@ add_action('woocommerce_product_options_general_product_data', function () {
 					tr.innerHTML = `
                     <td><input type="text" name="_nutri_key[]" class="short" placeholder="<?php echo esc_js(__('Sól', 'yourtextdomain')); ?>"></td>
                     <td><input type="text" name="_nutri_val[]" class="short" placeholder="<?php echo esc_js(__('0.1 g', 'yourtextdomain')); ?>"></td>
+					<td><input type="text" name="_nutri_rws[]" class="short" placeholder="<?php echo esc_js(__('5%', 'yourtextdomain')); ?>"></td>
                     <td><button type="button" class="button remove-row">×</button></td>
                 `;
 					table.appendChild(tr);
@@ -504,28 +509,45 @@ add_action('woocommerce_product_options_general_product_data', function () {
 
 // SAVE
 add_action('woocommerce_admin_process_product_object', function (WC_Product $product) {
+	// Nonce check
 	if (
-		!isset($_POST['nutritional_values_kv_nonce']) ||
-		!wp_verify_nonce($_POST['nutritional_values_kv_nonce'], 'save_nutritional_values_kv')
+		! isset($_POST['nutritional_values_kv_nonce']) ||
+		! wp_verify_nonce($_POST['nutritional_values_kv_nonce'], 'save_nutritional_values_kv')
 	) {
 		return;
 	}
 
+	// Collect posted arrays
 	$keys = isset($_POST['_nutri_key']) ? (array) $_POST['_nutri_key'] : [];
 	$vals = isset($_POST['_nutri_val']) ? (array) $_POST['_nutri_val'] : [];
+	$rws  = isset($_POST['_nutri_rws']) ? (array) $_POST['_nutri_rws'] : [];
 
 	$clean = [];
-	$count = max(count($keys), count($vals));
 
+	// Iterate by the longest array length to be safe
+	$count = max(count($keys), count($vals), count($rws));
 	for ($i = 0; $i < $count; $i++) {
 		$k = isset($keys[$i]) ? sanitize_text_field(wp_unslash($keys[$i])) : '';
 		$v = isset($vals[$i]) ? sanitize_text_field(wp_unslash($vals[$i])) : '';
-		if ($k !== '' && $v !== '') {
-			$clean[$k] = $v; // associative array: "Sól" => "0.1 g"
+		$r = isset($rws[$i])  ? sanitize_text_field(wp_unslash($rws[$i]))  : '';
+
+		// Skip completely empty rows
+		if ($k === '' && $v === '' && $r === '') {
+			continue;
+		}
+
+		// Require at least key and one value (val or rws)
+		if ($k !== '' && ($v !== '' || $r !== '')) {
+			// Store as associative: "Sól" => ['val'=>'0.1 g', 'rws'=>'5%']
+			$clean[$k] = [
+				'val' => $v,
+				'rws' => $r,
+			];
 		}
 	}
 
-	if (!empty($clean)) {
+	// Save or delete meta accordingly
+	if (! empty($clean)) {
 		$product->update_meta_data('_nutritional_values_kv', $clean);
 	} else {
 		$product->delete_meta_data('_nutritional_values_kv');
@@ -538,16 +560,10 @@ add_filter('woocommerce_product_tabs', function ($tabs) {
 		'title'    => __('Wartości odżywcze', 'yourtextdomain'),
 		'priority' => 25,
 		'callback' => function () {
-			// Get current product safely inside the callback
 			$product = wc_get_product(get_the_ID());
-			if (!$product) {
-				return;
-			}
+			if (!$product) return;
 
-			// 1) Free-text (from textarea)
-			$vals = $product->get_meta('_nutritional_values');
-
-			// 2) Key→Value pairs (array). If you stored JSON, decode it first.
+			// Fetch meta (can be array or legacy JSON string)
 			$kv = $product->get_meta('_nutritional_values_kv', true);
 			if (is_string($kv)) {
 				$decoded = json_decode($kv, true);
@@ -556,35 +572,98 @@ add_filter('woocommerce_product_tabs', function ($tabs) {
 				}
 			}
 
-			// Nothing to show? Bail.
-			if (empty($vals) && (empty($kv) || !is_array($kv))) {
-				return;
+			if (empty($kv) || !is_array($kv)) return;
+
+			// Normalize to a list of rows: [ ['key'=>..., 'val'=>..., 'rws'=>...], ... ]
+			$rows = [];
+			foreach ($kv as $k => $v) {
+				// New format: $v is array('val'=>..., 'rws'=>...)
+				if (is_array($v)) {
+					$val = isset($v['val']) ? (string) $v['val'] : '';
+					$rws = isset($v['rws']) ? (string) $v['rws'] : '';
+				} else {
+					// Old format: $v is a string
+					$val = (string) $v;
+					$rws = '';
+				}
+
+				$k = (string) $k;
+				if ($k === '' || ($val === '' && $rws === '')) {
+					continue; // skip empty rows
+				}
+
+				$rows[] = [
+					'key' => $k,
+					'val' => $val,
+					'rws' => $rws,
+				];
+			}
+
+			if (!$rows) return;
+
+			$has_rws = false;
+			foreach ($rows as $r) {
+				if ($r['rws'] !== '') {
+					$has_rws = true;
+					break;
+				}
 			}
 	?>
-		<div class="self-stretch pt-4 pb-10 bg-white border-t border-neutral-200 flex flex-col justify-center items-center gap-5">
-			<div class="self-stretch flex flex-col justify-center items-center gap-2.5">
-				<?php
-				$kv = get_post_meta(get_the_ID(), '_nutritional_values_kv', true);
-				if (is_array($kv) && !empty($kv)) : ?>
-					<div class="self-stretch inline-flex justify-start items-center gap-2.5">
-						<div class="w-96 justify-start text-zinc-800 text-base font-light font-['Mulish'] leading-snug">Wartość odżywcza 100 g produktu</div>
-					</div>
+		<div class="self-stretch pt-4 pb-10 bg-white border-t border-neutral-200 flex flex-col items-center gap-5">
+			<div class="self-stretch flex flex-col items-center gap-2.5">
 
-					<?php foreach ($kv as $k => $v): ?>
-						<div class="self-stretch inline-flex justify-between items-center">
-							<div class="flex-1 justify-start text-zinc-800 text-base font-light font-['Mulish'] leading-snug"><?php echo esc_html($k); ?></div>
-							<div class="justify-start text-zinc-800 text-base font-light font-['Mulish'] leading-snug"><?php echo esc_html($v); ?></div>
+
+				<div class="w-full max-w-3xl">
+					<div class="self-stretch inline-flex items-center gap-2.5">
+						<div class="w-96 text-zinc-800 text-base font-light leading-snug">
+							<?php echo esc_html__('Wartość odżywcza 100 g produktu', 'yourtextdomain'); ?>
 						</div>
-					<?php endforeach; ?>
-				<?php endif; ?>
+					</div>
+					<table class="w-full">
+						<thead>
+							<tr class="text-left border-b border-neutral-200">
+								<th class="py-2 pr-3 text-zinc-600 text-sm font-medium">
+									<?php echo esc_html__('Składnik', 'yourtextdomain'); ?>
+								</th>
+								<th class="py-2 pr-3 text-zinc-600 text-sm font-medium">
+									<?php echo esc_html__('Wartość', 'yourtextdomain'); ?>
+								</th>
+								<?php if ($has_rws): ?>
+									<th class="py-2 pr-3 text-zinc-600 text-sm font-medium">
+										<?php echo esc_html__('*RWS', 'yourtextdomain'); ?>
+									</th>
+								<?php endif; ?>
+							</tr>
+						</thead>
+						<tbody>
+							<?php foreach ($rows as $r): ?>
+								<tr class="border-b border-neutral-100">
+									<td class="py-2 pr-3 text-zinc-800 text-base font-light leading-snug">
+										<?php echo esc_html($r['key']); ?>
+									</td>
+									<td class="py-2 pr-3 text-zinc-800 text-base font-light leading-snug">
+										<?php echo esc_html($r['val']); ?>
+									</td>
+									<?php if ($has_rws): ?>
+										<td class="py-2 pr-3 text-zinc-800 text-base font-light leading-snug">
+											<?php echo esc_html($r['rws']); ?>
+										</td>
+									<?php endif; ?>
+								</tr>
+							<?php endforeach; ?>
+						</tbody>
+					</table>
+					<p> * Referencyjna wartość spożycia dla przeciętnej osoby dorosłej (8400 kJ/2000 kcal)
+					</p>
+				</div>
 			</div>
 		</div>
 	<?php
 		},
 	];
-
 	return $tabs;
 });
+
 
 
 /*
@@ -880,106 +959,106 @@ add_action('wp_enqueue_scripts', function () {
 
 
 add_filter('option_thwdtp_general_settings', function ($opts) {
-    if (empty($opts) || !is_array($opts)) return $opts;
+	if (empty($opts) || !is_array($opts)) return $opts;
 
-    // Czas sklepu (jak w pluginie)
-    $now = apply_filters('thwdtp_current_datetime', current_datetime()); // WP_DateTime (tz-aware)
-    $w   = (int) $now->format('w'); // 0=Nd,1=Pn,...,5=Pt,6=Sob
-    $h   = (int) $now->format('G'); // 0..23
-    $i   = (int) $now->format('i'); // 0..59
+	// Czas sklepu (jak w pluginie)
+	$now = apply_filters('thwdtp_current_datetime', current_datetime()); // WP_DateTime (tz-aware)
+	$w   = (int) $now->format('w'); // 0=Nd,1=Pn,...,5=Pt,6=Sob
+	$h   = (int) $now->format('G'); // 0..23
+	$i   = (int) $now->format('i'); // 0..59
 
-    // Godzina startu okna odbioru (tu: 10:00) — łatwo nadpisać filtrem
-    $startHour   = (int) apply_filters('ccafe_pickup_start_hour', 10);
-    $startMinute = (int) apply_filters('ccafe_pickup_start_minute', 0);
+	// Godzina startu okna odbioru (tu: 10:00) — łatwo nadpisać filtrem
+	$startHour   = (int) apply_filters('ccafe_pickup_start_hour', 10);
+	$startMinute = (int) apply_filters('ccafe_pickup_start_minute', 0);
 
-    // cutoff: 18:00 JESZCZE OK; dopiero >18:00 liczymy jako "po 18"
-    $afterCutoff = ($h > 18) || ($h === 18 && $i > 0);
+	// cutoff: 18:00 JESZCZE OK; dopiero >18:00 liczymy jako "po 18"
+	$afterCutoff = ($h > 18) || ($h === 18 && $i > 0);
 
-    // Wylicz minDays wg reguł
-    if ($w >= 1 && $w <= 4) {                 // Pon..Czw
-        $minDays = $afterCutoff ? 2 : 1;
-    } elseif ($w === 5) {                     // Piątek
-        $minDays = $afterCutoff ? 3 : 1;      // >18:00 => pon
-    } elseif ($w === 6) {                     // Sobota
-        $minDays = 2;                          // pon
-    } else {                                  // Niedziela (0)
-        $minDays = 1;                          // pon
-    }
+	// Wylicz minDays wg reguł
+	if ($w >= 1 && $w <= 4) {                 // Pon..Czw
+		$minDays = $afterCutoff ? 2 : 1;
+	} elseif ($w === 5) {                     // Piątek
+		$minDays = $afterCutoff ? 3 : 1;      // >18:00 => pon
+	} elseif ($w === 6) {                     // Sobota
+		$minDays = 2;                          // pon
+	} else {                                  // Niedziela (0)
+		$minDays = 1;                          // pon
+	}
 
-    // Najwcześniejsza DATA (o północy) + pomocniczo Y-m-d
-    $minDate = clone $now;
-    $minDate->setTime(0, 0, 0);
-    $minDate->modify("+{$minDays} day");
-    $minDateYmd = $minDate->format('Y-m-d');
+	// Najwcześniejsza DATA (o północy) + pomocniczo Y-m-d
+	$minDate = clone $now;
+	$minDate->setTime(0, 0, 0);
+	$minDate->modify("+{$minDays} day");
+	$minDateYmd = $minDate->format('Y-m-d');
 
-    // Docelowy moment = tego dnia o 10:00
-    $target = clone $minDate;
-    $target->setTime($startHour, $startMinute, 0);
+	// Docelowy moment = tego dnia o 10:00
+	$target = clone $minDate;
+	$target->setTime($startHour, $startMinute, 0);
 
-    // Minuty od "teraz" do target (10:00)
-    // Formuła stabilna: (minDays * 1440 + startMinutes) - minutesSinceMidnight(now)
-    $minutesSinceMidnight = $h * 60 + $i;
-    $startMinutes         = $startHour * 60 + $startMinute;
-    $mins = $minDays * 1440 + $startMinutes - $minutesSinceMidnight;
-    if ($mins < 1) $mins = 1; // bez zera
+	// Minuty od "teraz" do target (10:00)
+	// Formuła stabilna: (minDays * 1440 + startMinutes) - minutesSinceMidnight(now)
+	$minutesSinceMidnight = $h * 60 + $i;
+	$startMinutes         = $startHour * 60 + $startMinute;
+	$mins = $minDays * 1440 + $startMinutes - $minutesSinceMidnight;
+	if ($mins < 1) $mins = 1; // bez zera
 
-    // --- Zapis do struktury opcji pluginu ---
-    // Delivery (dni)
-    if (isset($opts['delivery_date']) && is_array($opts['delivery_date'])) {
-        $opts['delivery_date']['min_preperation_days_delivery'] = (string) $mins;
-    }
+	// --- Zapis do struktury opcji pluginu ---
+	// Delivery (dni)
+	if (isset($opts['delivery_date']) && is_array($opts['delivery_date'])) {
+		$opts['delivery_date']['min_preperation_days_delivery'] = (string) $mins;
+	}
 
-    // Pickup (minuty do 10:00) — w Twojej instalacji siedzi pod pickup_date
-    if (isset($opts['pickup_date']) && is_array($opts['pickup_date'])) {
-        $opts['pickup_date']['min_preperation_time_pickup'] = (string) $mins; // u Ciebie to string
-        $opts['pickup_date']['min_date_ymd'] = $minDateYmd;                   // dla flatpickr.minDate
-    }
+	// Pickup (minuty do 10:00) — w Twojej instalacji siedzi pod pickup_date
+	if (isset($opts['pickup_date']) && is_array($opts['pickup_date'])) {
+		$opts['pickup_date']['min_preperation_time_pickup'] = (string) $mins; // u Ciebie to string
+		$opts['pickup_date']['min_date_ymd'] = $minDateYmd;                   // dla flatpickr.minDate
+	}
 
-    // Mirror (gdyby build czytał z pickup_time)
-    if (isset($opts['pickup_time']['time_settings']) && is_array($opts['pickup_time']['time_settings'])) {
-        $opts['pickup_time']['time_settings']['min_preperation_time_pickup'] = $mins;
-    }
+	// Mirror (gdyby build czytał z pickup_time)
+	if (isset($opts['pickup_time']['time_settings']) && is_array($opts['pickup_time']['time_settings'])) {
+		$opts['pickup_time']['time_settings']['min_preperation_time_pickup'] = $mins;
+	}
 
-    return $opts;
+	return $opts;
 }, PHP_INT_MAX);
 
 
 add_action('wp_footer', function () {
-    if (! (is_checkout() || has_block('woocommerce/checkout'))) return;
-    if (! current_user_can('manage_options')) return;
+	if (! (is_checkout() || has_block('woocommerce/checkout'))) return;
+	if (! current_user_can('manage_options')) return;
 
-    $now = apply_filters('thwdtp_current_datetime', current_datetime());
-    $opts = get_option('thwdtp_general_settings');
+	$now = apply_filters('thwdtp_current_datetime', current_datetime());
+	$opts = get_option('thwdtp_general_settings');
 
-    $payload = [
-        'now'                    => $now->format('c'),
-        'weekday'                => (int) $now->format('w'),
-        'hour'                   => (int) $now->format('G'),
-        'minute'                 => (int) $now->format('i'),
-        'db.delivery_days'       => $opts['delivery_date']['min_preperation_days_delivery'] ?? null,
-        'db.pickup_minutes_date' => $opts['pickup_date']['min_preperation_time_pickup'] ?? null,
-        'db.pickup_minutes_time' => $opts['pickup_time']['time_settings']['min_preperation_time_pickup'] ?? null,
-        'db.pickup_min_date_ymd' => $opts['pickup_date']['min_date_ymd'] ?? null,
-    ];
-    echo '<script>console.log("THWDTP calc", ' . wp_json_encode($payload) . ');</script>';
+	$payload = [
+		'now'                    => $now->format('c'),
+		'weekday'                => (int) $now->format('w'),
+		'hour'                   => (int) $now->format('G'),
+		'minute'                 => (int) $now->format('i'),
+		'db.delivery_days'       => $opts['delivery_date']['min_preperation_days_delivery'] ?? null,
+		'db.pickup_minutes_date' => $opts['pickup_date']['min_preperation_time_pickup'] ?? null,
+		'db.pickup_minutes_time' => $opts['pickup_time']['time_settings']['min_preperation_time_pickup'] ?? null,
+		'db.pickup_min_date_ymd' => $opts['pickup_date']['min_date_ymd'] ?? null,
+	];
+	echo '<script>console.log("THWDTP calc", ' . wp_json_encode($payload) . ');</script>';
 }, 99);
 
 
 
 add_action('wp_footer', function () {
-    if ( ! (is_checkout() || has_block('woocommerce/checkout')) ) return;
-    if ( ! current_user_can('manage_options') ) return;
+	if (! (is_checkout() || has_block('woocommerce/checkout'))) return;
+	if (! current_user_can('manage_options')) return;
 
-    $opts = get_option('thwdtp_general_settings');
-    $payload = [
-        'db.delivery_days'        => $opts['delivery_date']['min_preperation_days_delivery'] ?? null,
-        'db.pickup_minutes_time'  => $opts['pickup_time']['time_settings']['min_preperation_time_pickup'] ?? null,
-        'db.pickup_minutes_date'  => $opts['pickup_date']['min_preperation_time_pickup'] ?? null,
-    ];
-    echo '<script>console.log("THWDTP DB", ' . wp_json_encode($payload) . ');';
-    echo 'console.log("THWDTP JS", window.thwdtp_public_var || "(no thwdtp_public_var)");</script>';
+	$opts = get_option('thwdtp_general_settings');
+	$payload = [
+		'db.delivery_days'        => $opts['delivery_date']['min_preperation_days_delivery'] ?? null,
+		'db.pickup_minutes_time'  => $opts['pickup_time']['time_settings']['min_preperation_time_pickup'] ?? null,
+		'db.pickup_minutes_date'  => $opts['pickup_date']['min_preperation_time_pickup'] ?? null,
+	];
+	echo '<script>console.log("THWDTP DB", ' . wp_json_encode($payload) . ');';
+	echo 'console.log("THWDTP JS", window.thwdtp_public_var || "(no thwdtp_public_var)");</script>';
 
-    echo '<style>.thwdtp-debug{position:fixed;right:8px;bottom:8px;z-index:99999;padding:8px 10px;background:#111;color:#fff;font:12px/1.4 monospace;border-radius:6px;opacity:.85}</style>';
-    echo '<div class="thwdtp-debug">days(delivery): <b>' . esc_html((string)($payload['db.delivery_days'] ?? '')) .
-         '</b> | mins(pickup): <b>' . esc_html((string)($payload['db.pickup_minutes_time'] ?? '')) . '</b></div>';
+	echo '<style>.thwdtp-debug{position:fixed;right:8px;bottom:8px;z-index:99999;padding:8px 10px;background:#111;color:#fff;font:12px/1.4 monospace;border-radius:6px;opacity:.85}</style>';
+	echo '<div class="thwdtp-debug">days(delivery): <b>' . esc_html((string)($payload['db.delivery_days'] ?? '')) .
+		'</b> | mins(pickup): <b>' . esc_html((string)($payload['db.pickup_minutes_time'] ?? '')) . '</b></div>';
 }, 99);
