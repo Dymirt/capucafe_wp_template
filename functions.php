@@ -463,6 +463,7 @@ add_action('woocommerce_product_options_general_product_data', function () {
 					<tr>
 						<td><input type="text" name="_nutri_key[]" class="short" placeholder="<?php esc_attr_e('Sól', 'yourtextdomain'); ?>"></td>
 						<td><input type="text" name="_nutri_val[]" class="short" placeholder="<?php esc_attr_e('0.1 g', 'yourtextdomain'); ?>"></td>
+						<td><input type="text" name="_nutri_rws[]" class="short" placeholder="<?php echo esc_js(__('5%', 'yourtextdomain')); ?>"></td>
 						<td><button type="button" class="button remove-row">×</button></td>
 					</tr>
 					<?php else : foreach ($pairs as $k => $data) :
