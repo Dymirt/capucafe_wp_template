@@ -48,7 +48,7 @@
 				<div class="self-stretch inline-flex flex-col justify-start items-start gap-4">
 					<div class="self-stretch justify-start"><span class="text-white text-sm font-normal font-['Mulish'] leading-tight">Aleja Niepodległości 899,<br />81-861 Sopot<br /></span><span class="text-white text-sm font-normal font-['Mulish'] leading-tight">tel. 511 554 610</span></div>
 					<div class="self-stretch justify-start"><span class="text-white text-sm font-normal font-['Mulish'] leading-tight">ks. Sychty 43,<br />84-140 Jastarnia<br /></span><span class="text-white text-sm font-normal font-['Mulish'] leading-tight">tel. 502 770 766</span></div>
-					<a href="mailto:kawiarnia@capuccinocafe.pl" class="text-white text-sm font-normal font-['Mulish'] leading-tight">
+					<a href="mailto:kawiarnia@capuccinocafe.pl" class="!text-white text-sm font-normal font-['Mulish'] leading-tight">
 						kawiarnia@capuccinocafe.pl
 					</a>
 				</div>
