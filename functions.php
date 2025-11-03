@@ -1007,6 +1007,7 @@ add_filter('option_thwdtp_general_settings', function ($opts) {
 	// Delivery (dni)
 	if (isset($opts['delivery_date']) && is_array($opts['delivery_date'])) {
 		$opts['delivery_date']['min_preperation_days_delivery'] = (string) $mins;
+		$opts['delivery_date']['min_date_ymd'] = $minDateYmd; // dla flatpickr.minDate
 	}
 
 	// Pickup (minuty do 10:00) — w Twojej instalacji siedzi pod pickup_date
