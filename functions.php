@@ -1016,6 +1016,11 @@ add_filter('option_thwdtp_general_settings', function ($opts) {
 		$opts['pickup_date']['min_date_ymd'] = $minDateYmd;                   // dla flatpickr.minDate
 	}
 
+	// Mirror dla delivery (gdyby build czytał z time_settings)
+	if (isset($opts['delivery_date']['time_settings']) && is_array($opts['delivery_date']['time_settings'])) {
+		$opts['delivery_date']['time_settings']['min_preperation_days_delivery'] = (string) $mins;
+	}
+
 	// Mirror (gdyby build czytał z pickup_time)
 	if (isset($opts['pickup_time']['time_settings']) && is_array($opts['pickup_time']['time_settings'])) {
 		$opts['pickup_time']['time_settings']['min_preperation_time_pickup'] = $mins;
