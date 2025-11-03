@@ -1037,7 +1037,7 @@ add_action('wp_footer', function () {
 		'hour'                   => (int) $now->format('G'),
 		'minute'                 => (int) $now->format('i'),
 		'db.delivery_days'       => $opts['delivery_date']['min_preperation_days_delivery'] ?? null,
-		'db.delivery'            => $opts['delivery_date'] ?? null,
+		'db.opts'            => $opts ?? null,
 		'db.pickup_minutes_date' => $opts['pickup_date']['min_preperation_time_pickup'] ?? null,
 		'db.pickup_minutes_time' => $opts['pickup_time']['time_settings']['min_preperation_time_pickup'] ?? null,
 		'db.pickup_min_date_ymd' => $opts['pickup_date']['min_date_ymd'] ?? null,
