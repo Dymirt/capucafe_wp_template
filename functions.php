@@ -1024,6 +1024,7 @@ add_filter('option_thwdtp_general_settings', function ($opts) {
 }, PHP_INT_MAX);
 
 
+/*
 add_action('wp_footer', function () {
 	if (! (is_checkout() || has_block('woocommerce/checkout'))) return;
 	if (! current_user_can('manage_options')) return;
@@ -1064,3 +1065,4 @@ add_action('wp_footer', function () {
 	echo '<div class="thwdtp-debug">days(delivery): <b>' . esc_html((string)($payload['db.delivery_days'] ?? '')) .
 		'</b> | mins(pickup): <b>' . esc_html((string)($payload['db.pickup_minutes_time'] ?? '')) . '</b></div>';
 }, 99);
+*/
