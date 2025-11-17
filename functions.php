@@ -1092,7 +1092,8 @@ function mb_hide_inpost_for_cakes( $rates, $package ) {
         foreach ( $rates as $rate_id => $rate ) {
             // Adjust substrings to match your InPost methods IDs
             if (
-                strpos( $rate_id, 'flat_rate:14' ) !== false
+                strpos( $rate_id, 'flat_rate:14' ) !== false ||
+				strpos( $rate_id, 'flat_rate:15' ) !== false
             ) {
                 unset( $rates[ $rate_id ] );
             }
@@ -1103,19 +1104,49 @@ function mb_hide_inpost_for_cakes( $rates, $package ) {
 }
 
 
-add_action( 'woocommerce_review_order_before_shipping', function() {
-    $packages = WC()->shipping()->get_packages();
-    if ( empty( $packages ) ) {
-        return;
-    }
 
-    echo '<pre style="font-size:11px;">';
-    foreach ( $packages as $i => $package ) {
-        $rates = $package['rates'];
-        echo "Package {$i} rates:\n";
-        foreach ( $rates as $rate_id => $rate ) {
-            echo $rate_id . " => " . $rate->get_label() . "\n";
+add_action( 'wp_enqueue_scripts', function() {
+    if ( is_checkout() ) {
+        wp_add_inline_script(
+            'wc-checkout', // or another handle already loaded on checkout
+            "jQuery(function($) {
+
+    function disableDeliveryFields(disable) {
+        const $dateField = $('.th-datepicker-field');
+        const $dateInput = $('.delivery-date-picker');
+        const $timeSelect = $('#thwdtp-delivery-time select');
+
+        if (disable) {
+            $dateField.addClass('th-disabled');
+            $dateInput.prop('disabled', true).prop('required', false).val('');
+            $timeSelect.prop('disabled', true).prop('required', false).val('');
+        } else {
+            $dateField.removeClass('th-disabled');
+            $dateInput.prop('disabled', false);
+            $timeSelect.prop('disabled', false);
         }
     }
-    echo '</pre>';
+
+    function isInpostSelected() {
+        const val = $('input[name=\"radio-control-0\"]:checked').val() || '';
+		if (val === 'flat_rate:15' || val === 'flat_rate:14') {  // both InPost methods
+			return true;
+		} else {
+        return false;
+		}
+	}
+
+	function updateFields() {
+		disableDeliveryFields(isInpostSelected());
+	}
+
+	// Initial state
+	updateFields();
+
+	// Watch for shipping method change
+	$(document).on('change', 'input[name=\"radio-control-0\"]', updateFields);
+	});
+	"
+        );
+    }
 });

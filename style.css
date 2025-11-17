@@ -257,3 +257,8 @@ a.features-sec {
 .page-template-template-homepage:not(.has-post-thumbnail) .site-main {
     padding-top: 0 !important;
 }
+
+.th-disabled {
+    opacity: 0.4;
+    pointer-events: none;
+}
