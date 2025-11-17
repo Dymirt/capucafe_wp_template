@@ -1066,3 +1066,57 @@ add_action('wp_footer', function () {
 		'</b> | mins(pickup): <b>' . esc_html((string)($payload['db.pickup_minutes_time'] ?? '')) . '</b></div>';
 }, 99);
 */
+
+
+add_filter( 'woocommerce_package_rates', 'mb_hide_inpost_for_cakes', 10, 2 );
+function mb_hide_inpost_for_cakes( $rates, $package ) {
+    $has_cakes = false;
+
+    // 1. Check if cart has any "cakes" shipping class
+    foreach ( $package['contents'] as $item ) {
+        if ( ! isset( $item['data'] ) || ! is_a( $item['data'], 'WC_Product' ) ) {
+            continue;
+        }
+
+        $product          = $item['data'];
+        $shipping_class   = $product->get_shipping_class(); // slug, e.g. "cakes"
+
+        if ( $shipping_class === 'food' ) {
+            $has_cakes = true;
+            break;
+        }
+    }
+
+    // 2. If there are cakes, unset InPost methods
+    if ( $has_cakes ) {
+        foreach ( $rates as $rate_id => $rate ) {
+            // Adjust substrings to match your InPost methods IDs
+            if (
+                strpos( $rate_id, 'inpost' ) !== false
+                || strpos( $rate_id, 'easyparcel_inpost' ) !== false
+            ) {
+                unset( $rates[ $rate_id ] );
+            }
+        }
+    }
+
+    return $rates;
+}
+
+
+add_action( 'woocommerce_review_order_before_shipping', function() {
+    $packages = WC()->shipping()->get_packages();
+    if ( empty( $packages ) ) {
+        return;
+    }
+
+    echo '<pre style="font-size:11px;">';
+    foreach ( $packages as $i => $package ) {
+        $rates = $package['rates'];
+        echo "Package {$i} rates:\n";
+        foreach ( $rates as $rate_id => $rate ) {
+            echo $rate_id . " => " . $rate->get_label() . "\n";
+        }
+    }
+    echo '</pre>';
+});
