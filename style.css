@@ -261,4 +261,5 @@ a.features-sec {
 .th-disabled {
     opacity: 0.4;
     pointer-events: none;
+	display: none;
 }
