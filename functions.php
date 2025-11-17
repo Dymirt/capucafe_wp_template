@@ -1146,6 +1146,7 @@ add_action( 'wp_enqueue_scripts', function() {
 
 		// Watch for shipping method change
 		$(document).on('change', 'input[name=\"radio-control-0\"]', updateFields);
+		$(document).on('updated_shipping_method', updateFields);
 
 		console.log('InPost delivery fields toggle script initialized.');
 	});
