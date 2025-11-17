@@ -1109,46 +1109,47 @@ add_action( 'wp_enqueue_scripts', function() {
     if ( is_checkout() ) {
         wp_add_inline_script(
             'wc-checkout', // or another handle already loaded on checkout
-    "jQuery(function($) {
+    <<<'JS'
+		jQuery(function($) {
 
-    function disableDeliveryFields(disable) {
-        const $dateField = $('.th-datepicker-field');
-        const $dateInput = $('.delivery-date-picker');
-        const $timeSelect = $('#thwdtp-delivery-time select');
+		function disableDeliveryFields(disable) {
+			const $dateField = $('.th-datepicker-field');
+			const $dateInput = $('.delivery-date-picker');
+			const $timeSelect = $('#thwdtp-delivery-time select');
 
-        if (disable) {
-            $dateField.addClass('th-disabled');
-            $dateInput.prop('disabled', true).prop('required', false).val('');
-            $timeSelect.prop('disabled', true).prop('required', false).val('');
-        } else {
-            $dateField.removeClass('th-disabled');
-            $dateInput.prop('disabled', false);
-            $timeSelect.prop('disabled', false);
-        }
-    }
-
-    function isInpostSelected() {
-        const val = $('input[name=\"radio-control-0\"]:checked').val() || '';
-		if (val === 'flat_rate:15' || val === 'flat_rate:14') {  // both InPost methods
-			return true;
-		} else {
-        return false;
+			if (disable) {
+				$dateField.addClass('th-disabled');
+				$dateInput.prop('disabled', true).prop('required', false).val('');
+				$timeSelect.prop('disabled', true).prop('required', false).val('');
+			} else {
+				$dateField.removeClass('th-disabled');
+				$dateInput.prop('disabled', false);
+				$timeSelect.prop('disabled', false);
+			}
 		}
-	}
 
-	function updateFields() {
-		disableDeliveryFields(isInpostSelected());
-	}
+		function isInpostSelected() {
+			const val = $('input[name=\"radio-control-0\"]:checked').val() || '';
+			if (val === 'flat_rate:15' || val === 'flat_rate:14') {  // both InPost methods
+				return true;
+			} else {
+			return false;
+			}
+		}
 
-	// Initial state
-	updateFields();
+		function updateFields() {
+			disableDeliveryFields(isInpostSelected());
+		}
 
-	// Watch for shipping method change
-	$(document).on('change', 'input[name=\"radio-control-0\"]', updateFields);
+		// Initial state
+		updateFields();
 
-	console.log('InPost delivery fields toggle script initialized.');
+		// Watch for shipping method change
+		$(document).on('change', 'input[name=\"radio-control-0\"]', updateFields);
+
+		console.log('InPost delivery fields toggle script initialized.');
 	});
-	"
+	JS
         );
     }
 });
