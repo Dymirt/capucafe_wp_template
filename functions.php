@@ -1129,7 +1129,7 @@ add_action( 'wp_enqueue_scripts', function() {
 		}
 
 		function isInpostSelected() {
-			const val = $('input[name=\"radio-control-0\"]:checked').val() || '';
+			const val = $('.wc-block-components-radio-control__input:checked').val() || '';
 			if (val === 'flat_rate:15' || val === 'flat_rate:14') {  // both InPost methods
 				return true;
 			} else {
@@ -1145,9 +1145,7 @@ add_action( 'wp_enqueue_scripts', function() {
 		updateFields();
 
 		// Watch for shipping method change
-		$(document).on('change', 'input[name=\"radio-control-0\"]', updateFields);
-		$(document).on('updated_shipping_method', updateFields);
-
+		$(document).on('change', '.wc-block-components-radio-control__input', updateFields);
 		console.log('InPost delivery fields toggle script initialized.');
 	});
 	JS
