@@ -1092,8 +1092,7 @@ function mb_hide_inpost_for_cakes( $rates, $package ) {
         foreach ( $rates as $rate_id => $rate ) {
             // Adjust substrings to match your InPost methods IDs
             if (
-                strpos( $rate_id, 'inpost' ) !== false
-                || strpos( $rate_id, 'easyparcel_inpost' ) !== false
+                strpos( $rate_id, 'flat_rate:14' ) !== false
             ) {
                 unset( $rates[ $rate_id ] );
             }
