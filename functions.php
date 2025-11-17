@@ -1109,7 +1109,7 @@ add_action( 'wp_enqueue_scripts', function() {
     if ( is_checkout() ) {
         wp_add_inline_script(
             'wc-checkout', // or another handle already loaded on checkout
-            "jQuery(function($) {
+    "jQuery(function($) {
 
     function disableDeliveryFields(disable) {
         const $dateField = $('.th-datepicker-field');
@@ -1145,6 +1145,8 @@ add_action( 'wp_enqueue_scripts', function() {
 
 	// Watch for shipping method change
 	$(document).on('change', 'input[name=\"radio-control-0\"]', updateFields);
+
+	console.log('InPost delivery fields toggle script initialized.');
 	});
 	"
         );
