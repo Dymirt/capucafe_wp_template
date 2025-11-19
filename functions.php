@@ -1093,7 +1093,12 @@ function mb_hide_inpost_for_cakes( $rates, $package ) {
             // Adjust substrings to match your InPost methods IDs
             if (
                 strpos( $rate_id, 'flat_rate:14' ) !== false ||
-				strpos( $rate_id, 'flat_rate:15' ) !== false
+				strpos( $rate_id, 'flat_rate:15' ) !== false ||
+				strpos( $rate_id, 'flat_rate:16' ) !== false ||
+				strpos( $rate_id, 'flat_rate:17' ) !== false ||
+				strpos( $rate_id, 'flat_rate:18' ) !== false ||
+				strpos( $rate_id, 'flat_rate:19' ) !== false ||
+				strpos( $rate_id, 'flat_rate:20' ) !== false
             ) {
                 unset( $rates[ $rate_id ] );
             }
@@ -1130,11 +1135,18 @@ add_action( 'wp_enqueue_scripts', function() {
 
 		function isInpostSelected() {
 			const val = $('.wc-block-components-radio-control__input:checked').val() || '';
-			if (val === 'flat_rate:15' || val === 'flat_rate:14') {  // both InPost methods
+			if (
+				val === 'flat_rate:15' ||
+				val === 'flat_rate:14' ||
+				val === 'flat_rate:16' ||
+				val === 'flat_rate:17' ||
+				val === 'flat_rate:18' ||
+				val === 'flat_rate:19' ||
+				val === 'flat_rate:20'
+			) {
 				return true;
-			} else {
-			return false;
 			}
+			return false;
 		}
 
 		function updateFields() {
@@ -1151,4 +1163,13 @@ add_action( 'wp_enqueue_scripts', function() {
 	JS
         );
     }
+});
+
+add_action('admin_notices', function() {
+    echo '<div class="notice notice-info">';
+    echo '<p><strong>Memory Limit:</strong> ' . ini_get('memory_limit') . '</p>';
+    echo '<p><strong>Max Execution Time:</strong> ' . ini_get('max_execution_time') . 's</p>';
+    echo '<p><strong>GD Library:</strong> ' . (extension_loaded('gd') ? 'Installed ✓' : 'NOT Installed ✗') . '</p>';
+    echo '<p><strong>Imagick:</strong> ' . (extension_loaded('imagick') ? 'Installed ✓' : 'NOT Installed ✗') . '</p>';
+    echo '</div>';
 });
