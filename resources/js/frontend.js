@@ -113,8 +113,5 @@ function updateActiveDot() {
 	});
 }
 
-window.addEventListener(ApmEvents.PaymentMethodActionDetail, (event) => {
-  console.log("PaymentMethodActionDetail detail:", event.detail);
-});
 
 
