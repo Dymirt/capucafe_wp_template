@@ -113,19 +113,3 @@ function updateActiveDot() {
 	});
 }
 
-
-document.addEventListener("DOMContentLoaded", function () {
-
-    window.addEventListener("payment-method-action-detail", function(event) {
-        console.log("==== PAYMENT METHOD EVENT ====");
-        console.log("event.detail:", event.detail);
-
-        if (event.detail) {
-            console.log("redirect_url:", event.detail.redirect_url);
-            console.log("redirectUrl:", event.detail.redirectUrl);
-        } else {
-            console.log("event.detail is EMPTY!");
-        }
-    });
-
-});
