@@ -1174,6 +1174,31 @@ add_action('admin_notices', function() {
     echo '</div>';
 });
 
+// 1) Sterujemy kiedy email "Nowe zamówienie" jest w ogóle włączony
+add_filter( 'woocommerce_email_enabled_new_order', function( $enabled, $order ) {
+
+    if ( ! $order instanceof WC_Order ) {
+        return $enabled;
+    }
+
+    $status = $order->get_status(); // 'pending', 'on-hold', 'processing', itd.
+
+    // Blokuj email dla świeżych, nieopłaconych zamówień
+    if ( in_array( $status, [ 'pending', 'on-hold' ], true ) ) {
+        return false;
+    }
+
+    // Pozwól na email gdy zamówienie jest "processing"
+    if ( 'processing' === $status ) {
+        return true;
+    }
+
+    // Dla innych statusów zostaw domyślne zachowanie
+    return $enabled;
+
+}, 10, 2 );
+
+
 add_action( 'woocommerce_order_status_on-hold_to_processing', function( $order_id ) {
     if ( ! $order_id ) {
         return;
