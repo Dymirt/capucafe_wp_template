@@ -8,7 +8,17 @@
  * @package storefront
  */
 
-$count = WC()->cart->get_cart_contents_count();
+//$count = WC()->cart->get_cart_contents_count();
+
+$count = 0;
+
+if ( function_exists( 'WC' ) ) {
+    $wc = WC();
+
+    if ( $wc && isset( $wc->cart ) && $wc->cart instanceof WC_Cart ) {
+        $count = $wc->cart->get_cart_contents_count();
+    }
+}
 
 ?>
 <!doctype html>
