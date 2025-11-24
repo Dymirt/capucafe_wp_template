@@ -1173,3 +1173,15 @@ add_action('admin_notices', function() {
     echo '<p><strong>Imagick:</strong> ' . (extension_loaded('imagick') ? 'Installed ✓' : 'NOT Installed ✗') . '</p>';
     echo '</div>';
 });
+
+add_action( 'woocommerce_order_status_on-hold_to_processing', function( $order_id ) {
+    if ( ! $order_id ) {
+        return;
+    }
+
+    $emails = WC()->mailer()->get_emails();
+
+    if ( ! empty( $emails['WC_Email_New_Order'] ) ) {
+        $emails['WC_Email_New_Order']->trigger( $order_id );
+    }
+}, 10, 1 );
