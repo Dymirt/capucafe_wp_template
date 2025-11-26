@@ -1210,3 +1210,14 @@ add_action( 'woocommerce_order_status_on-hold_to_processing', function( $order_i
         $emails['WC_Email_New_Order']->trigger( $order_id );
     }
 }, 10, 1 );
+
+add_filter( 'woocommerce_api_request_url', function( $url, $endpoint ) {
+    // Only normalize Global Payments endpoints
+    if ( strpos( $endpoint, 'globalpayments' ) !== false ) {
+        // Build clean URL on front domain (no /wp), force https
+        $url = home_url( '/wc-api/' . $endpoint );
+        $url = set_url_scheme( $url, 'https' );
+    }
+
+    return $url;
+}, 10, 2 );
