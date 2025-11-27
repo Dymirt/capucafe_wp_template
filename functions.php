@@ -958,7 +958,7 @@ add_action('wp_enqueue_scripts', function () {
 });
 
 
-/*
+
 add_filter('option_thwdtp_general_settings', function ($opts) {
 	if (empty($opts) || !is_array($opts)) return $opts;
 
@@ -1210,3 +1210,5 @@ add_action( 'woocommerce_order_status_on-hold_to_processing', function( $order_i
         $emails['WC_Email_New_Order']->trigger( $order_id );
     }
 }, 10, 1 );
+
+
