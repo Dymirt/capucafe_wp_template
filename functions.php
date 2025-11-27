@@ -1109,7 +1109,7 @@ function mb_hide_inpost_for_cakes( $rates, $package ) {
 }
 
 
-
+/*
 add_action( 'wp_enqueue_scripts', function() {
     if ( is_checkout() ) {
         wp_add_inline_script(
@@ -1164,6 +1164,7 @@ add_action( 'wp_enqueue_scripts', function() {
         );
     }
 });
+*/
 
 add_action('admin_notices', function() {
     echo '<div class="notice notice-info">';
