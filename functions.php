@@ -7,6 +7,7 @@ require_once get_stylesheet_directory() . '/inc/functions/contact-form.php';
 require_once get_stylesheet_directory() . '/inc/functions/cart-validation.php';
 require_once get_stylesheet_directory() . '/inc/functions/praline-validation.php';
 require_once get_stylesheet_directory() . '/inc/functions/praline-thumbnail.php';
+require_once get_stylesheet_directory() . '/inc/functions/praline-checkout-image.php';
 
 // Register custom post types
 #require_once get_stylesheet_directory() . '/inc/custom-post-types/slodki-stol.php';
