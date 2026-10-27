@@ -20,7 +20,12 @@
 .ccafe-menu-item > a { @apply font-bold uppercase; }
 .ccafe-menu-children { @apply px-4 pb-3; }
 .ccafe-menu-children .ccafe-menu-item > a { @apply font-normal normal-case; }
-.ccafe-cart-popover { @apply fixed top-[100px] right-4 z-50; max-width: calc(100vw - 2rem); }
+/* The transparent padding belongs to the hovered group: no dead gap below the icon. */
+.ccafe-cart-trigger { overflow: visible; }
+.ccafe-cart-count { position: absolute; top: 8px; right: -8px; min-width: 20px; height: 20px; padding: 0 4px; border-radius: 999px; background: #b42318; display: flex; align-items: center; justify-content: center; pointer-events: none; }
+.header .ccafe-cart-count .js-cart-badge, .header-shop .ccafe-cart-count .js-cart-badge { color: #fff !important; font-family: 'Mulish', sans-serif; font-size: 12px; font-weight: 800; line-height: 1; white-space: nowrap; }
+.ccafe-cart-popover { position: absolute; top: 100%; right: -60px; z-index: 50; width: min(400px, 90vw); padding-top: 36px; }
+@media (min-width: 1280px) { .ccafe-cart-popover { right: 0; } }
 .ccafe-mini-cart { @apply bg-white text-stone-800 p-5 shadow-lg border border-stone-200; width: 400px; max-width: 100%; max-height: calc(100dvh - 120px); overflow-y: auto; }
 .ccafe-cart-row { @apply grid gap-3 py-3 border-b border-stone-200; grid-template-columns: 64px minmax(0, 1fr); }
 .ccafe-cart-row > img { width: 64px; height: 64px; object-fit: cover; }
