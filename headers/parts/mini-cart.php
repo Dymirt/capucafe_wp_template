@@ -12,7 +12,7 @@ $cart = WC()->cart;
         if (!$product || !$product->exists()) continue;
         $qty = (int) $item['quantity']; ?>
         <div class="ccafe-cart-row" data-cart-item="<?php echo esc_attr($key); ?>">
-            <?php echo $product->get_image('woocommerce_thumbnail'); ?>
+            <?php echo apply_filters('woocommerce_cart_item_thumbnail', $product->get_image('woocommerce_thumbnail'), $item, $key); ?>
             <div class="min-w-0">
                 <a href="<?php echo esc_url($product->get_permalink($item)); ?>"><?php echo esc_html($product->get_name()); ?></a>
                 <?php echo wc_get_formatted_cart_item_data($item); ?>

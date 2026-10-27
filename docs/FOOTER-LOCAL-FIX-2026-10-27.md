@@ -1,6 +1,6 @@
 # Stopka — lokalna poprawka responsywności, 27 października 2026
 
-Zmiana pozostaje lokalna. Nie wdrożono produkcji i nie zmieniano zdjęć ani konfiguracji pralin.
+Raport opisuje lokalną weryfikację poprawki następnie scalonej w [PR #9](https://github.com/Dymirt/capucafe_wp_template/pull/9) i wdrożonej na produkcję jako `d3ec391`. Nową stopkę potwierdzono w świeżych odpowiedziach 7 stron. [Aktualny status audytu](AUDIT-2026-10-27.md). Nie zmieniano zdjęć ani konfiguracji pralin podczas naprawy stopki.
 
 ## Przyczyna i naprawa
 

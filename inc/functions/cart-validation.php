@@ -84,5 +84,5 @@ add_action('wp_ajax_nopriv_ccafe_update_cart_item_qty', 'ccafe_update_cart_item_
 add_action('admin_post_ccafe_update_cart_item_qty', 'ccafe_update_cart_item_qty');
 add_action('admin_post_nopriv_ccafe_update_cart_item_qty', 'ccafe_update_cart_item_qty');
 
-// Invalidate pre-migration browser fragments (old controls and non-session nonce).
-add_filter('woocommerce_cart_fragment_name', function ($name) { return $name . '_ccafe_v2'; });
+// Invalidate cached browser fragments when controls or thumbnail markup changes.
+add_filter('woocommerce_cart_fragment_name', function ($name) { return $name . '_ccafe_v3'; });

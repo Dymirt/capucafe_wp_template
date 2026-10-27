@@ -1,6 +1,6 @@
 # Lokalne naprawy P1 Capuccino Cafe — 27 października 2026
 
-Zmiany dotyczą lokalnego motywu i nie zostały wdrożone ani wysłane do `main`. Środowisko: Local, PHP 8.2.29, WordPress 7.1.3, WooCommerce 10.3.8. Zdjęć, ich plików i rozmiarów transferu nie optymalizowano.
+Raport opisuje lokalne testy poprawek następnie scalonych w [PR #9](https://github.com/Dymirt/capucafe_wp_template/pull/9) i wdrożonych na produkcję jako `d3ec391`. [Aktualny status audytu](AUDIT-2026-10-27.md). Środowisko: Local, PHP 8.2.29, WordPress 7.1.3, WooCommerce 10.3.8. Zdjęć, ich plików i rozmiarów transferu nie optymalizowano.
 
 ## Zmiany
 
@@ -34,8 +34,8 @@ Zrzuty i pomiary są lokalne w ignorowanym `.local/p1-fixes/`: `config-preview.p
 
 To weryfikacja w przeglądarce aplikacji na Macu, z emulowanymi szerokościami, bez testów na fizycznym iPhonie/Androidzie i bez czytnika ekranu. Symulowano błąd serwera; nie przedstawia się go jako testu odłączenia fizycznej sieci. Nie wykonano prawdziwej płatności, zamówienia ani wysyłki wiadomości. Lokalny guard integracji pozostaje aktywny.
 
-W pomiarze przed osobną poprawką stopki przy 768 px dokument miał przepełnienie: `scrollWidth=772`, `clientWidth=753`. Konfigurator w tym pomiarze mieścił się w swoim kontenerze. Przepełnienie stopki zostało następnie usunięte lokalnie — zobacz [weryfikację stopki](FOOTER-LOCAL-FIX-2026-10-27.md). Pozostałe problemy P2, wcześniejsze notices WooCommerce i zależności narzędziowe nie są uznawane za naprawione. P1 dotyczący dużych zdjęć pozostaje odłożony. Kontrolę produkcji należy wykonać dopiero po osobno autoryzowanym wdrożeniu.
+W pomiarze przed osobną poprawką stopki przy 768 px dokument miał przepełnienie: `scrollWidth=772`, `clientWidth=753`. Konfigurator w tym pomiarze mieścił się w swoim kontenerze. Przepełnienie stopki zostało następnie usunięte lokalnie — zobacz [weryfikację stopki](FOOTER-LOCAL-FIX-2026-10-27.md). Pozostałe problemy P2, wcześniejsze notices WooCommerce i zależności narzędziowe nie są uznawane za naprawione. P1 dotyczący dużych zdjęć pozostaje odłożony. Po autoryzowanym scaleniu PR #9 workflow przeszedł, potwierdzono aktywny SHA na serwerze i odpowiedzi 7 stron HTTP 200 bez widocznych ostrzeżeń PHP. Nie wykonywano produkcyjnych transakcji.
 
 ## Korekta ułożenia pralin po weryfikacji wizualnej
 
-Siatka podglądu ma teraz stałe rzędy i kolumny, bez odstępów w pikselach. Jej granice dopasowano do przegródek na zdjęciach każdego pudełka (3×2, 4×3, 4×4), a obrazy smaków są centrowane z zachowaniem proporcji. Poprawka obejmuje także częściowo wypełnione pudełka. Sprawdzono 18 kombinacji rozmiaru pudełka i szerokości 320/375/768/1024/1440/1920 px; odchylenie centrów obrazów od centrów komórek było mniejsze niż 0,01 px. Wizualnie sprawdzono pełne pudełka i różne smaki. Build oraz składnia zmienionego PHP przeszły kontrolę. Nie zmieniano plików zdjęć ani produkcji. Dowody lokalne: `.local/p1-fixes/alignment-*.png` oraz `alignment-metrics.json`.
+Siatka podglądu ma teraz stałe rzędy i kolumny, bez odstępów w pikselach. Jej granice dopasowano do przegródek na zdjęciach każdego pudełka (3×2, 4×3, 4×4), a obrazy smaków są centrowane z zachowaniem proporcji. Poprawka obejmuje także częściowo wypełnione pudełka. Sprawdzono 18 kombinacji rozmiaru pudełka i szerokości 320/375/768/1024/1440/1920 px; odchylenie centrów obrazów od centrów komórek było mniejsze niż 0,01 px. Wizualnie sprawdzono pełne pudełka i różne smaki. Build oraz składnia zmienionego PHP przeszły kontrolę. Podczas testów wyrównania nie zmieniano plików zdjęć ani produkcji; poprawkę następnie wdrożono wraz z PR #9. Dowody lokalne: `.local/p1-fixes/alignment-*.png` oraz `alignment-metrics.json`.
