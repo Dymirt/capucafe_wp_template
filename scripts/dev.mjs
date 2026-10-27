@@ -1,6 +1,6 @@
 import { spawn } from 'node:child_process';
 
-// Tailwind must start after webpack's initial clean of the output directory.
+// Create a complete initial build before launching both development watchers.
 const initial = spawn('npm', ['run', 'build'], { stdio: 'inherit' });
 initial.on('exit', (code) => {
   if (code !== 0) process.exit(code || 1);
