@@ -11,7 +11,7 @@
 		"verify:build": "node scripts/verify-build.mjs",
 		"local:wp": "bash scripts/local/wp.sh",
 		"local:setup": "bash scripts/local/setup.sh",
-		"start:css": "npx @tailwindcss/cli -i ./resources/css/tailwind.css -o ./public/css/tailwind.css --watch",
+		"start:css": "node scripts/watch-css.mjs",
 		"build:css": "npx @tailwindcss/cli -i ./resources/css/tailwind.css -o ./public/css/tailwind.css"
 	},
 	"engines": { "node": ">=22 <23" },
