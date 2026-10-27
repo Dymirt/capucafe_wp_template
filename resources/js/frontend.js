@@ -1,3 +1,7 @@
+import './footer';
+import './mobile-menu';
+import './cart';
+import './pralines';
 document.addEventListener('DOMContentLoaded', function () {
 	const scrollContainer = document.getElementById('productScrollWrapper');
 	const scrollLeftBtn = document.getElementById('scrollLeft');
@@ -31,19 +35,6 @@ document.addEventListener('DOMContentLoaded', function () {
 		}
 	});
 });
-
-
-// Function to toggle footer submenus
-window.toggleSubmenu = function (id) {
-	const allSubmenus = document.querySelectorAll('.submenu');
-	allSubmenus.forEach((submenu) => {
-		if (submenu.id === id) {
-			submenu.classList.toggle('hidden');
-		} else {
-			submenu.classList.add('hidden');
-		}
-	});
-};
 
 
 document.addEventListener('DOMContentLoaded', () => {

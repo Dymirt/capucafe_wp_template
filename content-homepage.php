@@ -38,7 +38,7 @@ $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 		<div class="sticky top-0 z-4">
 			<?php get_template_part('headers/header', 'homepage'); ?>
 		</div>
-		<div class=" w-screen h-[100vh] flex items-center px-[5%] xl:px-[6%] relative">
+		<div class=" w-full h-[100vh] flex items-center px-[5%] xl:px-[6%] relative">
 			<div class="shadow w-full h-full absolute z-1  left-0"></div>
 
 			<div class='  text-white relative z-2 w-full'>
