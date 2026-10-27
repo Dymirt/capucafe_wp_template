@@ -57,9 +57,9 @@ CI instaluje zależności przez `npm ci`, kompiluje JS/SCSS i Tailwind oraz spra
 
 1. Blokuje równoległe wdrożenia i pobiera aktualny `main` z GitHuba.
 2. Sprawdza pełny SHA commita; odrzuca stare lub inne commity.
-3. Tworzy osobny katalog wydania, wykonuje `npm ci`, `npm run build` i sprawdza PHP 8.2.
+3. Tworzy osobny katalog wydania wewnątrz katalogu domeny (zgodnie z `open_basedir`), wykonuje `npm ci`, `npm run build` i sprawdza PHP 8.2 oraz odczyt plików przy ograniczeniu ścieżek.
 4. Usuwa `node_modules` z gotowego wydania i przełącza dowiązanie aktywnego motywu.
-5. Sprawdza odpowiedź HTTP strony i CSS; przy błędzie automatycznie przywraca poprzedni motyw.
+5. Sprawdza HTTP strony głównej, sklepu i CSS. Odrzuca również odpowiedź HTTP 200 zawierającą błąd `open_basedir`/fatal error lub bez arkusza aktywnego szablonu; przy błędzie automatycznie przywraca poprzedni motyw.
 
 Pierwsze wdrożenie przenosi dotychczasowy katalog motywu (z historią Git i gotowymi zasobami) do prywatnej kopii zapasowej. Kolejne przełączenia dowiązania są atomowe. Baza produkcyjna, zamówienia, uploady, rdzeń i wtyczki nie są wdrażane z tego repozytorium.
 
@@ -68,7 +68,7 @@ Pierwsze wdrożenie przenosi dotychczasowy katalog motywu (z historią Git i got
 - SSH: alias `cappucinocafe` na tym Macu.
 - Katalog wdrożeń: `~/deploy/capucafe/`.
 - Aktywny motyw: `~/domains/capuccinocafe.pl/public_html/wp-content/themes/capucafe_wp_template`.
-- Wydania: `~/deploy/capucafe/releases/`.
+- Wydania: `~/domains/capuccinocafe.pl/.capucafe-releases/` (poza `public_html`, wewnątrz dozwolonego drzewa domeny).
 - Kopie zapasowe: `~/deploy/capucafe/backups/`.
 - Log wdrożeń: `~/deploy/capucafe/deploy.log`.
 - Wymagane: Node 22, npm, PHP 8.2 (`php82`), WP-CLI, Git, curl, FreeBSD `lockf`.
@@ -78,8 +78,9 @@ Sekrety GitHub Actions: `PRODUCTION_SSH_KEY` oraz `PRODUCTION_SSH_KNOWN_HOSTS`. 
 Skrypty bootstrapu są instalowane poza katalogiem publicznym. Po świadomej zmianie `scripts/deploy/` zaktualizuj je ręcznie z zaufanej kopii:
 
 ```sh
+scp scripts/deploy/validate-response.php cappucinocafe:deploy/capucafe/
 scp scripts/deploy/{deploy,dispatch,rollback}.sh cappucinocafe:deploy/capucafe/
-ssh cappucinocafe 'chmod 700 ~/deploy/capucafe/*.sh'
+ssh cappucinocafe 'chmod 700 ~/deploy/capucafe/*.sh ~/deploy/capucafe/validate-response.php'
 ```
 
 Ręczne przywrócenie poprzedniej wersji:
@@ -89,6 +90,10 @@ ssh cappucinocafe 'bash ~/deploy/capucafe/rollback.sh'
 ```
 
 Poprzednie wydania nie są automatycznie kasowane. Porządkuj je okresowo po potwierdzeniu poprawności wdrożeń, zachowując aktywne wydanie, poprzednie wydanie oraz oryginalną kopię motywu.
+
+PHP na hostingu rozwiązuje dowiązania przed sprawdzeniem `open_basedir`. Docelowe pliki motywu muszą znajdować się wewnątrz `~/domains/capuccinocafe.pl/`; dowiązanie z `public_html` do `~/deploy/` nie spełnia tego warunku. Repozytorium Git, logi i prywatne kopie pozostają w `~/deploy/capucafe/`. Nie wyłączaj ani nie poszerzaj `open_basedir`, aby obejść błąd położenia wydania.
+
+Regresję kontroli odpowiedzi HTTP można sprawdzić lokalnie: `php tests/deploy-health-test.php`. CI uruchamia ten test przed wdrożeniem. Obejmuje on ostrzeżenie `open_basedir` przy HTTP 200, błąd krytyczny oraz cichy powrót do Storefront.
 
 ## Odtworzenie lokalnej kopii
 

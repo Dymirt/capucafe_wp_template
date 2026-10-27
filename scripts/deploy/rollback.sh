@@ -2,16 +2,18 @@
 set -euo pipefail
 export PATH="/usr/local/bin:/usr/bin:/bin:$PATH"
 BASE="$HOME/deploy/capucafe"
-LIVE="$HOME/domains/capuccinocafe.pl/public_html/wp-content/themes/capucafe_wp_template"
+DOMAIN="$HOME/domains/capuccinocafe.pl"
+RELEASES="$DOMAIN/.capucafe-releases"
+LIVE="$DOMAIN/public_html/wp-content/themes/capucafe_wp_template"
 if [[ "${CAPUCAFE_DEPLOY_LOCKED:-}" != 1 ]]; then
   exec lockf -t 0 "$BASE/deploy.lock" env CAPUCAFE_DEPLOY_LOCKED=1 bash "$0"
 fi
 PREVIOUS="$(cat "$BASE/previous-release")"
-[[ "$PREVIOUS" == "$BASE/releases/"* || "$PREVIOUS" == "$BASE/backups/"* ]]
+[[ "$PREVIOUS" == "$RELEASES/"* || "$PREVIOUS" == "$BASE/backups/"* ]]
 [[ -d "$PREVIOUS" ]]
 if [[ -L "$LIVE" ]]; then
   CURRENT="$(readlink "$LIVE")"
-elif [[ -d "$LIVE" && "$PREVIOUS" == "$BASE/releases/"* ]]; then
+elif [[ -d "$LIVE" && "$PREVIOUS" == "$RELEASES/"* ]]; then
   [[ -z "$(git -C "$LIVE" status --porcelain)" ]]
   CURRENT="$BASE/backups/original-$(date -u +%Y%m%dT%H%M%SZ)"
   mv "$LIVE" "$CURRENT"
@@ -33,5 +35,7 @@ if [[ -f "$RESTORED/.release-sha" ]]; then
 else
   git -C "$RESTORED" rev-parse HEAD > "$BASE/current-sha"
 fi
-curl --fail --silent --show-error --location --max-time 60 'https://capuccinocafe.pl/' > /dev/null
+response="$BASE/health-rollback-$(date -u +%Y%m%dT%H%M%SZ).html"
+curl --fail --silent --show-error --location --max-time 60 "https://capuccinocafe.pl/?capucafe_rollback=$(date +%s)" > "$response"
+php82 "$BASE/validate-response.php" "$response"
 echo "Restored: $PREVIOUS"

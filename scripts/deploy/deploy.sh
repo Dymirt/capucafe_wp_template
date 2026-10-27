@@ -3,8 +3,10 @@ set -euo pipefail
 export PATH="/usr/local/bin:/usr/bin:/bin:$PATH"
 umask 022
 BASE="$HOME/deploy/capucafe"
-LIVE="$HOME/domains/capuccinocafe.pl/public_html/wp-content/themes/capucafe_wp_template"
-WP_ROOT="$HOME/domains/capuccinocafe.pl/public_html"
+DOMAIN="$HOME/domains/capuccinocafe.pl"
+RELEASES="$DOMAIN/.capucafe-releases"
+LIVE="$DOMAIN/public_html/wp-content/themes/capucafe_wp_template"
+WP_ROOT="$DOMAIN/public_html"
 REPO='git@github.com:Dymirt/capucafe_wp_template.git'
 SHA="${1:-}"
 [[ "$SHA" =~ ^[0-9a-f]{40}$ ]] || { echo 'Expected a full commit SHA.' >&2; exit 2; }
@@ -22,7 +24,7 @@ git --git-dir="$BASE/repository.git" fetch --prune origin '+refs/heads/main:refs
   echo 'Commit is no longer the current main head. Refusing stale deployment.'; exit 1;
 }
 STAMP="$(date -u +%Y%m%dT%H%M%SZ)"
-RELEASE="$BASE/releases/$STAMP-$SHA"
+RELEASE="$RELEASES/$STAMP-$SHA"
 mkdir -p "$RELEASE"
 git --git-dir="$BASE/repository.git" archive "$SHA" | tar -xf - -C "$RELEASE"
 cd "$RELEASE"
@@ -31,6 +33,13 @@ npm run build
 while IFS= read -r file; do php82 -l "$file"; done < <(find . -path ./node_modules -prune -o -type f -name '*.php' -print) > "$BASE/php-lint-$STAMP.log"
 rm -rf node_modules
 printf '%s\n' "$SHA" > .release-sha
+# Web PHP resolves symlinks before checking open_basedir. Releases must stay
+# inside the domain tree even though Git, logs and private backups stay outside.
+php82 -d "open_basedir=$DOMAIN:/tmp:/usr/share:/usr/local/share:/dev" -r '
+    foreach (["style.css", "functions.php", "public/css/tailwind.css"] as $file) {
+        if (!is_readable($argv[1] . "/" . $file)) exit(1);
+    }
+' "$RELEASE"
 PREVIOUS=''
 FIRST_BACKUP=''
 SWITCHED=0
@@ -54,6 +63,9 @@ restore_previous() {
 trap restore_previous EXIT
 if [[ -L "$LIVE" ]]; then
   PREVIOUS="$(readlink "$LIVE")"
+  [[ "$PREVIOUS" == "$RELEASES/"* && -d "$PREVIOUS" ]] || {
+    echo 'Live theme points outside the domain release directory; repair it before deployment.'; exit 1;
+  }
 elif [[ -d "$LIVE" ]]; then
   # Refuse to replace uncommitted manual fixes on the original production theme.
   [[ -z "$(git -C "$LIVE" status --porcelain)" ]] || { echo 'Live theme has local changes; deployment stopped.'; exit 1; }
@@ -70,8 +82,12 @@ php82 -r 'if (!rename($argv[1], $argv[2])) exit(1);' "$NEXT" "$LIVE"
 SWITCHED=1
 # Check the active theme and origin HTTP, bypassing stale intermediate caches.
 [[ "$(wp --path="$WP_ROOT" --skip-plugins --skip-themes option get stylesheet)" == capucafe_wp_template ]]
-curl --fail --silent --show-error --location --retry 2 --max-time 60 "https://capuccinocafe.pl/?capucafe_deploy=$SHA" > "$BASE/health-$STAMP.html"
-! grep -Eqi 'Fatal error|There has been a critical error|W witrynie wystąpił krytyczny błąd' "$BASE/health-$STAMP.html"
+for page in home shop; do
+  path='/'; [[ "$page" != shop ]] || path='/sklep/'
+  response="$BASE/health-$STAMP-$page.html"
+  curl --fail --silent --show-error --location --retry 2 --max-time 60 "https://capuccinocafe.pl$path?capucafe_deploy=$SHA-$STAMP" > "$response"
+  php82 "$BASE/validate-response.php" "$response"
+done
 curl --fail --silent --show-error --location --max-time 30 "https://capuccinocafe.pl/wp-content/themes/capucafe_wp_template/public/css/tailwind.css?deploy=$SHA" > /dev/null
 printf '%s\n' "$PREVIOUS" > "$BASE/previous-release"
 printf '%s\n' "$SHA" > "$BASE/current-sha"
