@@ -1,6 +1,6 @@
 # Kontakt, pełny koszyk i miniatury pralin — 27 października 2026
 
-**Stan: przygotowane do PR, bez wdrożenia i bez push do main.** Dotyczy `capuccino-dev.local`; produkcyjny status PR #9 nie zmienia się.
+**Aktualizacja: wdrożone przez PR #10**, commit `1a961d2badaf123e5c63f876ffe63a3f548a3c2a`, workflow `40547564741` zakończony sukcesem. Poniższy raport opisuje testy lokalne przed tym wdrożeniem. Dalsza poprawka miniatur na stronie płatności WooCommerce Blocks jest osobnym, niewdrożonym zakresem opisanym w [raporcie checkoutu](CHECKOUT-PRALINE-LOCAL-2026-10-27.md).
 
 ## Zmiany
 
