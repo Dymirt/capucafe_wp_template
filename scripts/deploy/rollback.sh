@@ -8,15 +8,30 @@ if [[ "${CAPUCAFE_DEPLOY_LOCKED:-}" != 1 ]]; then
 fi
 PREVIOUS="$(cat "$BASE/previous-release")"
 [[ "$PREVIOUS" == "$BASE/releases/"* || "$PREVIOUS" == "$BASE/backups/"* ]]
-[[ -d "$PREVIOUS" && -L "$LIVE" ]]
-CURRENT="$(readlink "$LIVE")"
-ln -s "$PREVIOUS" "$LIVE.rollback"
-php82 -r 'if (!rename($argv[1], $argv[2])) exit(1);' "$LIVE.rollback" "$LIVE"
-printf '%s\n' "$CURRENT" > "$BASE/previous-release"
-if [[ -f "$PREVIOUS/.release-sha" ]]; then
-  cp "$PREVIOUS/.release-sha" "$BASE/current-sha"
+[[ -d "$PREVIOUS" ]]
+if [[ -L "$LIVE" ]]; then
+  CURRENT="$(readlink "$LIVE")"
+elif [[ -d "$LIVE" && "$PREVIOUS" == "$BASE/releases/"* ]]; then
+  [[ -z "$(git -C "$LIVE" status --porcelain)" ]]
+  CURRENT="$BASE/backups/original-$(date -u +%Y%m%dT%H%M%SZ)"
+  mv "$LIVE" "$CURRENT"
 else
-  git -C "$PREVIOUS" rev-parse HEAD > "$BASE/current-sha"
+  echo 'Unexpected live theme state.' >&2; exit 1
+fi
+if [[ "$PREVIOUS" == "$BASE/backups/"* ]]; then
+  mv "$LIVE" "$BASE/rollback-link-$(date -u +%Y%m%dT%H%M%SZ)"
+  mv "$PREVIOUS" "$LIVE"
+  RESTORED="$LIVE"
+else
+  ln -s "$PREVIOUS" "$LIVE.rollback"
+  php82 -r 'if (!rename($argv[1], $argv[2])) exit(1);' "$LIVE.rollback" "$LIVE"
+  RESTORED="$PREVIOUS"
+fi
+printf '%s\n' "$CURRENT" > "$BASE/previous-release"
+if [[ -f "$RESTORED/.release-sha" ]]; then
+  cp "$RESTORED/.release-sha" "$BASE/current-sha"
+else
+  git -C "$RESTORED" rev-parse HEAD > "$BASE/current-sha"
 fi
 curl --fail --silent --show-error --location --max-time 60 'https://capuccinocafe.pl/' > /dev/null
 echo "Restored: $PREVIOUS"

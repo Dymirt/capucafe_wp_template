@@ -39,8 +39,13 @@ restore_previous() {
   trap - EXIT
   if [[ "$code" != 0 && "$SWITCHED" == 1 ]]; then
     echo 'Health check failed; restoring previous theme.'
-    ln -s "$PREVIOUS" "$LIVE.rollback"
-    php82 -r 'if (!rename($argv[1], $argv[2])) exit(1);' "$LIVE.rollback" "$LIVE"
+    if [[ "$PREVIOUS" == "$BASE/backups/"* ]]; then
+      mv "$LIVE" "$BASE/failed-link-$STAMP"
+      mv "$PREVIOUS" "$LIVE"
+    else
+      ln -s "$PREVIOUS" "$LIVE.rollback"
+      php82 -r 'if (!rename($argv[1], $argv[2])) exit(1);' "$LIVE.rollback" "$LIVE"
+    fi
   elif [[ "$code" != 0 && -n "$FIRST_BACKUP" && ! -e "$LIVE" ]]; then
     mv "$FIRST_BACKUP" "$LIVE"
   fi
