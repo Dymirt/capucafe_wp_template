@@ -5,10 +5,16 @@
 	"main": "index.js",
 	"scripts": {
 		"start": "wp-scripts start --webpack-src-dir=resources --output-path=public",
-		"build": "wp-scripts build --webpack-src-dir=resources --output-path=public",
-		"start:css": "npx @tailwindcss/cli -i ./resources/css/tailwind.css -o ./public/css/tailwind.css --watch",
+		"build": "npm run build:js && npm run build:css && npm run verify:build",
+		"build:js": "wp-scripts build --webpack-src-dir=resources --output-path=public",
+		"dev": "node scripts/dev.mjs",
+		"verify:build": "node scripts/verify-build.mjs",
+		"local:wp": "bash scripts/local/wp.sh",
+		"local:setup": "bash scripts/local/setup.sh",
+		"start:css": "node scripts/watch-css.mjs",
 		"build:css": "npx @tailwindcss/cli -i ./resources/css/tailwind.css -o ./public/css/tailwind.css"
 	},
+	"engines": { "node": ">=22 <23" },
 	"keywords": [],
 	"author": "",
 	"license": "ISC",
