@@ -107,9 +107,7 @@ a.features-sec {
 
 }
 
-#side-menu a {
-	color: #A9957B !important;
-}
+/* Mobile menu colours are defined with the component in Tailwind. */
 
 
 .header {

@@ -66,7 +66,7 @@ function capucafe_enqueue_frontend_scripts()
 	wp_enqueue_script(
 		'capucafe-frontend-js',
 		get_stylesheet_directory_uri() . '/public/js/frontend.js',
-		$asset['dependencies'],
+		array_unique(array_merge($asset['dependencies'], ['jquery', 'wc-cart-fragments'])),
 		$asset['version'],
 		true
 	);

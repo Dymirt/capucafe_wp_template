@@ -1,16 +1,16 @@
-<div data-layer="769-1024 Stworz zestaw s3" class="1024StworzZestawS3 w-full bg-white inline-flex flex-col justify-start items-start overflow-hidden">
-	<div data-layer="Frame 110" class="Frame110 self-stretch grid grid-cols-1 md:grid-cols-2 gap-10">
+<div data-layer="769-1024 Stworz zestaw s3" id="ccafe-pralines" class="1024StworzZestawS3 w-full bg-white inline-flex flex-col justify-start items-start">
+	<div data-layer="Frame 110" class="Frame110 self-stretch grid grid-cols-1 lg:grid-cols-2 gap-10">
 		<div data-layer="Frame 109" class="Frame109 flex-1 self-stretch inline-flex flex-col justify-start items-start">
-			<div data-layer="Foto" class="Foto self-stretch min-w-72 min-h-72 bg-neutral-200 inline-flex justify-start items-start gap-2.5 overflow-hidden">
-				<div data-layer="Opakowanie 16" class="Opakowanie16 flex-1 h-full relative bg-neutral-200 flex justify-start items-start gap-2.5 overflow-hidden">
+			<div data-layer="Foto" class="Foto self-stretch min-w-0 w-full bg-neutral-200 inline-flex justify-start items-start gap-2.5 overflow-hidden">
+				<div data-layer="Opakowanie 16" class="Opakowanie16 flex-1 aspect-square relative bg-neutral-200 flex justify-start items-start gap-2.5 overflow-hidden">
 					<img
 						id="main-variation-image"
 						data-layer="image 1"
-						class="Image1 flex-1 h-[512px] object-cover"
+						class="Image1 flex-1 w-full aspect-square object-cover"
 						src="<?php echo get_the_post_thumbnail_url(get_the_ID(), 'woocommerce_single'); ?>"
 						alt="<?php the_title_attribute(); ?>" />
 					<div id="candy-image-summary"
-						class="absolute top-[140px] left-[53px] grid grid-cols-3 gap-2 w-fit">
+						aria-hidden="true">
 					</div>
 				</div>
 			</div>
@@ -62,17 +62,18 @@
 					];
 					?>
 
-					<form class="variations_form cart"
+					<form id="ccafe-praline-form" class="variations_form cart"
 						method="post"
 						enctype="multipart/form-data"
 						data-product_id="<?php echo esc_attr($product_id); ?>"
-						data-product_variations='<?php echo wp_json_encode($available_variations); ?>'>
+						data-product_variations='<?php echo wc_esc_json(wp_json_encode($available_variations)); ?>'>
 
-						<?php foreach ($attributes as $attribute_name => $options) :						?>
+						<?php wp_nonce_field(ccafe_session_nonce_action('ccafe_pralines_' . $product_id), 'ccafe_praline_nonce'); ?>
+                        <?php foreach ($attributes as $attribute_name => $options) :						?>
 							<div class="attribute-group" data-attribute="<?php echo esc_attr($attribute_name); ?>">
 
 
-								<div data-layer="wybierz" class="Wybierz self-stretch inline-flex justify-start items-start gap-0.5">
+								<div data-layer="wybierz" class="ccafe-box-options grid grid-cols-3 gap-2 w-full">
 									<?php foreach ($options as $option) :
 										$option_slug = $option;
 										$img_url = isset($image_map[$option_slug]) ? $image_map[$option_slug] : 'https://placehold.co/76x76';
@@ -80,19 +81,19 @@
 										$variation_id = isset($variation_map[$option_slug]) ? $variation_map[$option_slug] : 0;
 
 									?>
-										<div
+										<button
 											data-layer="Frame"
-											class="Frame size- p-2 bg-white rounded-sm inline-flex flex-col justify-center items-center gap-2 option-card"
+											type="button" aria-pressed="false" class="Frame p-2 !bg-white !text-stone-800 bg-white rounded-sm inline-flex flex-col justify-center items-center gap-2 option-card"
 											data-value="<?php echo esc_attr($option_slug); ?>"
-											tabindex="0"
+											data-capacity="<?php echo (int) strtok($option_slug, ' '); ?>"
 											data-variation-id="<?php echo esc_attr($variation_id); ?>"
 											data-variation-price="<?php echo esc_attr($variation_id ? wc_get_price_to_display(wc_get_product($variation_id)) : ''); ?>">
 
-											<div data-layer="Foto" class="Foto size-20 bg-neutral-200 inline-flex justify-start items-center gap-2.5 overflow-hidden">
-												<img data-layer="image" class="Image flex-1 self-stretch" src="<?php echo esc_url($img_url); ?>" />
+											<div data-layer="Foto" class="Foto w-full aspect-square bg-neutral-200 inline-flex justify-start items-center gap-2.5 overflow-hidden">
+												<img data-layer="image" alt="" class="Image flex-1 self-stretch" src="<?php echo esc_url($img_url); ?>" />
 											</div>
-											<div class="Szt justify-start text-stone-400 text-xs font-bold font-['Mulish']"><?php echo esc_html($label); ?></div>
-										</div>
+											<div class="Szt justify-start text-stone-700 text-xs font-bold font-['Mulish']"><?php echo esc_html($label); ?></div>
+										</button>
 									<?php endforeach; ?>
 								</div>
 
@@ -127,11 +128,11 @@
 
 						<div data-layer="cena i btn" class="CenaIBtn self-stretch flex flex-col justify-start items-start gap-8 pt-2">
 							<div data-layer="cena" class="Cena self-stretch h-12 flex flex-col justify-center items-start ">
-								<div id="variation-price" data-layer="80,00 zł" class="00Z self-stretch justify-start text-stone-700 text-3xl font-normal font-['Didot_LT_Pro']">30-80,00 zł</div>
-								<div data-layer="Cena brutto/1kg 00,00 zł" class="CenaBrutto1kg0000Z self-stretch justify-start text-zinc-500 text-xs font-normal font-['Mulish']">Cena brutto/1kg 00,00 zł</div>
+								<div id="variation-price" data-layer="80,00 zł" class="00Z self-stretch justify-start text-stone-700 text-3xl font-normal font-['Didot_LT_Pro']"><?php echo wp_kses_post($product->get_price_html()); ?></div>
+								<div data-layer="Cena brutto za pudełko" class="CenaBrutto1kg0000Z self-stretch justify-start text-zinc-500 text-xs font-normal font-['Mulish']">Cena brutto za pudełko</div>
 							</div>
-							<button type="submit" data-layer="BTN" class="single_add_to_cart_button Btn !p-0 inline-flex flex-col justify-start items-start gap-4">
-								<div data-layer="BTN midle dark" data-property-1="koszyk defoult" class="BtnMidleDark w-full self-stretch h-12 px-7 bg-[#A9957B] rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-4">
+							<button type="submit" disabled data-layer="BTN" class="single_add_to_cart_button Btn !p-0 inline-flex flex-col justify-start items-start gap-4">
+								<div data-layer="BTN midle dark" data-property-1="koszyk defoult" class="BtnMidleDark w-full self-stretch h-12 px-7 bg-[#74604B] rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-4">
 									<div data-layer="Poznaj nas" class="PoznajNas justify-center text-white text-sm font-bold font-['Mulish'] uppercase leading-tight">Dodaj do koszyka</div>
 									<div data-layer="shopping_bag" class="ShoppingBag"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
 											<mask id="mask0_6021_17907" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
@@ -145,7 +146,7 @@
 							</button>
 						</div>
 
-					</form>
+					<p id="praline-status" class="text-sm mt-4" role="status" aria-live="polite">Wybierz rozmiar pudełka, a następnie smaki pralin.</p><noscript>Konfigurator wymaga JavaScript do wizualnego wyboru pralin.</noscript></form>
 				</div>
 
 				<?php
@@ -165,7 +166,7 @@
 						Łącznie wybrane cukierki: <span class="global-counter">0</span>
 					</div>
 
-					<div data-layer="wybierz" class="Wybierz grid grid-cols-3 lg:grid-cols-5 gap-4 w-full">
+					<div data-layer="wybierz" class="Wybierz grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-4 w-full">
 
 						<?php
 
@@ -177,18 +178,18 @@
 							$extra_image_url = $extra_image_id ? wp_get_attachment_image_url($extra_image_id, 'thumbnail') : $thumb;
 
 						?>
-							<div data-layer="karta" data-property-1="Default" class="Karta flex w-22 h-max pb-4 bg-white rounded-sm inline-flex flex-col justify-start items-center gap-2">
-								<div data-layer="photo" class="Photo h-22 w-full self-stretch bg-stone-200 inline-flex justify-start items-center gap-2.5">
+							<div data-layer="karta" data-property-1="Default" data-candy-id="<?php echo (int) $candy->ID; ?>" class="Karta flex w-full h-full pb-4 bg-white rounded-sm inline-flex flex-col justify-start items-center gap-2">
+								<div data-layer="photo" class="Photo aspect-square w-full self-stretch bg-stone-200 inline-flex justify-start items-center gap-2.5">
 									<img
-										class="1 !h-full !w-full object-cover rounded-sm"
+										alt="<?php echo esc_attr($candy->post_title); ?>" class="1 !h-full !w-full object-cover rounded-sm"
 										src="<?= esc_url($thumb); ?>"
 										data-extra-image="<?= esc_url($extra_image_url); ?>" />
 								</div>
-								<div class="AgrestWCzekoladzie self-stretch h-7 text-center justify-start text-zinc-800 text-[10px] font-normal font-['Mulish'] overflow-hidden"><?= $title; ?></div>
-								<div class="Ilosc h-7 p-2 bg-white rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2">
-									<button type="button" class="decrement text-2xl font-bold px-1 !bg-transparent">-</button>
+								<div class="AgrestWCzekoladzie self-stretch flex-1 text-center justify-start text-zinc-800 text-xs font-normal font-['Mulish'] break-words"><?= $title; ?></div>
+								<div class="Ilosc p-0 bg-white rounded-sm outline outline-1 outline-offset-[-1px] outline-stone-400 inline-flex justify-center items-center gap-2">
+									<button type="button" aria-label="<?php echo esc_attr('Mniej: ' . $candy->post_title); ?>" class="decrement text-2xl font-bold !bg-transparent !text-stone-800">-</button>
 									<div class="candy-count text-zinc-800 text-xs font-normal font-['Mulish'] leading-tight" data-count>0</div>
-									<button type="button" class="increment text-xl font-bold px-1 !bg-transparent">+</button>
+									<button type="button" aria-label="<?php echo esc_attr('Więcej: ' . $candy->post_title); ?>" class="increment text-xl font-bold !bg-transparent !text-stone-800">+</button>
 								</div>
 							</div>
 						<?php endforeach; ?>
@@ -196,18 +197,19 @@
 				</div>
 				<div data-layer="Wybrane filtry" class="WybraneFiltry self-stretch flex flex-col justify-start items-center gap-2">
 					<div data-layer="title" class="Title self-stretch py-2.5 inline-flex justify-start items-end gap-2">
-						<div data-layer="Wybrane praliny (15 z 16)" class="WybranePraliny15Z16 justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">Wybrane praliny (<span class="global-counter">0</span> z 16)</div>
+						<div data-layer="Wybrane praliny" class="WybranePraliny15Z16 justify-start text-zinc-800 text-sm font-normal font-['Mulish'] leading-tight">Wybrane praliny (<span class="global-counter">0</span> z <span class="box-capacity">0</span>)</div>
 					</div>
 					<div id="candy-summary-list" data-layer="aktywne filtry" class="AktywneFiltry self-stretch inline-flex justify-start items-start gap-2 flex-wrap content-start overflow-hidden">
 						<div></div>
 
 
 					</div>
-					<div data-layer="btn" id="clear_all" class="Btn h-9 px-2 flex justify-center items-center">
+					<button type="button" data-layer="btn" id="clear_all" class="Btn h-9 px-2 flex justify-center items-center">
 						<div data-layer="BTN XS" data-property-1="Default" class="BtnXs size- border-b border-zinc-800 flex justify-center items-center gap-2.5">
 							<div data-layer="Poznaj nas" class="PoznajNas justify-center text-zinc-800 text-xs font-normal font-['Mulish']">Wyczyść wszystkie</div>
 						</div>
-					</div>
+					</button>
+                    <button type="submit" form="ccafe-praline-form" disabled class="ccafe-praline-submit">Dodaj zestaw do koszyka</button>
 				</div>
 			</div>
 		</div>
@@ -223,393 +225,3 @@
  */
 do_action('woocommerce_after_single_product_summary');
 ?>
-
-<script>
-	document.addEventListener('DOMContentLoaded', () => {
-		let globalCount = 0;
-		let maxCandies = 0;
-		const globalCounterEl = document.getElementById('global-counter');
-		const summaryList = document.getElementById("candy-summary-list");
-		const submitButton = document.querySelector('.single_add_to_cart_button');
-		const clearAllButton = document.getElementById('clear_all');
-
-		clearAllButton.addEventListener('click', clearAllCandies);
-
-		function clearAllCandies() {
-			document.querySelectorAll('.Karta').forEach(card => {
-				const countEl = card.querySelector('[data-count]');
-				if (countEl) {
-					countEl.textContent = '0';
-				}
-			});
-			globalCount = 0;
-			updateAll();
-		}
-
-		function updateAll() {
-			updateGlobalCounterDisplay();
-			saveCandySelectionToStorage();
-			updateSummary(); // Text version
-			updateImageSummary(); // Image box version
-			updateSubmitButtonState(); // ← Add this line
-		}
-
-		function updateSubmitButtonState() {
-			if (globalCount === maxCandies && maxCandies !== 0) {
-				submitButton.disabled = false;
-				submitButton.classList.remove('opacity-50', 'cursor-not-allowed');
-			} else {
-				submitButton.disabled = true;
-				submitButton.classList.add('opacity-50', 'cursor-not-allowed');
-			}
-		}
-
-		function updateGlobalCounterDisplay() {
-			document.querySelectorAll('.global-counter').forEach(el => {
-				el.textContent = globalCount;
-			});
-		}
-
-		function updateSummary() {
-			const summaryList = document.getElementById("candy-summary-list");
-			summaryList.innerHTML = ""; // Clear previous
-
-			document.querySelectorAll(".Karta").forEach(card => {
-				const count = parseInt(card.querySelector("[data-count]").textContent, 10);
-				if (count > 0) {
-					const name = card.querySelector(".AgrestWCzekoladzie").textContent.trim();
-					const imgSrc = card.querySelector("img").getAttribute("src");
-
-					for (let i = 0; i < count; i++) {
-						const item = document.createElement("div");
-						item.className = "Span size- px-1.5 py-[5px] bg-stone-200 rounded-sm flex justify-center items-center gap-0.5";
-
-						item.innerHTML = `
-					<div class="Frame46 size-6 p-1 bg-stone-200 flex justify-start items-center gap-2.5 flex-wrap content-center">
-						<img class="Dsc09203 w-4 self-stretch" src="${imgSrc}" />
-					</div>
-					<div class="Lemoniada justify-center text-zinc-800 text-xs font-normal font-['Mulish']">${name}</div>
-					<div class="Small size-4 relative overflow-hidden remove-candy" data-candy-name="${name}">
-						<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-					<path d="M10.0575 8.9999L13.2825 5.7824C13.4237 5.64117 13.503 5.44962 13.503 5.2499C13.503 5.05017 13.4237 4.85862 13.2825 4.71739C13.1412 4.57617 12.9497 4.49683 12.75 4.49683C12.5502 4.49683 12.3587 4.57617 12.2175 4.71739L8.99995 7.9424L5.78245 4.71739C5.64123 4.57617 5.44968 4.49683 5.24995 4.49683C5.05023 4.49683 4.85868 4.57617 4.71745 4.71739C4.57623 4.85862 4.49689 5.05017 4.49689 5.2499C4.49689 5.44962 4.57623 5.64117 4.71745 5.7824L7.94245 8.9999L4.71745 12.2174C4.64716 12.2871 4.59136 12.3701 4.55329 12.4615C4.51521 12.5529 4.49561 12.6509 4.49561 12.7499C4.49561 12.8489 4.51521 12.9469 4.55329 13.0383C4.59136 13.1297 4.64716 13.2127 4.71745 13.2824C4.78718 13.3527 4.87013 13.4085 4.96152 13.4466C5.05292 13.4846 5.15095 13.5042 5.24995 13.5042C5.34896 13.5042 5.44699 13.4846 5.53839 13.4466C5.62978 13.4085 5.71273 13.3527 5.78245 13.2824L8.99995 10.0574L12.2175 13.2824C12.2872 13.3527 12.3701 13.4085 12.4615 13.4466C12.5529 13.4846 12.6509 13.5042 12.75 13.5042C12.849 13.5042 12.947 13.4846 13.0384 13.4466C13.1298 13.4085 13.2127 13.3527 13.2825 13.2824C13.3527 13.2127 13.4085 13.1297 13.4466 13.0383C13.4847 12.9469 13.5043 12.8489 13.5043 12.7499C13.5043 12.6509 13.4847 12.5529 13.4466 12.4615C13.4085 12.3701 13.3527 12.2871 13.2825 12.2174L10.0575 8.9999Z" fill="#42352F"/>
-					</svg>
-					</div>
-				`;
-						summaryList.appendChild(item);
-					}
-				}
-			});
-		};
-
-		document.getElementById("candy-summary-list").addEventListener("click", (e) => {
-			if (e.target.closest(".remove-candy")) {
-				const button = e.target.closest(".remove-candy");
-				const candyName = button.getAttribute("data-candy-name");
-
-				document.querySelectorAll(".Karta").forEach(card => {
-					const name = card.querySelector(".AgrestWCzekoladzie").textContent.trim();
-					if (name === candyName) {
-						const countEl = card.querySelector("[data-count]");
-						let count = parseInt(countEl.textContent, 10);
-						if (count > 0) {
-							count--;
-							countEl.textContent = count;
-							updateAll(); // re-render after change
-						}
-					}
-				});
-			}
-		});
-
-
-		// add candies to main image summary
-		function updateImageSummary() {
-			const imageSummaryEl = document.getElementById("candy-image-summary");
-			imageSummaryEl.innerHTML = ""; // Clear previous
-
-			// Get selected box size
-			const selectedBoxCard = document.querySelector(".option-card.selected");
-			let boxSize = selectedBoxCard?.dataset.value || "16_szt";
-
-			//console.log('Selected box size:', boxSize);
-
-			const layoutMap = {
-				"6 sztuk": {
-					cols: "grid-cols-3",
-					left: "left-[27%]",
-					top: "top-[47%]",
-					width: "w-[38%]",
-					max: 6
-				},
-				"12 sztuk": {
-					cols: "grid-cols-4",
-					left: "left-[15%]",
-					top: "top-[41%]",
-					width: "w-[51%]",
-					max: 12
-				},
-				"16 sztuk": {
-					cols: "grid-cols-4",
-					left: "left-[14%]",
-					top: "top-[35%]",
-					width: "w-[50%]",
-					max: 16
-				},
-			};
-
-			const layout = layoutMap[boxSize] || layoutMap["16 sztuk"];
-
-			imageSummaryEl.className = `absolute grid gap-2 gap-y-[11px] ${layout.cols} ${layout.left} ${layout.top} ${layout.width}`;
-			maxCandies = layout.max;
-
-			// Tailwind class swap
-			imageSummaryEl.classList.remove("grid-cols-3", "grid-cols-4");
-			imageSummaryEl.classList.add(boxSize === "6 sztuk" ? "grid-cols-3" : "grid-cols-4");
-
-
-			document.querySelectorAll(".Karta").forEach(card => {
-				const count = parseInt(card.querySelector("[data-count]").textContent, 10);
-				//const image = card.querySelector("img").getAttribute("src");
-				const image = card.querySelector("img").dataset.extraImage || card.querySelector("img").src;
-
-				for (let i = 0; i < count; i++) {
-					const img = document.createElement("img");
-					img.src = image;
-					img.className = "w-[94%] h-auto"; // Apply same classes
-
-					imageSummaryEl.appendChild(img);
-
-				}
-			});
-		};
-
-		// Add candies to the cart on form submit
-		document.querySelector('form.variations_form.cart').addEventListener('submit', () => {
-			const candies = [];
-
-			document.querySelectorAll(".Karta").forEach(card => {
-				const count = parseInt(card.querySelector("[data-count]").textContent, 10);
-				if (count > 0) {
-					const candyName = card.querySelector(".AgrestWCzekoladzie").textContent.trim();
-					candies.push({
-						name: candyName,
-						quantity: count
-					});
-				}
-			});
-
-			const boxSize = document.querySelector(".option-card.selected")?.dataset.value || "16_szt";
-
-			document.getElementById("custom_candies_input").value = JSON.stringify(candies);
-			document.getElementById("box_size_input").value = boxSize;
-
-			localStorage.removeItem('candySelection');
-
-		});
-
-
-
-		// Candies selection logic
-		document.querySelectorAll('.Karta').forEach(card => {
-			const countEl = card.querySelector('[data-count]');
-			const incrementBtn = card.querySelector('.increment');
-			const decrementBtn = card.querySelector('.decrement');
-
-			if (!countEl || !incrementBtn || !decrementBtn) return;
-
-			incrementBtn.addEventListener('click', () => {
-				let count = parseInt(countEl.textContent, 10);
-				if (globalCount < maxCandies) {
-					count++;
-					countEl.textContent = count;
-					globalCount++;
-					updateAll();
-				} else {
-					alert(`Nie możesz wybrać więcej niż ${maxCandies} pralin.`);
-				}
-			});
-
-			decrementBtn.addEventListener('click', () => {
-				let count = parseInt(countEl.textContent, 10);
-				if (count > 0) {
-					count--;
-					countEl.textContent = count;
-					globalCount--;
-					updateAll();
-				}
-			});
-		});
-
-		// Variation selection logic
-		document.querySelectorAll('.attribute-group').forEach(group => {
-			const cards = group.querySelectorAll('.option-card');
-			cards.forEach(card => {
-				card.addEventListener('click', () => {
-
-					const mainImage = document.getElementById('main-variation-image');
-					const variationImgEl = card.querySelector('img');
-					if (mainImage && variationImgEl) {
-						const newSrc = variationImgEl.getAttribute('src');
-						if (newSrc) mainImage.setAttribute('src', newSrc);
-					}
-					// Remove outline classes from siblings
-					cards.forEach(c => {
-						c.classList.remove('outline', 'outline-1', 'outline-offset-[-1px]', 'outline-stone-400', 'selected');
-					});
-
-					// Add outline classes on clicked card
-					card.classList.add('outline', 'outline-1', 'outline-offset-[-1px]', 'outline-stone-400', 'selected');
-
-					// Save selected value on the attribute group div dataset or a hidden input
-					group.dataset.selectedValue = card.dataset.value;
-
-					maxCandies = parseInt(card.dataset.value, 10) || 16; // Default to 16 if not set
-
-					//console.log('size:', maxCandies);
-
-					requestAnimationFrame(() => {
-						removeNotFitCandies();
-						updateAll();
-					});
-
-
-
-					let huddenVariationInput = group.querySelector('input[name="variation_id"]');
-					if (!huddenVariationInput) {
-						huddenVariationInput = document.createElement('input');
-						huddenVariationInput.type = 'hidden';
-						huddenVariationInput.name = 'variation_id';
-						group.appendChild(huddenVariationInput);
-					}
-					huddenVariationInput.value = card.dataset.variationId || 0;
-
-					// Update the variation price
-					const price = document.getElementById("variation-price");
-					if (price) {
-						price.textContent = card.dataset.variationPrice ? `${card.dataset.variationPrice} zł` : '80,00 zł';
-					}
-
-				});
-			});
-		});
-
-		function removeNotFitCandies() {
-			let tmpCount = 0;
-			document.querySelectorAll('.Karta').forEach(card => {
-				let candycounter = 0;
-				const countEl = card.querySelector('[data-count]');
-				let count = parseInt(countEl.textContent, 10); // ✅ use let instead of const
-				if (tmpCount >= maxCandies) {
-					countEl.textContent = 0;
-					return;
-				}
-				while (tmpCount < maxCandies && candycounter < count) {
-					tmpCount++;
-					candycounter++;
-					countEl.textContent = candycounter;
-				}
-
-			});
-			globalCount = tmpCount;
-		}
-
-		// Save selection to localStorage
-		function saveCandySelectionToStorage() {
-			const candies = [];
-			document.querySelectorAll(".Karta").forEach(card => {
-				const count = parseInt(card.querySelector("[data-count]").textContent, 10);
-				if (count > 0) {
-					const candyName = card.querySelector(".AgrestWCzekoladzie").textContent.trim();
-					candies.push({
-						name: candyName,
-						quantity: count
-					});
-				}
-			});
-			const boxSize = document.querySelector(".option-card.selected")?.dataset.value || "16_szt";
-			localStorage.setItem('candySelection', JSON.stringify({
-				boxSize,
-				candies
-			}));
-		}
-
-		// Load selection from localStorage
-		function loadCandySelectionFromStorage() {
-			const saved = localStorage.getItem('candySelection');
-			if (!saved) return;
-
-			try {
-				const {
-					boxSize,
-					candies
-				} = JSON.parse(saved);
-
-				// Restore box size
-				const boxCard = document.querySelector(`.option-card[data-value='${boxSize}']`);
-				if (boxCard) {
-					boxCard.click();
-				}
-
-				setTimeout(() => {
-					candies.forEach(({
-						name,
-						quantity
-					}) => {
-						document.querySelectorAll('.Karta').forEach(card => {
-							const title = card.querySelector(".AgrestWCzekoladzie").textContent.trim();
-							if (title === name) {
-								const countEl = card.querySelector('[data-count]');
-								const incrementBtn = card.querySelector('.increment');
-								let current = parseInt(countEl.textContent, 10);
-								while (current < quantity && globalCount < maxCandies) {
-									incrementBtn.click();
-									current++;
-								}
-							}
-						});
-					});
-				}, 100);
-
-			} catch (e) {
-				console.error("Failed to restore candy selection", e);
-			}
-		}
-		// Log form submission
-		/*
-		document.querySelector('form.variations_form.cart').addEventListener('submit', function(e) {
-			// Log the form element
-			console.log('Form element:', this);
-
-			// Optional: prevent actual submission for testing
-			// e.preventDefault();
-
-			// Use FormData to see all the form fields and values
-			const formData = new FormData(this);
-
-			console.log('Form data:');
-			for (const [key, value] of formData.entries()) {
-				console.log(`${key}: ${value}`);
-			}
-		});
-		*/
-
-		// Hook saving to changes
-		function bindStorageEvents() {
-			document.querySelectorAll('.increment, .decrement').forEach(btn => {
-				btn.addEventListener('click', () => setTimeout(saveCandySelectionToStorage, 100));
-			});
-			document.querySelectorAll('.option-card').forEach(card => {
-				card.addEventListener('click', () => setTimeout(saveCandySelectionToStorage, 100));
-			});
-		}
-
-		// Initialize restoration
-		loadCandySelectionFromStorage();
-		bindStorageEvents();
-
-
-
-	});
-</script>
-
-<div class="top-[46%] left-[26%] left-[14%] top-[34%] w-[20%] h-[20%] size-[10%] w-[10%] h-auto w-[60%] w-[20%] w-[38%] w-[94%] left-[27%] top-[47%] w-[51%] top-[41%] gap-y-[7.5%]"></div>

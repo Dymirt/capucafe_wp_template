@@ -69,80 +69,17 @@ if ( function_exists( 'WC' ) ) {
 		</header><!-- #masthead -->
 		<?php get_template_part('headers/header', 'shop'); ?>
 
-		<div id="menu-overlay" class="hidden fixed inset-0 bg-black bg-opacity-50 z-[2]"></div>
-		<!-- Side Menu -->
-		<div id="side-menu" class="fixed inset-0 shadow-lg transform translate-x-full transition-transform duration-300 z-[4] overflow-y-auto bg-transparent">
-			<div class="p-4 border-b flex justify-end items-center h-[100px]">
-				<div id="menu-close" class="hover:colour-red">
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-						<mask id="mask0_419_5348" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
-							<rect width="24" height="24" fill="#D9D9D9" />
-						</mask>
-						<g mask="url(#mask0_419_5348)">
-							<path d="M12 13.4L7.09999 18.3C6.91665 18.4834 6.68332 18.575 6.39999 18.575C6.11665 18.575 5.88332 18.4834 5.69999 18.3C5.51665 18.1167 5.42499 17.8834 5.42499 17.6C5.42499 17.3167 5.51665 17.0834 5.69999 16.9L10.6 12L5.69999 7.10005C5.51665 6.91672 5.42499 6.68338 5.42499 6.40005C5.42499 6.11672 5.51665 5.88338 5.69999 5.70005C5.88332 5.51672 6.11665 5.42505 6.39999 5.42505C6.68332 5.42505 6.91665 5.51672 7.09999 5.70005L12 10.6L16.9 5.70005C17.0833 5.51672 17.3167 5.42505 17.6 5.42505C17.8833 5.42505 18.1167 5.51672 18.3 5.70005C18.4833 5.88338 18.575 6.11672 18.575 6.40005C18.575 6.68338 18.4833 6.91672 18.3 7.10005L13.4 12L18.3 16.9C18.4833 17.0834 18.575 17.3167 18.575 17.6C18.575 17.8834 18.4833 18.1167 18.3 18.3C18.1167 18.4834 17.8833 18.575 17.6 18.575C17.3167 18.575 17.0833 18.4834 16.9 18.3L12 13.4Z" fill="#333333" />
-						</g>
-					</svg>
-				</div>
-			</div>
-			<div class="collapse duration-150"></div> <!--tailwindcss collapse class to hide the menu items by default-->
-			<?php
-			wp_nav_menu([
-				'theme_location' => 'mobile-menu',
-				'walker'         => new Header_Walker_Nav_Menu(),
-				'container'      => false,
-				'items_wrap'     => '%3$s', // no ul
-				'fallback_cb'    => '',     // IMPORTANT! <- Empty string, not false!
-			]);
-			?>
-		</div>
+        <dialog id="side-menu" class="ccafe-mobile-menu" aria-label="Menu główne">
+            <div class="ccafe-menu-heading"><span>Menu</span><button type="button" id="menu-close" aria-label="Zamknij menu">×</button></div>
+            <nav aria-label="Nawigacja mobilna">
+                <?php wp_nav_menu([
+                    'theme_location' => 'mobile-menu', 'walker' => new Header_Walker_Nav_Menu(),
+                    'container' => false, 'items_wrap' => '%3$s', 'fallback_cb' => '',
+                ]); ?>
+            </nav>
+        </dialog>
 
 		<script>
-			function openMenu() {
-				const sideMenu = document.getElementById('side-menu');
-				const overlay = document.getElementById('menu-overlay');
-				const menuClose = document.getElementById('menu-close');
-
-				sideMenu.classList.remove('translate-x-full');
-				overlay.classList.remove('hidden');
-				menuClose.addEventListener('click', closeMenu);
-				overlay.addEventListener('click', closeMenu);
-
-				document.addEventListener('keydown', function(e) {
-					if (e.key === 'Escape') closeMenu();
-				});
-
-			};
-
-			function closeMenu() {
-				const sideMenu = document.getElementById('side-menu');
-				const overlay = document.getElementById('menu-overlay');
-				sideMenu.classList.add('translate-x-full');
-				overlay.classList.add('hidden');
-			};
-
-			function toggleMenuSiblings(button) {
-				const parent = button.parentNode.parentNode; // Get the parent of the button's parent (the menu item)
-				const siblings = Array.from(parent.children).slice(1);
-
-				console.log(siblings);
-
-				const areHidden = siblings
-					.filter(el => el !== button)
-					.every(el => el.classList.contains('!collapse'));
-
-				siblings.forEach(el => {
-					if (el !== button) {
-						if (areHidden) {
-							el.classList.remove('!collapse');
-							button.querySelector('.BoundingBox').classList.remove('rotate-180');
-						} else {
-							el.classList.add('!collapse');
-							button.querySelector('.BoundingBox').classList.add('rotate-180');
-						}
-					}
-				});
-			};
-
 			document.addEventListener('DOMContentLoaded', () => {
 				document.querySelectorAll('.menu-item-swap').forEach((el) => {
 					const link = el.querySelector('a');
@@ -182,99 +119,6 @@ if ( function_exists( 'WC' ) ) {
 					}
 				});
 			});
-			document.addEventListener('click', function(e) {
-				const btn = e.target.closest('.remove_from_cart_button');
-				if (!btn) return;
-
-				const row = btn.closest('[data-cart-item]');
-				if (row) {
-					row.style.transition = 'opacity .2s ease, height .2s ease, margin .2s ease, padding .2s ease';
-					row.style.opacity = '0';
-					// collapse space after fade
-					setTimeout(() => {
-						row.style.height = '0';
-						row.style.margin = '0';
-						row.style.padding = '0';
-					}, 200);
-					// fully remove from DOM a bit later
-					setTimeout(() => row.remove(), 450);
-				}
-				// Important: don't call preventDefault — let Woo do its AJAX remove.
-			});
-
-			(function() {
-				const ajaxUrl = (window.wc_add_to_cart_params && wc_add_to_cart_params.ajax_url) ?
-					wc_add_to_cart_params.ajax_url :
-					(window.ajaxurl || '/wp-admin/admin-ajax.php');
-				const nonce = '<?php echo esc_js(wp_create_nonce('ccafe_update_qty')); ?>';
-
-				function applyFragments(data) {
-					if (!data || !data.fragments) return;
-					Object.keys(data.fragments).forEach(selector => {
-						document.querySelectorAll(selector).forEach(el => {
-							const wrapper = document.createElement('div');
-							wrapper.innerHTML = data.fragments[selector];
-							const fresh = wrapper.firstElementChild;
-							if (fresh) el.replaceWith(fresh);
-						});
-					});
-				}
-
-				async function updateQty(key, newQty) {
-					const body = new URLSearchParams({
-						action: 'ccafe_update_cart_item_qty',
-						nonce: nonce,
-						cart_item_key: key,
-						quantity: newQty
-					});
-
-					const res = await fetch(ajaxUrl, {
-						method: 'POST',
-						headers: {
-							'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-						},
-						body
-					});
-
-					// Woo returns JSON with { fragments, cart_hash }
-					const data = await res.json().catch(() => null);
-					applyFragments(data);
-				}
-
-				document.addEventListener('click', function(e) {
-					const plus = e.target.closest('.js-qty-plus');
-					const minus = e.target.closest('.js-qty-minus');
-					if (!plus && !minus) return;
-
-					const box = (plus || minus).closest('[data-qty-box]');
-					if (!box) return;
-
-					const key = box.dataset.cartItem;
-					const valEl = box.querySelector('.js-qty-val');
-					const cur = parseInt(valEl.textContent.trim(), 10) || 0;
-					const next = plus ? cur + 1 : cur - 1;
-
-					// optimistic UI
-					if (next <= 0) {
-						const row = box.closest('[data-cart-item]') || box.parentElement;
-						if (row) {
-							row.style.transition = 'opacity .2s ease, height .2s ease, margin .2s ease, padding .2s ease';
-							row.style.opacity = '0';
-							setTimeout(() => {
-								row.style.height = '0';
-								row.style.margin = '0';
-								row.style.padding = '0';
-							}, 200);
-							setTimeout(() => row.remove(), 450);
-						}
-					} else {
-						valEl.textContent = next;
-					}
-
-					// server update (fragments will refresh totals, counts, list)
-					updateQty(key, Math.max(0, next));
-				});
-			})();
 		</script>
 
 		<?php

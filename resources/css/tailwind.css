@@ -1,3 +1,128 @@
 @config "../../tailwind.config.js";
 @import "tailwindcss" source(none);
 
+
+/* Native navigation modal sits in the top layer above both header variants. */
+.ccafe-mobile-menu {
+  @apply fixed inset-y-0 left-auto right-0 m-0 p-0 bg-white text-stone-800 border-0;
+  width: min(100%, 28rem); max-width: 100%; height: 100dvh; max-height: 100dvh;
+  overscroll-behavior: contain;
+}
+.ccafe-mobile-menu::backdrop { background: rgb(0 0 0 / 45%); }
+.ccafe-menu-heading { @apply sticky top-0 bg-white flex justify-between items-center px-6 border-b border-stone-200; min-height: 80px; z-index: 1; }
+.ccafe-menu-heading button, .ccafe-menu-open { @apply items-center justify-center !p-2 !bg-transparent !text-stone-800; min-width: 44px; min-height: 44px; }
+.ccafe-menu-open { display: flex; }
+@media (min-width: 1280px) { .ccafe-menu-open { display: none; } }
+.ccafe-menu-heading button { font-size: 32px; line-height: 1; }
+.ccafe-menu-item { @apply border-b border-stone-100; }
+.ccafe-menu-item > a, .ccafe-menu-item summary, .ccafe-menu-parent { @apply block px-6 py-4 text-sm !text-stone-800; min-height: 48px; overflow-wrap: anywhere; }
+.ccafe-menu-item summary { @apply cursor-pointer font-bold uppercase; display: list-item; list-style-position: inside; }
+.ccafe-menu-item > a { @apply font-bold uppercase; }
+.ccafe-menu-children { @apply px-4 pb-3; }
+.ccafe-menu-children .ccafe-menu-item > a { @apply font-normal normal-case; }
+.ccafe-cart-popover { @apply fixed top-[100px] right-4 z-50; max-width: calc(100vw - 2rem); }
+.ccafe-mini-cart { @apply bg-white text-stone-800 p-5 shadow-lg border border-stone-200; width: 400px; max-width: 100%; max-height: calc(100dvh - 120px); overflow-y: auto; }
+.ccafe-cart-row { @apply grid gap-3 py-3 border-b border-stone-200; grid-template-columns: 64px minmax(0, 1fr); }
+.ccafe-cart-row > img { width: 64px; height: 64px; object-fit: cover; }
+.ccafe-cart-row a { overflow-wrap: anywhere; }
+.ccafe-cart-quantity { @apply flex items-center gap-2 my-2; }
+.ccafe-cart-quantity button { @apply !p-2 !bg-stone-100 !text-stone-800; min-width: 44px; min-height: 44px; }
+.ccafe-cart-message { @apply text-sm; }
+.ccafe-cart-message:empty { display: none; }
+.ccafe-cart-total { @apply font-bold mt-4; }
+.ccafe-cart-link { @apply block text-center !bg-stone-700 !text-white px-4 py-3 mt-4; }
+#ccafe-pralines .Frame110 > *, #ccafe-pralines .Txt { min-width: 0; }
+#ccafe-pralines .option-card { @apply border border-transparent; min-width: 0; }
+#ccafe-pralines .option-card[aria-pressed="true"] { @apply border-stone-700; }
+#ccafe-pralines .increment, #ccafe-pralines .decrement { @apply !p-1; min-height: 44px; min-width: 44px; }
+#ccafe-pralines button:disabled { opacity: .45; cursor: not-allowed; }
+#ccafe-pralines #clear_all { @apply !bg-transparent !text-stone-800; min-height: 44px; }
+#ccafe-pralines .ccafe-selected-candy { @apply !bg-stone-200 !text-stone-800 !p-2 text-xs; min-height: 44px; }
+/* Normalized bounds of the insert in each square product photograph.
+   Explicit rows keep partial selections in the same cells as a full box. */
+#candy-image-summary {
+  position: absolute;
+  left: 12.11%; top: 33.62%; width: 52.71%; height: 52.14%;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-rows: repeat(4, minmax(0, 1fr));
+  gap: 0;
+  place-items: center;
+  pointer-events: none;
+}
+#candy-image-summary[data-capacity="6"] {
+  left: 25.44%; top: 45.56%; width: 39.25%; height: 25.94%;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+}
+#candy-image-summary[data-capacity="12"] {
+  left: 13.5%; top: 39.88%; width: 52.44%; height: 39.19%;
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+}
+#candy-image-summary img {
+  width: 84%; height: 84%; min-width: 0; min-height: 0;
+  object-fit: contain; display: block; margin: 0;
+}
+.ccafe-mobile-menu :focus-visible, .ccafe-menu-open:focus-visible, #ccafe-pralines :focus-visible, .ccafe-mini-cart :focus-visible { outline: 2px solid #74604b; outline-offset: 3px; }
+html.ccafe-menu-is-open, html.ccafe-menu-is-open body { overflow: hidden !important; }
+.header-shop .ccafe-cart-link { color: white !important; }
+#ccafe-pralines .option-card { padding: 8px !important; width: 100%; }
+#ccafe-pralines .option-card .Foto { max-width: 80px; }
+#ccafe-pralines .ccafe-praline-submit { @apply w-full !bg-stone-700 !text-white !p-3; min-height: 48px; }
+.header .ccafe-mini-cart a, .header-shop .ccafe-mini-cart a { color: #292524 !important; }
+.header .ccafe-mini-cart .ccafe-cart-link, .header-shop .ccafe-mini-cart .ccafe-cart-link { color: white !important; }
+
+/* Footer columns grow with their content; no fixed-height flex wrapping. */
+#colophon.ccafe-footer { padding: 0; background: #42352f; color: #f2ede7; }
+.ccafe-footer-layout {
+  @apply grid gap-8 px-5 py-12 mx-auto;
+  max-width: 1440px;
+  grid-template-columns: minmax(0, 1fr);
+}
+.ccafe-footer-layout > *, .ccafe-footer-menu-item { min-width: 0; }
+.ccafe-footer-brand { max-width: 176px; }
+#colophon .ccafe-footer-menu, #colophon .ccafe-footer-submenu { list-style: none; padding: 0; margin: 0; }
+#colophon .ccafe-footer-menu-item { margin: 0 0 8px; break-inside: avoid; }
+#colophon .ccafe-footer-menu a, .ccafe-footer-group summary {
+  display: block; min-height: 44px; padding: 11px 0; font-size: 14px; line-height: 22px;
+  overflow-wrap: anywhere;
+}
+.ccafe-footer-group summary, #colophon .ccafe-footer-menu > li > a {
+  color: #d6c4ac; font-size: 12px; font-weight: 700; text-transform: uppercase;
+}
+.ccafe-footer-group summary { display: flex; gap: 12px; justify-content: space-between; cursor: pointer; list-style: none; }
+.ccafe-footer-group summary::-webkit-details-marker { display: none; }
+.ccafe-footer-group summary::after { content: '+'; font-size: 20px; font-weight: 400; flex: none; }
+.ccafe-footer-group[open] > summary::after { content: '−'; }
+#colophon .ccafe-footer-submenu { padding-left: 12px; }
+#colophon .ccafe-footer-submenu .ccafe-footer-menu-item { margin-bottom: 0; }
+#colophon .ccafe-footer-overview { font-size: 12px; }
+.ccafe-footer-contact { border-top: 1px solid #77665c; padding-top: 24px; }
+.ccafe-footer-addresses { @apply grid gap-6; font-style: normal; margin: 0; font-size: 14px; line-height: 22px; }
+#colophon .ccafe-footer-addresses p { margin: 4px 0 0; }
+.ccafe-footer-addresses strong { color: #d6c4ac; }
+.ccafe-footer-addresses a, .ccafe-footer-email { display: block; min-height: 44px; padding: 11px 0; font-size: 14px; line-height: 22px; }
+.ccafe-footer-email { overflow-wrap: anywhere; }
+.ccafe-footer-socials { margin-top: 16px; }
+#colophon .ccafe-footer-socials p { margin: 0 0 12px; font-size: 12px; font-weight: 700; text-transform: uppercase; color: #d6c4ac; }
+.ccafe-footer-social-link { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; }
+.ccafe-footer-bottom { grid-column: 1 / -1; border-top: 1px solid #77665c; padding-top: 24px; font-size: 12px; }
+#colophon :focus-visible { outline: 2px solid #f2ede7; outline-offset: 3px; }
+#colophon a:hover, .ccafe-footer-group summary:hover { text-decoration: underline !important; }
+@media (min-width: 640px) {
+  .ccafe-footer-layout { padding-inline: 32px; }
+  #colophon .ccafe-footer-menu { columns: 2; column-gap: 24px; }
+  .ccafe-footer-addresses { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 768px) {
+  .ccafe-footer-layout { grid-template-columns: minmax(0, 1fr) 220px; gap: 32px; padding-block: 64px; }
+  .ccafe-footer-brand { grid-column: 1 / -1; }
+  .ccafe-footer-contact { border-top: 0; padding-top: 0; }
+  .ccafe-footer-addresses { grid-template-columns: minmax(0, 1fr); }
+  .ccafe-footer-group summary::after { font-size: 16px; }
+}
+@media (min-width: 1024px) { #colophon .ccafe-footer-menu { columns: 3; } }
+@media (min-width: 1280px) {
+  .ccafe-footer-layout { grid-template-columns: 176px minmax(0, 1fr) 240px; gap: 40px; padding-inline: 48px; }
+  .ccafe-footer-brand { grid-column: auto; }
+}

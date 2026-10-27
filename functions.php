@@ -3,6 +3,9 @@
 // Enqueue scripts/styles
 require_once get_stylesheet_directory() . '/inc/functions/enqueue.php';
 
+require_once get_stylesheet_directory() . '/inc/functions/cart-validation.php';
+require_once get_stylesheet_directory() . '/inc/functions/praline-validation.php';
+
 // Register custom post types
 #require_once get_stylesheet_directory() . '/inc/custom-post-types/slodki-stol.php';
 require_once get_stylesheet_directory() . '/inc/custom-post-types/praliny_candy.php';
@@ -247,21 +250,6 @@ add_filter('woocommerce_order_item_display_meta_key', function ($display_key, $m
 	}
 	return $display_key;
 }, 10, 2);
-
-// Add custom candies and box size to cart item data
-add_filter('woocommerce_add_cart_item_data', function ($cart_item_data, $product_id, $variation_id) {
-	if (!empty($_POST['custom_candies'])) {
-		$cart_item_data['custom_candies'] = json_decode(stripslashes($_POST['custom_candies']), true);
-	}
-
-	if (!empty($_POST['box_size'])) {
-		$cart_item_data['box_size'] = sanitize_text_field($_POST['box_size']);
-	}
-
-	return $cart_item_data;
-}, 10, 3);
-
-
 
 // Display custom candies and box size in cart item name
 add_filter('woocommerce_cart_item_name', function ($product_name, $cart_item, $cart_item_key) {
@@ -869,54 +857,11 @@ add_action('wp', function () {
 });
 
 add_filter('woocommerce_add_to_cart_fragments', function ($fragments) {
-	// counts
-	ob_start(); ?>
-	<span class="js-cart-count"><?php echo (int) WC()->cart->get_cart_contents_count(); ?></span>
-	<?php $fragments['.js-cart-count'] = ob_get_clean();
-
-	ob_start(); ?>
-	<span class="js-cart-button-count"><?php echo (int) WC()->cart->get_cart_contents_count(); ?></span>
-	<?php $fragments['.js-cart-button-count'] = ob_get_clean();
-
-	// header badge (optional)
-	ob_start(); ?>
-	<span class="js-cart-badge text-[6px]"><?php echo (int) WC()->cart->get_cart_contents_count(); ?></span>
-	<?php $fragments['.js-cart-badge'] = ob_get_clean();
-
-	// subtotal
-	ob_start(); ?>
-	<span class="js-cart-subtotal"><?php echo WC()->cart->get_cart_subtotal(); ?></span>
-	<?php $fragments['.js-cart-subtotal'] = ob_get_clean();
-
-	// --- NEW: per-line fragments ---
-	foreach (WC()->cart->get_cart() as $cart_item_key => $cart_item) {
-		$product = $cart_item['data'] ?? null;
-		$qty     = (int) ($cart_item['quantity'] ?? 0);
-		if (! $product || $qty <= 0) continue;
-
-		// line subtotal
-		ob_start(); ?>
-		<span class="js-line-subtotal">
-			<?php echo wp_kses_post(WC()->cart->get_product_subtotal($product, $qty)); ?>
-		</span>
-		<?php
-		$fragments['[data-cart-item="' . $cart_item_key . '"] .js-line-subtotal'] = ob_get_clean();
-
-		// qty (optional, to keep qty text in sync with server)
-		ob_start(); ?>
-		<span class="js-qty-val"><?php echo (int) $qty; ?></span>
-<?php
-		$fragments['[data-cart-item="' . $cart_item_key . '"] .js-qty-val'] = ob_get_clean();
-	}
-
-	// If you want your custom list to persist after AJAX, also return your mini-cart HTML
-	// that lives inside .widget_shopping_cart_content:
-	ob_start();
-	// render the SAME loop you use in the popover (extract to a template part if you like)
-	wc_get_template('cart/mini-cart.php'); // or include your own partial that outputs your custom HTML
-	$fragments['.widget_shopping_cart_content'] = ob_get_clean();
-
-	return $fragments;
+    ob_start();
+    get_template_part('headers/parts/mini-cart');
+    $fragments['.ccafe-mini-cart'] = ob_get_clean();
+    $fragments['.js-cart-badge'] = '<span class="js-cart-badge text-[6px]">' . (int) WC()->cart->get_cart_contents_count() . '</span>';
+    return $fragments;
 }, 20);
 
 // Make sure cart fragments script is loaded
@@ -926,31 +871,6 @@ add_action('wp_enqueue_scripts', function () {
 
 
 
-
-// AJAX: update cart item quantity (plus/minus in mini cart)
-add_action('wp_ajax_ccafe_update_cart_item_qty', 'ccafe_update_cart_item_qty');
-add_action('wp_ajax_nopriv_ccafe_update_cart_item_qty', 'ccafe_update_cart_item_qty');
-function ccafe_update_cart_item_qty()
-{
-	check_ajax_referer('ccafe_update_qty', 'nonce');
-
-	$key = isset($_POST['cart_item_key']) ? wc_clean(wp_unslash($_POST['cart_item_key'])) : '';
-	$qty = isset($_POST['quantity']) ? (int) $_POST['quantity'] : -1;
-
-	if ($key === '') {
-		wp_send_json_error(['message' => 'Missing key'], 400);
-	}
-
-	if ($qty <= 0) {
-		WC()->cart->remove_cart_item($key);
-	} else {
-		WC()->cart->set_quantity($key, $qty, true); // true = recalc totals
-	}
-
-	// Return refreshed fragments (same as Woo does)
-	WC_AJAX::get_refreshed_fragments();
-	wp_die();
-}
 
 // Ensure cart fragments are loaded (usually already)
 add_action('wp_enqueue_scripts', function () {
