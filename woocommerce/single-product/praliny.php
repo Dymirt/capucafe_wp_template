@@ -9,7 +9,7 @@
 						class="Image1 flex-1 w-full aspect-square object-cover"
 						src="<?php echo get_the_post_thumbnail_url(get_the_ID(), 'woocommerce_single'); ?>"
 						alt="<?php the_title_attribute(); ?>" />
-					<div id="candy-image-summary"
+					<div id="candy-image-summary" class="ccafe-praline-image-grid"
 						aria-hidden="true">
 					</div>
 				</div>

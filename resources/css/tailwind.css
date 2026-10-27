@@ -40,7 +40,7 @@
 #ccafe-pralines .ccafe-selected-candy { @apply !bg-stone-200 !text-stone-800 !p-2 text-xs; min-height: 44px; }
 /* Normalized bounds of the insert in each square product photograph.
    Explicit rows keep partial selections in the same cells as a full box. */
-#candy-image-summary {
+.ccafe-praline-image-grid {
   position: absolute;
   left: 12.11%; top: 33.62%; width: 52.71%; height: 52.14%;
   display: grid;
@@ -50,16 +50,16 @@
   place-items: center;
   pointer-events: none;
 }
-#candy-image-summary[data-capacity="6"] {
+.ccafe-praline-image-grid[data-capacity="6"] {
   left: 25.44%; top: 45.56%; width: 39.25%; height: 25.94%;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   grid-template-rows: repeat(2, minmax(0, 1fr));
 }
-#candy-image-summary[data-capacity="12"] {
+.ccafe-praline-image-grid[data-capacity="12"] {
   left: 13.5%; top: 39.88%; width: 52.44%; height: 39.19%;
   grid-template-rows: repeat(3, minmax(0, 1fr));
 }
-#candy-image-summary img {
+.ccafe-praline-image-grid img {
   width: 84%; height: 84%; min-width: 0; min-height: 0;
   object-fit: contain; display: block; margin: 0;
 }
@@ -126,3 +126,106 @@ html.ccafe-menu-is-open, html.ccafe-menu-is-open body { overflow: hidden !import
   .ccafe-footer-layout { grid-template-columns: 176px minmax(0, 1fr) 240px; gap: 40px; padding-inline: 48px; }
   .ccafe-footer-brand { grid-column: auto; }
 }
+
+/* Contact: preserve the original icon-led composition; allow intrinsic shrinking. */
+.ccafe-contact-original > *, .ccafe-contact .Txt { min-width: 0; }
+.ccafe-contact-original h1, .ccafe-contact-original h2 { font-size: 30px; line-height: 1.2; margin: 0; overflow-wrap: anywhere; }
+.ccafe-contact .Ico { flex-shrink: 0; }
+.ccafe-contact .Txt { overflow-wrap: anywhere; }
+.ccafe-contact .Txt a { color: inherit; text-decoration: none; }
+.ccafe-contact .Txt a:hover { text-decoration: underline; }
+.ccafe-contact .Txt a[href^="tel:"] { white-space: nowrap; }
+.ccafe-contact-card .wpcf7, .ccafe-contact-card form, .ccafe-contact-card form > *, .ccafe-contact-card form .grid > * { min-width: 0; max-width: 100%; }
+.ccafe-contact-card .wpcf7 p { margin: 0 0 16px; }
+.ccafe-contact-field-label { display: block; font-size: 13px; line-height: 1.5; margin-bottom: 6px; }
+.ccafe-contact .wpcf7 input:not([type=checkbox]):not([type=hidden]), .ccafe-contact .wpcf7 textarea { width: 100%; min-width: 0; min-height: 48px; box-sizing: border-box; padding: 12px; font-size: 16px; }
+.ccafe-contact .wpcf7 textarea { min-height: 160px; height: 180px; resize: vertical; }
+.ccafe-contact .wpcf7 .wpcf7-list-item { margin: 0; display: block; }
+.ccafe-contact .wpcf7 .wpcf7-list-item label { display: grid; grid-template-columns: 20px minmax(0, 1fr); gap: 12px; min-height: 44px; padding-block: 8px; font-size: 13px; line-height: 1.6; cursor: pointer; }
+.ccafe-contact .wpcf7 input[type=checkbox] { width: 20px; height: 20px; margin: 1px 0 0; }
+.ccafe-contact .wpcf7 input[type=submit] { background: #74604b; color: white; white-space: normal; cursor: pointer; }
+.ccafe-contact .wpcf7 .wpcf7-not-valid-tip, .ccafe-contact .wpcf7 .wpcf7-response-output { overflow-wrap: anywhere; margin-inline: 0; }
+.ccafe-contact .wpcf7 .wpcf7-response-output { padding: 12px; }
+.ccafe-contact-instagram > div { width: 100%; min-width: 0; max-width: 1240px; }
+.ccafe-contact-instagram > div > div { min-width: 0; max-width: 100%; }
+.ccafe-contact-instagram > div > div:first-child { padding-inline: 20px; }
+.ccafe-contact-instagram .w-60 { width: auto; max-width: 100%; overflow-wrap: anywhere; }
+.ccafe-contact :focus-visible { outline: 2px solid #74604b; outline-offset: 3px; }
+/* Classic WooCommerce cart: retain its form, hooks and native AJAX contract. */
+.woocommerce-cart .woocommerce-cart-form { width: 100%; min-width: 0; float: none; }
+.woocommerce-cart .woocommerce-cart-form__contents { width: 100%; table-layout: fixed; border-collapse: separate; border-spacing: 0; }
+.woocommerce-cart .woocommerce-cart-form__contents th, .woocommerce-cart .woocommerce-cart-form__contents td { padding: 12px; vertical-align: middle; overflow-wrap: anywhere; }
+.woocommerce-cart .woocommerce-cart-form__contents .product-remove { width: 68px; }
+.woocommerce-cart .woocommerce-cart-form__contents .product-thumbnail { width: 120px; }
+.woocommerce-cart .woocommerce-cart-form__contents .product-price, .woocommerce-cart .woocommerce-cart-form__contents .product-subtotal { width: 120px; }
+.woocommerce-cart .woocommerce-cart-form__contents .product-quantity { width: 104px; }
+.woocommerce-cart .woocommerce-cart-form__contents .product-name { text-align: left; }
+.woocommerce-cart .woocommerce-cart-form .product-thumbnail img { width: 96px; height: 96px; max-width: 100%; object-fit: cover; margin: 0; }
+.woocommerce-cart .woocommerce-cart-form a.remove { display: flex; position: static; align-items: center; justify-content: center; width: 44px; height: 44px; text-indent: 0; font-size: 26px; line-height: 1; color: #6e4032 !important; border: 1px solid #cfc5b9; border-radius: 4px; }
+.woocommerce-cart .woocommerce-cart-form a.remove::before { display: none; }
+.woocommerce-cart .woocommerce-cart-form .quantity input.qty { min-height: 44px; width: 72px; max-width: 100%; padding: 8px; font-size: 16px; }
+.woocommerce-cart .woocommerce-cart-form .custom-candies-list { margin-left: 0; padding-left: 16px; text-align: left; }
+.woocommerce-cart .woocommerce-cart-form .actions { padding: 20px 0; background: transparent; }
+.woocommerce-cart .woocommerce-cart-form .actions .coupon { float: none; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin: 0 0 16px; max-width: 100%; }
+.woocommerce-cart .woocommerce-cart-form .coupon input.input-text { min-width: 0; width: auto; flex: 1 1 160px; margin: 0; min-height: 44px; font-size: 16px; }
+.woocommerce-cart .woocommerce-cart-form .coupon button, .woocommerce-cart .woocommerce-cart-form button[name=update_cart] { min-height: 44px; max-width: 100%; margin: 0; white-space: normal; }
+.woocommerce-cart .cart-collaterals { clear: both; width: 100%; }
+.woocommerce-cart .cart-collaterals .cart_totals { float: none; width: 100%; max-width: 480px; margin-left: auto; padding: 24px; background: #f2ede7; }
+.woocommerce-cart .cart_totals h2 { font-family: 'Didot_LT_Pro', serif; font-size: 28px; line-height: 1.2; overflow-wrap: anywhere; }
+.woocommerce-cart .cart_totals table { width: 100%; table-layout: fixed; }
+.woocommerce-cart .cart_totals table tr { display: table-row; }
+.woocommerce-cart .cart_totals table th, .woocommerce-cart .cart_totals table td { display: table-cell; padding: 12px 0; overflow-wrap: anywhere; vertical-align: top; }
+.woocommerce-cart .cart_totals table th { width: 40%; text-align: left; }
+.woocommerce-cart .cart_totals table td { text-align: right; }
+.woocommerce-cart .cart_totals table td::before { display: none; }
+.woocommerce-cart .cart_totals .shipping td { text-align: left; }
+.woocommerce-cart .wc-proceed-to-checkout .checkout-button { min-height: 48px; padding: 14px; font-size: 16px; background: #74604b; color: white !important; white-space: normal; }
+.woocommerce-cart .woocommerce-error, .woocommerce-cart .woocommerce-message { overflow-wrap: anywhere; }
+.woocommerce-cart .woocommerce-cart-form :focus-visible, .woocommerce-cart .cart-collaterals :focus-visible { outline: 2px solid #74604b; outline-offset: 3px; }
+@media (max-width: 1023px) {
+  .woocommerce-cart .woocommerce-cart-form__contents { display: block; background: transparent; }
+  .woocommerce-cart .woocommerce-cart-form__contents thead { display: table-header-group; position: absolute; width: 1px; height: 1px; clip-path: inset(50%); overflow: hidden; }
+  .woocommerce-cart .woocommerce-cart-form__contents tbody { display: block; width: 100%; }
+  .woocommerce-cart .woocommerce-cart-form__contents tr.cart_item { display: grid; grid-template-columns: 80px minmax(0, 1fr) 44px; gap: 12px; padding: 16px; margin-bottom: 20px; background: #f9f8f6; border: 1px solid #e7e0d8; border-radius: 4px; }
+  .woocommerce-cart .woocommerce-cart-form__contents tr.cart_item td { width: auto; min-width: 0; padding: 0; border: 0; background: transparent; }
+  .woocommerce-cart .woocommerce-cart-form__contents .product-thumbnail { display: block; grid-column: 1; grid-row: 1; }
+  .woocommerce-cart .woocommerce-cart-form .product-thumbnail img { width: 80px; height: 80px; }
+  .woocommerce-cart .woocommerce-cart-form__contents .product-name { display: block; grid-column: 2; grid-row: 1; font-weight: 600; }
+  .woocommerce-cart .woocommerce-cart-form__contents .product-remove { display: block; grid-column: 3; grid-row: 1; }
+  .woocommerce-cart .woocommerce-cart-form__contents td.product-price, .woocommerce-cart .woocommerce-cart-form__contents td.product-quantity, .woocommerce-cart .woocommerce-cart-form__contents td.product-subtotal { display: flex; grid-column: 1 / -1; align-items: center; justify-content: space-between; gap: 16px; min-height: 44px; text-align: right; }
+  .woocommerce-cart .woocommerce-cart-form__contents td.product-subtotal { padding-top: 12px; border-top: 1px solid #e7e0d8; font-weight: 700; }
+  .woocommerce-cart .woocommerce-cart-form__contents td::before { float: none; font-weight: 400; content: attr(data-title); text-align: left; }
+  .woocommerce-cart .woocommerce-cart-form__contents .product-thumbnail::before, .woocommerce-cart .woocommerce-cart-form__contents .product-name::before, .woocommerce-cart .woocommerce-cart-form__contents .product-remove::before { display: none; }
+  .woocommerce-cart .woocommerce-cart-form__contents tr:not(.cart_item), .woocommerce-cart .woocommerce-cart-form__contents .actions { display: block; width: 100%; }
+  .woocommerce-cart .woocommerce-cart-form .coupon button, .woocommerce-cart .woocommerce-cart-form button[name=update_cart] { width: 100%; }
+  .woocommerce-cart .cart-collaterals .cart_totals { padding: 20px; }
+}
+@media (max-width: 1023px) {
+  .woocommerce-cart .woocommerce-cart-form__contents tr.cart_item td::after { display: none; content: none; }
+}
+.ccafe-contact .wpcf7 input:focus, .ccafe-contact .wpcf7 textarea:focus { outline: 2px solid #74604b; outline-offset: 2px; box-shadow: none; }
+.woocommerce-cart .cart_totals table th, .woocommerce-cart .cart_totals table td { background: transparent; border-bottom: 1px solid #d6cbbc; }
+.woocommerce-cart .cart_totals .includes_tax { display: block; margin-top: 6px; font-size: 12px; font-weight: 400; line-height: 1.5; white-space: normal; }
+@media (min-width: 1024px) {
+  .woocommerce-cart .woocommerce-cart-form .actions .coupon { float: left; width: min(60%, 640px); margin-bottom: 0; }
+  .woocommerce-cart .woocommerce-cart-form .actions > button[name=update_cart] { float: right; }
+}
+.woocommerce-cart .woocommerce-cart-form .coupon .coupon-error-notice { flex-basis: 100%; min-width: 0; max-width: 100%; margin: 0; overflow-wrap: anywhere; }
+.woocommerce-cart .cart_totals table tbody tr th, .woocommerce-cart .cart_totals table tbody tr td { background: transparent; }
+.ccafe-praline-thumbnail { display: block; position: relative; width: 100%; aspect-ratio: 1; }
+.ccafe-praline-thumbnail > img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.ccafe-cart-row > .ccafe-praline-thumbnail { width: 64px; height: 64px; }
+.woocommerce-cart .woocommerce-cart-form .product-thumbnail .ccafe-praline-thumbnail { width: 96px; height: 96px; }
+.woocommerce-cart .woocommerce-cart-form .product-thumbnail .ccafe-praline-thumbnail > img { width: 100%; height: 100%; }
+.woocommerce-cart .woocommerce-cart-form .product-thumbnail .ccafe-praline-image-grid img { width: 84%; height: 84%; object-fit: contain; }
+@media (max-width: 1023px) {
+  .woocommerce-cart .woocommerce-cart-form .product-thumbnail .ccafe-praline-thumbnail { width: 80px; height: 80px; }
+}
+.woocommerce-mini-cart .ccafe-praline-thumbnail { float: left; width: 64px; height: 64px; margin-right: 12px; }
+.ccafe-contact-card { container-type: inline-size; }
+.ccafe-contact .wpcf7 .grid { grid-template-columns: minmax(0, 1fr); }
+@container (min-width: 400px) {
+  .ccafe-contact .wpcf7 .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+.woocommerce-cart .entry-title { font-family: 'Didot_LT_Pro', serif; font-size: clamp(32px, 4vw, 48px); color: #44403c; margin-bottom: 24px; }
+.ccafe-contact-instagram .scroll-hidd { justify-content: flex-start; }
